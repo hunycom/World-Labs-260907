@@ -384,10 +384,22 @@
           <div>
             <div class="flex items-center justify-between text-xs font-bold text-slate-400 mb-2">
               <span>3D GAUSSIAN 에셋 프리셋</span>
-              <span class="text-[10px] text-rose-400 font-bold">8개 모델</span>
+              <span class="text-[10px] text-sky-400 font-bold">9개 모델</span>
             </div>
             <div class="asset-grid">
-              <div class="asset-card active" data-model="butterfly.spz">
+              <div class="asset-card active col-span-2 border-sky-500/40 bg-gradient-to-r from-sky-500/20 to-amber-500/20 hover:from-sky-500/30 hover:to-amber-500/30 cursor-pointer shadow-lg shadow-sky-500/10" data-model="assets/p3/marble/run01_500k.spz" data-type="warehouse">
+                <div class="flex items-center gap-2.5 p-1">
+                  <span class="text-2xl">🏢</span>
+                  <div class="flex flex-col text-left">
+                    <div class="flex items-center gap-1.5">
+                      <span class="text-xs font-bold text-sky-300">스마트 물류 창고 (Marble Run01)</span>
+                      <span class="px-1.5 py-0.5 text-[8px] font-bold rounded bg-sky-500/30 text-sky-200 border border-sky-400/40">WORLD LABS</span>
+                    </div>
+                    <span class="text-[9px] text-slate-300">500,000 스플랫 공간 모델 · 1:1 실측 스케일 · 랙 &amp; 팔레트 물리 충돌 연동</span>
+                  </div>
+                </div>
+              </div>
+              <div class="asset-card" data-model="butterfly.spz">
                 <span class="text-xl">🦋</span>
                 <span class="text-xs font-semibold mt-1">나비</span>
                 <span class="text-[9px] text-slate-400">butterfly.spz</span>
@@ -1521,6 +1533,12 @@
       showLoading(`${filename} 다운로드 및 디코딩 중...`);
       removeCurrentSplat();
 
+      pedestalGroup.visible = true;
+      torusMesh.visible = true;
+      camera.position.set(1.8, 1.4, 2.4);
+      controls.target.set(0, 0.3, 0);
+      controls.update();
+
       try {
         let fullUrl;
         if (filename.startsWith("blob:") || filename.startsWith("data:") || filename.startsWith("http:") || filename.startsWith("https:")) {
@@ -1558,6 +1576,67 @@
         }
       } catch (err) {
         console.error("SplatMesh 로드 실패:", err);
+      } finally {
+        hideLoading();
+      }
+    }
+
+    // Warehouse 3DGS Scene Loader (World Labs Marble Run01 - Phase 3 Work)
+    async function loadWarehouseScene() {
+      currentMode = "warehouse";
+      statSplats.textContent = "로딩 중...";
+      showLoading("스마트 물류 창고 3DGS (500,000 스플랫) 로딩 중...");
+      removeCurrentSplat();
+
+      pedestalGroup.visible = false;
+      torusMesh.visible = false;
+      if (dtEvGroup) dtEvGroup.visible = false;
+      if (dtPortGroup) dtPortGroup.visible = false;
+
+      // Disable autorotate so camera doesn't swing the entire corridor
+      const toggleAutorotate = document.getElementById("toggle-autorotate");
+      if (toggleAutorotate) toggleAutorotate.checked = false;
+
+      // Metric transformation parameters (1:1 ground truth scale)
+      const s = 2.121173;
+      const h = 1.2561374;
+
+      try {
+        const marbleMesh = new SplatMesh({
+          url: "assets/p3/marble/run01_500k.spz",
+          lod: false,
+          raycastable: true,
+          minRaycastOpacity: 0.05,
+          onProgress: (ev) => {
+            if (ev.lengthComputable) {
+              const pct = Math.round((ev.loaded / ev.total) * 100);
+              if (loadingText) loadingText.textContent = `물류 창고 로딩 중: ${pct}%`;
+            }
+          }
+        });
+
+        marbleMesh.scale.set(s, s, s);
+        marbleMesh.rotation.set(Math.PI, 0, 0);
+        marbleMesh.position.set(0, h, 0);
+        marbleMesh.updateMatrixWorld(true);
+
+        scene.add(marbleMesh);
+        currentSplatMesh = marbleMesh;
+        window.currentSplatMesh = marbleMesh;
+
+        // Eye-level (1.6m) corridor perspective looking straight down the racks
+        camera.position.set(0.0, 1.6, -1.5);
+        controls.target.set(0.0, 1.6, -10.0);
+        camera.lookAt(0.0, 1.6, -10.0);
+        camera.updateMatrixWorld(true);
+        controls.update();
+
+        await marbleMesh.initialized;
+
+        statSplats.textContent = "500,000 개 (물류 창고 3DGS)";
+        appendXaiLog("[3D 공간 지능] 🏢 World Labs Marble 물류 창고 (500,000 스플랫) 1:1 실측 공간화 로드 완료!");
+      } catch (err) {
+        console.error("물류 창고 로드 실패:", err);
       } finally {
         hideLoading();
       }
@@ -1653,7 +1732,7 @@
 
     tabViewport.addEventListener("click", () => {
       setActiveTab(tabViewport);
-      currentMode = "viewport";
+      currentMode = "warehouse";
       studioLeft.style.display = "flex";
       dtLeft.style.display = "none";
       if (nervousLeft) nervousLeft.style.display = "none";
@@ -1662,8 +1741,7 @@
       if (nervousRight) nervousRight.style.display = "none";
       dtEvGroup.visible = false;
       dtPortGroup.visible = false;
-      torusMesh.visible = true;
-      loadSplatModel("butterfly.spz");
+      loadWarehouseScene();
     });
 
     tabNervous.addEventListener("click", () => {
@@ -1828,6 +1906,8 @@
             "3d-model/dragon_multiview/dragon_3_left.png"
           ];
           handleMultiImageUrlsTo3D(urls);
+        } else if (type === "warehouse") {
+          loadWarehouseScene();
         } else {
           loadSplatModel(model);
         }
@@ -3521,27 +3601,48 @@
     document.querySelectorAll(".cam-preset-btn").forEach(btn => {
       btn.addEventListener("click", () => {
         const type = btn.dataset.cam;
-        if (type === "45") {
-          camera.position.set(1.8, 1.4, 2.4);
-          controls.target.set(0, 0.3, 0);
-        } else if (type === "front") {
-          camera.position.set(0, 0.4, 3.2);
-          controls.target.set(0, 0.4, 0);
-        } else if (type === "top") {
-          camera.position.set(0, 4.2, 0.01);
-          controls.target.set(0, 0, 0);
-        } else if (type === "zoom") {
-          camera.position.set(0, 0.5, 1.4);
-          controls.target.set(0, 0.3, 0);
+        if (currentMode === "warehouse") {
+          if (type === "45") {
+            camera.position.set(3.0, 3.5, -2.5);
+            controls.target.set(0.0, 1.5, -5.0);
+          } else if (type === "front") {
+            camera.position.set(0.0, 1.6, -1.5);
+            controls.target.set(0.0, 1.6, -10.0);
+          } else if (type === "top") {
+            camera.position.set(0.0, 8.0, -4.0);
+            controls.target.set(0.0, 0.0, -4.0);
+          } else if (type === "zoom") {
+            camera.position.set(0.0, 1.6, -4.5);
+            controls.target.set(0.0, 1.6, -10.0);
+          }
+        } else {
+          if (type === "45") {
+            camera.position.set(1.8, 1.4, 2.4);
+            controls.target.set(0, 0.3, 0);
+          } else if (type === "front") {
+            camera.position.set(0, 0.4, 3.2);
+            controls.target.set(0, 0.4, 0);
+          } else if (type === "top") {
+            camera.position.set(0, 4.2, 0.01);
+            controls.target.set(0, 0, 0);
+          } else if (type === "zoom") {
+            camera.position.set(0, 0.5, 1.4);
+            controls.target.set(0, 0.3, 0);
+          }
         }
         controls.update();
       });
     });
 
-    // Reset Cam (Default 45° Isometric Preset)
+    // Reset Cam
     document.getElementById("btn-reset-cam").addEventListener("click", () => {
-      camera.position.set(1.8, 1.4, 2.4);
-      controls.target.set(0, 0.3, 0);
+      if (currentMode === "warehouse") {
+        camera.position.set(0.0, 1.6, -1.5);
+        controls.target.set(0.0, 1.6, -10.0);
+      } else {
+        camera.position.set(1.8, 1.4, 2.4);
+        controls.target.set(0, 0.3, 0);
+      }
       controls.update();
     });
 
@@ -3963,8 +4064,8 @@
       }
     }, 100);
 
-    // 19. Initial Scene Load
-    loadSplatModel("butterfly.spz");
+    // 19. Initial Scene Load (World Labs Marble Warehouse)
+    loadWarehouseScene();
 
     // 20. Animation Render Loop (60 FPS Telemetry)
     const toggleAutorotate = document.getElementById("toggle-autorotate");
