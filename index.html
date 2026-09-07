@@ -261,7 +261,7 @@
       "three": "https://unpkg.com/three@0.180.0/build/three.module.js",
       "three/addons/": "https://unpkg.com/three@0.180.0/examples/jsm/",
       "@sparkjsdev/spark": "https://unpkg.com/@sparkjsdev/spark@2.1.0/dist/spark.module.js",
-      "@dimforge/rapier3d-compat": "/node_modules/@dimforge/rapier3d-compat/rapier.es.js"
+      "@dimforge/rapier3d-compat": "https://cdn.jsdelivr.net/npm/@dimforge/rapier3d-compat@0.12.0/rapier.es.js"
     }
   }
   </script>
@@ -1517,11 +1517,19 @@
     // Splat Loader
     async function loadSplatModel(filename) {
       currentMode = "viewport";
+      statSplats.textContent = "로딩 중...";
       showLoading(`${filename} 다운로드 및 디코딩 중...`);
       removeCurrentSplat();
 
       try {
-        const fullUrl = filename.startsWith("blob:") || filename.startsWith("data:") ? filename : baseAssetUrl + filename;
+        let fullUrl;
+        if (filename.startsWith("blob:") || filename.startsWith("data:") || filename.startsWith("http:") || filename.startsWith("https:")) {
+          fullUrl = filename;
+        } else if (["butterfly.spz", "robot-head.spz", "woobles.spz"].includes(filename)) {
+          fullUrl = "assets/" + filename;
+        } else {
+          fullUrl = baseAssetUrl + filename;
+        }
         const splatMesh = new SplatMesh({
           url: fullUrl,
           lod: true,
@@ -1537,11 +1545,17 @@
         splatMesh.position.set(0, 0, 0);
         scene.add(splatMesh);
         currentSplatMesh = splatMesh;
+        window.currentSplatMesh = splatMesh;
 
         await splatMesh.initialized;
 
-        const count = splatMesh.numSplats || (splatMesh.packedSplats ? splatMesh.packedSplats.numSplats : 0);
-        statSplats.textContent = `${count.toLocaleString()} 개`;
+        const rawCount = splatMesh.numSplats;
+        let count = typeof rawCount === 'number' ? rawCount : (rawCount && typeof rawCount.value === 'number' ? rawCount.value : 0);
+        if (!count && splatMesh.packedSplats) count = splatMesh.packedSplats.numSplats || 0;
+        if (!count && splatMesh.splats && typeof splatMesh.splats.getNumSplats === 'function') count = splatMesh.splats.getNumSplats();
+        if (count > 0) {
+          statSplats.textContent = `${count.toLocaleString()} 개`;
+        }
       } catch (err) {
         console.error("SplatMesh 로드 실패:", err);
       } finally {
@@ -3991,6 +4005,17 @@
         statFps.textContent = fps;
         frameCount = 0;
         lastFpsTime = time;
+
+        if (currentSplatMesh && (!statSplats.textContent || statSplats.textContent === "0 개" || statSplats.textContent === "로딩 중...")) {
+          const raw = currentSplatMesh.numSplats;
+          let c = typeof raw === 'number' ? raw : (raw && typeof raw.value === 'number' ? raw.value : 0);
+          if (!c && currentSplatMesh.packedSplats) c = currentSplatMesh.packedSplats.numSplats || 0;
+          if (!c && currentSplatMesh.splats && typeof currentSplatMesh.splats.getNumSplats === 'function') c = currentSplatMesh.splats.getNumSplats();
+          if (!c && currentSplatMesh.maxSplats) c = currentSplatMesh.maxSplats;
+          if (c > 0) {
+            statSplats.textContent = `${c.toLocaleString()} 개`;
+          }
+        }
       }
 
       // 100Hz Live Neuro-Oscilloscope Waveform
