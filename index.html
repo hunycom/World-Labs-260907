@@ -336,6 +336,10 @@
         <a href="Spark_Spatial_Intelligence_Whitepaper_v1.0.pdf" download="Spark_공간지능_소프트웨어_아키텍처_및_산업인프라_도입백서_v1.0.pdf" target="_blank" class="flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/40 hover:bg-amber-500/30 transition-all shadow-md shadow-amber-500/10 cursor-pointer" title="차세대 공간 지능 Spark.js 도입 및 전략 백서 (45P)">
           <span>📑 전략 백서 (45P)</span>
         </a>
+        <!-- Warehouse Story Interactive Story -->
+        <button id="btn-open-story" class="flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-purple-500/20 text-purple-300 border border-purple-500/40 hover:bg-purple-500/30 transition-all shadow-md shadow-purple-500/10 cursor-pointer" title="사진이 아니라 공간입니다 — run01 창고가 만들어진 여섯 단계 이야기">
+          <span>📖 6단계 창고 이야기</span>
+        </button>
         <button id="btn-toggle-guides" class="px-2.5 py-1 rounded-full text-xs font-medium text-slate-300 bg-white/5 border border-white/10 hover:bg-white/10 transition-all">
           👁️ 3D 가이드 온/오프
         </button>
@@ -402,6 +406,12 @@
                     </div>
                     <span class="text-[9px] text-slate-300">500,000 스플랫 공간 모델 · 1:1 실측 스케일 · 랙 &amp; 팔레트 물리 충돌 연동</span>
                   </div>
+                </div>
+                <div class="mt-1.5 pt-1.5 border-t border-sky-500/20 flex items-center justify-between">
+                  <span class="text-[9px] text-purple-300 font-medium flex items-center gap-1">💡 6단계 제작 과정</span>
+                  <button id="btn-card-story" class="px-2 py-0.5 rounded text-[10px] font-bold bg-purple-500/25 text-purple-200 border border-purple-400/40 hover:bg-purple-500/40 transition-all flex items-center gap-1">
+                    <span>📖 스토리 보기</span>
+                  </button>
                 </div>
               </div>
               <div class="asset-card" data-model="butterfly.spz">
@@ -9460,6 +9470,84 @@
         window.runP3PhysicsT6cTest();
       }, 2500);
     }
+  </script>
+
+  <!-- Modal: run01 Warehouse Interactive Story -->
+  <div id="modal-warehouse-story" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md transition-all duration-300 pointer-events-auto" style="display:none;">
+    <div class="relative w-[95vw] max-w-5xl h-[90vh] bg-[#141A2B] border border-slate-700/80 rounded-2xl shadow-2xl overflow-hidden flex flex-col">
+      <!-- Modal Header Bar -->
+      <div class="px-5 py-3.5 bg-[#1B2233] border-b border-slate-700/60 flex items-center justify-between flex-shrink-0">
+        <div class="flex items-center gap-3">
+          <span class="text-xl">📖</span>
+          <div>
+            <h3 class="text-sm font-bold text-white tracking-tight">사진이 아니라 공간입니다 — run01 창고가 만들어진 여섯 단계</h3>
+            <p class="text-[11px] text-slate-400">빛 방울 50만 개로 지은 3D 물류 창고의 인터랙티브 제작 스토리</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <a href="warehouse-story.html" target="_blank" class="px-3 py-1.5 rounded-lg text-xs font-semibold text-sky-300 bg-sky-500/15 border border-sky-500/30 hover:bg-sky-500/30 transition-all flex items-center gap-1.5 cursor-pointer">
+            <span>새 탭으로 크게 보기 ↗</span>
+          </a>
+          <button id="btn-close-story-modal" class="px-3 py-1.5 rounded-lg text-xs font-bold text-slate-300 bg-white/10 hover:bg-white/20 transition-all cursor-pointer">
+            ✕ 닫기
+          </button>
+        </div>
+      </div>
+      <!-- Modal Body (Iframe) -->
+      <div class="flex-1 w-full h-full bg-[#EDEFF2] relative">
+        <iframe id="iframe-warehouse-story" src="about:blank" class="w-full h-full border-0" title="Warehouse Story"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Warehouse Story Modal Controller
+    (function initStoryModal() {
+      const modal = document.getElementById("modal-warehouse-story");
+      const iframe = document.getElementById("iframe-warehouse-story");
+      const btnOpen = document.getElementById("btn-open-story");
+      const btnCard = document.getElementById("btn-card-story");
+      const btnClose = document.getElementById("btn-close-story-modal");
+
+      function openModal(e) {
+        if (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+        if (iframe && (iframe.src === "about:blank" || !iframe.src.includes("warehouse-story.html"))) {
+          iframe.src = "warehouse-story.html";
+        }
+        if (modal) {
+          modal.style.display = "flex";
+        }
+      }
+
+      function closeModal(e) {
+        if (e) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+        if (modal) {
+          modal.style.display = "none";
+        }
+      }
+
+      if (btnOpen) btnOpen.addEventListener("click", openModal);
+      if (btnCard) btnCard.addEventListener("click", openModal);
+      if (btnClose) btnClose.addEventListener("click", closeModal);
+
+      if (modal) {
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) closeModal(e);
+        });
+      }
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && modal && modal.style.display !== "none") {
+          closeModal(e);
+        }
+      });
+    })();
   </script>
 </body>
 </html>
