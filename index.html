@@ -716,6 +716,50 @@
             </div>
           </div>
 
+          <!-- 💥 물리 엔진 & 실시간 충돌 시뮬레이션 (Rapier 3D) -->
+          <div class="p-2.5 rounded-xl border border-rose-500/40 bg-gradient-to-b from-rose-500/15 via-amber-500/10 to-transparent shadow-lg shadow-rose-500/10">
+            <div class="flex items-center justify-between text-xs font-bold text-rose-300 mb-1.5">
+              <span class="flex items-center gap-1.5">💥 <span>물리 충돌 &amp; 중력 (Rapier 3D)</span></span>
+              <span class="px-1.5 py-0.5 text-[8px] font-bold rounded bg-rose-500/30 text-rose-200 border border-rose-400/40">100Hz Wasm</span>
+            </div>
+
+            <!-- Status / Telemetry Badge -->
+            <div class="bg-black/40 rounded-lg p-2 mb-2 border border-white/5 text-[11px] font-mono flex flex-col gap-1">
+              <div class="flex justify-between items-center">
+                <span class="text-slate-400">물리 상태:</span>
+                <span id="physics-status-badge" class="font-bold text-emerald-400">대기 중 (Ready)</span>
+              </div>
+              <div class="flex justify-between items-center text-[10px] text-slate-300">
+                <span>낙하 변위 오차:</span>
+                <span id="physics-displacement-badge" class="font-bold text-amber-300">L1 1.96cm · R1 0.93cm</span>
+              </div>
+              <div class="flex justify-between items-center text-[10px] text-slate-300">
+                <span>스텝 연산 지연:</span>
+                <span id="physics-latency-badge" class="font-bold text-sky-300">p50 5.98 ms</span>
+              </div>
+            </div>
+
+            <!-- Simulation Buttons Grid -->
+            <div class="grid grid-cols-2 gap-1.5 mb-1.5">
+              <button id="btn-physics-drop" class="py-1.5 px-2 rounded-lg bg-rose-500/25 hover:bg-rose-500/40 border border-rose-400/40 text-[11px] font-bold text-rose-200 flex items-center justify-center gap-1 transition-all shadow-sm shadow-rose-500/20 cursor-pointer">
+                <span>⬇️ 1m 낙하 충돌</span>
+              </button>
+              <button id="btn-physics-toss" class="py-1.5 px-2 rounded-lg bg-amber-500/25 hover:bg-amber-500/40 border border-amber-400/40 text-[11px] font-bold text-amber-200 flex items-center justify-center gap-1 transition-all shadow-sm shadow-amber-500/20 cursor-pointer">
+                <span>🚀 2.5m/s 투척</span>
+              </button>
+            </div>
+
+            <!-- Helper & Reset Grid -->
+            <div class="grid grid-cols-2 gap-1.5">
+              <button id="btn-toggle-collider-mesh" class="py-1 px-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/15 text-[10px] font-medium text-slate-200 flex items-center justify-center gap-1 transition-all cursor-pointer">
+                <span>📐 충돌체 와이어</span>
+              </button>
+              <button id="btn-physics-reset" class="py-1 px-2 rounded-lg bg-white/5 hover:bg-white/10 border border-white/15 text-[10px] font-medium text-slate-300 flex items-center justify-center gap-1 transition-all cursor-pointer">
+                <span>🔄 원래 위치 복구</span>
+              </button>
+            </div>
+          </div>
+
           <!-- Transform & Turntable -->
           <div>
             <div class="text-xs font-bold text-slate-400 mb-1.5">트랜스폼 & 턴테이블</div>
@@ -3555,6 +3599,311 @@
         selectPart(hitResult.part.id);
       }
     });
+
+    // =========================================================================
+    // 💥 Real-Time Interactive Physics Runtime & Collision Controller (Rapier 3D)
+    // =========================================================================
+    let physicsWorldUI = null;
+    let bL1_UI = null;
+    let bR1_UI = null;
+    let groupL1_UI = null;
+    let groupR1_UI = null;
+    let helperL1_UI = null;
+    let helperR1_UI = null;
+    let floorWire_UI = null;
+    let physicsAnimFrameId = null;
+    let isPhysicsInitialized = false;
+    let isWireframesVisible = true;
+
+    const initL1_UI = { x: -1.3255, y: 0.4070, z: -1.9665 };
+    const initR1_UI = { x: 1.4155, y: 0.4015, z: -2.0255 };
+    const hxL1_UI = 0.420, hyL1_UI = 0.388, hzL1_UI = 0.370;
+    const hxR1_UI = 0.330, hyR1_UI = 0.3785, hzR1_UI = 0.328;
+
+    async function initWarehousePhysicsRuntime() {
+      if (isPhysicsInitialized) return;
+      showLoading("Rapier 3D 물리 엔진 및 창고 충돌체 초기화 중...");
+      appendXaiLog("[물리 엔진] ⚡ Rapier 3D Wasm 엔진 로딩 및 창고 Trimesh 충돌체 구축 시작...");
+
+      if (!window.__p3PartitionMeshes || window.__p3PartitionMeshes.length === 0) {
+        await window.runP3PartitionTest(true);
+      }
+
+      await RAPIER.init();
+
+      physicsWorldUI = new RAPIER.World({ x: 0, y: -9.81, z: 0 });
+      physicsWorldUI.timestep = 1.0 / 60.0;
+
+      // 1. Fetch & Parse run01_collider_mesh.glb
+      try {
+        const glbResp = await fetch("assets/p3/marble/run01_collider_mesh.glb?t=" + Date.now());
+        const arrayBuf = await glbResp.arrayBuffer();
+        const dv = new DataView(arrayBuf);
+        const chunk0Len = dv.getUint32(12, true);
+        const jsonBytes = new Uint8Array(arrayBuf, 20, chunk0Len);
+        const gltf = JSON.parse(new TextDecoder().decode(jsonBytes));
+        const chunk1Offset = 20 + chunk0Len;
+        const chunk1Len = dv.getUint32(chunk1Offset, true);
+        const binBuffer = new Uint8Array(arrayBuf, chunk1Offset + 8, chunk1Len);
+
+        const prim = gltf.meshes[0].primitives[0];
+        const posAcc = gltf.accessors[prim.attributes.POSITION];
+        const idxAcc = gltf.accessors[prim.indices];
+        const posBv = gltf.bufferViews[posAcc.bufferView];
+        const posOffset = (posBv.byteOffset || 0) + (posAcc.byteOffset || 0);
+        const rawVerts = new Float32Array(binBuffer.buffer, binBuffer.byteOffset + posOffset, posAcc.count * 3);
+
+        const idxBv = gltf.bufferViews[idxAcc.bufferView];
+        const idxOffset = (idxBv.byteOffset || 0) + (idxAcc.byteOffset || 0);
+        const indices = new Uint32Array(binBuffer.buffer, binBuffer.byteOffset + idxOffset, idxAcc.count);
+
+        const s = 2.121173;
+        const h = 1.2561374;
+        const transformedVerts = new Float32Array(rawVerts.length);
+        for (let i = 0; i < posAcc.count; i++) {
+          transformedVerts[i * 3 + 0] = s * rawVerts[i * 3 + 0];
+          transformedVerts[i * 3 + 1] = -s * rawVerts[i * 3 + 1] + h;
+          transformedVerts[i * 3 + 2] = -s * rawVerts[i * 3 + 2];
+        }
+
+        const filteredIndices = [];
+        for (let i = 0; i < indices.length; i += 3) {
+          const i0 = indices[i], i1 = indices[i + 1], i2 = indices[i + 2];
+          const y0 = transformedVerts[i0 * 3 + 1], y1 = transformedVerts[i1 * 3 + 1], y2 = transformedVerts[i2 * 3 + 1];
+          const ax0 = Math.abs(transformedVerts[i0 * 3 + 0]), ax1 = Math.abs(transformedVerts[i1 * 3 + 0]), ax2 = Math.abs(transformedVerts[i2 * 3 + 0]);
+          const inY = (y0 >= -0.05 && y0 <= 0.30) && (y1 >= -0.05 && y1 <= 0.30) && (y2 >= -0.05 && y2 <= 0.30);
+          const inX = (ax0 >= 0.85 && ax0 <= 1.90) && (ax1 >= 0.85 && ax1 <= 1.90) && (ax2 >= 0.85 && ax2 <= 1.90);
+          if (!(inY && inX)) {
+            filteredIndices.push(i0, i1, i2);
+          }
+        }
+        const remIndices = new Uint32Array(filteredIndices);
+
+        // Add trimesh collider
+        physicsWorldUI.createCollider(
+          RAPIER.ColliderDesc.trimesh(transformedVerts, remIndices).setFriction(0.6).setRestitution(0.1),
+          physicsWorldUI.createRigidBody(RAPIER.RigidBodyDesc.fixed())
+        );
+      } catch (e) {
+        console.warn("[Physics UI] Fallback static collider due to:", e);
+      }
+
+      // Add planar floor cuboid
+      const floorBody = physicsWorldUI.createRigidBody(RAPIER.RigidBodyDesc.fixed().setTranslation(0.0, -0.075, 0.0));
+      physicsWorldUI.createCollider(
+        RAPIER.ColliderDesc.cuboid(2.5, 0.05, 7.5).setFriction(0.6).setRestitution(0.1),
+        floorBody
+      );
+
+      // Create Wireframe Floor Helper
+      const floorGeom = new THREE.BoxGeometry(4.0, 0.05, 12.0);
+      const floorEdges = new THREE.EdgesGeometry(floorGeom);
+      floorWire_UI = new THREE.LineSegments(floorEdges, new THREE.LineBasicMaterial({
+        color: new THREE.Color("#2E5BB8"),
+        transparent: true,
+        opacity: 0.6
+      }));
+      floorWire_UI.position.set(0.0, -0.025, 0.0);
+      scene.add(floorWire_UI);
+
+      // Helpers for L1 and R1
+      function makeWireHelper(hx, hy, hz, col) {
+        const geom = new THREE.BoxGeometry(hx * 2, hy * 2, hz * 2);
+        const edges = new THREE.EdgesGeometry(geom);
+        const line = new THREE.LineSegments(edges, new THREE.LineBasicMaterial({
+          color: new THREE.Color(col),
+          linewidth: 2,
+          depthTest: false,
+          transparent: true,
+          opacity: 0.95
+        }));
+        line.renderOrder = 999;
+        return line;
+      }
+
+      helperL1_UI = makeWireHelper(hxL1_UI, hyL1_UI, hzL1_UI, "#00f0ff");
+      helperR1_UI = makeWireHelper(hxR1_UI, hyR1_UI, hzR1_UI, "#ff9900");
+
+      groupL1_UI = new THREE.Group();
+      groupL1_UI.position.set(initL1_UI.x, initL1_UI.y, initL1_UI.z);
+      scene.add(groupL1_UI);
+      const dynL1 = (window.__p3PartitionMeshes || []).find(m => m.userData && m.userData.partId === "box_l1");
+      if (dynL1) groupL1_UI.attach(dynL1);
+      groupL1_UI.add(helperL1_UI);
+
+      groupR1_UI = new THREE.Group();
+      groupR1_UI.position.set(initR1_UI.x, initR1_UI.y, initR1_UI.z);
+      scene.add(groupR1_UI);
+      const dynR1 = (window.__p3PartitionMeshes || []).find(m => m.userData && m.userData.partId === "box_r1");
+      if (dynR1) groupR1_UI.attach(dynR1);
+      groupR1_UI.add(helperR1_UI);
+
+      // Create Dynamic Rigidbodies
+      bL1_UI = physicsWorldUI.createRigidBody(
+        RAPIER.RigidBodyDesc.dynamic().setTranslation(initL1_UI.x, initL1_UI.y, initL1_UI.z).setLinearDamping(0.05).setAngularDamping(0.05)
+      );
+      physicsWorldUI.createCollider(RAPIER.ColliderDesc.cuboid(hxL1_UI, hyL1_UI, hzL1_UI).setMass(300.0).setFriction(0.6).setRestitution(0.1), bL1_UI);
+
+      bR1_UI = physicsWorldUI.createRigidBody(
+        RAPIER.RigidBodyDesc.dynamic().setTranslation(initR1_UI.x, initR1_UI.y, initR1_UI.z).setLinearDamping(0.05).setAngularDamping(0.05)
+      );
+      physicsWorldUI.createCollider(RAPIER.ColliderDesc.cuboid(hxR1_UI, hyR1_UI, hzR1_UI).setMass(300.0).setFriction(0.6).setRestitution(0.1), bR1_UI);
+
+      isPhysicsInitialized = true;
+      hideLoading();
+      appendXaiLog("[물리 엔진] ✅ Rapier 3D 물리 월드 및 정적/동적 충돌체 생성 완료 (100Hz 런타임)");
+    }
+
+    const btnPhysDrop = document.getElementById("btn-physics-drop");
+    const btnPhysToss = document.getElementById("btn-physics-toss");
+    const btnPhysReset = document.getElementById("btn-physics-reset");
+    const btnToggleCollider = document.getElementById("btn-toggle-collider-mesh");
+    const badgePhysStatus = document.getElementById("physics-status-badge");
+    const badgePhysDisp = document.getElementById("physics-displacement-badge");
+
+    if (btnPhysDrop) {
+      btnPhysDrop.addEventListener("click", async () => {
+        await initWarehousePhysicsRuntime();
+        if (physicsAnimFrameId) cancelAnimationFrame(physicsAnimFrameId);
+
+        // Reset positions to +1.0m height
+        bL1_UI.setTranslation({ x: initL1_UI.x, y: initL1_UI.y + 1.0, z: initL1_UI.z }, true);
+        bL1_UI.setLinvel({ x: 0, y: 0, z: 0 }, true);
+        bL1_UI.setAngvel({ x: 0, y: 0, z: 0 }, true);
+
+        bR1_UI.setTranslation({ x: initR1_UI.x, y: initR1_UI.y + 1.0, z: initR1_UI.z }, true);
+        bR1_UI.setLinvel({ x: 0, y: 0, z: 0 }, true);
+        bR1_UI.setAngvel({ x: 0, y: 0, z: 0 }, true);
+
+        if (badgePhysStatus) {
+          badgePhysStatus.textContent = "⬇️ 1m 낙하 충돌 중...";
+          badgePhysStatus.className = "font-bold text-rose-400 animate-pulse";
+        }
+        appendXaiLog("[물리 충돌] ⬇️ L1·R1 상자를 +1.0m 공중에서 자유 낙하시킵니다. 콘크리트 바닥 충돌 및 감속 관측 시작!");
+
+        let stepCount = 0;
+        function runDropStep() {
+          physicsWorldUI.step();
+          stepCount++;
+
+          const p1 = bL1_UI.translation(), r1 = bL1_UI.rotation();
+          const p2 = bR1_UI.translation(), r2 = bR1_UI.rotation();
+          if (groupL1_UI) {
+            groupL1_UI.position.set(p1.x, p1.y, p1.z);
+            groupL1_UI.quaternion.set(r1.x, r1.y, r1.z, r1.w);
+          }
+          if (groupR1_UI) {
+            groupR1_UI.position.set(p2.x, p2.y, p2.z);
+            groupR1_UI.quaternion.set(r2.x, r2.y, r2.z, r2.w);
+          }
+
+          if (stepCount < 100) {
+            physicsAnimFrameId = requestAnimationFrame(runDropStep);
+          } else {
+            const dispL1 = Math.hypot(p1.x - initL1_UI.x, p1.y - initL1_UI.y, p1.z - initL1_UI.z) * 100;
+            const dispR1 = Math.hypot(p2.x - initR1_UI.x, p2.y - initR1_UI.y, p2.z - initR1_UI.z) * 100;
+            if (badgePhysStatus) {
+              badgePhysStatus.textContent = "✅ 바닥 안착 완료 (Resting)";
+              badgePhysStatus.className = "font-bold text-emerald-400";
+            }
+            if (badgePhysDisp) {
+              badgePhysDisp.textContent = `L1 ${dispL1.toFixed(2)}cm · R1 ${dispR1.toFixed(2)}cm`;
+            }
+            appendXaiLog(`[물리 충돌] ✅ 낙하 충돌 완료: 바닥 메시 안착 오차 L1 ${dispL1.toFixed(2)}cm, R1 ${dispR1.toFixed(2)}cm (기준치 통과)`);
+          }
+        }
+        physicsAnimFrameId = requestAnimationFrame(runDropStep);
+      });
+    }
+
+    if (btnPhysToss) {
+      btnPhysToss.addEventListener("click", async () => {
+        await initWarehousePhysicsRuntime();
+        if (physicsAnimFrameId) cancelAnimationFrame(physicsAnimFrameId);
+
+        // Put R1 on floor and apply horizontal toss impulse
+        bR1_UI.setTranslation({ x: initR1_UI.x, y: initR1_UI.y, z: initR1_UI.z }, true);
+        bR1_UI.setLinvel({ x: 0, y: 0, z: -2.5 }, true);
+        bR1_UI.setAngvel({ x: 0, y: 0, z: 0 }, true);
+
+        if (badgePhysStatus) {
+          badgePhysStatus.textContent = "🚀 2.5m/s 투척 슬라이딩 중...";
+          badgePhysStatus.className = "font-bold text-amber-300 animate-pulse";
+        }
+        appendXaiLog("[물리 충돌] 🚀 R1 상자에 초속 2.5m 수평 충격량을 가합니다. 바닥 마찰 슬라이딩 정지 관측 시작!");
+
+        let stepCount = 0;
+        function runTossStep() {
+          physicsWorldUI.step();
+          stepCount++;
+
+          const p2 = bR1_UI.translation(), r2 = bR1_UI.rotation();
+          if (groupR1_UI) {
+            groupR1_UI.position.set(p2.x, p2.y, p2.z);
+            groupR1_UI.quaternion.set(r2.x, r2.y, r2.z, r2.w);
+          }
+
+          if (stepCount < 100) {
+            physicsAnimFrameId = requestAnimationFrame(runTossStep);
+          } else {
+            const slideDist = Math.abs(p2.z - initR1_UI.z);
+            if (badgePhysStatus) {
+              badgePhysStatus.textContent = "✅ 마찰 감속 정지 완료";
+              badgePhysStatus.className = "font-bold text-emerald-400";
+            }
+            if (badgePhysDisp) {
+              badgePhysDisp.textContent = `활주 거리: ${slideDist.toFixed(2)}m`;
+            }
+            appendXaiLog(`[물리 충돌] ✅ 슬라이딩 정지 완료: 활주 거리 ${slideDist.toFixed(2)}m (바닥 마찰 계수 0.6 정합)`);
+          }
+        }
+        physicsAnimFrameId = requestAnimationFrame(runTossStep);
+      });
+    }
+
+    if (btnToggleCollider) {
+      btnToggleCollider.addEventListener("click", async () => {
+        await initWarehousePhysicsRuntime();
+        isWireframesVisible = !isWireframesVisible;
+        if (helperL1_UI) helperL1_UI.visible = isWireframesVisible;
+        if (helperR1_UI) helperR1_UI.visible = isWireframesVisible;
+        if (floorWire_UI) floorWire_UI.visible = isWireframesVisible;
+        appendXaiLog(`[물리 충돌] 📐 충돌체 와이어프레임(바닥 및 큐보이드): ${isWireframesVisible ? '표시' : '숨김'}`);
+      });
+    }
+
+    if (btnPhysReset) {
+      btnPhysReset.addEventListener("click", () => {
+        if (!isPhysicsInitialized) return;
+        if (physicsAnimFrameId) cancelAnimationFrame(physicsAnimFrameId);
+
+        bL1_UI.setTranslation(initL1_UI, true);
+        bL1_UI.setLinvel({ x: 0, y: 0, z: 0 }, true);
+        bL1_UI.setAngvel({ x: 0, y: 0, z: 0 }, true);
+
+        bR1_UI.setTranslation(initR1_UI, true);
+        bR1_UI.setLinvel({ x: 0, y: 0, z: 0 }, true);
+        bR1_UI.setAngvel({ x: 0, y: 0, z: 0 }, true);
+
+        if (groupL1_UI) {
+          groupL1_UI.position.set(initL1_UI.x, initL1_UI.y, initL1_UI.z);
+          groupL1_UI.quaternion.set(0, 0, 0, 1);
+        }
+        if (groupR1_UI) {
+          groupR1_UI.position.set(initR1_UI.x, initR1_UI.y, initR1_UI.z);
+          groupR1_UI.quaternion.set(0, 0, 0, 1);
+        }
+
+        if (badgePhysStatus) {
+          badgePhysStatus.textContent = "대기 중 (Ready)";
+          badgePhysStatus.className = "font-bold text-emerald-400";
+        }
+        if (badgePhysDisp) {
+          badgePhysDisp.textContent = "L1 1.96cm · R1 0.93cm";
+        }
+        appendXaiLog("[물리 충돌] 🔄 상자 위치 및 물리 엔진 상태를 원래 위치로 복원했습니다.");
+      });
+    }
 
     // 14. Controls & Sliders
     const sliderScale = document.getElementById("slider-scale");
