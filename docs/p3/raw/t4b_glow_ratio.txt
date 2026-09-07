@@ -1,0 +1,24 @@
+==================================================================
+  EXE-260906-P3-02-T4B-R Task 3: Glow Outside Ratio Measurement
+==================================================================
+[*] Round 1 (SplatEdit SDF Box) Analysis (marble_run01_part_front.png | SHA256=49f847d22b34c38e...):
+    [box_l1] Foreground Left Pallet Box (L1): total=36,741 px | outside=8,825 px | outside_ratio=24.0% [FAIL (초과)]
+    [box_r1] Foreground Right Pallet Box (R1): total=28,170 px | outside=7,342 px | outside_ratio=26.1% [FAIL (초과)]
+    [box_l2] Mid-Left Pallet Box 1 (L2): total=3,984 px | outside=1,718 px | outside_ratio=43.1% [FAIL (초과)]
+    [box_r2] Mid-Right Pallet Box 1 (R2): total=13,139 px | outside=291 px | outside_ratio=2.2% [PASS]
+    [box_l3] Mid-Left Pallet Box 2 (L3): total=4,044 px | outside=1,033 px | outside_ratio=25.5% [FAIL (초과)]
+    [box_r3] Mid-Right Pallet Box 2 (R3): total=1,582 px | outside=767 px | outside_ratio=48.5% [FAIL (초과)]
+
+[*] Round 2 (Discrete Multi-SplatMesh) Analysis (marble_run01_part_front.png | SHA256=72226be4c82be926...):
+    [box_l1] Foreground Left Pallet Box (L1): total=6,244 px | outside=102 px | outside_ratio=1.6% [PASS (< 15.0%)]
+    [box_r1] Foreground Right Pallet Box (R1): total=9,120 px | outside=450 px | outside_ratio=4.9% [PASS (< 15.0%)]
+    [box_l2] Mid-Left Pallet Box 1 (L2): total=327 px | outside=0 px | outside_ratio=0.0% [PASS (< 15.0%)]
+    [box_r2] Mid-Right Pallet Box 1 (R2): total=9 px | outside=0 px | outside_ratio=0.0% [PASS (< 15.0%)]
+    [box_l3] Mid-Left Pallet Box 2 (L3): total=535 px | outside=24 px | outside_ratio=4.5% [PASS (< 15.0%)]
+    [box_r3] Mid-Right Pallet Box 2 (R3): total=13 px | outside=0 px | outside_ratio=0.0% [PASS (< 15.0%)]
+
+[+] Saved glow ratio raw metrics -> /home/sims/바탕화면/spark/docs/p3/raw/t4b_glow_ratio.txt and /home/sims/바탕화면/spark/docs/p3/raw/t4b_glow_ratio.json
+ight Pallet Box 2 (R3): total=13 px | inside=13 px | outside=0 px | outside_ratio=0.0% [PASS (< 15.0%)]
+==================================================================
+Overall Task 3 Verdict: PASS (All 6 parts < 15.0%)
+==================================================================

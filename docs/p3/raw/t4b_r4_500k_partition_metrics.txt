@@ -1,0 +1,27 @@
+==================================================================
+  EXE-260906-P3-02-T4B-R4 Task 2: 500k SPZ Partition Raw Log (run01)
+==================================================================
+Total Original Splats (SPZ):   500,000
+Total Search Candidates:       4,345
+Total Dynamic Splats:          3,426 (0.685%)
+Total Static Splats:           496,574 (99.315%)
+Total Excluded - Rule (a) Col: 612 (Blue H[195..245] + Yellow H[40..65], S>=0.45)
+Total Excluded - Rule (b) Geom:291 (XZ 5cm column cell, dY>=0.9*h_box)
+Total Excluded - Extent (3*s): 16
+Total Excluded Splats:         919
+------------------------------------------------------------------
+Sum Conservation Check:        Dynamic(3,426) + Static(496,574) = 500,000 / 500,000
+Conservation Verdict:          PASS (100.0% 완전 일치)
+Rejection Sum Verification:    sum(rejected per part) == total rejected (PASS)
+Candidate Sum Verification:    Candidates(4,345) == Dynamic(3,426) + Rejected(919) (PASS)
+Floor Floaters Filtered:       8 specks (opacity=0, SHA256=3a3a3f405ba37f84...)
+------------------------------------------------------------------
+Part Specifications (500k Runtime Basis, Post-Exclusion):
+  [box_l1] Foreground Left Pallet Box (L1): 620 splats (cand=950, col=248, geom=71, ext=11, tot_rej=330) | bbox_Y=[0.0200m, 0.8090m] (>=0.0150m: PASS) | Dims=[0.823, 0.789, 0.454] | Vol=0.295m3 | Mass=147.4kg [미달 (147.4 kg)] | SHA256=fa42f8ce3659ef0f...
+  [box_r1] Foreground Right Pallet Box (R1): 864 splats (cand=1356, col=308, geom=183, ext=1, tot_rej=492) | bbox_Y=[0.0253m, 0.8040m] (>=0.0150m: PASS) | Dims=[0.636, 0.778, 0.494] | Vol=0.244m3 | Mass=122.2kg [미달 (122.2 kg)] | SHA256=87c348db222ea5da...
+  [box_l2] Mid-Left Pallet Box 1 (L2): 364 splats (cand=421, col=18, geom=37, ext=2, tot_rej=57) | bbox_Y=[0.0169m, 0.6940m] (>=0.0150m: PASS) | Dims=[1.065, 0.677, 0.68] | Vol=0.490m3 | Mass=245.2kg [PASS] | SHA256=d06105cb031728f6...
+  [box_r2] Mid-Right Pallet Box 1 (R2): 680 splats (cand=701, col=20, geom=0, ext=1, tot_rej=21) | bbox_Y=[0.0189m, 0.7300m] (>=0.0150m: PASS) | Dims=[1.011, 0.711, 0.692] | Vol=0.497m3 | Mass=248.7kg [PASS] | SHA256=d5c05e3852cb7413...
+  [box_l3] Mid-Left Pallet Box 2 (L3): 541 splats (cand=551, col=9, geom=0, ext=1, tot_rej=10) | bbox_Y=[0.0169m, 0.7470m] (>=0.0150m: PASS) | Dims=[1.01, 0.73, 0.988] | Vol=0.729m3 | Mass=364.2kg [PASS] | SHA256=08ba9b40b6509e48...
+  [box_r3] Mid-Right Pallet Box 2 (R3): 357 splats (cand=366, col=9, geom=0, ext=0, tot_rej=9) | bbox_Y=[0.0225m, 0.7550m] (>=0.0150m: PASS) | Dims=[0.686, 0.732, 0.877] | Vol=0.440m3 | Mass=220.2kg [PASS] | SHA256=d23b844bcb6e833d...
+  [static_structure] Static Structure (Floor, Racks, Ceiling, Walls): 496,574 splats | Fixed Collider | SHA256=ba581f791f85bf02...
+==================================================================

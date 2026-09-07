@@ -1,0 +1,34 @@
+==================================================================
+  EXE-260906-P3-02-T5 Task 0: L1/R1 Z-Fix & Partition Ledger (run01)
+==================================================================
+Metric Scale Factor (s):       2.121173
+Ground Plane Offset (h):       1.256137 m
+Mesh Floor Level (y_mesh):     -0.0250 m
+Floor Cutoff (y_mesh + 0.04):  0.0150 m
+Max Axis Scale Cutoff:         0.15 m
+BBox Expansion Margin:         +3.0 cm
+------------------------------------------------------------------
+Total Original Splats (PLY):   1,920,000
+Total Search Candidates:       15,968
+Total Dynamic Splats:          11,807 (0.615%)
+Total Static Splats:           1,908,193 (99.385%)
+Total Excluded - Rule (a) Col: 2,132 (Blue H[195..245] + Yellow H[40..65], S>=0.45)
+Total Excluded - Rule (b) Geom:2,029 (XZ 5cm column cell, dY>=0.9*h_box)
+Total Excluded - Extent (3*s): 0
+Total Excluded Splats:         4,161
+------------------------------------------------------------------
+Sum Conservation Check:        Dynamic(11,807) + Static(1,908,193) = 1,920,000 / 1,920,000
+Conservation Verdict:          PASS (100.0% 완전 일치)
+Rejection Sum Verification:    sum(rejected per part) == total rejected (PASS)
+Candidate Sum Verification:    Candidates(15,968) == Dynamic(11,807) + Rejected(4,161) (PASS)
+Floor Floaters Filtered:       28 specks (opacity=0, SHA256=af3495608679f13a...)
+------------------------------------------------------------------
+Part Specifications & Bounding Box Recomputation (Post-Exclusion):
+  [box_l1] Foreground Left Pallet Box (L1): 2,760 splats (cand=4387, col=839, geom=788, ext=0, tot_rej=1627) | bbox_Y=[0.0205m, 0.7950m] (>=0.0150m: PASS) | Dims=[0.928, 0.775, 0.728] | Vol=0.524m3 | Mass=300.0kg [임의 상수 300 kg, 사양 미확정] | SHA256=4bd317e6675a9e08...
+  [box_r1] Foreground Right Pallet Box (R1): 5,293 splats (cand=7603, col=1091, geom=1219, ext=0, tot_rej=2310) | bbox_Y=[0.0301m, 0.7830m] (>=0.0150m: PASS) | Dims=[0.377, 0.753, 0.595] | Vol=0.169m3 | Mass=300.0kg [임의 상수 300 kg, 사양 미확정] | SHA256=4af047f88ed39a19...
+  [box_l2] Mid-Left Pallet Box 1 (L2): 459 splats (cand=519, col=38, geom=22, ext=0, tot_rej=60) | bbox_Y=[0.0174m, 0.7470m] (>=0.0150m: PASS) | Dims=[1.136, 0.73, 0.497] | Vol=0.412m3 | Mass=300.0kg [임의 상수 300 kg, 사양 미확정] | SHA256=dbc0970879f902f3...
+  [box_r2] Mid-Right Pallet Box 1 (R2): 769 splats (cand=862, col=93, geom=0, ext=0, tot_rej=93) | bbox_Y=[0.0210m, 0.7500m] (>=0.0150m: PASS) | Dims=[0.96, 0.729, 0.505] | Vol=0.353m3 | Mass=300.0kg [임의 상수 300 kg, 사양 미확정] | SHA256=4ac9f4d0df4bead0...
+  [box_l3] Mid-Left Pallet Box 2 (L3): 1,463 splats (cand=1506, col=43, geom=0, ext=0, tot_rej=43) | bbox_Y=[0.0242m, 0.7550m] (>=0.0150m: PASS) | Dims=[0.642, 0.731, 0.997] | Vol=0.468m3 | Mass=300.0kg [임의 상수 300 kg, 사양 미확정] | SHA256=85f9a15786e6a2c8...
+  [box_r3] Mid-Right Pallet Box 2 (R3): 1,063 splats (cand=1091, col=28, geom=0, ext=0, tot_rej=28) | bbox_Y=[0.0278m, 0.7580m] (>=0.0150m: PASS) | Dims=[0.099, 0.73, 0.862] | Vol=0.062m3 | Mass=300.0kg [임의 상수 300 kg, 사양 미확정] | SHA256=15a5bb002d7d1496...
+  [static_structure] Static Structure (Floor, Racks, Ceiling, Walls): 1,908,193 splats | Fixed Collider | SHA256=09aa665a05f1d493...
+==================================================================

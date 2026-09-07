@@ -1,0 +1,19 @@
+{
+  "run_id": "run01",
+  "total_splats": 1920000,
+  "total_mesh_vertices": 34741,
+  "metric_scale_factor": 2.121173,
+  "ground_plane_offset": 1.2561374,
+  "y_peak_splat_m": -0.03499999999999959,
+  "splat_peak_count": 102985,
+  "y_mesh_floor_m": -0.024999999999999578,
+  "mesh_floor_count": 247,
+  "y_mesh_global_m": 0.9150000000000013,
+  "mesh_global_count": 1947,
+  "floor_align_diff_m": 0.010000000000000009,
+  "splat_y_p1": -0.08875668048858643,
+  "mesh_y_p1": -0.07614526897668839,
+  "criteria_diff_m": 0.05,
+  "align_pass": true,
+  "verdict": "PASS"
+}

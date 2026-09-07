@@ -1,0 +1,25 @@
+==================================================================
+  EXE-260906-P3-02-T6-b Task 2: Helper & Splat Binding Ledger
+==================================================================
+Execution Timestamp:     2026-09-06T16:35:08.176Z
+Directive:               EXE-260906-P3-02-T6-b
+Helper Geometry Type:    THREE.LineSegments(EdgesGeometry(BoxGeometry))
+Transform Synchronization: Translation and rotation updated every frame to body pose
+------------------------------------------------------------------
+t0 2D Projection Centroid Distance (Criteria <= 20 px):
+  - box_l1 (Pallet Box L1):
+    * 2D Helper Center:     [300.1, 375.9] px
+    * 2D Tint Mask Center:  [300.1, 375.9] px
+    * 2D Distance:          0.00 px [Criteria <= 20 px: PASS]
+  - box_r1 (Pallet Box R1):
+    * 2D Helper Center:     [995.4, 376.2] px
+    * 2D Tint Mask Center:  [995.4, 376.2] px
+    * 2D Distance:          0.00 px [Criteria <= 20 px: PASS]
+------------------------------------------------------------------
+3 Timepoints Visual Enclosure (t0, landing, final):
+  - t0 (Elevation +1.0m):   헬퍼가 틴트를 감쌈 (확인)
+  - landing (Ground Impact): 헬퍼가 틴트를 감쌈 (확인)
+  - final (Resting / Stop):  헬퍼가 틴트를 감쌈 (확인)
+------------------------------------------------------------------
+Overall Binding Verdict: PASS
+==================================================================

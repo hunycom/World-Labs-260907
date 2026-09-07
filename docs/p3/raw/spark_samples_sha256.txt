@@ -1,0 +1,3 @@
+2e22c9967731bebc0ea74e1747cd42e955dec16a89dba9aac07d62a6c5780e0d  assets/butterfly.spz
+7c8c564928cbb1fa1453f5df3810ca52bfc8c3453b6e128488b9f4cdea53b59e  assets/robot-head.spz
+be92a831bd89b14b4e713fe54f8d051716ed1250c354ce11833e6262668270a4  assets/woobles.spz

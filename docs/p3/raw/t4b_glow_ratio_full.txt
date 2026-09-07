@@ -1,0 +1,32 @@
+==================================================================
+  EXE-260906-P3-02-T4B-R2 Task 1: Glow Outside Ratio Measurement
+==================================================================
+Round 1 Image (SplatEdit SDF):         marble_run01_part_front.png (SHA: 49f847d22b34c38e...)
+Round 2 Image (Discrete Multi-SplatMesh): marble_run01_part_front.png (SHA: 72226be4c82be926...)
+Criteria: Outside Glow Ratio < 15.0% (Full Frame Spec)
+
+#### 1. Full Frame (1280x720, 공식 사양) 발광 비율 측정 결과
+| 부품 ID | 명칭 | 1차 총픽셀 | 1차 밖 | 1차 비율 | 2차 총픽셀 | 2차 밖 | 2차 비율 | 판정 (<15.0%) |
+|---|---|---|---|---|---|---|---|---|
+| `box_l1` | Foreground Left Pallet Box (L1) | 63,001 | 27,861 |  44.2% |  8,988 |  1,169 |  13.0% | **PASS** |
+| `box_r1` | Foreground Right Pallet Box (R1) | 68,026 | 39,344 |  57.8% | 11,073 |  1,218 |  11.0% | **PASS** |
+| `box_l2` | Mid-Left Pallet Box 1 (L2) | 25,264 |  7,653 |  30.3% |  7,349 |  5,341 |  72.7% | **미달 (72.7%)** |
+| `box_r2` | Mid-Right Pallet Box 1 (R2) | 87,352 | 53,425 |  61.2% | 23,575 | 19,839 |  84.2% | **미달 (84.2%)** |
+| `box_l3` | Mid-Left Pallet Box 2 (L3) | 19,374 |  4,028 |  20.8% |  3,004 |    245 |   8.2% | **PASS** |
+| `box_r3` | Mid-Right Pallet Box 2 (R3) | 53,290 | 44,372 |  83.3% | 15,981 | 14,343 |  89.8% | **미달 (89.8%)** |
+
+Full Frame 통과율: 3/6 부품
+
+#### 2. Column Strip (열 띠 래크 베이 국소 측정, 참고값) 발광 비율 측정 결과
+| 부품 ID | 명칭 | 1차 총픽셀 | 1차 밖 | 1차 비율 | 2차 총픽셀 | 2차 밖 | 2차 비율 | 판정 (<15.0%) |
+|---|---|---|---|---|---|---|---|---|
+| `box_l1` | Foreground Left Pallet Box (L1) | 37,614 |  9,104 |  24.2% |  8,042 |    679 |   8.4% | **PASS** |
+| `box_r1` | Foreground Right Pallet Box (R1) | 34,526 |  8,567 |  24.8% | 10,466 |    614 |   5.9% | **PASS** |
+| `box_l2` | Mid-Left Pallet Box 1 (L2) |  9,144 |  2,011 |  22.0% |    394 |      0 |   0.0% | **PASS** |
+| `box_r2` | Mid-Right Pallet Box 1 (R2) | 24,808 |  5,470 |  22.0% |  1,056 |     17 |   1.6% | **PASS** |
+| `box_l3` | Mid-Left Pallet Box 2 (L3) |  5,092 |  1,560 |  30.6% |  1,243 |     56 |   4.5% | **PASS** |
+| `box_r3` | Mid-Right Pallet Box 2 (R3) |  3,633 |  2,285 |  62.9% |    705 |    123 |  17.4% | **미달 (17.4%)** |
+
+Column Strip (참고값) 통과율: 5/6 부품
+
+==================================================================

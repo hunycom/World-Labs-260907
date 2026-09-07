@@ -1,0 +1,547 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [ 5 0 R 7 0 R 9 0 R 11 0 R ] /Count 4 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+5 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [ 0 0 612 792 ] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 6 0 R >>
+endobj
+6 0 obj
+<< /Length 9075 >>
+stream
+BT /F2 15 Tf 45 719 Td (P3-05 ?? ?? ?? ?? ?? ?? ?? \\\(P3CLOSEv1draft\\\)) Tj ET
+BT /F2 9 Tf 45 702 Td (-) Tj /F1 9 Tf 55 702 Td (?? ???: docs/p3/P3CLOSEv1draft.md) Tj ET
+BT /F2 9 Tf 45 689 Td (-) Tj /F1 9 Tf 55 689 Td (?? ??: 2026-09-07T04:35:00.000Z) Tj ET
+BT /F2 9 Tf 45 676 Td (-) Tj /F1 9 Tf 55 676 Td (???: [???] EXE-260907-P3-05-FIX2) Tj ET
+BT /F2 9 Tf 45 663 Td (-) Tj /F1 9 Tf 55 663 Td (?? ? ?? ??: Antigravity \\\(??: Principal, Claude System 2 ???\\\)) Tj ET
+BT /F2 9 Tf 45 650 Td (-) Tj /F1 9 Tf 55 650 Td (?? ?? ??: Marble ?? ??, Spark\\\(World Labs MIT\\\) ? ?? ??? \\\(?? ?? grep 0? ??\\\)) Tj ET
+BT /F2 9 Tf 45 637 Td (-) Tj /F1 9 Tf 55 637 Td (?? ?? API ??: $0.00) Tj ET
+BT /F2 9 Tf 45 624 Td (-) Tj /F1 9 Tf 55 624 Td (?? ??: docs/p3/assetledgerp3.sha256 \\\(121? ?? ??\\\)) Tj ET
+BT /F2 14 Tf 45 598 Td (1. ??? 3? ?? \\\(Architecture\\\)) Tj ET
+BT /F2 13 Tf 45 575 Td (1-1. ???? ??) Tj ET
+BT /F2 9 Tf 45 558 Td (-) Tj /F1 9 Tf 55 558 Td (3D Gaussian Splatting ?? ?? ????\\\(Spatial AI\\\) ???? ?? ?? ?? ?????\\\(Rapier3D\\\) ? ?? bbox ?? ????? ??\\\(?? v2\\\)? ?? ??) Tj ET
+BT /F1 9 Tf 55 546 Td (.) Tj ET
+BT /F2 9 Tf 45 533 Td (-) Tj /F1 9 Tf 55 533 Td (???\\\(Air-gapped\\\) ?? ?? ?? ???? ?? API ?? ?? ?? dt 1/60 s ?? ????? ? ?? ??? ?? \\\(?? FPS: [?] llvmpipe, ???\\\).) Tj ET
+BT /F2 13 Tf 45 508 Td (1-2. 3? ??? ????) Tj ET
+BT /F1 8 Tf 45 491 Td (?? ??) Tj ET
+BT /F1 8 Tf 175 491 Td (?? ?? ??) Tj ET
+BT /F1 8 Tf 305 491 Td (?? ???? ? ??) Tj ET
+BT /F1 8 Tf 435 491 Td (?? ?? ? ??) Tj ET
+BT /F1 8 Tf 45 478 Td (?1?? \\\(???\\\)) Tj ET
+BT /F1 8 Tf 175 478 Td (Marble ?? ??) Tj ET
+BT /F1 8 Tf 305 478 Td (World Labs Marble API v1 ) Tj ET
+BT /F1 8 Tf 435 478 Td (marble-1.1 ??? ???? ??\\\(do) Tj ET
+BT /F1 8 Tf 45 465 Td (?2?? \\\(??? ???\\\)) Tj ET
+BT /F1 8 Tf 175 465 Td (Spark\\\(World Labs MIT\\\) ? ?) Tj ET
+BT /F1 8 Tf 305 465 Td (Three.js r180 ? MIT\\\(World) Tj ET
+BT /F1 8 Tf 435 465 Td (3D ?? ?? ?????\\\(??/?????/3) Tj ET
+BT /F1 8 Tf 45 452 Td (?3?? \\\(?? ? ???\\\)) Tj ET
+BT /F1 8 Tf 175 452 Td (?? ? ???) Tj ET
+BT /F1 8 Tf 305 452 Td (???? ?? ??\\\(Single-Run\\\) ??) Tj ET
+BT /F1 8 Tf 435 452 Td (??? ??? ?? ??? ??? ?? ? ?) Tj ET
+BT /F2 14 Tf 45 426 Td (2. ?? ?? ?? ? \\\(Completed Phases Ledger\\\)) Tj ET
+BT /F1 8 Tf 45 409 Td (?? ? ??) Tj ET
+BT /F1 8 Tf 119 409 Td (?? ?? ??) Tj ET
+BT /F1 8 Tf 193 409 Td (???) Tj ET
+BT /F1 8 Tf 267 409 Td (?? ?? ??) Tj ET
+BT /F1 8 Tf 341 409 Td (Git ??) Tj ET
+BT /F1 8 Tf 415 409 Td (?? ?? / SHA-256) Tj ET
+BT /F1 8 Tf 489 409 Td (??) Tj ET
+BT /F1 8 Tf 45 396 Td (Phase 1 \\\(P1\\\)) Tj ET
+BT /F1 8 Tf 119 396 Td (3??\\\(Front/45°/Top\\\) ???? 3) Tj ET
+BT /F1 8 Tf 193 396 Td ($\\\\le 1.0\\\\text{ px}$) Tj ET
+BT /F1 8 Tf 267 396 Td (576101a) Tj ET
+BT /F1 8 Tf 341 396 Td ([?] \\\(?? ???\\\)) Tj ET
+BT /F1 8 Tf 415 396 Td (docs/p3/phase1camerasspat) Tj ET
+BT /F1 8 Tf 489 396 Td (PASS) Tj ET
+BT /F1 8 Tf 45 383 Td (Phase 1.5 \\\(P1.5\\\)) Tj ET
+BT /F1 8 Tf 119 383 Td (?? ??? 32???, ?? ??? 2/2 ) Tj ET
+BT /F1 8 Tf 193 383 Td (??? 100% \\\(2/2\\\)) Tj ET
+BT /F1 8 Tf 267 383 Td (59f1f0d) Tj ET
+BT /F1 8 Tf 341 383 Td ([?] \\\(?? ???\\\)) Tj ET
+BT /F1 8 Tf 415 383 Td (test/spatialcontext.test.) Tj ET
+BT /F1 8 Tf 489 383 Td (PASS) Tj ET
+BT /F1 8 Tf 45 370 Td (Phase 2 \\\(P2\\\)) Tj ET
+BT /F1 8 Tf 119 370 Td (?? ?? ?? ???? \\\(?? 15/15 \\\() Tj ET
+BT /F1 8 Tf 193 370 Td (?? $\\\\ge 80\\\\%$, ?? $\\\\ge 85) Tj ET
+BT /F1 8 Tf 267 370 Td (4c3978e) Tj ET
+BT /F1 8 Tf 341 370 Td ([?] \\\(?? ???\\\)) Tj ET
+BT /F1 8 Tf 415 370 Td (docs/phase2results.json \\\() Tj ET
+BT /F1 8 Tf 489 370 Td (PASS) Tj ET
+BT /F1 8 Tf 45 357 Td (P3-00) Tj ET
+BT /F1 8 Tf 119 357 Td (?? ?? ??? ?? ??? ?? \\\(?? ?) Tj ET
+BT /F1 8 Tf 193 357 Td (?? $< 1e-6$) Tj ET
+BT /F1 8 Tf 267 357 Td (59f1f0d) Tj ET
+BT /F1 8 Tf 341 357 Td ([?] \\\(?? ???\\\)) Tj ET
+BT /F1 8 Tf 415 357 Td (docs/p3/spatialcontextsch) Tj ET
+BT /F1 8 Tf 489 357 Td (PASS) Tj ET
+BT /F1 8 Tf 45 344 Td (P3-01) Tj ET
+BT /F1 8 Tf 119 344 Td (?? raycast 100.0%, SplatE) Tj ET
+BT /F1 8 Tf 193 344 Td (raycast $\\\\ge 90\\\\%$, ?? ??) Tj ET
+BT /F1 8 Tf 267 344 Td (dd53e09) Tj ET
+BT /F1 8 Tf 341 344 Td ([?] \\\(?? ???\\\)) Tj ET
+BT /F1 8 Tf 415 344 Td (tests/p3/conditions.json ) Tj ET
+BT /F1 8 Tf 489 344 Td (PASS) Tj ET
+BT /F1 8 Tf 45 331 Td (P3-02 Task 1) Tj ET
+BT /F1 8 Tf 119 331 Td (Marble ??? ? ?? \\\(run01\\\), ) Tj ET
+BT /F1 8 Tf 193 331 Td (?? ??) Tj ET
+BT /F1 8 Tf 267 331 Td (2a12594) Tj ET
+BT /F1 8 Tf 341 331 Td (p3-02-task1-2) Tj ET
+BT /F1 8 Tf 415 331 Td (docs/p3/marble/run01respo) Tj ET
+BT /F1 8 Tf 489 331 Td (PASS) Tj ET
+BT /F1 8 Tf 45 318 Td (P3-02 Task 2) Tj ET
+BT /F1 8 Tf 119 318 Td (Marble ??? ?? ?? \\\(Scale 2) Tj ET
+BT /F1 8 Tf 193 318 Td (??? ?? ?? $< 0.05\\\\text{ m) Tj ET
+BT /F1 8 Tf 267 318 Td (2a12594) Tj ET
+BT /F1 8 Tf 341 318 Td (p3-02-task1-2) Tj ET
+BT /F1 8 Tf 415 318 Td (docs/p3/raw/marbletransfo) Tj ET
+BT /F1 8 Tf 489 318 Td (PASS) Tj ET
+BT /F1 8 Tf 45 305 Td (P3-02 Task 4) Tj ET
+BT /F1 8 Tf 119 305 Td (500k ??? 3D ?? ??: L1 916) Tj ET
+BT /F1 8 Tf 193 305 Td (?? $< 15\\\\%$) Tj ET
+BT /F1 8 Tf 267 305 Td (cab30dd) Tj ET
+BT /F1 8 Tf 341 305 Td (p3-02-task4-r4) Tj ET
+BT /F1 8 Tf 415 305 Td (docs/p3/raw/t5500kpartiti) Tj ET
+BT /F1 8 Tf 489 305 Td (PASS) Tj ET
+BT /F1 8 Tf 45 292 Td (P3-02 Task 5) Tj ET
+BT /F1 8 Tf 119 292 Td (?? bbox ?? ????? ??\\\(?? v2) Tj ET
+BT /F1 8 Tf 193 292 Td (?? $\\\\ge 70.0\\\\%$, ?? $\\\\le ) Tj ET
+BT /F1 8 Tf 267 292 Td (4805105) Tj ET
+BT /F1 8 Tf 341 292 Td ([?] \\\(?? ???\\\)) Tj ET
+BT /F1 8 Tf 415 292 Td (docs/p3/raw/t5cpickeval.j) Tj ET
+BT /F1 8 Tf 489 292 Td (PASS) Tj ET
+BT /F1 8 Tf 45 279 Td (P3-02 Task 6) Tj ET
+BT /F1 8 Tf 119 279 Td (?? ?? ?? ?????: ?? ???? ?) Tj ET
+BT /F1 8 Tf 193 279 Td (?? ??? $[-2, +3]\\\\text{ cm) Tj ET
+BT /F1 8 Tf 267 279 Td (9e0ffd7) Tj ET
+BT /F1 8 Tf 341 279 Td (p3-02-task6-t6c) Tj ET
+BT /F1 8 Tf 415 279 Td (docs/p3/raw/t6cscenarios.) Tj ET
+BT /F1 8 Tf 489 279 Td (PASS \\\(??\\\)) Tj ET
+BT /F2 9 Tf 45 266 Td (-) Tj /F1 9 Tf 55 266 Td (\\\\ ?? \\\(docs/p3/marble/run01viewingvolume.md ??\\\): viewingvolumemetrics.json? isinside? ?? ?? ?\\\($x=0.0, y=1.6, z=) Tj ET
+BT /F1 9 Tf 55 254 Td (-1.5$\\\) ?? ????? ??? $\\\\ge 60\\\\%$ ? 2D SSIM $\\\\ge 0.50$ ?? ?? ???. ?? ?? ??? $X \\\\in [-1.3, +1.3]\\\\text{ m}$, $Y \\\\in) Tj ET
+BT /F2 14 Tf 45 228 Td (3. ?? ? ?? ?? ?? \\\(Pending Items Ledger\\\)) Tj ET
+BT /F1 8 Tf 45 211 Td (??) Tj ET
+BT /F1 8 Tf 149 211 Td (?? ??) Tj ET
+BT /F1 8 Tf 253 211 Td (?? ? ?? ??) Tj ET
+BT /F1 8 Tf 357 211 Td (?? ?? ? ?? ??) Tj ET
+BT /F1 8 Tf 461 211 Td (?? ??) Tj ET
+BT /F1 8 Tf 45 198 Td (P3-02 Task 3 ??? ??) Tj ET
+BT /F1 8 Tf 149 198 Td (?? [???]) Tj ET
+BT /F1 8 Tf 253 198 Td (?? ??/?? ? ?? ??? ???? ??) Tj ET
+BT /F1 8 Tf 357 198 Td (??? ?? ?? ? API ? ??) Tj ET
+BT /F1 8 Tf 461 198 Td (Principal [???]) Tj ET
+BT /F1 8 Tf 45 185 Td (P3-03 ?? 3D ???) Tj ET
+BT /F1 8 Tf 149 185 Td (?? [???]) Tj ET
+BT /F1 8 Tf 253 185 Td (NeRF/Splatfacto ?? ?? ?? ) Tj ET
+BT /F1 8 Tf 357 185 Td (GPU sudo ?? ?? \\\(NVIDIA ??) Tj ET
+BT /F1 8 Tf 461 185 Td (Principal [???]) Tj ET
+BT /F1 8 Tf 45 172 Td (P3-04 ?? ???? ?? ??) Tj ET
+BT /F1 8 Tf 149 172 Td (?? [???]) Tj ET
+BT /F1 8 Tf 253 172 Td (P3-03 ?? ??? ??? ??? ????) Tj ET
+BT /F1 8 Tf 357 172 Td (P3-03 ?? ??? ?? ??? ??) Tj ET
+BT /F1 8 Tf 461 172 Td (Principal [???]) Tj ET
+BT /F1 8 Tf 45 159 Td (2·3? ??? ?? \\\(L2, R2, L3, ) Tj ET
+BT /F1 8 Tf 149 159 Td (?? [???]) Tj ET
+BT /F1 8 Tf 253 159 Td (?? ??\\\(±1.3 m\\\) ? ??? ?? ??) Tj ET
+BT /F1 8 Tf 357 159 Td (?? \\\(A\\\) 6?? ?? vs \\\(B\\\) L1/R) Tj ET
+BT /F1 8 Tf 461 159 Td (Principal [???]) Tj ET
+BT /F1 8 Tf 45 146 Td (?? ?? ?? ??) Tj ET
+BT /F1 8 Tf 149 146 Td (?? [???]) Tj ET
+BT /F1 8 Tf 253 146 Td (?? ?? ??? ? ?? ??? ?? ?? ) Tj ET
+BT /F1 8 Tf 357 146 Td (?? ?? ??? ?? \\\('?? ?? 300 ) Tj ET
+BT /F1 8 Tf 461 146 Td (Principal [???]) Tj ET
+BT /F1 8 Tf 45 133 Td (Marble API ? ??) Tj ET
+BT /F1 8 Tf 149 133 Td (?? [???]) Tj ET
+BT /F1 8 Tf 253 133 Td (??? ? ?? ?? ? ?? ??? 3? ?) Tj ET
+BT /F1 8 Tf 357 133 Td (API ? ??? ? ???? ??) Tj ET
+BT /F1 8 Tf 461 133 Td (Principal [???]) Tj ET
+BT /F2 14 Tf 45 107 Td (4. ?? ?? ?? \\\(Incident Reports INC-01 ~ INC-08\\\)) Tj ET
+BT /F1 8 Tf 45 90 Td (?? ??) Tj ET
+BT /F1 8 Tf 149 90 Td (?? ??) Tj ET
+BT /F1 8 Tf 253 90 Td (?? ?? ? ??) Tj ET
+BT /F1 8 Tf 357 90 Td (?? ??) Tj ET
+BT /F1 8 Tf 461 90 Td (?? ?? ??) Tj ET
+BT /F1 8 Tf 45 77 Td (INC-01) Tj ET
+BT /F1 8 Tf 149 77 Td (?? ?? ??) Tj ET
+BT /F1 8 Tf 253 77 Td ([??: ?? ?? ???]) Tj ET
+BT /F1 8 Tf 357 77 Td (?? ?? ??? ?? ?? ? ?? ??\\\(S) Tj ET
+BT /F1 8 Tf 461 77 Td (raw ?? ?? ??? makereport ) Tj ET
+BT /F1 8 Tf 45 64 Td (INC-02) Tj ET
+BT /F1 8 Tf 149 64 Td (??? ?? ??) Tj ET
+BT /F1 8 Tf 253 64 Td ([??: ?? ?? ???]) Tj ET
+BT /F1 8 Tf 357 64 Td (?? ?? ?? ? ??? ?? ?? ?? ?) Tj ET
+BT /F1 8 Tf 461 64 Td (?? JSON ??? ?? ? ?? ?? ??) Tj ET
+BT /F1 8 Tf 45 51 Td (INC-03) Tj ET
+BT /F1 8 Tf 149 51 Td (conditions.json ?? ??\\\(?? ) Tj ET
+BT /F1 8 Tf 253 51 Td ([??: ?? ?? ???] \\\(?? c6616) Tj ET
+BT /F1 8 Tf 357 51 Td (?? ?? ?? ?? ??? ? hashlib) Tj ET
+BT /F1 8 Tf 461 51 Td (docs/p3/assetledgerp3.sha) Tj ET
+BT /F1 9 Tf 280 25 Td (1) Tj ET
+
+endstream
+endobj
+7 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [ 0 0 612 792 ] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 8 0 R >>
+endobj
+8 0 obj
+<< /Length 10104 >>
+stream
+BT /F1 8 Tf 45 765 Td (Spark.js Spatial AI - P3-05 Closeout Document v0) Tj ET
+0.8 G 0.5 w 45 760 m 567 760 l S 0 G
+BT /F1 8 Tf 45 727 Td (INC-04) Tj ET
+BT /F1 8 Tf 149 727 Td (API ? ??? ??) Tj ET
+BT /F1 8 Tf 253 727 Td (?? ??? ????? ?? API ? ?? ) Tj ET
+BT /F1 8 Tf 357 727 Td (??? ?? ?? ? ?? ???? ??, ?) Tj ET
+BT /F1 8 Tf 461 727 Td (???? ?????\\\(WLTAPIKEY\\\)? ??) Tj ET
+BT /F1 8 Tf 45 714 Td (INC-05) Tj ET
+BT /F1 8 Tf 149 714 Td (???? Blender ??? "?? ??"?) Tj ET
+BT /F1 8 Tf 253 714 Td (???? Blender ??? ???? ?? ) Tj ET
+BT /F1 8 Tf 357 714 Td (?? ?? ?? ? ???? ?? ??? ??) Tj ET
+BT /F1 8 Tf 461 714 Td (?? ?? ?? ?? ?? ?? ? ?? ??) Tj ET
+BT /F1 8 Tf 45 701 Td (INC-06) Tj ET
+BT /F1 8 Tf 149 701 Td (? ?? ??? 3?) Tj ET
+BT /F1 8 Tf 253 701 Td (??? ?? ? ???? ?? ? ?\\\(WLTA) Tj ET
+BT /F1 8 Tf 357 701 Td (? ????? ? ?? ? ? ??? ??? ) Tj ET
+BT /F1 8 Tf 461 701 Td (?? ?????? ???\\\(WLTAPIKEY\\\) ) Tj ET
+BT /F1 8 Tf 45 688 Td (INC-07) Tj ET
+BT /F1 8 Tf 149 688 Td (?? ?????\\\(save-eval-t5c\\\) ?) Tj ET
+BT /F1 8 Tf 253 688 Td (??? ??? ???? ?? ????? ?? ) Tj ET
+BT /F1 8 Tf 357 688 Td (???? ???? ??? ??? ???? ??) Tj ET
+BT /F1 8 Tf 461 688 Td (?? ????? ??? ?? ??, ?????) Tj ET
+BT /F1 8 Tf 45 675 Td (INC-08) Tj ET
+BT /F1 8 Tf 149 675 Td (?? ?? ?? ??) Tj ET
+BT /F1 8 Tf 253 675 Td (makereport? p3-close ?? ?) Tj ET
+BT /F1 8 Tf 357 675 Td (P3CLOSEv0 ?? ?? ??. maker) Tj ET
+BT /F1 8 Tf 461 675 Td (??, ??, ???? ????? ?? ?? ) Tj ET
+BT /F2 14 Tf 45 649 Td (5. ??? ?? ?? ? ??/?? ?? \\\(Specifications & Errors Ledger\\\)) Tj ET
+BT /F1 8 Tf 45 632 Td (??) Tj ET
+BT /F1 8 Tf 149 632 Td (??) Tj ET
+BT /F1 8 Tf 253 632 Td (?? ??) Tj ET
+BT /F1 8 Tf 357 632 Td (?? ?? ? ?? ??) Tj ET
+BT /F1 8 Tf 461 632 Td (?? ?? ? ??) Tj ET
+BT /F1 8 Tf 45 619 Td (SPEC-ERR-01) Tj ET
+BT /F1 8 Tf 149 619 Td (?? ??) Tj ET
+BT /F1 8 Tf 253 619 Td (Phase 2) Tj ET
+BT /F1 8 Tf 357 619 Td (??? [??: ?? ?? ???] \\\(?? 4) Tj ET
+BT /F1 8 Tf 461 619 Td (?? ?? ??? ?? ?? ??) Tj ET
+BT /F1 8 Tf 45 606 Td (SPEC-ERR-02) Tj ET
+BT /F1 8 Tf 149 606 Td (?? ??) Tj ET
+BT /F1 8 Tf 253 606 Td (Phase 2) Tj ET
+BT /F1 8 Tf 357 606 Td (?? ??? [??: ?? ?? ???] \\\(?) Tj ET
+BT /F1 8 Tf 461 606 Td (?? dt ?? ?? ?? ?? ??) Tj ET
+BT /F1 8 Tf 45 593 Td (SPEC-ERR-03) Tj ET
+BT /F1 8 Tf 149 593 Td (?? ??) Tj ET
+BT /F1 8 Tf 253 593 Td (Phase 1/1.5) Tj ET
+BT /F1 8 Tf 357 593 Td (??? [??: ?? ?? ???] \\\(?? 4) Tj ET
+BT /F1 8 Tf 461 593 Td (?? ?? ??? ??) Tj ET
+BT /F1 8 Tf 45 580 Td (SPEC-ERR-04) Tj ET
+BT /F1 8 Tf 149 580 Td (?? ??) Tj ET
+BT /F1 8 Tf 253 580 Td (P3-02 T2) Tj ET
+BT /F1 8 Tf 357 580 Td (?? p1 ?? [??: ?? ?? ???] ) Tj ET
+BT /F1 8 Tf 461 580 Td (?? ??? ?? ?? ???? ??) Tj ET
+BT /F1 8 Tf 45 567 Td (SPEC-ERR-05) Tj ET
+BT /F1 8 Tf 149 567 Td (?? ??) Tj ET
+BT /F1 8 Tf 253 567 Td (Phase 1/P3-00) Tj ET
+BT /F1 8 Tf 357 567 Td (??? ?? [??: ?? ?? ???] \\\(?) Tj ET
+BT /F1 8 Tf 461 567 Td (??? ?? ?? ??? ??) Tj ET
+BT /F1 8 Tf 45 554 Td (SPEC-ERR-06) Tj ET
+BT /F1 8 Tf 149 554 Td (?? ??) Tj ET
+BT /F1 8 Tf 253 554 Td (P3-02 T6) Tj ET
+BT /F1 8 Tf 357 554 Td (?? p5~p95×500 ?? ??: 3D ?) Tj ET
+BT /F1 8 Tf 461 554 Td ('?? ?? 300 kg, ?? ???'?? ) Tj ET
+BT /F1 8 Tf 45 541 Td (SPEC-ERR-07) Tj ET
+BT /F1 8 Tf 149 541 Td (?? ??) Tj ET
+BT /F1 8 Tf 253 541 Td (P3-02 T4) Tj ET
+BT /F1 8 Tf 357 541 Td (? ??? ??? [??: ?? ?? ???]) Tj ET
+BT /F1 8 Tf 461 541 Td (hue ??? ?? ?? ??) Tj ET
+BT /F1 8 Tf 45 528 Td (SPEC-ERR-08) Tj ET
+BT /F1 8 Tf 149 528 Td (?? ??) Tj ET
+BT /F1 8 Tf 253 528 Td (P3-02 T4) Tj ET
+BT /F1 8 Tf 357 528 Td (hue ???? ? ???? ??: hue ?) Tj ET
+BT /F1 8 Tf 461 528 Td (?? ???? ??) Tj ET
+BT /F1 8 Tf 45 515 Td (SPEC-ERR-09) Tj ET
+BT /F1 8 Tf 149 515 Td (?? ??) Tj ET
+BT /F1 8 Tf 253 515 Td (P3-02 T5-c) Tj ET
+BT /F1 8 Tf 357 515 Td (??? 1280/720 ??: ??? ????) Tj ET
+BT /F1 8 Tf 461 515 Td (?? ??? innerWidth/innerHe) Tj ET
+BT /F1 8 Tf 45 502 Td (SPEC-ERR-10) Tj ET
+BT /F1 8 Tf 149 502 Td (?? ??) Tj ET
+BT /F1 8 Tf 253 502 Td (P3-02 T6-c) Tj ET
+BT /F1 8 Tf 357 502 Td (?? ?? y: ?? ?? '?? ??' ??) Tj ET
+BT /F1 8 Tf 461 502 Td (T6-CLOSE?? ?? ?? y = ymes) Tj ET
+BT /F1 8 Tf 45 489 Td (SPEC-ERR-11) Tj ET
+BT /F1 8 Tf 149 489 Td (?? ??) Tj ET
+BT /F1 8 Tf 253 489 Td (P3-02 T6-c) Tj ET
+BT /F1 8 Tf 357 489 Td (??? ?? ?? ??: ??? ?? ??? ) Tj ET
+BT /F1 8 Tf 461 489 Td (?? ??? ?? 2D BBox ?? ??\\\(E) Tj ET
+BT /F1 8 Tf 45 476 Td (SPEC-ERR-12) Tj ET
+BT /F1 8 Tf 149 476 Td (?? ??) Tj ET
+BT /F1 8 Tf 253 476 Td (P3-02 T6-CLOSE) Tj ET
+BT /F1 8 Tf 357 476 Td (?? 3D ?? ??: ?? ?? 3D ?? ) Tj ET
+BT /F1 8 Tf 461 476 Td (?? XZ ?? ??\\\(<= 1.0 cm\\\) ??) Tj ET
+BT /F1 8 Tf 45 463 Td (SPEC-DEC-T5C) Tj ET
+BT /F1 8 Tf 149 463 Td (?? ??) Tj ET
+BT /F1 8 Tf 253 463 Td (P3-02 T5-c) Tj ET
+BT /F1 8 Tf 357 463 Td (?? bbox ?? ????? ??\\\(?? v2) Tj ET
+BT /F1 8 Tf 461 463 Td (?? v2 ???? ??? 79.3% ?? \\\() Tj ET
+BT /F1 8 Tf 45 450 Td (SPEC-DEC-T6C) Tj ET
+BT /F1 8 Tf 149 450 Td (?? ??) Tj ET
+BT /F1 8 Tf 253 450 Td (P3-02 T6-c) Tj ET
+BT /F1 8 Tf 357 450 Td (?? ???? ???: ??? ??? 0? ?) Tj ET
+BT /F1 8 Tf 461 450 Td (?? ???? ??, ???? A/B ??? ) Tj ET
+BT /F1 8 Tf 45 437 Td (CONST-MASS) Tj ET
+BT /F1 8 Tf 149 437 Td (?? ???) Tj ET
+BT /F1 8 Tf 253 437 Td (P3-02 T6) Tj ET
+BT /F1 8 Tf 357 437 Td (?? ??? ?? ?? ?? ???) Tj ET
+BT /F1 8 Tf 461 437 Td ('?? ?? 300 kg, ?? ???' ??) Tj ET
+BT /F2 9 Tf 45 418 Td (-) Tj /F1 9 Tf 55 418 Td (???? ?? ?? ??\\\(5e-324\\\) ?? ??:) Tj ET
+BT /F2 9 Tf 45 405 Td (-) Tj /F1 9 Tf 55 405 Td (docs/p3/raw/t6closerest.txt? handle: 5e-324 ?? ??? Rapier WASM/JS ????? 64?? ?? ?? ??\\\(0x0000000000000001, ??? ) Tj ET
+BT /F1 9 Tf 55 393 Td (1? ?? ?? ????\\\)? JS Float64? ??????? ???? ??????? ??? ?? ?? ????, ?? ?? ??? ?? ??? 1? ?? ????.) Tj ET
+BT /F2 14 Tf 45 367 Td (6. ?? ?? ?? ?? ? ?? ?? ??? \\\(Residual Defects & Reference Values\\\)) Tj ET
+BT /F2 13 Tf 45 344 Td (6-1. ?? ?? ?? ?? \\\(Residual Defects Ledger\\\)) Tj ET
+BT /F1 8 Tf 45 327 Td (?? ??) Tj ET
+BT /F1 8 Tf 149 327 Td (?? ??) Tj ET
+BT /F1 8 Tf 253 327 Td (?? ?? ? ??? ????) Tj ET
+BT /F1 8 Tf 357 327 Td (?? ???) Tj ET
+BT /F1 8 Tf 461 327 Td (?? ??) Tj ET
+BT /F1 8 Tf 45 314 Td (DEF-RES-01) Tj ET
+BT /F1 8 Tf 119 314 Td (L1 ?? ?? ?? XZ 2.03 cm) Tj ET
+BT /F1 8 Tf 193 314 Td (?? ??? ?? ??\\\() Tj ET
+BT /F1 8 Tf 267 314 Td (x) Tj ET
+BT /F1 8 Tf 341 314 Td (>= 0.85 m\\\) ??? ?? ?? ???\\\() Tj ET
+BT /F1 8 Tf 415 314 Td (???\\\(<= 1.0 cm\\\) ?? ??) Tj ET
+BT /F1 8 Tf 489 314 Td (?? ??, ?? ?? ??) Tj ET
+BT /F1 8 Tf 45 301 Td (DEF-RES-02) Tj ET
+BT /F1 8 Tf 149 301 Td (L1 ?? 22.36 cm ???? ?? [?) Tj ET
+BT /F1 8 Tf 253 301 Td (4 mm ??? ? ???? 9.48° ?? ) Tj ET
+BT /F1 8 Tf 357 301 Td (?? ?? ??) Tj ET
+BT /F1 8 Tf 461 301 Td (?? ??? [?] ?? ?? ??) Tj ET
+BT /F1 8 Tf 45 288 Td (DEF-RES-03) Tj ET
+BT /F1 8 Tf 149 288 Td (2·3? ??? ?? ?? ??) Tj ET
+BT /F1 8 Tf 253 288 Td (?? ??\\\(±1.3 m\\\) ? ??? ?? ??) Tj ET
+BT /F1 8 Tf 357 288 Td (?? \\\(A\\\) 6?? ?? ??) Tj ET
+BT /F1 8 Tf 461 288 Td (?? \\\(B\\\) ?? ??? ??, Princip) Tj ET
+BT /F1 8 Tf 45 275 Td (DEF-RES-04) Tj ET
+BT /F1 8 Tf 149 275 Td (?? ?? ? ??) Tj ET
+BT /F1 8 Tf 253 275 Td (?? ?? ??? ?? ??? 3DGS ???) Tj ET
+BT /F1 8 Tf 357 275 Td (?? ? ?? ? ?? ??) Tj ET
+BT /F1 8 Tf 461 275 Td (Task 3 ??? ?? ?? ?? [???]) Tj ET
+BT /F1 8 Tf 45 262 Td (DEF-RES-05) Tj ET
+BT /F1 8 Tf 149 262 Td (?? ?? ?? ?? ???) Tj ET
+BT /F1 8 Tf 253 262 Td (?? ??? ? ?? ?? ??? ???) Tj ET
+BT /F1 8 Tf 357 262 Td (?? ??? ? ??? ??? ?? ?? ??) Tj ET
+BT /F1 8 Tf 461 262 Td ('?? ?? 300 kg, ?? ???' ??) Tj ET
+BT /F2 13 Tf 45 237 Td (6-2. Task 2 ?? ?? ? ??? ?? ??? \\\(Reference Values\\\)) Tj ET
+BT /F1 8 Tf 45 220 Td (??) Tj ET
+BT /F1 8 Tf 119 220 Td (?? ???) Tj ET
+BT /F1 8 Tf 193 220 Td (2D ?? BBox) Tj ET
+BT /F1 8 Tf 267 220 Td (?? ??? ? ??? \\\(?? A\\\)) Tj ET
+BT /F1 8 Tf 341 220 Td (?? ?? ?? ? ??? \\\(?? B\\\)) Tj ET
+BT /F1 8 Tf 415 220 Td (?? ?? ?? \\\(t6closeenclosur) Tj ET
+BT /F1 8 Tf 489 220 Td (??) Tj ET
+BT /F1 8 Tf 45 207 Td (t0) Tj ET
+BT /F1 8 Tf 119 207 Td (L1 ?? \\\(boxl1\\\)) Tj ET
+BT /F1 8 Tf 193 207 Td ([119, 281, 437, 483]) Tj ET
+BT /F1 8 Tf 267 207 Td (40.03%) Tj ET
+BT /F1 8 Tf 341 207 Td (96.83%) Tj ET
+BT /F1 8 Tf 415 207 Td (?? \\\(82.92%\\\)) Tj ET
+BT /F1 8 Tf 489 207 Td (?? A? ?? ?? ?? ??) Tj ET
+BT /F1 8 Tf 45 194 Td (t0) Tj ET
+BT /F1 8 Tf 119 194 Td (R1 ?? \\\(boxr1\\\)) Tj ET
+BT /F1 8 Tf 193 194 Td ([882, 287, 1139, 476]) Tj ET
+BT /F1 8 Tf 267 194 Td (23.23%) Tj ET
+BT /F1 8 Tf 341 194 Td (85.62%) Tj ET
+BT /F1 8 Tf 415 194 Td (?? \\\(68.18%\\\)) Tj ET
+BT /F1 8 Tf 489 194 Td (?? A? ?? ??? ? ??) Tj ET
+BT /F1 8 Tf 45 181 Td (landing) Tj ET
+BT /F1 8 Tf 119 181 Td (L1 ?? \\\(boxl1\\\)) Tj ET
+BT /F1 8 Tf 193 181 Td ([129, 490, 440, 732]) Tj ET
+BT /F1 8 Tf 267 181 Td (30.54%) Tj ET
+BT /F1 8 Tf 341 181 Td (99.23%) Tj ET
+BT /F1 8 Tf 415 181 Td (PASS \\\(99.45%\\\)) Tj ET
+BT /F1 8 Tf 489 181 Td (??? ?? ??? ??) Tj ET
+BT /F1 8 Tf 45 168 Td (landing) Tj ET
+BT /F1 8 Tf 119 168 Td (R1 ?? \\\(boxr1\\\)) Tj ET
+BT /F1 8 Tf 193 168 Td ([874, 489, 1131, 717]) Tj ET
+BT /F1 8 Tf 267 168 Td (19.51%) Tj ET
+BT /F1 8 Tf 341 168 Td (98.11%) Tj ET
+BT /F1 8 Tf 415 168 Td (PASS \\\(97.02%\\\)) Tj ET
+BT /F1 8 Tf 489 168 Td (??? ?? ??? ??) Tj ET
+BT /F1 8 Tf 45 155 Td (final) Tj ET
+BT /F1 8 Tf 119 155 Td (L1 ?? \\\(boxl1\\\)) Tj ET
+BT /F1 8 Tf 193 155 Td ([199, 480, 469, 724]) Tj ET
+BT /F1 8 Tf 267 155 Td (23.95%) Tj ET
+BT /F1 8 Tf 341 155 Td (96.16%) Tj ET
+BT /F1 8 Tf 415 155 Td (?? \\\(84.05%\\\)) Tj ET
+BT /F1 8 Tf 489 155 Td (??? ???? ??? ?? ??) Tj ET
+BT /F1 8 Tf 45 142 Td (final) Tj ET
+BT /F1 8 Tf 119 142 Td (R1 ?? \\\(boxr1\\\)) Tj ET
+BT /F1 8 Tf 193 142 Td ([858, 499, 1112, 730]) Tj ET
+BT /F1 8 Tf 267 142 Td (17.92%) Tj ET
+BT /F1 8 Tf 341 142 Td (94.01%) Tj ET
+BT /F1 8 Tf 415 142 Td (?? \\\(88.33%\\\)) Tj ET
+BT /F1 8 Tf 489 142 Td (??? ???? ??? ?? ??) Tj ET
+BT /F2 9 Tf 45 129 Td (-) Tj /F1 9 Tf 55 129 Td (??: ? ?? ??? ???? ?? ?????, ?? ??? ?? ???? ?? ?????.) Tj ET
+BT /F2 14 Tf 45 103 Td (7. ?? ? ?? ?? ?? \\\(Environment & Asset Ledger\\\)) Tj ET
+BT /F2 13 Tf 45 80 Td (7-1. ?? ??) Tj ET
+BT /F2 9 Tf 45 63 Td (-) Tj /F1 9 Tf 55 63 Td (????: NVIDIA RTX 6000 Ada Generation \\\(sudo ?? ???? ???? ??? ??\\\)) Tj ET
+BT /F2 9 Tf 45 50 Td (-) Tj /F1 9 Tf 55 50 Td (??? ????: llvmpipe \\\(LLVM 18.1.3, 256 bits\\\) CPU ????? ?????) Tj ET
+BT /F1 9 Tf 280 25 Td (2) Tj ET
+
+endstream
+endobj
+9 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [ 0 0 612 792 ] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 10 0 R >>
+endobj
+10 0 obj
+<< /Length 5766 >>
+stream
+BT /F1 8 Tf 45 765 Td (Spark.js Spatial AI - P3-05 Closeout Document v0) Tj ET
+0.8 G 0.5 w 45 760 m 567 760 l S 0 G
+BT /F2 9 Tf 45 727 Td (-) Tj /F1 9 Tf 55 727 Td (?? ?????: Xvfb :11.0, Window ID 0x2800016) Tj ET
+BT /F2 9 Tf 45 714 Td (-) Tj /F1 9 Tf 55 714 Td (?????: Node.js v20.20.2, Python v3.12.3, Three.js v0.180.0, Rapier3D v0.12.0) Tj ET
+BT /F2 9 Tf 45 701 Td (-) Tj /F1 9 Tf 55 701 Td (Git ???: feature/phase3-spatial) Tj ET
+BT /F2 13 Tf 45 676 Td (7-2. ?? ?? ?? ?? \\\(docs/p3/assetledgerp3.sha256, docs/assetledger.sha256, docs/p3/raw/marbleassetssha256.txt\\\)) Tj ET
+BT /F2 12 Tf 45 654 Td (7-2-1. Marble ?? ?? ?? \\\(docs/p3/raw/marbleassetssha256.txt, 4?\\\)) Tj ET
+BT /F2 9 Tf 45 637 Td (-) Tj /F1 9 Tf 55 637 Td (assets/p3/marble/run01fullres.spz: 59981a9f67c3bc399b0be73fe7949fd4b9a495ca38b2363b6ce0ce0a8b097fe7) Tj ET
+BT /F2 9 Tf 45 624 Td (-) Tj /F1 9 Tf 55 624 Td (assets/p3/marble/run01500k.spz: bea791f70242dc9aaa41f4b1975e7891e887c0c02a4c0dec1878fbb258096877) Tj ET
+BT /F2 9 Tf 45 611 Td (-) Tj /F1 9 Tf 55 611 Td (assets/p3/marble/run01collidermesh.glb: 89dcb0b1eded2ff02c8b27235a2c1f9cbccd286866639cacb697f88b9e7a83bd) Tj ET
+BT /F2 9 Tf 45 598 Td (-) Tj /F1 9 Tf 55 598 Td (assets/p3/marble/run01splats.ply: 6a0f7a7a8c811342053601584033269f2d8c26aa3e2dad07db77121ac64a0841) Tj ET
+BT /F2 9 Tf 45 585 Td (-) Tj /F1 9 Tf 55 585 Td (assets/p3/marble/run01pano.png: ?? ??? ?? [?]) Tj ET
+BT /F2 12 Tf 45 561 Td (7-2-2. Phase 1/Phase 2 ?? ?? \\\(docs/assetledger.sha256, 7?\\\)) Tj ET
+BT /F2 9 Tf 45 544 Td (-) Tj /F1 9 Tf 55 544 Td (3d-model/generated3dgsdragon.ply: e7dc7a3e8079388317af1cf5c6787616b23039dcd37a5d840b10448a8542ebab) Tj ET
+BT /F2 9 Tf 45 531 Td (-) Tj /F1 9 Tf 55 531 Td (3d-model/parts/dragonpartbody.ply: 879d24a35ed3001f5c45d240e3fb3b92075fce56ee161c25bb0e9383cb6c3e56) Tj ET
+BT /F2 9 Tf 45 518 Td (-) Tj /F1 9 Tf 55 518 Td (3d-model/parts/dragonparthead.ply: fb16505363c1c6bd8c439776cb01959dcc45485dfc0dd2a3a46e1f4f51d56bc3) Tj ET
+BT /F2 9 Tf 45 505 Td (-) Tj /F1 9 Tf 55 505 Td (3d-model/parts/dragonpartleftwing.ply: 9191276a6b888f2d638776a7459e60a7e5f69a76f330760c1371472a829df8ca) Tj ET
+BT /F2 9 Tf 45 492 Td (-) Tj /F1 9 Tf 55 492 Td (3d-model/parts/dragonpartrightwing.ply: c885d63a99b9f7cf50c6c4ff222274a8ec1c618332e3f0c51a95d6f9debd5b33) Tj ET
+BT /F2 9 Tf 45 479 Td (-) Tj /F1 9 Tf 55 479 Td (3d-model/parts/dragonparttail.ply: 95a76365af48540039e94bbfaa1a844b3251a9791bb6824ab106931c9efa7612) Tj ET
+BT /F2 9 Tf 45 466 Td (-) Tj /F1 9 Tf 55 466 Td (3d-model/parts/manifest.json: 5b377686152fbc8d0292ea836fd9d0d258f6fb46ca4a226d68ea395758cd1ec3) Tj ET
+BT /F2 12 Tf 45 442 Td (7-2-3. Phase 3 ?? ?? ?? ? ?? \\\(docs/p3/assetledgerp3.sha256, ? 121?\\\)) Tj ET
+BT /F2 9 Tf 45 425 Td (-) Tj /F1 9 Tf 55 425 Td (assets/p3/marble/run01parts/spz500k/manifest.json: a7811de76810a36ecc7a63dd0d347f3a24147c7f19e27b4916eb2598276) Tj ET
+BT /F1 9 Tf 55 413 Td (ea9c6) Tj ET
+BT /F2 9 Tf 45 400 Td (-) Tj /F1 9 Tf 55 400 Td (docs/p3/raw/t6cscenarios.json: 59ef07b35e094a869588ed566f201db7b5f06ee623a5dfab2940b53cf15b5b8d) Tj ET
+BT /F2 9 Tf 45 387 Td (-) Tj /F1 9 Tf 55 387 Td (docs/p3/raw/t6ccolliderfix.json: fdec0cc5eccfc551c72c03db8efcee48ced9d3e9954087d2da2f2f77c5f59a52) Tj ET
+BT /F2 9 Tf 45 374 Td (-) Tj /F1 9 Tf 55 374 Td (docs/p3/raw/t6closerest.json: 45f767f20093a75f6f7b79da2b67170538e7a1c293984308097df2a09bd71e2b) Tj ET
+BT /F2 9 Tf 45 361 Td (-) Tj /F1 9 Tf 55 361 Td (docs/p3/raw/t6closeenclosure.json: c6b5f739c87f3ca5e86ea81a40fd08003feb9eb88be7370c4928060b779cb2e8) Tj ET
+BT /F2 9 Tf 45 348 Td (-) Tj /F1 9 Tf 55 348 Td (docs/p3/captures/marblerun01t6cscenAt0.png: f3f0e95484ebf0b3a6d2f1ff958e0fcf61a216da6e6c0d14029c5430b0c1c0b9) Tj ET
+BT /F2 9 Tf 45 335 Td (-) Tj /F1 9 Tf 55 335 Td (docs/p3/captures/marblerun01t6cscenAlanding.png: 2b5513994200106fc1d9e06781b0c2ddb5b70b7b2ee75f77b29a5501ba873) Tj ET
+BT /F1 9 Tf 55 323 Td (59d) Tj ET
+BT /F2 9 Tf 45 310 Td (-) Tj /F1 9 Tf 55 310 Td (docs/p3/captures/marblerun01t6cscenAfinal.png: 8a5e137782159db29b576f37e5113ffec13adaad338d4ae7f6741fe706a3bcb) Tj ET
+BT /F1 9 Tf 55 298 Td (0) Tj ET
+BT /F2 14 Tf 45 272 Td (8. ?? ?? \\\(Reproduction Protocol\\\)) Tj ET
+BT /F2 13 Tf 45 249 Td (8-1. ???? ?? ??) Tj ET
+BT /F1 9 Tf 45 233 Td (1. ??? ?? ??: .venv/bin/python aispatialserver.py \\\(?? 8088 ????? ??\\\)) Tj ET
+BT /F1 9 Tf 45 221 Td (2. ????? ?? ??: npm run dev \\\(?? 8080 ????? ??\\\)) Tj ET
+BT /F1 9 Tf 45 209 Td (3. 500k ?? ?? ??: scripts/runp3partitioncapture.py -> docs/p3/raw/t5500kpartitionmetrics.json ??) Tj ET
+BT /F1 9 Tf 45 197 Td (4. ?? v2 ???? ??: scripts/runp3t5ceval.py -> docs/p3/raw/t5cpickeval.json ?? \\\(Single-Run\\\)) Tj ET
+BT /F1 9 Tf 45 185 Td (5. ?? ???? ??: scripts/runp3t6cphysics.py -> t6cscenarios.json ? 6? ?? ??) Tj ET
+BT /F1 9 Tf 45 173 Td (6. ?? ?? ? ?? ?? ??: scripts/calculatet6closeenclosure.py -> t6closerest.json, t6closeenclosure.json ??) Tj ET
+BT /F1 9 Tf 45 161 Td (7. ?? ??? ??: .venv/bin/python scripts/makereport.py --module p3-close --out docs/p3/P3CLOSEv1draft.md) Tj ET
+BT /F1 9 Tf 45 149 Td (8. Word/PDF ?? ??: .venv/bin/python scripts/convertreporttodocs.py docs/p3/P3CLOSEv1draft.md) Tj ET
+BT /F2 13 Tf 45 124 Td (8-2. ?? ??\\\(Single-Run\\\) ? ?? ?? ??) Tj ET
+BT /F2 9 Tf 45 107 Td (-) Tj /F1 9 Tf 55 107 Td (?? ????\\\(???? 150? + ?? 75?\\\) ??? ?? ?? ?? ?? 1? ?? ??? ???? ?.) Tj ET
+BT /F2 9 Tf 45 94 Td (-) Tj /F1 9 Tf 55 94 Td (???? X11 ? ?? ??? ?? ? ??? ?? ??? ??? Task ID? ?? ??? ??? ???? ???.) Tj ET
+BT /F2 14 Tf 45 68 Td (9. ?? v1.0 [?] ?? ?? ?? \\\(Whitepaper Metric Mapping\\\)) Tj ET
+BT /F1 8 Tf 45 51 Td (?? ??) Tj ET
+BT /F1 8 Tf 149 51 Td (?? ?? ??) Tj ET
+BT /F1 8 Tf 253 51 Td (T6 ?? ?? ??) Tj ET
+BT /F1 8 Tf 357 51 Td (?? ???) Tj ET
+BT /F1 8 Tf 461 51 Td (?? ? ??) Tj ET
+BT /F1 9 Tf 280 25 Td (3) Tj ET
+
+endstream
+endobj
+11 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [ 0 0 612 792 ] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> >> /Contents 12 0 R >>
+endobj
+12 0 obj
+<< /Length 2925 >>
+stream
+BT /F1 8 Tf 45 765 Td (Spark.js Spatial AI - P3-05 Closeout Document v0) Tj ET
+0.8 G 0.5 w 45 760 m 567 760 l S 0 G
+BT /F1 8 Tf 45 727 Td (2.1 Viewing Volume) Tj ET
+BT /F1 8 Tf 149 727 Td (?? ?? ??) Tj ET
+BT /F1 8 Tf 253 727 Td (??? ?? 40? ? ?? 2? \\\(5.0%\\\)) Tj ET
+BT /F1 8 Tf 357 727 Td (docs/p3/raw/viewingvolume) Tj ET
+BT /F1 8 Tf 461 727 Td (?? ??) Tj ET
+BT /F1 8 Tf 45 714 Td (3.2 Splat Partition) Tj ET
+BT /F1 8 Tf 149 714 Td (500k ?? ??? ??) Tj ET
+BT /F1 8 Tf 253 714 Td (L1: 916?, R1: 1,459? \\\(?? ) Tj ET
+BT /F1 8 Tf 357 714 Td (docs/p3/raw/t5500kpartiti) Tj ET
+BT /F1 8 Tf 461 714 Td (?? ??) Tj ET
+BT /F1 8 Tf 45 701 Td (3.3 Diff Glow) Tj ET
+BT /F1 8 Tf 149 701 Td (?? ?? ???) Tj ET
+BT /F1 8 Tf 253 701 Td (L1: 3.25%, R1: 4.21%) Tj ET
+BT /F1 8 Tf 357 701 Td (docs/p3/raw/t5diffglow.js) Tj ET
+BT /F1 8 Tf 461 701 Td (?? $< 15\\\\%$ ??) Tj ET
+BT /F1 8 Tf 45 688 Td (4.1 Picking Evaluation) Tj ET
+BT /F1 8 Tf 149 688 Td (?? bbox ?? ????? ?? ??? \\\() Tj ET
+BT /F1 8 Tf 253 688 Td (79.3% \\\(119/150 hits\\\), ?? ) Tj ET
+BT /F1 8 Tf 357 688 Td (docs/p3/raw/t5cpickeval.j) Tj ET
+BT /F1 8 Tf 461 688 Td (?? $\\\\ge 70.0\\\\%$, ?? $\\\\le ) Tj ET
+BT /F1 8 Tf 45 675 Td (5.1 Physics Drop) Tj ET
+BT /F1 8 Tf 149 675 Td (?? ?? ??) Tj ET
+BT /F1 8 Tf 253 675 Td (0.450 s \\\(??? $\\\\approx 0.4) Tj ET
+BT /F1 8 Tf 357 675 Td (docs/p3/raw/t6cscenarios.) Tj ET
+BT /F1 8 Tf 461 675 Td (?? ??) Tj ET
+BT /F1 8 Tf 45 662 Td (5.1 Physics Drop) Tj ET
+BT /F1 8 Tf 149 662 Td (?? ?? ???) Tj ET
+BT /F1 8 Tf 253 662 Td (L1: 1.96 cm, R1: 0.93 cm) Tj ET
+BT /F1 8 Tf 357 662 Td (docs/p3/raw/t6cscenarios.) Tj ET
+BT /F1 8 Tf 461 662 Td (?? $[-2, +3]\\\\text{ cm}$ ?) Tj ET
+BT /F1 8 Tf 45 649 Td (5.1 Physics Drop) Tj ET
+BT /F1 8 Tf 149 649 Td (?? ?? ???) Tj ET
+BT /F1 8 Tf 253 649 Td (L1: 9.48°, R1: 1.90°) Tj ET
+BT /F1 8 Tf 357 649 Td (docs/p3/raw/t6cscenarios.) Tj ET
+BT /F1 8 Tf 461 649 Td (?? $\\\\le 15^\\\\circ$ ??) Tj ET
+BT /F1 8 Tf 45 636 Td (5.2 Physics Throw) Tj ET
+BT /F1 8 Tf 149 636 Td (2.5 m/s ?? ?? ??) Tj ET
+BT /F1 8 Tf 253 636 Td (L1: 0.669 m, R1: 0.586 m) Tj ET
+BT /F1 8 Tf 357 636 Td (docs/p3/raw/t6cscenarios.) Tj ET
+BT /F1 8 Tf 461 636 Td (?? $> 0.5\\\\text{ m}$ ??) Tj ET
+BT /F1 8 Tf 45 623 Td (5.3 Physics Latency) Tj ET
+BT /F1 8 Tf 175 623 Td (?? ?? ????) Tj ET
+BT /F1 8 Tf 305 623 Td (p50: 5.98 ms, p95: 8.96 m) Tj ET
+BT /F1 8 Tf 435 623 Td (?? dt 1/60 s ?? ?? ??\\\($\\\\l) Tj ET
+BT /F1 8 Tf 45 610 Td (5.4 Determinism) Tj ET
+BT /F1 8 Tf 149 610 Td (?? ????? ???) Tj ET
+BT /F1 8 Tf 253 610 Td (0 diff \\\(?? WASM ???? 2? ?) Tj ET
+BT /F1 8 Tf 357 610 Td (docs/p3/raw/t6determinism) Tj ET
+BT /F1 8 Tf 461 610 Td (??? ?? ??) Tj ET
+BT /F1 8 Tf 45 597 Td (5.5 Mass Property) Tj ET
+BT /F1 8 Tf 149 597 Td (?? ??? ?? ??) Tj ET
+BT /F1 8 Tf 253 597 Td (300.0 kg \\\(?? ??, ?? ??? [) Tj ET
+BT /F1 8 Tf 357 597 Td (docs/p3/raw/t6closerest.j) Tj ET
+BT /F1 8 Tf 461 597 Td (?? ??? ?? ??) Tj ET
+BT /F1 9 Tf 280 25 Td (4) Tj ET
+
+endstream
+endobj
+xref
+0 13
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000136 00000 n 
+0000000206 00000 n 
+0000000281 00000 n 
+0000000419 00000 n 
+0000009546 00000 n 
+0000009684 00000 n 
+0000019841 00000 n 
+0000019980 00000 n 
+0000025799 00000 n 
+0000025939 00000 n 
+trailer
+<< /Size 13 /Root 1 0 R >>
+startxref
+28917
+%%EOF

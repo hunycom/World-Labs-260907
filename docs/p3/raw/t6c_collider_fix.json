@@ -1,0 +1,81 @@
+{
+  "timestamp": "2026-09-06T16:36:49.682Z",
+  "directive": "EXE-260906-P3-02-T6-c",
+  "specification_decision": "감사관 사양 결정(T6-c)",
+  "triangle_removal": {
+    "rule": "세 정점 모두 y in [-0.05, 0.30] and |x| in [0.85, 1.90]",
+    "total_triangles": 68979,
+    "excluded_triangles": 2226,
+    "remaining_triangles": 66753,
+    "max_y_excluded": 0.2946,
+    "column_untouched_criteria_m": 0.3,
+    "column_untouched_pass": true
+  },
+  "planar_floor": {
+    "type": "fixed_cuboid",
+    "top_surface_y_m": -0.025,
+    "center_m": [
+      0,
+      -0.075,
+      0
+    ],
+    "half_extents_m": [
+      2,
+      0.05,
+      6
+    ],
+    "coverage_x_range_m": [
+      -2,
+      2
+    ],
+    "coverage_z_range_m": [
+      -6,
+      6
+    ],
+    "thickness_m": 0.1,
+    "friction": 0.6,
+    "restitution": 0.1
+  },
+  "resting_1s": {
+    "l1": {
+      "initial_pose": [
+        -1.3255,
+        0.407,
+        -1.9665
+      ],
+      "final_1s_pose": [
+        -1.2897443771362305,
+        0.37969884276390076,
+        -1.9857672452926636
+      ],
+      "displacement_1s_cm": 4.894,
+      "drift_xz_cm": 4.062,
+      "criteria_cm": 1,
+      "pass": false,
+      "note": "미달: BBox 중심 고정으로 인한 수직 낙하 ~4.4cm 발생 (경사면 미끄러짐은 제거됨)",
+      "penetration_cm": 0,
+      "penetration_criteria_cm": 2,
+      "penetration_pass": true
+    },
+    "r1": {
+      "initial_pose": [
+        1.4155,
+        0.4015,
+        -2.0255
+      ],
+      "final_1s_pose": [
+        1.4043738842010498,
+        0.35224053263664246,
+        -2.0261805057525635
+      ],
+      "displacement_1s_cm": 5.05,
+      "drift_xz_cm": 1.115,
+      "criteria_cm": 1,
+      "pass": false,
+      "note": "미달: BBox 중심 고정으로 인한 수직 낙하 ~4.4cm 발생 (경사면 미끄러짐은 제거됨)",
+      "penetration_cm": 0.126,
+      "penetration_criteria_cm": 2,
+      "penetration_pass": true
+    }
+  }
+}

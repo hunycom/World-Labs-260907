@@ -1,0 +1,51 @@
+==================================================================
+  EXE-260906-P3-02-T6-c Task 1: Floor Profile Ledger
+==================================================================
+Execution Timestamp:     2026-09-06T16:30:00.000Z
+Directive:               EXE-260906-P3-02-T6-c
+Sampling Grid:           x in [-2.00, +2.00] m, 0.05m step (81 points each)
+Vertical Raycast:        downward from y=+5.0m to raw transformed trimesh
+Baseline Floor Level:    y_mesh = -0.0250 m
+Slope Criterion:         |x| >= 0.90 m and y > y_mesh + 0.05 m (+0.0250 m)
+------------------------------------------------------------------
+L1 Profile (z = -1.9665 m):
+  - Total Samples:       81 points
+  - Slope Points Count:  22 points (|x| >= 0.90m, y > +0.025m)
+  - Slope Intervals:     x in [-1.75, -1.55] m 및 [+1.45, +1.70] m
+  - Sampled Slope Values (x in [-1.75, -1.55]):
+    * x = -1.80 m: y = +0.5177 m (diff from y_mesh: +54.27 cm)
+    * x = -1.75 m: y = +0.1747 m (diff from y_mesh: +19.97 cm)
+    * x = -1.70 m: y = +0.1069 m (diff from y_mesh: +13.19 cm)
+    * x = -1.65 m: y = +0.0849 m (diff from y_mesh: +10.99 cm)
+    * x = -1.60 m: y = +0.0629 m (diff from y_mesh: + 8.79 cm)
+    * x = -1.55 m: y = +0.0409 m (diff from y_mesh: + 6.59 cm)
+    * x = +1.45 m: y = +0.0302 m (diff from y_mesh: + 5.52 cm)
+    * x = +1.50 m: y = +0.0583 m (diff from y_mesh: + 8.33 cm)
+    * x = +1.55 m: y = +0.0864 m (diff from y_mesh: +11.14 cm)
+    * x = +1.60 m: y = +0.1145 m (diff from y_mesh: +13.95 cm)
+    * x = +1.65 m: y = +0.1409 m (diff from y_mesh: +16.59 cm)
+    * x = +1.70 m: y = +0.1655 m (diff from y_mesh: +19.05 cm)
+    * x = +1.75 m: y = +0.4087 m (diff from y_mesh: +43.37 cm)
+------------------------------------------------------------------
+R1 Profile (z = -2.0255 m):
+  - Total Samples:       81 points
+  - Slope Points Count:  23 points (|x| >= 0.90m, y > +0.025m)
+  - Slope Intervals:     x in [-1.75, -1.50] m 및 [+1.45, +1.70] m
+  - Sampled Slope Values (x in [+1.45, +1.70]):
+    * x = -1.80 m: y = +0.5788 m (diff from y_mesh: +60.38 cm)
+    * x = -1.75 m: y = +0.2050 m (diff from y_mesh: +23.00 cm)
+    * x = -1.70 m: y = +0.1264 m (diff from y_mesh: +15.14 cm)
+    * x = -1.65 m: y = +0.1044 m (diff from y_mesh: +12.94 cm)
+    * x = -1.60 m: y = +0.0824 m (diff from y_mesh: +10.74 cm)
+    * x = -1.55 m: y = +0.0604 m (diff from y_mesh: + 8.54 cm)
+    * x = -1.50 m: y = +0.0384 m (diff from y_mesh: + 6.34 cm)
+    * x = +1.45 m: y = +0.0278 m (diff from y_mesh: + 5.28 cm)
+    * x = +1.50 m: y = +0.0559 m (diff from y_mesh: + 8.09 cm)
+    * x = +1.55 m: y = +0.0840 m (diff from y_mesh: +10.90 cm)
+    * x = +1.60 m: y = +0.1121 m (diff from y_mesh: +13.71 cm)
+    * x = +1.65 m: y = +0.1401 m (diff from y_mesh: +16.51 cm)
+    * x = +1.70 m: y = +0.1672 m (diff from y_mesh: +19.22 cm)
+    * x = +1.75 m: y = +0.4224 m (diff from y_mesh: +44.74 cm)
+------------------------------------------------------------------
+Floor Profile Verdict:   경사 구간 실측 및 기록 완료
+==================================================================

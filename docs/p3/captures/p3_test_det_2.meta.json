@@ -1,0 +1,77 @@
+{
+  "label": "p3_test_det_2",
+  "timestamp": "2026-09-05T18:14:50.693Z",
+  "resolution": [
+    1280,
+    720
+  ],
+  "superXY": 2,
+  "camera": {
+    "position": [
+      0,
+      0.40000000000000024,
+      3.2
+    ],
+    "target": [
+      0,
+      0.4,
+      0
+    ],
+    "fov": 60,
+    "aspect": 1.5592011412268187
+  },
+  "parts": [
+    {
+      "id": "head",
+      "name": "드래곤 머리 & 목 (Head)",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "visible": true
+    },
+    {
+      "id": "left_wing",
+      "name": "좌측 날개 (Left Wing)",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "visible": true
+    },
+    {
+      "id": "right_wing",
+      "name": "우측 날개 (Right Wing)",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "visible": true
+    },
+    {
+      "id": "tail",
+      "name": "꼬리 (Tail)",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "visible": true
+    },
+    {
+      "id": "body",
+      "name": "중심 몸체 & 코어 (Core Body)",
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "visible": true
+    }
+  ],
+  "sha256": "4c44a5768ad233ee1e53712c76d7b5120d4ad35446d29daf8bba98337169f44f",
+  "byte_size": 65087
+}

@@ -1,0 +1,108 @@
+{
+  "schema_version": "2.1.0",
+  "audit_metadata": {
+    "directive": "EXE-260906-P3-01",
+    "auditor_signature": "S2A-CLAUDE-20260906-P3-01-eb0643be",
+    "principal_approval": "Principal 허상훈",
+    "timestamp": "2026-09-06T00:00:00Z"
+  },
+  "assets": {
+    "phase2_dragon": {
+      "name": "Dragon 3DGS Assembly",
+      "manifest_path": "3d-model/parts/manifest.json",
+      "type": "ply_segmented",
+      "total_splats": 40000,
+      "parts_count": 5
+    },
+    "spark_butterfly": {
+      "name": "Official Spark Butterfly Sample",
+      "file_path": "assets/butterfly.spz",
+      "type": "spz",
+      "sha256": "2e22c9967731bebc0ea74e1747cd42e955dec16a89dba9aac07d62a6c5780e0d"
+    }
+  },
+  "phase1_selection_benchmark": {
+    "viewport": {
+      "width": 1093.75,
+      "height": 700.93,
+      "fov_deg": 60.0,
+      "min_raycast_opacity": 0.2
+    },
+    "viewpoints": [
+      {
+        "id": "front",
+        "name": "Front (정면)",
+        "pos": [0.0, 0.4, 3.2],
+        "target": [0.0, 0.4, 0.0],
+        "up": [0.0, 1.0, 0.0]
+      },
+      {
+        "id": "45deg",
+        "name": "45° (등각)",
+        "pos": [1.8, 1.4, 2.4],
+        "target": [0.0, 0.3, 0.0],
+        "up": [0.0, 1.0, 0.0]
+      },
+      {
+        "id": "top",
+        "name": "Top (탑뷰)",
+        "pos": [0.0, 4.2, 0.001],
+        "target": [0.0, 0.0, 0.0],
+        "up": [0.0, 0.0, -1.0]
+      }
+    ],
+    "explode_stages": [
+      { "label": "Explode 20% (0.20)", "factor": 0.2 },
+      { "label": "Explode 50% (0.50)", "factor": 0.5 }
+    ],
+    "holdout_offsets": [
+      { "name": "+35px X", "dx": 35, "dy": 0 },
+      { "name": "-45px Y", "dx": 0, "dy": -45 },
+      { "name": "Diagonal (-30,+30)px", "dx": -30, "dy": 30 },
+      { "name": "Offset (+50,+20)px", "dx": 50, "dy": 20 },
+      { "name": "Offset (-20,-50)px", "dx": -20, "dy": -50 }
+    ]
+  },
+  "phase2_physics_benchmark": {
+    "constants": {
+      "gravity": [0.0, -9.81, 0.0],
+      "density": 500.0,
+      "friction": 0.5,
+      "restitution": 0.2,
+      "damping_linear": 0.05,
+      "damping_angular": 0.05,
+      "floor_y": 0.0,
+      "floor_contact_tolerance": 0.02,
+      "settled_velocity_threshold": 0.01,
+      "settled_angular_velocity_threshold": 0.05
+    },
+    "task1_grounding": {
+      "explode_factor": 0.15,
+      "y_elevation": 1.0,
+      "seeds": [7, 21, 42],
+      "duration_s": 5.0,
+      "pass_criteria": "15/15 grounded (yMin in [-0.01, +0.02]m, |v| < 0.01m/s, |w| < 0.05rad/s)"
+    },
+    "task2_profiling": {
+      "duration_s": 10.0,
+      "target_p95_ms": 64.0
+    },
+    "task3_throwing": {
+      "explode_factor": 0.5,
+      "settle_wait_s": 2.0,
+      "impulse_speed": 2.5,
+      "directions": [
+        { "name": "I1 (Backwards)", "vector": [0.0, 0.0, -1.0] },
+        {
+          "name": "I2 (Right-Up)",
+          "vector": [0.70710678, 0.70710678, 0.0]
+        },
+        {
+          "name": "I3 (Left-Up-Back)",
+          "vector": [-0.53452248, 0.80178373, -0.26726124]
+        }
+      ],
+      "pass_criteria": ">= 14/15 hits within room bounds"
+    }
+  }
+}

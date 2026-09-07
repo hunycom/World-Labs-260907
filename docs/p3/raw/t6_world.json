@@ -1,0 +1,85 @@
+{
+  "timestamp": "2026-09-06T14:46:53.690Z",
+  "directive": "EXE-260906-P3-02-T6",
+  "physics_engine": "Rapier3D @dimforge/rapier3d-compat v0.12.0",
+  "timestep": "1/60",
+  "gravity": [
+    0,
+    -9.81,
+    0
+  ],
+  "static_environment": {
+    "asset": "assets/p3/marble/run01_collider_mesh.glb",
+    "collider_type": "trimesh",
+    "vertices_count": 34741,
+    "triangles_count": 68979,
+    "scale_factor": 2.121173,
+    "ground_plane_offset": 1.2561374,
+    "friction": 0.6,
+    "restitution": 0.1
+  },
+  "dynamic_bodies": {
+    "box_l1": {
+      "type": "cuboid",
+      "half_extents": [
+        0.4725,
+        0.388,
+        0.37
+      ],
+      "mass_kg": 300,
+      "mass_status": "임의 상수 300 kg, 사양 미확정",
+      "friction": 0.6,
+      "restitution": 0.1,
+      "initial_pose": [
+        -0.943,
+        0.389,
+        -1.969
+      ],
+      "final_1s_pose": [
+        -0.9360479116439819,
+        0.3884522318840027,
+        -1.96751868724823
+      ],
+      "displacement_1s_cm": 0.713,
+      "displacement_criteria_cm": 1,
+      "displacement_pass": true,
+      "geometric_penetration_cm": 0,
+      "penetration_criteria_cm": 2,
+      "penetration_pass": true
+    },
+    "box_r1": {
+      "type": "cuboid",
+      "half_extents": [
+        0.38,
+        0.3785,
+        0.328
+      ],
+      "mass_kg": 300,
+      "mass_status": "임의 상수 300 kg, 사양 미확정",
+      "friction": 0.6,
+      "restitution": 0.1,
+      "initial_pose": [
+        0.95,
+        0.372,
+        -2.002
+      ],
+      "final_1s_pose": [
+        0.9496413469314575,
+        0.3714939057826996,
+        -2.004213333129883
+      ],
+      "displacement_1s_cm": 0.23,
+      "displacement_criteria_cm": 1,
+      "displacement_pass": true,
+      "geometric_penetration_cm": 0,
+      "penetration_criteria_cm": 2,
+      "penetration_pass": true
+    }
+  },
+  "inactive_columns": [
+    "box_l2",
+    "box_r2",
+    "box_l3",
+    "box_r3"
+  ]
+}

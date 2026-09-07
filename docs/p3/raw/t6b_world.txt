@@ -1,0 +1,38 @@
+==================================================================
+  EXE-260906-P3-02-T6-b Task 1: Physics World Construction Ledger
+==================================================================
+Execution Timestamp:     2026-09-06T16:35:05.909Z
+Directive:               EXE-260906-P3-02-T6-b
+Physics Engine:          Rapier3D @dimforge/rapier3d-compat v0.12.0
+Simulation Timestep:     1/60 s (0.016667 s, Fixed dt)
+Gravity:                 [0.0, -9.81, 0.0] m/s²
+Damping:                 linear = 0.05, angular = 0.05 (사양 명기)
+------------------------------------------------------------------
+Static Environment:
+  - Asset:               assets/p3/marble/run01_collider_mesh.glb
+  - Collider Type:       Trimesh Collider (34,741 vertices, 68,979 triangles)
+  - Metric Transform:    scale = 2.121173, y_offset = 1.2561374 m
+  - Surface Properties:  friction = 0.6, restitution = 0.1
+  - Upright Column Face: x = -1.7772 m (L1) / +1.7772 m (R1)
+  - Inward Boundary:     |x| <= 1.7472 m (>= 3 cm clearance from column face)
+------------------------------------------------------------------
+Dynamic Rigid Bodies (Active Columns: L1, R1; Inactive: L2, R2, L3, R3):
+  - box_l1 (Pallet Box L1):
+    * Half Extents:          [0.42, 0.388, 0.37] m
+    * Mass:                  300.0 kg (임의 상수 300 kg, 사양 미확정)
+    * Initial Center:        [-1.3255, 0.407, -1.9665] m
+    * Manifest BBox Center:  [-1.3255, 0.4070, -1.9665] m
+    * Center Shift:          0.000 cm [Criteria <= 5.0 cm: PASS]
+    * 1s Resting Disp:       22.634 cm [Criteria <= 1.0 cm: 미달]
+    * Geometric Penetration: 0.000 cm [Criteria <= 2.0 cm: PASS]
+  - box_r1 (Pallet Box R1):
+    * Half Extents:          [0.33, 0.3785, 0.328] m
+    * Mass:                  300.0 kg (임의 상수 300 kg, 사양 미확정)
+    * Initial Center:        [1.4155, 0.4015, -2.0255] m
+    * Manifest BBox Center:  [1.4155, 0.4015, -2.0255] m
+    * Center Shift:          0.000 cm [Criteria <= 5.0 cm: PASS]
+    * 1s Resting Disp:       17.524 cm [Criteria <= 1.0 cm: 미달]
+    * Geometric Penetration: 0.000 cm [Criteria <= 2.0 cm: PASS]
+------------------------------------------------------------------
+Overall World Verdict:   미달
+==================================================================

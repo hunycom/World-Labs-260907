@@ -1,0 +1,360 @@
+{
+  "schema_version": "2.5.0",
+  "directive": "EXE-260906-P3-02-T5",
+  "run_id": "run01",
+  "semantics": {
+    "metric_scale_factor": 2.121173,
+    "ground_plane_offset": 1.2561374,
+    "y_mesh_floor_m": -0.024999999999999578,
+    "y_threshold_m": 0.015000000000000423,
+    "scale_threshold_m": 0.15,
+    "margin_m": 0.03
+  },
+  "total_splats": 1920000,
+  "total_candidates": 15968,
+  "dynamic_parts_count": 6,
+  "static_parts_count": 1,
+  "conservation_pass": true,
+  "rejection_sum_pass": true,
+  "candidate_conservation_pass": true,
+  "total_dynamic_splats": 11807,
+  "total_static_splats": 1908193,
+  "total_rejected_color_post": 2132,
+  "total_rejected_geom_post": 2029,
+  "total_rejected_extent": 0,
+  "total_rejected_splats": 4161,
+  "floater_filter": {
+    "count": 28,
+    "action": "opacity_zero_filter",
+    "description": "Floor black specks / floaters in aisle Z in [0, 5m] filtered to opacity 0",
+    "indices_file": "assets/p3/marble/run01_parts/floater_indices.bin",
+    "indices_sha256": "af3495608679f13a4158ef3830869523217690e2b8140517b90f3104c1188d2b"
+  },
+  "parts": [
+    {
+      "part_index": 0,
+      "id": "box_l1",
+      "name": "좌측 전방 1열 대형 팔레트 상자 (L1)",
+      "name_en": "Foreground Left Pallet Box (L1)",
+      "type": "dynamic",
+      "enabled": true,
+      "color_hex": "#00f0ff",
+      "splat_count": 2760,
+      "splat_percentage": 0.144,
+      "candidates_count": 4387,
+      "rejected_color_post_count": 839,
+      "rejected_geom_post_count": 788,
+      "rejected_extent_count": 0,
+      "rejected_total_count": 1627,
+      "centroid_m": [
+        -1.671,
+        0.343,
+        -1.953
+      ],
+      "bounding_box_p5_p95": {
+        "min": [
+          -1.798,
+          0.021,
+          -2.316
+        ],
+        "max": [
+          -0.869,
+          0.795,
+          -1.588
+        ],
+        "dimensions_m": [
+          0.928,
+          0.775,
+          0.728
+        ],
+        "bbox_bottom_m": 0.0205,
+        "bbox_bottom_pass": true
+      },
+      "volume_m3": 0.5236,
+      "density_kg_m3": 500.0,
+      "mass_kg": 300.0,
+      "mass_status": "임의 상수 300 kg, 사양 미확정",
+      "margin_m": 0.03,
+      "indices_file": "assets/p3/marble/run01_parts/part_0_box_l1_indices.bin",
+      "indices_sha256": "4bd317e6675a9e0812d4c97bb74c2865a4c6f101f946f7755b6d7b08e9304cd8"
+    },
+    {
+      "part_index": 1,
+      "id": "box_r1",
+      "name": "우측 전방 1열 대형 팔레트 상자 (R1)",
+      "name_en": "Foreground Right Pallet Box (R1)",
+      "type": "dynamic",
+      "enabled": true,
+      "color_hex": "#ff9900",
+      "splat_count": 5293,
+      "splat_percentage": 0.276,
+      "candidates_count": 7603,
+      "rejected_color_post_count": 1091,
+      "rejected_geom_post_count": 1219,
+      "rejected_extent_count": 0,
+      "rejected_total_count": 2310,
+      "centroid_m": [
+        1.727,
+        0.397,
+        -2.018
+      ],
+      "bounding_box_p5_p95": {
+        "min": [
+          1.418,
+          0.03,
+          -2.351
+        ],
+        "max": [
+          1.795,
+          0.783,
+          -1.755
+        ],
+        "dimensions_m": [
+          0.377,
+          0.753,
+          0.595
+        ],
+        "bbox_bottom_m": 0.0301,
+        "bbox_bottom_pass": true
+      },
+      "volume_m3": 0.1689,
+      "density_kg_m3": 500.0,
+      "mass_kg": 300.0,
+      "mass_status": "임의 상수 300 kg, 사양 미확정",
+      "margin_m": 0.03,
+      "indices_file": "assets/p3/marble/run01_parts/part_1_box_r1_indices.bin",
+      "indices_sha256": "4af047f88ed39a1901d148ebfd874494db2b5602797d1ff206a693cff6719121"
+    },
+    {
+      "part_index": 2,
+      "id": "box_l2",
+      "name": "좌측 통로 2열 중형 팔레트 상자 (L2)",
+      "name_en": "Mid-Left Pallet Box 1 (L2)",
+      "type": "dynamic",
+      "enabled": false,
+      "color_hex": "#10b981",
+      "splat_count": 459,
+      "splat_percentage": 0.024,
+      "candidates_count": 519,
+      "rejected_color_post_count": 38,
+      "rejected_geom_post_count": 22,
+      "rejected_extent_count": 0,
+      "rejected_total_count": 60,
+      "centroid_m": [
+        -1.381,
+        0.241,
+        -2.64
+      ],
+      "bounding_box_p5_p95": {
+        "min": [
+          -1.798,
+          0.017,
+          -2.911
+        ],
+        "max": [
+          -0.661,
+          0.747,
+          -2.414
+        ],
+        "dimensions_m": [
+          1.136,
+          0.73,
+          0.497
+        ],
+        "bbox_bottom_m": 0.0174,
+        "bbox_bottom_pass": true
+      },
+      "volume_m3": 0.4122,
+      "density_kg_m3": 500.0,
+      "mass_kg": 300.0,
+      "mass_status": "임의 상수 300 kg, 사양 미확정",
+      "margin_m": 0.03,
+      "indices_file": "assets/p3/marble/run01_parts/part_2_box_l2_indices.bin",
+      "indices_sha256": "dbc0970879f902f351fa104ceade94bb940f1078c374db7e89b1ac34e751bb2f"
+    },
+    {
+      "part_index": 3,
+      "id": "box_r2",
+      "name": "우측 통로 2열 중형 팔레트 상자 (R2)",
+      "name_en": "Mid-Right Pallet Box 1 (R2)",
+      "type": "dynamic",
+      "enabled": false,
+      "color_hex": "#f43f5e",
+      "splat_count": 769,
+      "splat_percentage": 0.04,
+      "candidates_count": 862,
+      "rejected_color_post_count": 93,
+      "rejected_geom_post_count": 0,
+      "rejected_extent_count": 0,
+      "rejected_total_count": 93,
+      "centroid_m": [
+        1.652,
+        0.321,
+        -2.622
+      ],
+      "bounding_box_p5_p95": {
+        "min": [
+          0.837,
+          0.021,
+          -2.915
+        ],
+        "max": [
+          1.798,
+          0.75,
+          -2.41
+        ],
+        "dimensions_m": [
+          0.96,
+          0.729,
+          0.505
+        ],
+        "bbox_bottom_m": 0.021,
+        "bbox_bottom_pass": true
+      },
+      "volume_m3": 0.3534,
+      "density_kg_m3": 500.0,
+      "mass_kg": 300.0,
+      "mass_status": "임의 상수 300 kg, 사양 미확정",
+      "margin_m": 0.03,
+      "indices_file": "assets/p3/marble/run01_parts/part_3_box_r2_indices.bin",
+      "indices_sha256": "4ac9f4d0df4bead0b9008a97c3af177b4550da40fa13fecae6b4db2494990938"
+    },
+    {
+      "part_index": 4,
+      "id": "box_l3",
+      "name": "좌측 통로 3열 중형 팔레트 상자 (L3)",
+      "name_en": "Mid-Left Pallet Box 2 (L3)",
+      "type": "dynamic",
+      "enabled": false,
+      "color_hex": "#a855f7",
+      "splat_count": 1463,
+      "splat_percentage": 0.076,
+      "candidates_count": 1506,
+      "rejected_color_post_count": 43,
+      "rejected_geom_post_count": 0,
+      "rejected_extent_count": 0,
+      "rejected_total_count": 43,
+      "centroid_m": [
+        -1.719,
+        0.341,
+        -4.072
+      ],
+      "bounding_box_p5_p95": {
+        "min": [
+          -1.798,
+          0.024,
+          -4.383
+        ],
+        "max": [
+          -1.156,
+          0.755,
+          -3.386
+        ],
+        "dimensions_m": [
+          0.642,
+          0.731,
+          0.997
+        ],
+        "bbox_bottom_m": 0.0242,
+        "bbox_bottom_pass": true
+      },
+      "volume_m3": 0.4679,
+      "density_kg_m3": 500.0,
+      "mass_kg": 300.0,
+      "mass_status": "임의 상수 300 kg, 사양 미확정",
+      "margin_m": 0.03,
+      "indices_file": "assets/p3/marble/run01_parts/part_4_box_l3_indices.bin",
+      "indices_sha256": "85f9a15786e6a2c8cc263e495c4efbab2040ac732b26591774d3d8fafcb98bc5"
+    },
+    {
+      "part_index": 5,
+      "id": "box_r3",
+      "name": "우측 통로 3열 중형 팔레트 상자 (R3)",
+      "name_en": "Mid-Right Pallet Box 2 (R3)",
+      "type": "dynamic",
+      "enabled": false,
+      "color_hex": "#eab308",
+      "splat_count": 1063,
+      "splat_percentage": 0.055,
+      "candidates_count": 1091,
+      "rejected_color_post_count": 28,
+      "rejected_geom_post_count": 0,
+      "rejected_extent_count": 0,
+      "rejected_total_count": 28,
+      "centroid_m": [
+        1.735,
+        0.399,
+        -3.997
+      ],
+      "bounding_box_p5_p95": {
+        "min": [
+          1.697,
+          0.028,
+          -4.373
+        ],
+        "max": [
+          1.796,
+          0.758,
+          -3.512
+        ],
+        "dimensions_m": [
+          0.099,
+          0.73,
+          0.862
+        ],
+        "bbox_bottom_m": 0.0278,
+        "bbox_bottom_pass": true
+      },
+      "volume_m3": 0.0623,
+      "density_kg_m3": 500.0,
+      "mass_kg": 300.0,
+      "mass_status": "임의 상수 300 kg, 사양 미확정",
+      "margin_m": 0.03,
+      "indices_file": "assets/p3/marble/run01_parts/part_5_box_r3_indices.bin",
+      "indices_sha256": "15a5bb002d7d1496fd07e9e74eecf380e0ba97cc5ed172e2e797f877aaa08e0a"
+    },
+    {
+      "part_index": 6,
+      "id": "static_structure",
+      "name": "고정 정적 구조체 (바닥·랙·천장·원경 벽체)",
+      "name_en": "Static Structure (Floor, Racks, Ceiling, Walls)",
+      "type": "static",
+      "color_hex": "#64748b",
+      "splat_count": 1908193,
+      "splat_percentage": 99.385,
+      "rejected_color_post_count": 0,
+      "rejected_geom_post_count": 0,
+      "rejected_extent_count": 0,
+      "rejected_total_count": 0,
+      "centroid_m": [
+        0.069,
+        2.071,
+        -5.247
+      ],
+      "bounding_box_p5_p95": {
+        "min": [
+          -3.211,
+          -0.062,
+          -12.904
+        ],
+        "max": [
+          3.149,
+          6.609,
+          2.971
+        ],
+        "dimensions_m": [
+          6.36,
+          6.671,
+          15.875
+        ],
+        "bbox_bottom_m": -0.0618
+      },
+      "volume_m3": null,
+      "density_kg_m3": null,
+      "mass_kg": null,
+      "mass_status": "Fixed (Inf)",
+      "indices_file": "assets/p3/marble/run01_parts/part_static_indices.bin",
+      "indices_sha256": "09aa665a05f1d49318f6ce68d4eb7ee62f11ec6bce497fe9ffd91060000b6996"
+    }
+  ]
+}

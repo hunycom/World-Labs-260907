@@ -1,0 +1,26 @@
+{
+  "label": "marble_run01_t6_scenA_t0",
+  "timestamp": "2026-09-06T14:46:56.167Z",
+  "resolution": [
+    1280,
+    720
+  ],
+  "superXY": 2,
+  "camera": {
+    "position": [
+      0,
+      1.5999999999999992,
+      0.7999999999999989
+    ],
+    "target": [
+      0,
+      1.3,
+      -6
+    ],
+    "fov": 60,
+    "aspect": 1.5592011412268187
+  },
+  "parts": [],
+  "sha256": "527766a5db78fe540abac02bcea7dad94758cafd7b06297fb0d0b6670d0fde67",
+  "byte_size": 1588018
+}

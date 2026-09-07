@@ -1,0 +1,111 @@
+{
+  "timestamp": "2026-09-06T16:35:05.909Z",
+  "directive": "EXE-260906-P3-02-T6-b",
+  "physics_engine": "Rapier3D @dimforge/rapier3d-compat v0.12.0",
+  "timestep": "1/60",
+  "gravity": [
+    0,
+    -9.81,
+    0
+  ],
+  "damping": {
+    "linear": 0.05,
+    "angular": 0.05,
+    "note": "사양 명기"
+  },
+  "static_environment": {
+    "asset": "assets/p3/marble/run01_collider_mesh.glb",
+    "collider_type": "trimesh",
+    "vertices_count": 34741,
+    "triangles_count": 68979,
+    "scale_factor": 2.121173,
+    "ground_plane_offset": 1.2561374,
+    "friction": 0.6,
+    "restitution": 0.1,
+    "upright_column_face_x_m": {
+      "l1": -1.7772,
+      "r1": 1.7772
+    },
+    "inward_boundary_x_m": 1.7472
+  },
+  "dynamic_bodies": {
+    "box_l1": {
+      "type": "cuboid",
+      "half_extents": [
+        0.42,
+        0.388,
+        0.37
+      ],
+      "mass_kg": 300,
+      "mass_status": "임의 상수 300 kg, 사양 미확정",
+      "friction": 0.6,
+      "restitution": 0.1,
+      "manifest_bbox_center": [
+        -1.3255,
+        0.407,
+        -1.9665
+      ],
+      "initial_pose": [
+        -1.3255,
+        0.407,
+        -1.9665
+      ],
+      "center_shift_cm": 0,
+      "center_shift_criteria_cm": 5,
+      "center_shift_pass": true,
+      "final_1s_pose": [
+        -1.0993444919586182,
+        0.41619277000427246,
+        -1.9662708044052124
+      ],
+      "displacement_1s_cm": 22.634,
+      "displacement_criteria_cm": 1,
+      "displacement_pass": false,
+      "geometric_penetration_cm": 0,
+      "penetration_criteria_cm": 2,
+      "penetration_pass": true
+    },
+    "box_r1": {
+      "type": "cuboid",
+      "half_extents": [
+        0.33,
+        0.3785,
+        0.328
+      ],
+      "mass_kg": 300,
+      "mass_status": "임의 상수 300 kg, 사양 미확정",
+      "friction": 0.6,
+      "restitution": 0.1,
+      "manifest_bbox_center": [
+        1.4155,
+        0.4015,
+        -2.0255
+      ],
+      "initial_pose": [
+        1.4155,
+        0.4015,
+        -2.0255
+      ],
+      "center_shift_cm": 0,
+      "center_shift_criteria_cm": 5,
+      "center_shift_pass": true,
+      "final_1s_pose": [
+        1.2436268329620361,
+        0.43566420674324036,
+        -2.025557518005371
+      ],
+      "displacement_1s_cm": 17.524,
+      "displacement_criteria_cm": 1,
+      "displacement_pass": false,
+      "geometric_penetration_cm": 0,
+      "penetration_criteria_cm": 2,
+      "penetration_pass": true
+    }
+  },
+  "inactive_columns": [
+    "box_l2",
+    "box_r2",
+    "box_l3",
+    "box_r3"
+  ]
+}

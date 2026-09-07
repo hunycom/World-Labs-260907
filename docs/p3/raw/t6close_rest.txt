@@ -1,0 +1,40 @@
+==================================================================
+  P3-02 T6-CLOSE Task 1: Resting Stability Test Ledger (1.0s, 60 steps)
+==================================================================
+Timestamp: 2026-09-06T16:50:32.108Z
+Directive: EXE-260906-P3-02-T6-CLOSE
+Elevation Formula: y = y_mesh + hy + 0.005 (y_mesh = -0.025m, bottom gap = 5mm)
+Fixed Parameters: Mass=300kg (임의 상수 300 kg, 사양 미확정), Friction=0.6, Restitution=0.1, Damping=0.05
+
+--- L1 (box_l1) ---
+Initial Pose: [-1.3255, 0.3680, -1.9665]
+Final Pose (1s): [-1.3064, 0.3793, -1.9733]
+Displacement (3D): 2.320 cm (Criteria <= 1.0 cm) -> 미달
+Drift (XZ): 2.029 cm
+Bottom Y: -0.0087 m
+Penetration: 0.000 cm (Criteria <= 2.0 cm) -> PASS
+Final Contacts Planar Floor (handle: 5e-324): 2 contacts
+  - Floor contact: (-1.7006, -0.0254, -1.5933) dist=-0.00072
+  - Floor contact: (-1.7214, -0.0243, -2.333) dist=0.00138
+Final Contacts Trimesh (handle: 0): 5 contacts
+  - Trimesh contact: (-1.0219, 0.0001, -1.6122) dist=0.00083
+  - Trimesh contact: (-1.0222, 0.0008, -1.7037) dist=0.00004
+  - Trimesh contact: (-1.0217, 0.0042, -2.3525) dist=-0.0016
+  - Trimesh contact: (-1.7046, 0.0216, -1.7037) dist=-0.00181
+  - Trimesh contact: (-1.7029, 0.0122, -1.5931) dist=0.00165
+
+--- R1 (box_r1) ---
+Initial Pose: [1.4155, 0.3585, -2.0255]
+Final Pose (1s): [1.4071, 0.3522, -2.0255]
+Displacement (3D): 1.046 cm (Criteria <= 1.0 cm) -> 미달
+Drift (XZ): 0.839 cm
+Bottom Y: -0.0263 m
+Penetration: 0.126 cm (Criteria <= 2.0 cm) -> PASS
+Final Contacts Planar Floor (handle: 5e-324): 4 contacts
+  - Floor contact: (1.7372, -0.0256, -1.6976) dist=-0.00129
+  - Floor contact: (1.0772, -0.0256, -1.6975) dist=-0.00127
+  - Floor contact: (1.077, -0.0256, -2.3535) dist=-0.00123
+  - Floor contact: (1.737, -0.0256, -2.3536) dist=-0.00125
+Final Contacts Trimesh (handle: 0): 1 contacts
+  - Trimesh contact: (1.7373, 0.2339, -2.0445) dist=0.00041
+==================================================================

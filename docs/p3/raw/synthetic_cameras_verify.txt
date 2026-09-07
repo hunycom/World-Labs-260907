@@ -1,0 +1,12 @@
+==================================================================
+  Verifying P3-00-C Task 1 Synthetic Multi-view Dataset
+==================================================================
+Metadata: Object='Vintage Camera 01', Dimensions=[0.2139, 0.2628, 0.0778] m
+Total Frames: 32 (Expected: 32)
+
+[PASS] All 32 frames verified!
+  Max Extrinsic Rotation Roundtrip Error: 0.00e+00
+  Max Extrinsic Position Roundtrip Error: 3.53e-08 m
+  Max Intrinsic K Roundtrip Error:        3.22e-13
+
+✅ P3-00-C Task 1 Synthetic Dataset Verification PASSED!

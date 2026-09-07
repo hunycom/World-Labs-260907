@@ -1,0 +1,153 @@
+{
+  "directive": "EXE-260906-P3-02-T4B-R3",
+  "round1_sha256": "49f847d22b34c38ebab07eab339482cb09e4e86dc22b188a5a4bc837d8ae296c",
+  "round3_sha256": "6f532c672841d5ba4ca4a38ff0ce130a43d71a4948e107c3a9a887d0a096e335",
+  "target_hues_deg": {
+    "box_l1": 183.53,
+    "box_r1": 36.0,
+    "box_l2": 160.12,
+    "box_r2": 349.72,
+    "box_l3": 270.74,
+    "box_r3": 45.4
+  },
+  "parts": {
+    "box_l1": {
+      "name": "Foreground Left Pallet Box (L1)",
+      "target_hue_deg": 183.53,
+      "bbox_2d": [
+        159,
+        406,
+        470,
+        720
+      ],
+      "round1": {
+        "total": 60808,
+        "inside": 31791,
+        "outside": 29017,
+        "ratio_pct": 47.72
+      },
+      "round3": {
+        "total": 38121,
+        "inside": 6840,
+        "outside": 31281,
+        "ratio_pct": 82.06
+      },
+      "pass": false
+    },
+    "box_r1": {
+      "name": "Foreground Right Pallet Box (R1)",
+      "target_hue_deg": 36.0,
+      "bbox_2d": [
+        988,
+        1133,
+        453,
+        720
+      ],
+      "round1": {
+        "total": 271671,
+        "inside": 24344,
+        "outside": 247327,
+        "ratio_pct": 91.04
+      },
+      "round3": {
+        "total": 284701,
+        "inside": 16006,
+        "outside": 268695,
+        "ratio_pct": 94.38
+      },
+      "pass": false
+    },
+    "box_l2": {
+      "name": "Mid-Left Pallet Box 1 (L2)",
+      "target_hue_deg": 160.12,
+      "bbox_2d": [
+        255,
+        525,
+        474,
+        669
+      ],
+      "round1": {
+        "total": 18187,
+        "inside": 12639,
+        "outside": 5548,
+        "ratio_pct": 30.51
+      },
+      "round3": {
+        "total": 2182,
+        "inside": 1456,
+        "outside": 726,
+        "ratio_pct": 33.27
+      },
+      "pass": false
+    },
+    "box_r2": {
+      "name": "Mid-Right Pallet Box 1 (R2)",
+      "target_hue_deg": 349.72,
+      "bbox_2d": [
+        764,
+        1026,
+        471,
+        669
+      ],
+      "round1": {
+        "total": 57050,
+        "inside": 24804,
+        "outside": 32246,
+        "ratio_pct": 56.52
+      },
+      "round3": {
+        "total": 23707,
+        "inside": 2437,
+        "outside": 21270,
+        "ratio_pct": 89.72
+      },
+      "pass": false
+    },
+    "box_l3": {
+      "name": "Mid-Left Pallet Box 2 (L3)",
+      "target_hue_deg": 270.74,
+      "bbox_2d": [
+        365,
+        552,
+        428,
+        573
+      ],
+      "round1": {
+        "total": 21458,
+        "inside": 15737,
+        "outside": 5721,
+        "ratio_pct": 26.66
+      },
+      "round3": {
+        "total": 1487,
+        "inside": 978,
+        "outside": 509,
+        "ratio_pct": 34.23
+      },
+      "pass": false
+    },
+    "box_r3": {
+      "name": "Mid-Right Pallet Box 2 (R3)",
+      "target_hue_deg": 45.4,
+      "bbox_2d": [
+        766,
+        907,
+        427,
+        566
+      ],
+      "round1": {
+        "total": 6091,
+        "inside": 737,
+        "outside": 5354,
+        "ratio_pct": 87.9
+      },
+      "round3": {
+        "total": 54035,
+        "inside": 3109,
+        "outside": 50926,
+        "ratio_pct": 94.25
+      },
+      "pass": false
+    }
+  }
+}

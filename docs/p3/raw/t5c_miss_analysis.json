@@ -1,0 +1,1075 @@
+{
+  "directive": "EXE-260906-P3-02-T5-c",
+  "total_failures": 59,
+  "classification_counts": {
+    "occlusion": 15,
+    "penetration": 44,
+    "zero_hit": 0,
+    "total": 59
+  },
+  "pass_criteria_sum_check": true,
+  "failures": [
+    {
+      "num": 1,
+      "sample_index": 3,
+      "view": "V1",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        161,
+        520
+      ],
+      "bbox_entry_m": 3.180204765952777,
+      "hit_distance_m": 3.2392,
+      "hit_part_id": "static",
+      "hits_count": 8,
+      "dist_diff_m": 0.058995234047222844,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 16
+    },
+    {
+      "num": 2,
+      "sample_index": 7,
+      "view": "V1",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        136,
+        570
+      ],
+      "bbox_entry_m": 3.057313581696767,
+      "hit_distance_m": 3.1484,
+      "hit_part_id": "static",
+      "hits_count": 7,
+      "dist_diff_m": 0.09108641830323316,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 5
+    },
+    {
+      "num": 3,
+      "sample_index": 8,
+      "view": "V1",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        229,
+        655
+      ],
+      "bbox_entry_m": 3.0204321118799293,
+      "hit_distance_m": 3.8453,
+      "hit_part_id": "static",
+      "hits_count": 6,
+      "dist_diff_m": 0.8248678881200706,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 6
+    },
+    {
+      "num": 4,
+      "sample_index": 10,
+      "view": "V1",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        137,
+        525
+      ],
+      "bbox_entry_m": 3.1489579814954927,
+      "hit_distance_m": 3.0958,
+      "hit_part_id": "static",
+      "hits_count": 6,
+      "dist_diff_m": -0.05315798149549256,
+      "category": "occlusion",
+      "category_name": "\ud3d0\uc0c9(\uc804\ubc29\uc7a5\uc560)",
+      "splats_near_5cm": 0
+    },
+    {
+      "num": 5,
+      "sample_index": 16,
+      "view": "V1",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        134,
+        457
+      ],
+      "bbox_entry_m": null,
+      "hit_distance_m": 3.0546,
+      "hit_part_id": "static",
+      "hits_count": 8,
+      "dist_diff_m": null,
+      "category": "occlusion",
+      "category_name": "\ud3d0\uc0c9(BBox\uc678\uacfd)",
+      "splats_near_5cm": 0
+    },
+    {
+      "num": 6,
+      "sample_index": 17,
+      "view": "V1",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        203,
+        499
+      ],
+      "bbox_entry_m": 3.4708796659776424,
+      "hit_distance_m": 3.519,
+      "hit_part_id": "static",
+      "hits_count": 8,
+      "dist_diff_m": 0.048120334022357714,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 9
+    },
+    {
+      "num": 7,
+      "sample_index": 19,
+      "view": "V1",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        408,
+        483
+      ],
+      "bbox_entry_m": null,
+      "hit_distance_m": 5.7034,
+      "hit_part_id": "static",
+      "hits_count": 5,
+      "dist_diff_m": null,
+      "category": "occlusion",
+      "category_name": "\ud3d0\uc0c9(BBox\uc678\uacfd)",
+      "splats_near_5cm": 0
+    },
+    {
+      "num": 8,
+      "sample_index": 21,
+      "view": "V1",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        101,
+        608
+      ],
+      "bbox_entry_m": null,
+      "hit_distance_m": 5.7181,
+      "hit_part_id": "static",
+      "hits_count": 1,
+      "dist_diff_m": null,
+      "category": "occlusion",
+      "category_name": "\ud3d0\uc0c9(BBox\uc678\uacfd)",
+      "splats_near_5cm": 0
+    },
+    {
+      "num": 9,
+      "sample_index": 25,
+      "view": "V1",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        231,
+        651
+      ],
+      "bbox_entry_m": 3.0105596406555555,
+      "hit_distance_m": 3.8584,
+      "hit_part_id": "static",
+      "hits_count": 4,
+      "dist_diff_m": 0.8478403593444446,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 10
+    },
+    {
+      "num": 10,
+      "sample_index": 29,
+      "view": "V1",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        1049,
+        637
+      ],
+      "bbox_entry_m": 3.1138120355721,
+      "hit_distance_m": 3.7547,
+      "hit_part_id": "static",
+      "hits_count": 5,
+      "dist_diff_m": 0.6408879644279,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 47
+    },
+    {
+      "num": 11,
+      "sample_index": 36,
+      "view": "V1",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        1120,
+        516
+      ],
+      "bbox_entry_m": 3.3109430852406367,
+      "hit_distance_m": 3.1039,
+      "hit_part_id": "static",
+      "hits_count": 8,
+      "dist_diff_m": -0.20704308524063686,
+      "category": "occlusion",
+      "category_name": "\ud3d0\uc0c9(\uc804\ubc29\uc7a5\uc560)",
+      "splats_near_5cm": 0
+    },
+    {
+      "num": 12,
+      "sample_index": 41,
+      "view": "V1",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        1129,
+        552
+      ],
+      "bbox_entry_m": 3.1346639693092557,
+      "hit_distance_m": 3.1076,
+      "hit_part_id": "static",
+      "hits_count": 14,
+      "dist_diff_m": -0.027063969309255587,
+      "category": "occlusion",
+      "category_name": "\ud3d0\uc0c9(\uc804\ubc29\uc7a5\uc560)",
+      "splats_near_5cm": 0
+    },
+    {
+      "num": 13,
+      "sample_index": 48,
+      "view": "V1",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        1040,
+        577
+      ],
+      "bbox_entry_m": 3.0070441411661433,
+      "hit_distance_m": 3.8238,
+      "hit_part_id": "static",
+      "hits_count": 4,
+      "dist_diff_m": 0.8167558588338566,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 34
+    },
+    {
+      "num": 14,
+      "sample_index": 77,
+      "view": "V2",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        582,
+        394
+      ],
+      "bbox_entry_m": 2.405285266879239,
+      "hit_distance_m": 2.5377,
+      "hit_part_id": "static",
+      "hits_count": 8,
+      "dist_diff_m": 0.13241473312076124,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 28
+    },
+    {
+      "num": 15,
+      "sample_index": 78,
+      "view": "V2",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        730,
+        504
+      ],
+      "bbox_entry_m": 2.4005871021473277,
+      "hit_distance_m": 2.4122,
+      "hit_part_id": "static",
+      "hits_count": 3,
+      "dist_diff_m": 0.011612897852672166,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 3
+    },
+    {
+      "num": 16,
+      "sample_index": 80,
+      "view": "V2",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        581,
+        379
+      ],
+      "bbox_entry_m": 2.3786532581143955,
+      "hit_distance_m": 2.4866,
+      "hit_part_id": "static",
+      "hits_count": 6,
+      "dist_diff_m": 0.1079467418856046,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 26
+    },
+    {
+      "num": 17,
+      "sample_index": 82,
+      "view": "V2",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        645,
+        239
+      ],
+      "bbox_entry_m": 2.7072686604707124,
+      "hit_distance_m": 3.194,
+      "hit_part_id": "static",
+      "hits_count": 10,
+      "dist_diff_m": 0.4867313395292876,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 8
+    },
+    {
+      "num": 18,
+      "sample_index": 84,
+      "view": "V2",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        881,
+        341
+      ],
+      "bbox_entry_m": 2.8175953852502733,
+      "hit_distance_m": 4.0069,
+      "hit_part_id": "static",
+      "hits_count": 1,
+      "dist_diff_m": 1.1893046147497266,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 0
+    },
+    {
+      "num": 19,
+      "sample_index": 85,
+      "view": "V2",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        583,
+        470
+      ],
+      "bbox_entry_m": 2.5807948128665528,
+      "hit_distance_m": 2.5808,
+      "hit_part_id": "static",
+      "hits_count": 5,
+      "dist_diff_m": 5.187133447215331e-06,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 1
+    },
+    {
+      "num": 20,
+      "sample_index": 86,
+      "view": "V2",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        566,
+        280
+      ],
+      "bbox_entry_m": 2.2636595404365174,
+      "hit_distance_m": 2.3264,
+      "hit_part_id": "static",
+      "hits_count": 3,
+      "dist_diff_m": 0.06274045956348262,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 7
+    },
+    {
+      "num": 21,
+      "sample_index": 87,
+      "view": "V2",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        610,
+        476
+      ],
+      "bbox_entry_m": 2.5362785683767255,
+      "hit_distance_m": 2.8204,
+      "hit_part_id": "static",
+      "hits_count": 1,
+      "dist_diff_m": 0.2841214316232743,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 3
+    },
+    {
+      "num": 22,
+      "sample_index": 88,
+      "view": "V2",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        573,
+        314
+      ],
+      "bbox_entry_m": 2.291508232110446,
+      "hit_distance_m": 2.3757,
+      "hit_part_id": "static",
+      "hits_count": 6,
+      "dist_diff_m": 0.08419176788955429,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 7
+    },
+    {
+      "num": 23,
+      "sample_index": 90,
+      "view": "V2",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        806,
+        415
+      ],
+      "bbox_entry_m": 2.1374060095000162,
+      "hit_distance_m": 3.1102,
+      "hit_part_id": "static",
+      "hits_count": 2,
+      "dist_diff_m": 0.9727939904999836,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 6
+    },
+    {
+      "num": 24,
+      "sample_index": 91,
+      "view": "V2",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        767,
+        290
+      ],
+      "bbox_entry_m": 2.0159079429951436,
+      "hit_distance_m": 5.1569,
+      "hit_part_id": "static",
+      "hits_count": 3,
+      "dist_diff_m": 3.1409920570048566,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 0
+    },
+    {
+      "num": 25,
+      "sample_index": 92,
+      "view": "V2",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        661,
+        488
+      ],
+      "bbox_entry_m": 2.4677882102846693,
+      "hit_distance_m": 2.5108,
+      "hit_part_id": "static",
+      "hits_count": 1,
+      "dist_diff_m": 0.04301178971533082,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 2
+    },
+    {
+      "num": 26,
+      "sample_index": 93,
+      "view": "V2",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        618,
+        245
+      ],
+      "bbox_entry_m": 2.597551963686134,
+      "hit_distance_m": 2.8154,
+      "hit_part_id": "static",
+      "hits_count": 8,
+      "dist_diff_m": 0.21784803631386573,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 12
+    },
+    {
+      "num": 27,
+      "sample_index": 94,
+      "view": "V2",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        872,
+        284
+      ],
+      "bbox_entry_m": 2.154065894972607,
+      "hit_distance_m": 5.2051,
+      "hit_part_id": "static",
+      "hits_count": 5,
+      "dist_diff_m": 3.051034105027393,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 0
+    },
+    {
+      "num": 28,
+      "sample_index": 97,
+      "view": "V2",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        542,
+        265
+      ],
+      "bbox_entry_m": 2.304975671992894,
+      "hit_distance_m": 2.348,
+      "hit_part_id": "static",
+      "hits_count": 3,
+      "dist_diff_m": 0.04302432800710587,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 0
+    },
+    {
+      "num": 29,
+      "sample_index": 98,
+      "view": "V2",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        608,
+        304
+      ],
+      "bbox_entry_m": 2.215360008184703,
+      "hit_distance_m": 2.8007,
+      "hit_part_id": "static",
+      "hits_count": 1,
+      "dist_diff_m": 0.5853399918152968,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 30
+    },
+    {
+      "num": 30,
+      "sample_index": 103,
+      "view": "V2",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        836,
+        469
+      ],
+      "bbox_entry_m": 2.214142816053051,
+      "hit_distance_m": 2.6508,
+      "hit_part_id": "static",
+      "hits_count": 5,
+      "dist_diff_m": 0.43665718394694863,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 1
+    },
+    {
+      "num": 31,
+      "sample_index": 105,
+      "view": "V2",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        616,
+        327
+      ],
+      "bbox_entry_m": 2.2309416202172363,
+      "hit_distance_m": 2.7165,
+      "hit_part_id": "static",
+      "hits_count": 4,
+      "dist_diff_m": 0.4855583797827636,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 27
+    },
+    {
+      "num": 32,
+      "sample_index": 106,
+      "view": "V2",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        796,
+        293
+      ],
+      "bbox_entry_m": 2.0001714738508602,
+      "hit_distance_m": 5.0022,
+      "hit_part_id": "static",
+      "hits_count": 3,
+      "dist_diff_m": 3.00202852614914,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 0
+    },
+    {
+      "num": 33,
+      "sample_index": 109,
+      "view": "V2",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        821,
+        240
+      ],
+      "bbox_entry_m": 2.770818242737522,
+      "hit_distance_m": 6.7779,
+      "hit_part_id": "static",
+      "hits_count": 10,
+      "dist_diff_m": 4.007081757262478,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 0
+    },
+    {
+      "num": 34,
+      "sample_index": 111,
+      "view": "V2",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        615,
+        235
+      ],
+      "bbox_entry_m": null,
+      "hit_distance_m": 2.8417,
+      "hit_part_id": "static",
+      "hits_count": 5,
+      "dist_diff_m": null,
+      "category": "occlusion",
+      "category_name": "\ud3d0\uc0c9(BBox\uc678\uacfd)",
+      "splats_near_5cm": 0
+    },
+    {
+      "num": 35,
+      "sample_index": 113,
+      "view": "V2",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        554,
+        378
+      ],
+      "bbox_entry_m": 2.4352154916813062,
+      "hit_distance_m": 2.637,
+      "hit_part_id": "static",
+      "hits_count": 2,
+      "dist_diff_m": 0.20178450831869377,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 2
+    },
+    {
+      "num": 36,
+      "sample_index": 117,
+      "view": "V2",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        665,
+        390
+      ],
+      "bbox_entry_m": 2.2498755157407446,
+      "hit_distance_m": 3.2842,
+      "hit_part_id": "static",
+      "hits_count": 5,
+      "dist_diff_m": 1.0343244842592552,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 0
+    },
+    {
+      "num": 37,
+      "sample_index": 118,
+      "view": "V2",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        799,
+        294
+      ],
+      "bbox_entry_m": 1.9917323923842105,
+      "hit_distance_m": 5.0158,
+      "hit_part_id": "static",
+      "hits_count": 3,
+      "dist_diff_m": 3.0240676076157893,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 0
+    },
+    {
+      "num": 38,
+      "sample_index": 119,
+      "view": "V2",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        752,
+        288
+      ],
+      "bbox_entry_m": 2.0302849572681145,
+      "hit_distance_m": 4.7459,
+      "hit_part_id": "static",
+      "hits_count": 8,
+      "dist_diff_m": 2.7156150427318853,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 0
+    },
+    {
+      "num": 39,
+      "sample_index": 121,
+      "view": "V2",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        579,
+        403
+      ],
+      "bbox_entry_m": 2.4298766734894315,
+      "hit_distance_m": 2.5285,
+      "hit_part_id": "static",
+      "hits_count": 8,
+      "dist_diff_m": 0.09862332651056871,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 19
+    },
+    {
+      "num": 40,
+      "sample_index": 122,
+      "view": "V2",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        567,
+        425
+      ],
+      "bbox_entry_m": 2.50493811871565,
+      "hit_distance_m": 2.5416,
+      "hit_part_id": "static",
+      "hits_count": 3,
+      "dist_diff_m": 0.036661881284349995,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 6
+    },
+    {
+      "num": 41,
+      "sample_index": 124,
+      "view": "V2",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        781,
+        516
+      ],
+      "bbox_entry_m": 2.3683842450559,
+      "hit_distance_m": 2.3348,
+      "hit_part_id": "static",
+      "hits_count": 3,
+      "dist_diff_m": -0.03358424505589985,
+      "category": "occlusion",
+      "category_name": "\ud3d0\uc0c9(\uc804\ubc29\uc7a5\uc560)",
+      "splats_near_5cm": 0
+    },
+    {
+      "num": 42,
+      "sample_index": 151,
+      "view": "V3",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        630,
+        249
+      ],
+      "bbox_entry_m": 2.8526311127559705,
+      "hit_distance_m": 2.929,
+      "hit_part_id": "static",
+      "hits_count": 9,
+      "dist_diff_m": 0.07636888724402935,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 7
+    },
+    {
+      "num": 43,
+      "sample_index": 153,
+      "view": "V3",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        644,
+        409
+      ],
+      "bbox_entry_m": 2.442575721014688,
+      "hit_distance_m": 3.0802,
+      "hit_part_id": "static",
+      "hits_count": 4,
+      "dist_diff_m": 0.6376242789853119,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 39
+    },
+    {
+      "num": 44,
+      "sample_index": 154,
+      "view": "V3",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        651,
+        476
+      ],
+      "bbox_entry_m": 2.608259010771433,
+      "hit_distance_m": 2.6688,
+      "hit_part_id": "static",
+      "hits_count": 2,
+      "dist_diff_m": 0.0605409892285671,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 0
+    },
+    {
+      "num": 45,
+      "sample_index": 155,
+      "view": "V3",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        716,
+        275
+      ],
+      "bbox_entry_m": null,
+      "hit_distance_m": 2.3084,
+      "hit_part_id": "static",
+      "hits_count": 4,
+      "dist_diff_m": null,
+      "category": "occlusion",
+      "category_name": "\ud3d0\uc0c9(BBox\uc678\uacfd)",
+      "splats_near_5cm": 0
+    },
+    {
+      "num": 46,
+      "sample_index": 157,
+      "view": "V3",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        712,
+        394
+      ],
+      "bbox_entry_m": 2.5554771973941994,
+      "hit_distance_m": 2.4051,
+      "hit_part_id": "static",
+      "hits_count": 3,
+      "dist_diff_m": -0.1503771973941994,
+      "category": "occlusion",
+      "category_name": "\ud3d0\uc0c9(\uc804\ubc29\uc7a5\uc560)",
+      "splats_near_5cm": 0
+    },
+    {
+      "num": 47,
+      "sample_index": 161,
+      "view": "V3",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        626,
+        354
+      ],
+      "bbox_entry_m": 2.318618314987102,
+      "hit_distance_m": 3.1072,
+      "hit_part_id": "static",
+      "hits_count": 6,
+      "dist_diff_m": 0.7885816850128982,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 42
+    },
+    {
+      "num": 48,
+      "sample_index": 162,
+      "view": "V3",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        695,
+        305
+      ],
+      "bbox_entry_m": 2.376357942369554,
+      "hit_distance_m": 2.3352,
+      "hit_part_id": "static",
+      "hits_count": 6,
+      "dist_diff_m": -0.04115794236955406,
+      "category": "occlusion",
+      "category_name": "\ud3d0\uc0c9(\uc804\ubc29\uc7a5\uc560)",
+      "splats_near_5cm": 0
+    },
+    {
+      "num": 49,
+      "sample_index": 167,
+      "view": "V3",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        539,
+        413
+      ],
+      "bbox_entry_m": 2.293924785524879,
+      "hit_distance_m": 3.1056,
+      "hit_part_id": "static",
+      "hits_count": 5,
+      "dist_diff_m": 0.8116752144751209,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 2
+    },
+    {
+      "num": 50,
+      "sample_index": 168,
+      "view": "V3",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        440,
+        272
+      ],
+      "bbox_entry_m": 2.5398246061098635,
+      "hit_distance_m": 6.1547,
+      "hit_part_id": "static",
+      "hits_count": 3,
+      "dist_diff_m": 3.6148753938901366,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 0
+    },
+    {
+      "num": 51,
+      "sample_index": 169,
+      "view": "V3",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        489,
+        465
+      ],
+      "bbox_entry_m": 2.339361810358645,
+      "hit_distance_m": 2.7675,
+      "hit_part_id": "static",
+      "hits_count": 5,
+      "dist_diff_m": 0.4281381896413552,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 1
+    },
+    {
+      "num": 52,
+      "sample_index": 170,
+      "view": "V3",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        647,
+        315
+      ],
+      "bbox_entry_m": 2.3012223655460478,
+      "hit_distance_m": 2.8629,
+      "hit_part_id": "static",
+      "hits_count": 4,
+      "dist_diff_m": 0.561677634453952,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 44
+    },
+    {
+      "num": 53,
+      "sample_index": 172,
+      "view": "V3",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        496,
+        252
+      ],
+      "bbox_entry_m": null,
+      "hit_distance_m": 5.2407,
+      "hit_part_id": "static",
+      "hits_count": 9,
+      "dist_diff_m": null,
+      "category": "occlusion",
+      "category_name": "\ud3d0\uc0c9(BBox\uc678\uacfd)",
+      "splats_near_5cm": 0
+    },
+    {
+      "num": 54,
+      "sample_index": 174,
+      "view": "V3",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        630,
+        245
+      ],
+      "bbox_entry_m": 2.939028632561602,
+      "hit_distance_m": 2.9429,
+      "hit_part_id": "static",
+      "hits_count": 13,
+      "dist_diff_m": 0.003871367438397666,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 3
+    },
+    {
+      "num": 55,
+      "sample_index": 183,
+      "view": "V3",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        721,
+        323
+      ],
+      "bbox_entry_m": null,
+      "hit_distance_m": 2.2893,
+      "hit_part_id": "static",
+      "hits_count": 6,
+      "dist_diff_m": null,
+      "category": "occlusion",
+      "category_name": "\ud3d0\uc0c9(BBox\uc678\uacfd)",
+      "splats_near_5cm": 0
+    },
+    {
+      "num": 56,
+      "sample_index": 189,
+      "view": "V3",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        723,
+        286
+      ],
+      "bbox_entry_m": null,
+      "hit_distance_m": 2.2947,
+      "hit_part_id": "static",
+      "hits_count": 4,
+      "dist_diff_m": null,
+      "category": "occlusion",
+      "category_name": "\ud3d0\uc0c9(BBox\uc678\uacfd)",
+      "splats_near_5cm": 0
+    },
+    {
+      "num": 57,
+      "sample_index": 190,
+      "view": "V3",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        707,
+        405
+      ],
+      "bbox_entry_m": 2.566327944341384,
+      "hit_distance_m": 2.4359,
+      "hit_part_id": "static",
+      "hits_count": 8,
+      "dist_diff_m": -0.13042794434138383,
+      "category": "occlusion",
+      "category_name": "\ud3d0\uc0c9(\uc804\ubc29\uc7a5\uc560)",
+      "splats_near_5cm": 0
+    },
+    {
+      "num": 58,
+      "sample_index": 191,
+      "view": "V3",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        630,
+        340
+      ],
+      "bbox_entry_m": 2.3054017734472945,
+      "hit_distance_m": 3.0802,
+      "hit_part_id": "static",
+      "hits_count": 3,
+      "dist_diff_m": 0.7747982265527056,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 38
+    },
+    {
+      "num": 59,
+      "sample_index": 195,
+      "view": "V3",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        628,
+        394
+      ],
+      "bbox_entry_m": 2.3863291306283587,
+      "hit_distance_m": 3.2853,
+      "hit_part_id": "static",
+      "hits_count": 2,
+      "dist_diff_m": 0.8989708693716412,
+      "category": "penetration",
+      "category_name": "\uad00\ud1b5(BBox\ub0b4\ubd80/\ud6c4\ubc29)",
+      "splats_near_5cm": 39
+    }
+  ]
+}

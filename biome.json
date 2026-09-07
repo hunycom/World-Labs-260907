@@ -1,0 +1,51 @@
+{
+  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "vcs": {
+    "enabled": false,
+    "clientKind": "git",
+    "useIgnoreFile": false
+  },
+  "files": {
+    "ignoreUnknown": false,
+    "ignore": [
+      "dist/*",
+      "examples/assets/",
+      "examples/showcase/hello-gsplat",
+      "examples/js",
+      "rust",
+      "site",
+      "site-repo",
+      "docs",
+      "*.backup*",
+      "examples/**/spark.module.js",
+      "examples/**/*.json",
+      "examples/**/pkg",
+      ".venv",
+      ".tmp_uploads",
+      "3d-model",
+      "tools",
+      "scratch",
+      "assets",
+      "tests/p3/**"
+    ]
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "lineEnding": "lf"
+  },
+  "organizeImports": {
+    "enabled": true
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": true
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "double"
+    }
+  }
+}

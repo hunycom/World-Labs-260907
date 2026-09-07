@@ -1,0 +1,21 @@
+==================================================================
+  EXE-260906-P3-02-T4B-R3 Task 2: Exclusive Hue Glow Outside Ratio
+==================================================================
+Round 1 Image (SplatEdit SDF):         marble_run01_part_front.png (SHA: 49f847d22b34c38e...)
+Round 3 Image (Discrete Multi-SplatMesh): marble_run01_part_front.png (SHA: 6f532c672841d5ba...)
+Criteria: Outside Glow Ratio < 15.0% (Full Frame Spec)
+
+#### Full Frame (1280x720, 상호배타 색상각거리 <= 20.0 deg, S >= 0.35) 발광 비율 측정 결과
+| 부품 ID | 명칭 | 색상 (각도) | 1차 총픽셀 | 1차 밖 | 1차 비율 | 3차 총픽셀 | 3차 밖 | 3차 비율 | 판정 (<15.0%) |
+|---|---|---|---|---|---|---|---|---|---|
+| `box_l1` | Foreground Left Pallet Box (L1) | 183.5° | 60,808 | 29,017 |  47.7% | 38,121 | 31,281 |  82.1% | **미달 (82.1%)** |
+| `box_r1` | Foreground Right Pallet Box (R1) | 36.0° | 271,671 | 247,327 |  91.0% | 284,701 | 268,695 |  94.4% | **미달 (94.4%)** |
+| `box_l2` | Mid-Left Pallet Box 1 (L2) | 160.1° | 18,187 |  5,548 |  30.5% |  2,182 |    726 |  33.3% | **미달 (33.3%)** |
+| `box_r2` | Mid-Right Pallet Box 1 (R2) | 349.7° | 57,050 | 32,246 |  56.5% | 23,707 | 21,270 |  89.7% | **미달 (89.7%)** |
+| `box_l3` | Mid-Left Pallet Box 2 (L3) | 270.7° | 21,458 |  5,721 |  26.7% |  1,487 |    509 |  34.2% | **미달 (34.2%)** |
+| `box_r3` | Mid-Right Pallet Box 2 (R3) | 45.4° |  6,091 |  5,354 |  87.9% | 54,035 | 50,926 |  94.2% | **미달 (94.2%)** |
+
+Full Frame 통과율: 0/6 부품
+
+==================================================================
+[*] Saved structured JSON to: /home/sims/바탕화면/spark/docs/p3/raw/t4b_r3_glow.json

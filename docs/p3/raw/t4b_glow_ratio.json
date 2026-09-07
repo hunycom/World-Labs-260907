@@ -1,0 +1,239 @@
+{
+  "directive": "EXE-260906-P3-02-T4B-R",
+  "threshold_pct": 15.0,
+  "round1_capture_sha256": "49f847d22b34c38ebab07eab339482cb09e4e86dc22b188a5a4bc837d8ae296c",
+  "round2_capture_sha256": "72226be4c82be926cef175c84d7ba79511b0ebea8eb01cbdaae9d3304e885000",
+  "round1_splatedit_sdf": {
+    "box_l1": {
+      "name": "Foreground Left Pallet Box (L1)",
+      "color_hex": "#00f0ff",
+      "bbox_2d": {
+        "u": [
+          159,
+          406
+        ],
+        "v": [
+          470,
+          720
+        ]
+      },
+      "total_pixels": 36741,
+      "inside_pixels": 27916,
+      "outside_pixels": 8825,
+      "outside_ratio_pct": 24.02,
+      "pass_criteria": false
+    },
+    "box_r1": {
+      "name": "Foreground Right Pallet Box (R1)",
+      "color_hex": "#ff9900",
+      "bbox_2d": {
+        "u": [
+          988,
+          1133
+        ],
+        "v": [
+          453,
+          720
+        ]
+      },
+      "total_pixels": 28170,
+      "inside_pixels": 20828,
+      "outside_pixels": 7342,
+      "outside_ratio_pct": 26.06,
+      "pass_criteria": false
+    },
+    "box_l2": {
+      "name": "Mid-Left Pallet Box 1 (L2)",
+      "color_hex": "#10b981",
+      "bbox_2d": {
+        "u": [
+          255,
+          525
+        ],
+        "v": [
+          474,
+          669
+        ]
+      },
+      "total_pixels": 3984,
+      "inside_pixels": 2266,
+      "outside_pixels": 1718,
+      "outside_ratio_pct": 43.12,
+      "pass_criteria": false
+    },
+    "box_r2": {
+      "name": "Mid-Right Pallet Box 1 (R2)",
+      "color_hex": "#f43f5e",
+      "bbox_2d": {
+        "u": [
+          764,
+          1026
+        ],
+        "v": [
+          471,
+          669
+        ]
+      },
+      "total_pixels": 13139,
+      "inside_pixels": 12848,
+      "outside_pixels": 291,
+      "outside_ratio_pct": 2.21,
+      "pass_criteria": true
+    },
+    "box_l3": {
+      "name": "Mid-Left Pallet Box 2 (L3)",
+      "color_hex": "#a855f7",
+      "bbox_2d": {
+        "u": [
+          365,
+          552
+        ],
+        "v": [
+          428,
+          573
+        ]
+      },
+      "total_pixels": 4044,
+      "inside_pixels": 3011,
+      "outside_pixels": 1033,
+      "outside_ratio_pct": 25.54,
+      "pass_criteria": false
+    },
+    "box_r3": {
+      "name": "Mid-Right Pallet Box 2 (R3)",
+      "color_hex": "#eab308",
+      "bbox_2d": {
+        "u": [
+          766,
+          907
+        ],
+        "v": [
+          427,
+          566
+        ]
+      },
+      "total_pixels": 1582,
+      "inside_pixels": 815,
+      "outside_pixels": 767,
+      "outside_ratio_pct": 48.48,
+      "pass_criteria": false
+    }
+  },
+  "round2_multi_splatmesh": {
+    "box_l1": {
+      "name": "Foreground Left Pallet Box (L1)",
+      "color_hex": "#00f0ff",
+      "bbox_2d": {
+        "u": [
+          159,
+          406
+        ],
+        "v": [
+          470,
+          720
+        ]
+      },
+      "total_pixels": 6244,
+      "inside_pixels": 6142,
+      "outside_pixels": 102,
+      "outside_ratio_pct": 1.63,
+      "pass_criteria": true
+    },
+    "box_r1": {
+      "name": "Foreground Right Pallet Box (R1)",
+      "color_hex": "#ff9900",
+      "bbox_2d": {
+        "u": [
+          988,
+          1133
+        ],
+        "v": [
+          453,
+          720
+        ]
+      },
+      "total_pixels": 9120,
+      "inside_pixels": 8670,
+      "outside_pixels": 450,
+      "outside_ratio_pct": 4.93,
+      "pass_criteria": true
+    },
+    "box_l2": {
+      "name": "Mid-Left Pallet Box 1 (L2)",
+      "color_hex": "#10b981",
+      "bbox_2d": {
+        "u": [
+          255,
+          525
+        ],
+        "v": [
+          474,
+          669
+        ]
+      },
+      "total_pixels": 327,
+      "inside_pixels": 327,
+      "outside_pixels": 0,
+      "outside_ratio_pct": 0.0,
+      "pass_criteria": true
+    },
+    "box_r2": {
+      "name": "Mid-Right Pallet Box 1 (R2)",
+      "color_hex": "#f43f5e",
+      "bbox_2d": {
+        "u": [
+          764,
+          1026
+        ],
+        "v": [
+          471,
+          669
+        ]
+      },
+      "total_pixels": 9,
+      "inside_pixels": 9,
+      "outside_pixels": 0,
+      "outside_ratio_pct": 0.0,
+      "pass_criteria": true
+    },
+    "box_l3": {
+      "name": "Mid-Left Pallet Box 2 (L3)",
+      "color_hex": "#a855f7",
+      "bbox_2d": {
+        "u": [
+          365,
+          552
+        ],
+        "v": [
+          428,
+          573
+        ]
+      },
+      "total_pixels": 535,
+      "inside_pixels": 511,
+      "outside_pixels": 24,
+      "outside_ratio_pct": 4.49,
+      "pass_criteria": true
+    },
+    "box_r3": {
+      "name": "Mid-Right Pallet Box 2 (R3)",
+      "color_hex": "#eab308",
+      "bbox_2d": {
+        "u": [
+          766,
+          907
+        ],
+        "v": [
+          427,
+          566
+        ]
+      },
+      "total_pixels": 13,
+      "inside_pixels": 13,
+      "outside_pixels": 0,
+      "outside_ratio_pct": 0.0,
+      "pass_criteria": true
+    }
+  },
+  "all_pass": true
+}

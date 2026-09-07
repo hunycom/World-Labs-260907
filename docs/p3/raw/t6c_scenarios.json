@@ -1,0 +1,87 @@
+{
+  "timestamp": "2026-09-06T16:37:03.201Z",
+  "directive": "EXE-260906-P3-02-T6-c",
+  "simulation_duration_s": 5,
+  "steps_per_scenario": 300,
+  "timestep": "1/60",
+  "renderer_info": "llvmpipe (LLVM 18.1.3, 256 bits)",
+  "scenario_a_drop": {
+    "drop_height_delta_m": 1,
+    "l1_initial_y": 1.407,
+    "r1_initial_y": 1.4015,
+    "l1": {
+      "landing_time_s": 0.45,
+      "final_pose": [
+        -1.2092461585998535,
+        0.3825554847717285,
+        -2.157559633255005
+      ],
+      "bottom_y_m": -0.0054,
+      "diff_from_mesh_floor_cm": 1.96,
+      "diff_criteria_cm": [
+        -2,
+        3
+      ],
+      "diff_pass": true,
+      "rotation_deg": 9.48,
+      "rotation_criteria_deg": 15,
+      "rotation_pass": true,
+      "xz_drift_cm": 22.36,
+      "geometric_penetration_cm": 0,
+      "penetration_criteria_cm": 2,
+      "penetration_pass": true
+    },
+    "r1": {
+      "landing_time_s": 0.45,
+      "final_pose": [
+        1.3308085203170776,
+        0.36284977197647095,
+        -2.0127320289611816
+      ],
+      "bottom_y_m": -0.0157,
+      "diff_from_mesh_floor_cm": 0.93,
+      "diff_criteria_cm": [
+        -2,
+        3
+      ],
+      "diff_pass": true,
+      "rotation_deg": 1.9,
+      "rotation_criteria_deg": 15,
+      "rotation_pass": true,
+      "xz_drift_cm": 8.56,
+      "geometric_penetration_cm": 0,
+      "penetration_criteria_cm": 2,
+      "penetration_pass": true
+    }
+  },
+  "scenario_b_throw": {
+    "initial_velocity_m_s": 2.5,
+    "direction": "aisle center (+x for L1, -x for R1)",
+    "l1": {
+      "travel_distance_m": 0.669,
+      "travel_criteria_m": "> 0.5",
+      "travel_pass": true,
+      "stop_time_s": 0.517,
+      "geometric_penetration_cm": 0,
+      "penetration_criteria_cm": 2,
+      "penetration_pass": true
+    },
+    "r1": {
+      "travel_distance_m": 0.586,
+      "travel_criteria_m": "> 0.5",
+      "travel_pass": true,
+      "stop_time_s": 0.517,
+      "geometric_penetration_cm": 0,
+      "penetration_criteria_cm": 2,
+      "penetration_pass": true
+    }
+  },
+  "step_latency": {
+    "p50_ms": 5.9767,
+    "p95_ms": 8.965,
+    "total_ms": 3586,
+    "samples_count": 600,
+    "criteria_ms": "<= 16.67 ms (60 FPS)",
+    "pass": true
+  }
+}

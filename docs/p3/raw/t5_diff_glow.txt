@@ -1,0 +1,14 @@
+==================================================================
+  EXE-260906-P3-02-T5 Task 0: Difference Mask Tint Bleed Ledger
+==================================================================
+Diff Condition: max(|R_on - R_off|, |G_on - G_off|, |B_on - B_off|) >= 24
+Spec Requirement: outside_ratio_pct < 15.0% across all 6 closeup views
+Coverage (inside_px / bbox_2d_area): Reported for auditor evaluation
+------------------------------------------------------------------
+| 부품 ID | 명칭 | ON SHA | OFF SHA | 총 틴트 픽셀 | 내부 픽셀 | 외부 픽셀 | 밖 비율 | 2D BBox 투영 면적 | 덮임(커버리지) | 판정 (<15.0%) |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `box_l1` | Foreground Left Pallet Box (L1) | f25bd0e7 | 6f66d8be | 19,158 | 18,535 | 623 | 3.3% | 155,881 px | 11.9% | **PASS** |
+| `box_r1` | Foreground Right Pallet Box (R1) | 74537757 | 9c4dd487 | 25,723 | 24,641 | 1,082 | 4.2% | 116,915 px | 21.1% | **PASS** |
+------------------------------------------------------------------
+Summary: 2/2 parts passed (<15.0% outside ratio)
+==================================================================

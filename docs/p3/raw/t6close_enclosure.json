@@ -1,0 +1,117 @@
+{
+  "timestamp": "2026-09-06T16:51:30.000Z",
+  "directive": "EXE-260906-P3-02-T6-CLOSE",
+  "task": "Task 2 — 포함 비율 (기존 캡처, 재렌더 없음)",
+  "criteria": "3시점 모두 >= 90.0% (미달 시 \"미달\")",
+  "method_description": "2D 헬퍼 투영 BBox(강체 8꼭짓점 2D 투영) 내부 차분 픽셀 수 / 반화면 전체 차분 픽셀 수",
+  "timepoints": {
+    "t0": {
+      "l1": {
+        "capture_file": "marble_run01_t6c_scenA_t0.png",
+        "time_s": 0.0,
+        "helper_bbox_2d": [
+          119,
+          281,
+          437,
+          483
+        ],
+        "inside_pixels": 17215,
+        "total_half_image_diff_pixels": 20761,
+        "enclosure_ratio_percent": 82.92,
+        "criteria_percent": 90.0,
+        "pass": false,
+        "evaluation": "미달",
+        "note": "view_v1_off 원본의 바닥 팔레트 잔여차분으로 인해 분모 증가. 런타임 단독 마스크 기준은 100.0%"
+      },
+      "r1": {
+        "capture_file": "marble_run01_t6c_scenA_t0.png",
+        "time_s": 0.0,
+        "helper_bbox_2d": [
+          882,
+          287,
+          1139,
+          476
+        ],
+        "inside_pixels": 18425,
+        "total_half_image_diff_pixels": 27024,
+        "enclosure_ratio_percent": 68.18,
+        "criteria_percent": 90.0,
+        "pass": false,
+        "evaluation": "미달",
+        "note": "view_v1_off 원본의 바닥 팔레트 잔여차분으로 인해 분모 증가. 런타임 단독 마스크 기준은 100.0%"
+      }
+    },
+    "landing": {
+      "l1": {
+        "capture_file": "marble_run01_t6c_scenA_landing.png",
+        "time_s": 0.45,
+        "helper_bbox_2d": [
+          129,
+          490,
+          440,
+          732
+        ],
+        "inside_pixels": 12740,
+        "total_half_image_diff_pixels": 12811,
+        "enclosure_ratio_percent": 99.45,
+        "criteria_percent": 90.0,
+        "pass": true,
+        "evaluation": "PASS",
+        "note": ""
+      },
+      "r1": {
+        "capture_file": "marble_run01_t6c_scenA_landing.png",
+        "time_s": 0.45,
+        "helper_bbox_2d": [
+          874,
+          489,
+          1131,
+          717
+        ],
+        "inside_pixels": 19307,
+        "total_half_image_diff_pixels": 19901,
+        "enclosure_ratio_percent": 97.02,
+        "criteria_percent": 90.0,
+        "pass": true,
+        "evaluation": "PASS",
+        "note": ""
+      }
+    },
+    "final": {
+      "l1": {
+        "capture_file": "marble_run01_t6c_scenA_final.png",
+        "time_s": 5.0,
+        "helper_bbox_2d": [
+          199,
+          480,
+          469,
+          724
+        ],
+        "inside_pixels": 11116,
+        "total_half_image_diff_pixels": 13226,
+        "enclosure_ratio_percent": 84.05,
+        "criteria_percent": 90.0,
+        "pass": false,
+        "evaluation": "미달",
+        "note": "22.36cm XZ 드리프트로 인해 view_v1_off 원본 위치와의 차분 잔여가 외부에 남아 분모 증가"
+      },
+      "r1": {
+        "capture_file": "marble_run01_t6c_scenA_final.png",
+        "time_s": 5.0,
+        "helper_bbox_2d": [
+          858,
+          499,
+          1112,
+          730
+        ],
+        "inside_pixels": 19411,
+        "total_half_image_diff_pixels": 21975,
+        "enclosure_ratio_percent": 88.33,
+        "criteria_percent": 90.0,
+        "pass": false,
+        "evaluation": "미달",
+        "note": "22.36cm XZ 드리프트로 인해 view_v1_off 원본 위치와의 차분 잔여가 외부에 남아 분모 증가"
+      }
+    }
+  }
+}

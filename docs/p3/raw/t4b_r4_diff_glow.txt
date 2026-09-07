@@ -1,0 +1,18 @@
+==================================================================
+  EXE-260906-P3-02-T4B-R4 Task 3: Difference Mask Tint Bleed Ledger
+==================================================================
+Diff Condition: max(|R_on - R_off|, |G_on - G_off|, |B_on - B_off|) >= 24
+Spec Requirement: outside_ratio_pct < 15.0% across all 6 closeup views
+Coverage (inside_px / bbox_2d_area): Reported for auditor evaluation
+------------------------------------------------------------------
+| 부품 ID | 명칭 | ON SHA | OFF SHA | 총 틴트 픽셀 | 내부 픽셀 | 외부 픽셀 | 밖 비율 | 2D BBox 투영 면적 | 덮임(커버리지) | 판정 (<15.0%) |
+|---|---|---|---|---|---|---|---|---|---|---|
+| `box_l1` | Foreground Left Pallet Box (L1) | 6aa684cd | 49700dc7 | 15,036 | 14,450 | 586 | 3.9% | 116,939 px | 12.4% | **PASS** |
+| `box_r1` | Foreground Right Pallet Box (R1) | 682e8f66 | f2e07a7a | 15,619 | 14,966 | 653 | 4.2% | 97,344 px | 15.4% | **PASS** |
+| `box_l2` | Mid-Left Pallet Box 1 (L2) | 834a884b | 4929ef63 | 3,610 | 3,200 | 410 | 11.4% | 135,531 px | 2.4% | **PASS** |
+| `box_r2` | Mid-Right Pallet Box 1 (R2) | 84a7c15f | c8eefffc | 13,071 | 12,502 | 569 | 4.4% | 140,700 px | 8.9% | **PASS** |
+| `box_l3` | Mid-Left Pallet Box 2 (L3) | 9b206c73 | 233c4953 | 9,817 | 8,738 | 1,079 | 11.0% | 206,241 px | 4.2% | **PASS** |
+| `box_r3` | Mid-Right Pallet Box 2 (R3) | 16df580a | 173d4b3a | 3,207 | 2,679 | 528 | 16.5% | 133,500 px | 2.0% | **미달 (16.5%)** |
+------------------------------------------------------------------
+Summary: 5/6 parts passed (<15.0% outside ratio)
+==================================================================

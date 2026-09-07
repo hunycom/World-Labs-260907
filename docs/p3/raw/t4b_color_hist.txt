@@ -1,0 +1,76 @@
+==================================================================
+  EXE-260906-P3-02-T4B-R2 Task 2: RGB Histogram & Inside Pixels
+==================================================================
+Target Image: marble_run01_part_front.png
+Verification Criterion: Inside Detected Pixels >= 500 px for all 6 parts
+
+[box_l1] Foreground Left Pallet Box (L1) (#00f0ff)
+  - 2D BBox: u=[159, 406], v=[470, 720] (Total Area: 61,750 px)
+  - Top 5 RGB Color Clusters inside BBox:
+      RGB=( 72,  72,  56):  9315 px ( 15.1%)
+      RGB=( 56,  56,  40):  8694 px ( 14.1%)
+      RGB=( 72,  56,  40):  4269 px (  6.9%)
+      RGB=( 56,  56,  56):  3649 px (  5.9%)
+      RGB=( 72,  56,  56):  3347 px (  5.4%)
+  - Inside Detected Pixels: 7,819 px [PASS (>= 500 px)]
+
+[box_r1] Foreground Right Pallet Box (R1) (#ff9900)
+  - 2D BBox: u=[988, 1133], v=[453, 720] (Total Area: 38,715 px)
+  - Top 5 RGB Color Clusters inside BBox:
+      RGB=( 56,  56,  40):  3028 px (  7.8%)
+      RGB=(200, 104,   8):  2691 px (  7.0%)
+      RGB=( 88,  72,  56):  1745 px (  4.5%)
+      RGB=(216, 104,   8):  1512 px (  3.9%)
+      RGB=(232, 120,   8):  1379 px (  3.6%)
+  - Inside Detected Pixels: 9,855 px [PASS (>= 500 px)]
+
+[box_l2] Mid-Left Pallet Box 1 (L2) (#10b981)
+  - 2D BBox: u=[255, 525], v=[474, 669] (Total Area: 52,650 px)
+  - Top 5 RGB Color Clusters inside BBox:
+      RGB=( 56,  56,  40): 14168 px ( 26.9%)
+      RGB=( 72,  72,  56): 10650 px ( 20.2%)
+      RGB=( 56,  56,  56):  6286 px ( 11.9%)
+      RGB=( 72,  56,  40):  3964 px (  7.5%)
+      RGB=( 72,  56,  56):  2739 px (  5.2%)
+  - Inside Detected Pixels: 2,008 px [PASS (>= 500 px)]
+
+[box_r2] Mid-Right Pallet Box 1 (R2) (#f43f5e)
+  - 2D BBox: u=[764, 1026], v=[471, 669] (Total Area: 51,876 px)
+  - Top 5 RGB Color Clusters inside BBox:
+      RGB=( 56,  56,  40): 11313 px ( 21.8%)
+      RGB=( 72,  72,  56): 10525 px ( 20.3%)
+      RGB=( 56,  56,  56):  6116 px ( 11.8%)
+      RGB=( 72,  56,  56):  4519 px (  8.7%)
+      RGB=( 72,  56,  40):  2911 px (  5.6%)
+  - Inside Detected Pixels: 3,736 px [PASS (>= 500 px)]
+
+[box_l3] Mid-Left Pallet Box 2 (L3) (#a855f7)
+  - 2D BBox: u=[365, 552], v=[428, 573] (Total Area: 27,115 px)
+  - Top 5 RGB Color Clusters inside BBox:
+      RGB=( 56,  56,  40): 11471 px ( 42.3%)
+      RGB=( 56,  56,  56):  3423 px ( 12.6%)
+      RGB=( 72,  56,  40):  1041 px (  3.8%)
+      RGB=( 72,  56,  56):   958 px (  3.5%)
+      RGB=( 40,  40,  24):   756 px (  2.8%)
+  - Inside Detected Pixels: 2,759 px [PASS (>= 500 px)]
+
+[box_r3] Mid-Right Pallet Box 2 (R3) (#eab308)
+  - 2D BBox: u=[766, 907], v=[427, 566] (Total Area: 19,599 px)
+  - Top 5 RGB Color Clusters inside BBox:
+      RGB=( 56,  56,  40):  4198 px ( 21.4%)
+      RGB=( 56,  56,  56):  3362 px ( 17.2%)
+      RGB=( 72,  72,  56):  2103 px ( 10.7%)
+      RGB=( 72,  56,  56):  2004 px ( 10.2%)
+      RGB=( 72,  56,  40):   895 px (  4.6%)
+  - Inside Detected Pixels: 1,638 px [PASS (>= 500 px)]
+
+------------------------------------------------------------------
+| Part ID | Name | 2D BBox | Area (px) | Inside Detected | Verdict (>=500px) |
+|---|---|---|---|---|---|
+| `box_l1` | Foreground Left Pallet Box (L1) | `u=[159,406], v=[470,720]` | 61,750 | `7,819` px | **PASS** |
+| `box_r1` | Foreground Right Pallet Box (R1) | `u=[988,1133], v=[453,720]` | 38,715 | `9,855` px | **PASS** |
+| `box_l2` | Mid-Left Pallet Box 1 (L2) | `u=[255,525], v=[474,669]` | 52,650 | `2,008` px | **PASS** |
+| `box_r2` | Mid-Right Pallet Box 1 (R2) | `u=[764,1026], v=[471,669]` | 51,876 | `3,736` px | **PASS** |
+| `box_l3` | Mid-Left Pallet Box 2 (L3) | `u=[365,552], v=[428,573]` | 27,115 | `2,759` px | **PASS** |
+| `box_r3` | Mid-Right Pallet Box 2 (R3) | `u=[766,907], v=[427,566]` | 19,599 | `1,638` px | **PASS** |
+==================================================================

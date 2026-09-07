@@ -1,0 +1,31 @@
+==================================================================
+  EXE-260906-P3-02-T6 Task 1: Physics World Construction Ledger
+==================================================================
+Execution Timestamp:     2026-09-06T14:46:53.690Z
+Directive:               EXE-260906-P3-02-T6
+Physics Engine:          Rapier3D @dimforge/rapier3d-compat v0.12.0
+Simulation Timestep:     1/60 s (0.016667 s, Fixed dt)
+Gravity:                 [0.0, -9.81, 0.0] m/s²
+------------------------------------------------------------------
+Static Environment:
+  - Asset:               assets/p3/marble/run01_collider_mesh.glb
+  - Collider Type:       Trimesh Collider (34,741 vertices, 68,979 triangles)
+  - Metric Transform:    scale = 2.121173, y_offset = 1.2561374 m
+  - Surface Properties:  friction = 0.6, restitution = 0.1
+------------------------------------------------------------------
+Dynamic Rigid Bodies (Active Columns: L1, R1; Inactive: L2, R2, L3, R3):
+  - box_l1 (Pallet Box L1):
+    * Half Extents:      [0.4725, 0.3880, 0.3700] m
+    * Mass:              300.0 kg (임의 상수 300 kg, 사양 미확정)
+    * Initial Pose:      [-0.943, 0.389, -1.969] m
+    * 1s Resting Disp:   0.713 cm [Criteria <= 1.0 cm: PASS]
+    * Geometric Penetration: 0.000 cm [Criteria <= 2.0 cm: PASS]
+  - box_r1 (Pallet Box R1):
+    * Half Extents:      [0.3800, 0.3785, 0.3280] m
+    * Mass:              300.0 kg (임의 상수 300 kg, 사양 미확정)
+    * Initial Pose:      [0.950, 0.372, -2.002] m
+    * 1s Resting Disp:   0.230 cm [Criteria <= 1.0 cm: PASS]
+    * Geometric Penetration: 0.000 cm [Criteria <= 2.0 cm: PASS]
+------------------------------------------------------------------
+Overall World Verdict:   PASS
+==================================================================

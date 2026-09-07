@@ -1,0 +1,13 @@
+==================================================================
+  P3-02 Task 2: Metric Transformation & Floor Mode Verification (run01)
+==================================================================
+Scale Factor (s):       2.121173
+Ground Plane Offset (h):1.256137
+Splat y Mode (y_peak):  -0.0350 m (1 cm bin mode, 102,985 splats)
+Mesh y Floor Mode:      -0.0250 m (1 cm bin mode, 247 vertices)
+Mesh y Global Mode:     +0.9150 m (Rack shelf tessellation, 1,947 vertices)
+Floor Alignment Diff:   0.0100 m (1.00 cm)
+Alignment Criteria:     |y_peak - y_mesh| < 0.05 m -> PASS (정합)
+Reference p1 Quantile:  splat=-0.0888 m, mesh=-0.0761 m
+Final Task 2 Verdict:   PASS
+==================================================================

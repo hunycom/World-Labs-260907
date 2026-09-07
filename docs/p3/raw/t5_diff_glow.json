@@ -1,0 +1,47 @@
+{
+  "directive": "EXE-260906-P3-02-T5",
+  "method": "Deterministic pixel difference between ON and OFF captures (|ON - OFF| >= 24)",
+  "diff_threshold": 24,
+  "parts": {
+    "box_l1": {
+      "name": "Foreground Left Pallet Box (L1)",
+      "on_capture": "marble_run01_part_selected_l1.png",
+      "on_sha256": "f25bd0e729aa5622d9369aecc9682eeab84532431f930c282d28c35dd7f2b802",
+      "off_capture": "marble_run01_part_selected_l1_off.png",
+      "off_sha256": "6f66d8be1d805edbd14435549d3983bcf64a3f27a10b77bead703d30bdb6beeb",
+      "total_tint_px": 19158,
+      "inside_px": 18535,
+      "outside_px": 623,
+      "outside_ratio_pct": 3.25,
+      "bbox_2d": [
+        518,
+        925,
+        201,
+        584
+      ],
+      "bbox_2d_area": 155881,
+      "coverage_pct": 11.89,
+      "pass": true
+    },
+    "box_r1": {
+      "name": "Foreground Right Pallet Box (R1)",
+      "on_capture": "marble_run01_part_selected_r1.png",
+      "on_sha256": "74537757d86ef99690018a90ebb6cb3a0f793cad8ae182b3352e7da051e049de",
+      "off_capture": "marble_run01_part_selected_r1_off.png",
+      "off_sha256": "9c4dd487490bb16484cf3e0064cce1b627a7c3fb5e46b1c08d484706dcbcbec4",
+      "total_tint_px": 25723,
+      "inside_px": 24641,
+      "outside_px": 1082,
+      "outside_ratio_pct": 4.21,
+      "bbox_2d": [
+        400,
+        735,
+        216,
+        565
+      ],
+      "bbox_2d_area": 116915,
+      "coverage_pct": 21.08,
+      "pass": true
+    }
+  }
+}

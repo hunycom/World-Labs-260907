@@ -1,0 +1,2320 @@
+{
+  "schema_version": "1.0.0",
+  "directive": "EXE-260906-P3-02-T5-c",
+  "random_seed": 20260908,
+  "total_clicks": 225,
+  "dynamic_clicks": 150,
+  "static_clicks": 75,
+  "l1_centroid": [
+    -1.643,
+    0.334,
+    -1.952
+  ],
+  "r1_centroid": [
+    1.696,
+    0.369,
+    -2.0
+  ],
+  "views": {
+    "V1": {
+      "name": "Front View",
+      "eye": [
+        0.0,
+        1.6,
+        0.8
+      ],
+      "target": [
+        0.0,
+        1.3,
+        -6.0
+      ],
+      "l1_samples": 25,
+      "r1_samples": 25,
+      "static_samples": 25
+    },
+    "V2": {
+      "name": "L1 Focus View",
+      "eye": [
+        -0.6,
+        1.4,
+        0.3
+      ],
+      "target": [
+        -1.643,
+        0.334,
+        -1.952
+      ],
+      "l1_samples": 50,
+      "r1_samples": 0,
+      "static_samples": 25
+    },
+    "V3": {
+      "name": "R1 Focus View",
+      "eye": [
+        0.6,
+        1.4,
+        0.3
+      ],
+      "target": [
+        1.696,
+        0.369,
+        -2.0
+      ],
+      "l1_samples": 0,
+      "r1_samples": 50,
+      "static_samples": 25
+    }
+  },
+  "clicks": [
+    {
+      "index": 1,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        301,
+        643
+      ]
+    },
+    {
+      "index": 2,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        195,
+        545
+      ]
+    },
+    {
+      "index": 3,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        235,
+        557
+      ]
+    },
+    {
+      "index": 4,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        193,
+        592
+      ]
+    },
+    {
+      "index": 5,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        166,
+        619
+      ]
+    },
+    {
+      "index": 6,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        171,
+        639
+      ]
+    },
+    {
+      "index": 7,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        396,
+        564
+      ]
+    },
+    {
+      "index": 8,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        190,
+        563
+      ]
+    },
+    {
+      "index": 9,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        209,
+        529
+      ]
+    },
+    {
+      "index": 10,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        209,
+        538
+      ]
+    },
+    {
+      "index": 11,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        135,
+        455
+      ]
+    },
+    {
+      "index": 12,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        207,
+        505
+      ]
+    },
+    {
+      "index": 13,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        189,
+        615
+      ]
+    },
+    {
+      "index": 14,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        172,
+        606
+      ]
+    },
+    {
+      "index": 15,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        208,
+        628
+      ]
+    },
+    {
+      "index": 16,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        179,
+        634
+      ]
+    },
+    {
+      "index": 17,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        188,
+        631
+      ]
+    },
+    {
+      "index": 18,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        181,
+        639
+      ]
+    },
+    {
+      "index": 19,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        449,
+        659
+      ]
+    },
+    {
+      "index": 20,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        159,
+        577
+      ]
+    },
+    {
+      "index": 21,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        234,
+        614
+      ]
+    },
+    {
+      "index": 22,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        159,
+        562
+      ]
+    },
+    {
+      "index": 23,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        422,
+        512
+      ]
+    },
+    {
+      "index": 24,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        156,
+        605
+      ]
+    },
+    {
+      "index": 25,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        213,
+        521
+      ]
+    },
+    {
+      "index": 26,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        1076,
+        513
+      ]
+    },
+    {
+      "index": 27,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        1068,
+        573
+      ]
+    },
+    {
+      "index": 28,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        1060,
+        503
+      ]
+    },
+    {
+      "index": 29,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        1070,
+        582
+      ]
+    },
+    {
+      "index": 30,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        1079,
+        533
+      ]
+    },
+    {
+      "index": 31,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        924,
+        602
+      ]
+    },
+    {
+      "index": 32,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        1172,
+        520
+      ]
+    },
+    {
+      "index": 33,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        1059,
+        507
+      ]
+    },
+    {
+      "index": 34,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        1121,
+        538
+      ]
+    },
+    {
+      "index": 35,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        1046,
+        631
+      ]
+    },
+    {
+      "index": 36,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        1106,
+        551
+      ]
+    },
+    {
+      "index": 37,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        1066,
+        542
+      ]
+    },
+    {
+      "index": 38,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        1080,
+        566
+      ]
+    },
+    {
+      "index": 39,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        1111,
+        644
+      ]
+    },
+    {
+      "index": 40,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        1099,
+        519
+      ]
+    },
+    {
+      "index": 41,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        1087,
+        498
+      ]
+    },
+    {
+      "index": 42,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        1042,
+        624
+      ]
+    },
+    {
+      "index": 43,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        1058,
+        500
+      ]
+    },
+    {
+      "index": 44,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        1087,
+        627
+      ]
+    },
+    {
+      "index": 45,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        1090,
+        507
+      ]
+    },
+    {
+      "index": 46,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        907,
+        485
+      ]
+    },
+    {
+      "index": 47,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        1082,
+        625
+      ]
+    },
+    {
+      "index": 48,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        1072,
+        651
+      ]
+    },
+    {
+      "index": 49,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        1049,
+        635
+      ]
+    },
+    {
+      "index": 50,
+      "view": "V1",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        1043,
+        556
+      ]
+    },
+    {
+      "index": 51,
+      "view": "V1",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        657,
+        198
+      ]
+    },
+    {
+      "index": 52,
+      "view": "V1",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        777,
+        168
+      ]
+    },
+    {
+      "index": 53,
+      "view": "V1",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        419,
+        189
+      ]
+    },
+    {
+      "index": 54,
+      "view": "V1",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        611,
+        126
+      ]
+    },
+    {
+      "index": 55,
+      "view": "V1",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        577,
+        102
+      ]
+    },
+    {
+      "index": 56,
+      "view": "V1",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        536,
+        564
+      ]
+    },
+    {
+      "index": 57,
+      "view": "V1",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        102,
+        406
+      ]
+    },
+    {
+      "index": 58,
+      "view": "V1",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        426,
+        205
+      ]
+    },
+    {
+      "index": 59,
+      "view": "V1",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        1076,
+        65
+      ]
+    },
+    {
+      "index": 60,
+      "view": "V1",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        372,
+        402
+      ]
+    },
+    {
+      "index": 61,
+      "view": "V1",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        516,
+        274
+      ]
+    },
+    {
+      "index": 62,
+      "view": "V1",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        833,
+        169
+      ]
+    },
+    {
+      "index": 63,
+      "view": "V1",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        97,
+        216
+      ]
+    },
+    {
+      "index": 64,
+      "view": "V1",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        900,
+        335
+      ]
+    },
+    {
+      "index": 65,
+      "view": "V1",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        707,
+        602
+      ]
+    },
+    {
+      "index": 66,
+      "view": "V1",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        971,
+        283
+      ]
+    },
+    {
+      "index": 67,
+      "view": "V1",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        372,
+        620
+      ]
+    },
+    {
+      "index": 68,
+      "view": "V1",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        1152,
+        382
+      ]
+    },
+    {
+      "index": 69,
+      "view": "V1",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        302,
+        403
+      ]
+    },
+    {
+      "index": 70,
+      "view": "V1",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        732,
+        176
+      ]
+    },
+    {
+      "index": 71,
+      "view": "V1",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        975,
+        617
+      ]
+    },
+    {
+      "index": 72,
+      "view": "V1",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        731,
+        633
+      ]
+    },
+    {
+      "index": 73,
+      "view": "V1",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        400,
+        537
+      ]
+    },
+    {
+      "index": 74,
+      "view": "V1",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        448,
+        616
+      ]
+    },
+    {
+      "index": 75,
+      "view": "V1",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        106,
+        346
+      ]
+    },
+    {
+      "index": 76,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        620,
+        329
+      ]
+    },
+    {
+      "index": 77,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        599,
+        397
+      ]
+    },
+    {
+      "index": 78,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        768,
+        457
+      ]
+    },
+    {
+      "index": 79,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        581,
+        389
+      ]
+    },
+    {
+      "index": 80,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        597,
+        360
+      ]
+    },
+    {
+      "index": 81,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        619,
+        292
+      ]
+    },
+    {
+      "index": 82,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        618,
+        235
+      ]
+    },
+    {
+      "index": 83,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        704,
+        397
+      ]
+    },
+    {
+      "index": 84,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        599,
+        400
+      ]
+    },
+    {
+      "index": 85,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        543,
+        376
+      ]
+    },
+    {
+      "index": 86,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        611,
+        266
+      ]
+    },
+    {
+      "index": 87,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        774,
+        514
+      ]
+    },
+    {
+      "index": 88,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        631,
+        368
+      ]
+    },
+    {
+      "index": 89,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        605,
+        265
+      ]
+    },
+    {
+      "index": 90,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        569,
+        466
+      ]
+    },
+    {
+      "index": 91,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        579,
+        299
+      ]
+    },
+    {
+      "index": 92,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        601,
+        374
+      ]
+    },
+    {
+      "index": 93,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        569,
+        313
+      ]
+    },
+    {
+      "index": 94,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        646,
+        354
+      ]
+    },
+    {
+      "index": 95,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        606,
+        362
+      ]
+    },
+    {
+      "index": 96,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        583,
+        332
+      ]
+    },
+    {
+      "index": 97,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        575,
+        318
+      ]
+    },
+    {
+      "index": 98,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        609,
+        255
+      ]
+    },
+    {
+      "index": 99,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        579,
+        325
+      ]
+    },
+    {
+      "index": 100,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        584,
+        266
+      ]
+    },
+    {
+      "index": 101,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        784,
+        292
+      ]
+    },
+    {
+      "index": 102,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        622,
+        326
+      ]
+    },
+    {
+      "index": 103,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        587,
+        334
+      ]
+    },
+    {
+      "index": 104,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        548,
+        451
+      ]
+    },
+    {
+      "index": 105,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        611,
+        278
+      ]
+    },
+    {
+      "index": 106,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        592,
+        350
+      ]
+    },
+    {
+      "index": 107,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        619,
+        377
+      ]
+    },
+    {
+      "index": 108,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        634,
+        385
+      ]
+    },
+    {
+      "index": 109,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        583,
+        321
+      ]
+    },
+    {
+      "index": 110,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        628,
+        317
+      ]
+    },
+    {
+      "index": 111,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        625,
+        387
+      ]
+    },
+    {
+      "index": 112,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        856,
+        333
+      ]
+    },
+    {
+      "index": 113,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        594,
+        256
+      ]
+    },
+    {
+      "index": 114,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        604,
+        422
+      ]
+    },
+    {
+      "index": 115,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        586,
+        255
+      ]
+    },
+    {
+      "index": 116,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        851,
+        370
+      ]
+    },
+    {
+      "index": 117,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        610,
+        358
+      ]
+    },
+    {
+      "index": 118,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        799,
+        294
+      ]
+    },
+    {
+      "index": 119,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        616,
+        331
+      ]
+    },
+    {
+      "index": 120,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        597,
+        425
+      ]
+    },
+    {
+      "index": 121,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        613,
+        282
+      ]
+    },
+    {
+      "index": 122,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        627,
+        322
+      ]
+    },
+    {
+      "index": 123,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        764,
+        454
+      ]
+    },
+    {
+      "index": 124,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        622,
+        248
+      ]
+    },
+    {
+      "index": 125,
+      "view": "V2",
+      "target_type": "dynamic",
+      "expected_part_id": "box_l1",
+      "screen_coord": [
+        641,
+        329
+      ]
+    },
+    {
+      "index": 126,
+      "view": "V2",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        684,
+        577
+      ]
+    },
+    {
+      "index": 127,
+      "view": "V2",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        456,
+        237
+      ]
+    },
+    {
+      "index": 128,
+      "view": "V2",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        905,
+        303
+      ]
+    },
+    {
+      "index": 129,
+      "view": "V2",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        611,
+        644
+      ]
+    },
+    {
+      "index": 130,
+      "view": "V2",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        753,
+        417
+      ]
+    },
+    {
+      "index": 131,
+      "view": "V2",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        463,
+        583
+      ]
+    },
+    {
+      "index": 132,
+      "view": "V2",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        1162,
+        620
+      ]
+    },
+    {
+      "index": 133,
+      "view": "V2",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        924,
+        280
+      ]
+    },
+    {
+      "index": 134,
+      "view": "V2",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        1047,
+        60
+      ]
+    },
+    {
+      "index": 135,
+      "view": "V2",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        1096,
+        86
+      ]
+    },
+    {
+      "index": 136,
+      "view": "V2",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        518,
+        82
+      ]
+    },
+    {
+      "index": 137,
+      "view": "V2",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        250,
+        455
+      ]
+    },
+    {
+      "index": 138,
+      "view": "V2",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        1052,
+        249
+      ]
+    },
+    {
+      "index": 139,
+      "view": "V2",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        120,
+        564
+      ]
+    },
+    {
+      "index": 140,
+      "view": "V2",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        1193,
+        366
+      ]
+    },
+    {
+      "index": 141,
+      "view": "V2",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        908,
+        157
+      ]
+    },
+    {
+      "index": 142,
+      "view": "V2",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        795,
+        199
+      ]
+    },
+    {
+      "index": 143,
+      "view": "V2",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        1129,
+        574
+      ]
+    },
+    {
+      "index": 144,
+      "view": "V2",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        460,
+        401
+      ]
+    },
+    {
+      "index": 145,
+      "view": "V2",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        785,
+        300
+      ]
+    },
+    {
+      "index": 146,
+      "view": "V2",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        520,
+        582
+      ]
+    },
+    {
+      "index": 147,
+      "view": "V2",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        1178,
+        153
+      ]
+    },
+    {
+      "index": 148,
+      "view": "V2",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        1151,
+        270
+      ]
+    },
+    {
+      "index": 149,
+      "view": "V2",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        685,
+        115
+      ]
+    },
+    {
+      "index": 150,
+      "view": "V2",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        849,
+        600
+      ]
+    },
+    {
+      "index": 151,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        717,
+        258
+      ]
+    },
+    {
+      "index": 152,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        658,
+        406
+      ]
+    },
+    {
+      "index": 153,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        689,
+        284
+      ]
+    },
+    {
+      "index": 154,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        652,
+        294
+      ]
+    },
+    {
+      "index": 155,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        683,
+        303
+      ]
+    },
+    {
+      "index": 156,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        691,
+        291
+      ]
+    },
+    {
+      "index": 157,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        667,
+        438
+      ]
+    },
+    {
+      "index": 158,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        681,
+        432
+      ]
+    },
+    {
+      "index": 159,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        664,
+        386
+      ]
+    },
+    {
+      "index": 160,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        646,
+        254
+      ]
+    },
+    {
+      "index": 161,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        628,
+        374
+      ]
+    },
+    {
+      "index": 162,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        691,
+        284
+      ]
+    },
+    {
+      "index": 163,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        619,
+        344
+      ]
+    },
+    {
+      "index": 164,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        668,
+        411
+      ]
+    },
+    {
+      "index": 165,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        640,
+        390
+      ]
+    },
+    {
+      "index": 166,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        667,
+        321
+      ]
+    },
+    {
+      "index": 167,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        635,
+        383
+      ]
+    },
+    {
+      "index": 168,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        663,
+        338
+      ]
+    },
+    {
+      "index": 169,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        645,
+        346
+      ]
+    },
+    {
+      "index": 170,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        618,
+        401
+      ]
+    },
+    {
+      "index": 171,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        453,
+        429
+      ]
+    },
+    {
+      "index": 172,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        688,
+        293
+      ]
+    },
+    {
+      "index": 173,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        671,
+        387
+      ]
+    },
+    {
+      "index": 174,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        620,
+        391
+      ]
+    },
+    {
+      "index": 175,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        645,
+        308
+      ]
+    },
+    {
+      "index": 176,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        665,
+        402
+      ]
+    },
+    {
+      "index": 177,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        658,
+        302
+      ]
+    },
+    {
+      "index": 178,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        681,
+        373
+      ]
+    },
+    {
+      "index": 179,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        660,
+        366
+      ]
+    },
+    {
+      "index": 180,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        660,
+        322
+      ]
+    },
+    {
+      "index": 181,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        682,
+        418
+      ]
+    },
+    {
+      "index": 182,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        663,
+        448
+      ]
+    },
+    {
+      "index": 183,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        696,
+        275
+      ]
+    },
+    {
+      "index": 184,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        671,
+        395
+      ]
+    },
+    {
+      "index": 185,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        654,
+        369
+      ]
+    },
+    {
+      "index": 186,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        665,
+        406
+      ]
+    },
+    {
+      "index": 187,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        640,
+        248
+      ]
+    },
+    {
+      "index": 188,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        676,
+        267
+      ]
+    },
+    {
+      "index": 189,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        679,
+        321
+      ]
+    },
+    {
+      "index": 190,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        583,
+        290
+      ]
+    },
+    {
+      "index": 191,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        525,
+        250
+      ]
+    },
+    {
+      "index": 192,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        651,
+        398
+      ]
+    },
+    {
+      "index": 193,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        657,
+        322
+      ]
+    },
+    {
+      "index": 194,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        647,
+        269
+      ]
+    },
+    {
+      "index": 195,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        675,
+        327
+      ]
+    },
+    {
+      "index": 196,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        679,
+        387
+      ]
+    },
+    {
+      "index": 197,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        638,
+        320
+      ]
+    },
+    {
+      "index": 198,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        671,
+        373
+      ]
+    },
+    {
+      "index": 199,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        681,
+        434
+      ]
+    },
+    {
+      "index": 200,
+      "view": "V3",
+      "target_type": "dynamic",
+      "expected_part_id": "box_r1",
+      "screen_coord": [
+        656,
+        335
+      ]
+    },
+    {
+      "index": 201,
+      "view": "V3",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        324,
+        648
+      ]
+    },
+    {
+      "index": 202,
+      "view": "V3",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        1042,
+        608
+      ]
+    },
+    {
+      "index": 203,
+      "view": "V3",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        1160,
+        603
+      ]
+    },
+    {
+      "index": 204,
+      "view": "V3",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        566,
+        273
+      ]
+    },
+    {
+      "index": 205,
+      "view": "V3",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        277,
+        372
+      ]
+    },
+    {
+      "index": 206,
+      "view": "V3",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        707,
+        523
+      ]
+    },
+    {
+      "index": 207,
+      "view": "V3",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        578,
+        409
+      ]
+    },
+    {
+      "index": 208,
+      "view": "V3",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        871,
+        225
+      ]
+    },
+    {
+      "index": 209,
+      "view": "V3",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        681,
+        616
+      ]
+    },
+    {
+      "index": 210,
+      "view": "V3",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        110,
+        490
+      ]
+    },
+    {
+      "index": 211,
+      "view": "V3",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        904,
+        353
+      ]
+    },
+    {
+      "index": 212,
+      "view": "V3",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        688,
+        92
+      ]
+    },
+    {
+      "index": 213,
+      "view": "V3",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        1144,
+        425
+      ]
+    },
+    {
+      "index": 214,
+      "view": "V3",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        837,
+        215
+      ]
+    },
+    {
+      "index": 215,
+      "view": "V3",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        70,
+        265
+      ]
+    },
+    {
+      "index": 216,
+      "view": "V3",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        782,
+        168
+      ]
+    },
+    {
+      "index": 217,
+      "view": "V3",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        1203,
+        600
+      ]
+    },
+    {
+      "index": 218,
+      "view": "V3",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        1040,
+        354
+      ]
+    },
+    {
+      "index": 219,
+      "view": "V3",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        855,
+        559
+      ]
+    },
+    {
+      "index": 220,
+      "view": "V3",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        1176,
+        183
+      ]
+    },
+    {
+      "index": 221,
+      "view": "V3",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        499,
+        297
+      ]
+    },
+    {
+      "index": 222,
+      "view": "V3",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        1134,
+        457
+      ]
+    },
+    {
+      "index": 223,
+      "view": "V3",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        546,
+        119
+      ]
+    },
+    {
+      "index": 224,
+      "view": "V3",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        297,
+        553
+      ]
+    },
+    {
+      "index": 225,
+      "view": "V3",
+      "target_type": "static",
+      "expected_part_id": "static",
+      "screen_coord": [
+        341,
+        460
+      ]
+    }
+  ]
+}

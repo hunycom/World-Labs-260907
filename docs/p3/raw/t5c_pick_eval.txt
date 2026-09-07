@@ -1,0 +1,39 @@
+==================================================================
+  EXE-260906-P3-02-T5-c Task 4: Raycast Picking Evaluation Ledger
+==================================================================
+Execution Timestamp:     2026-09-06T13:32:10.560Z
+Directive:               EXE-260906-P3-02-T5-c
+Holdout Dataset:         tests/p3/t5c_holdout_clicks.json (seed=20260908)
+Holdout SHA-256 Check:   6e45bfec89b5f3923606e6cada9d2c6093531bb03ac916f04cdecb68161697c3 (Match: True)
+Renderer / Driver:       llvmpipe (LLVM 18.1.3, 256 bits)
+Evaluation Mode:         Single-Run (평가 실행 4회(7·8·9회차 전송 전 중단)·관측 1회, Policy v1 & v2 동시 산출)
+------------------------------------------------------------------
+Total Samples Evaluated: 225 clicks
+  - Dynamic Target:      150 clicks (V1/V2/V3 across L1 and R1)
+  - Static Target:       75 clicks (25 per view, background/static)
+------------------------------------------------------------------
+Primary: Policy v2 (BBox Margin + Penetration Window <= 0.35m):
+  - Dynamic Identification:  119 / 150 (79.3%) [Criteria >= 70.0%: PASS]
+  - Static False Positives:  0 / 75 (0.0%) [Criteria <= 15.0%: PASS]
+Reference: Policy v1 (Pure Raycast):
+  - Dynamic Identification:  103 / 150 (68.7%)
+  - Static False Positives:  0 / 75 (0.0%)
+------------------------------------------------------------------
+Zero-Hit Coordinates:    7 / 225 clicks
+Response Latency:        p50 = 21.00 ms, p95 = 24.00 ms (llvmpipe (LLVM 18.1.3, 256 bits))
+------------------------------------------------------------------
+Failure Classification (v2):
+  (i)   bbox 진입 전 정적 히트 (폐색): 10 건
+  (ii)  bbox 통과 후 정적 히트 (관통): 18 건
+  (iii) 무히트 (Zero-hit):             3 건
+  합계:                                31 건
+------------------------------------------------------------------
+Per-View Evaluation Statistics (Policy v2):
+  - V1 (Front):          Dynamic: 78.0%, Static FPR: 0.0%
+  - V2 (L1 Focus):       Dynamic: 80.0%, Static FPR: 0.0%
+  - V3 (R1 Focus):       Dynamic: 80.0%, Static FPR: 0.0%
+------------------------------------------------------------------
+Per-Part Evaluation Statistics (Policy v2):
+  - box_l1 (L1 Box):     Accuracy: 77.3% (58 / 75)
+  - box_r1 (R1 Box):     Accuracy: 81.3% (61 / 75)
+==================================================================

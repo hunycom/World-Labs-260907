@@ -1,0 +1,88 @@
+{
+  "timestamp": "2026-09-06T16:35:17.335Z",
+  "directive": "EXE-260906-P3-02-T6-b",
+  "simulation_duration_s": 5,
+  "steps_per_scenario": 300,
+  "timestep": "1/60",
+  "renderer_info": "llvmpipe (LLVM 18.1.3, 256 bits)",
+  "scenario_a_drop": {
+    "drop_height_delta_m": 1,
+    "l1_initial_y": 1.407,
+    "r1_initial_y": 1.4015,
+    "l1": {
+      "landing_time_s": 0.5,
+      "final_pose": [
+        -0.9815385341644287,
+        0.40738797187805176,
+        -1.8619693517684937
+      ],
+      "bottom_y_m": 0.0194,
+      "diff_from_mesh_floor_cm": 4.44,
+      "diff_criteria_cm": [
+        -2,
+        3
+      ],
+      "diff_pass": false,
+      "local_triangle_y_m": -0.011,
+      "rotation_deg": 17.7,
+      "rotation_criteria_deg": 15,
+      "rotation_pass": false,
+      "xz_drift_cm": 35.95,
+      "geometric_penetration_cm": 0,
+      "penetration_criteria_cm": 2,
+      "penetration_pass": true
+    },
+    "r1": {
+      "landing_time_s": 0.5,
+      "final_pose": [
+        1.0964477062225342,
+        0.38609394431114197,
+        -2.030822992324829
+      ],
+      "bottom_y_m": 0.0076,
+      "diff_from_mesh_floor_cm": 3.26,
+      "diff_criteria_cm": [
+        -2,
+        3
+      ],
+      "diff_pass": false,
+      "rotation_deg": 4.06,
+      "rotation_criteria_deg": 15,
+      "rotation_pass": true,
+      "xz_drift_cm": 31.91,
+      "geometric_penetration_cm": 0,
+      "penetration_criteria_cm": 2,
+      "penetration_pass": true
+    }
+  },
+  "scenario_b_throw": {
+    "initial_velocity_m_s": 2.5,
+    "direction": "aisle center (+x for L1, -x for R1)",
+    "l1": {
+      "travel_distance_m": 0.886,
+      "travel_criteria_m": "> 0.5",
+      "travel_pass": true,
+      "stop_time_s": 0.6,
+      "geometric_penetration_cm": 0,
+      "penetration_criteria_cm": 2,
+      "penetration_pass": true
+    },
+    "r1": {
+      "travel_distance_m": 0.823,
+      "travel_criteria_m": "> 0.5",
+      "travel_pass": true,
+      "stop_time_s": 0.7,
+      "geometric_penetration_cm": 0,
+      "penetration_criteria_cm": 2,
+      "penetration_pass": true
+    }
+  },
+  "step_latency": {
+    "p50_ms": 6.2133,
+    "p95_ms": 9.32,
+    "total_ms": 3728,
+    "samples_count": 600,
+    "criteria_ms": "<= 16.67 ms (60 FPS)",
+    "pass": true
+  }
+}

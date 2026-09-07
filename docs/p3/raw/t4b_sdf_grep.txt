@@ -1,0 +1,18 @@
+949:      SplatEdit,
+950:      SplatEditSdf,
+951:      SplatEditSdfType,
+952:      SplatEditRgbaBlendMode,
+2047:    // P3-01 Task 2: SplatEdit Selection Highlight Engine
+2050:    const selectionHighlightEdit = new SplatEdit({
+2052:      rgbaBlendMode: SplatEditRgbaBlendMode.ADD_RGBA,
+2182:      // Update SplatEdit SDF position if a part is currently highlighted
+2207:      // Clean up previous SplatEdit SDF highlight
+2236:      // P3-01 Task 2: SplatEdit SDF BOX highlight (ADD_RGBA, softEdge 0.02)
+2244:        currentHighlightSdf = new SplatEditSdf({
+2245:          type: SplatEditSdfType.BOX,
+2268:      appendXaiLog(`[3DGS 개체 선택] 🎯 ${part.name} (${part.splat_count.toLocaleString()}개 스플랫) SplatEdit SDF 발광 활성화!`);
+5714:    // P3-01 Task 2: SplatEdit Highlight Precision Test
+5716:    async function testSplatEditHighlight() {
+5717:      console.log("[P3-01-TASK2] Testing SplatEdit SDF Selection Highlight precision...");
+5905:      // 2. Task 2: SplatEdit Selection Highlight Test
+5906:      const task2Res = await testSplatEditHighlight();

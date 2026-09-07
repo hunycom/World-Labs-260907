@@ -1,0 +1,84 @@
+{
+  "timestamp": "2026-09-06T09:18:20.527Z",
+  "directive": "EXE-260906-P3-02-T5",
+  "run_id": "run01",
+  "splat_count_conservation": {
+    "total_splats": 500000,
+    "dynamic_splats": 3740,
+    "static_splats": 496260,
+    "sum": 500000,
+    "pass": true
+  },
+  "dynamic_parts_count": 2,
+  "captures_count": 12,
+  "captures_list": [
+    {
+      "label": "marble_run01_part_front",
+      "type": "overview_on",
+      "sha256": "5aac75349ccfb0f8337450dc85da8245f9f72e2d22847a61aa1213162f035d0c"
+    },
+    {
+      "label": "marble_run01_part_iso",
+      "type": "iso_on",
+      "sha256": "e7278a1ab57f3be359505d0d52fe312c5822192d6b893c531e33776fe955c63d"
+    },
+    {
+      "label": "marble_run01_part_selected_l1",
+      "id": "box_l1",
+      "type": "selected_on",
+      "sha256": "f25bd0e729aa5622d9369aecc9682eeab84532431f930c282d28c35dd7f2b802"
+    },
+    {
+      "label": "marble_run01_part_selected_l1_off",
+      "id": "box_l1",
+      "type": "selected_off",
+      "sha256": "6f66d8be1d805edbd14435549d3983bcf64a3f27a10b77bead703d30bdb6beeb"
+    },
+    {
+      "label": "marble_run01_part_selected_r1",
+      "id": "box_r1",
+      "type": "selected_on",
+      "sha256": "74537757d86ef99690018a90ebb6cb3a0f793cad8ae182b3352e7da051e049de"
+    },
+    {
+      "label": "marble_run01_part_selected_r1_off",
+      "id": "box_r1",
+      "type": "selected_off",
+      "sha256": "9c4dd487490bb16484cf3e0064cce1b627a7c3fb5e46b1c08d484706dcbcbec4"
+    },
+    {
+      "label": "marble_run01_view_v1_on",
+      "type": "view_on",
+      "sha256": "ecbc73f690ac480cc7e483c5d0a7878fdc1769460a834cc7d1e06ce4acc07226"
+    },
+    {
+      "label": "marble_run01_view_v1_off",
+      "type": "view_off",
+      "sha256": "cabffd5970b18e6bd151ea4bda7b9e30bd2b71f1b37227a1478cd42103877e4e"
+    },
+    {
+      "label": "marble_run01_view_v2_on",
+      "type": "view_on",
+      "sha256": "2444acac52e087eefa076ec17297c7f82e93ea19fd3ed3ddd6d2d03495e276a2"
+    },
+    {
+      "label": "marble_run01_view_v2_off",
+      "type": "view_off",
+      "sha256": "65e8849b369df92222382520626d12e7341b070704aa80abc3193dd5164d4f6d"
+    },
+    {
+      "label": "marble_run01_view_v3_on",
+      "type": "view_on",
+      "sha256": "22990790b5a03516643afd8f06fa1647a5c33c82f600ed2a92a0f817f2e81ba5"
+    },
+    {
+      "label": "marble_run01_view_v3_off",
+      "type": "view_off",
+      "sha256": "fe8817cc44ac7ec31311fcc16a35384cfad2fc57e9e1b7fc1a08ed1175eb55aa"
+    }
+  ],
+  "floaters_filtered": 8,
+  "sdf_box_used": false,
+  "sha256": "aca75ec31b75d0198e61a4f810a48f26f299b6b4715973ad051eeb64886ed8b5",
+  "byte_size": 59
+}

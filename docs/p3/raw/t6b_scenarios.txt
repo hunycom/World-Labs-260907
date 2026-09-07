@@ -1,0 +1,26 @@
+==================================================================
+  EXE-260906-P3-02-T6-b Task 4: Drop & Throw Scenarios Evaluation Ledger
+==================================================================
+Execution Timestamp:     2026-09-06T16:35:17.335Z
+Directive:               EXE-260906-P3-02-T6-b
+Simulation Duration:     5.0 s (300 steps per scenario, dt = 1/60s)
+Renderer:                llvmpipe (LLVM 18.1.3, 256 bits)
+------------------------------------------------------------------
+Scenario A (Free Fall Drop from +1.0m Delta Height):
+  - Initial Release:     t = 0.0 s, L1 y = 1.407m, R1 y = 1.401m
+  - L1 Impact / Landing: t = 0.500 s, Bottom Y Diff = 4.44 cm [Criteria [-2, +3] cm: 미달] (국소 삼각형 접촉점 y = -0.0110 m), Rotation = 17.70° [Criteria <= 15°: 미달], XZ Drift = 35.95 cm, Penetration = 0.00 cm [Criteria <= 2.0 cm: PASS]
+  - R1 Impact / Landing: t = 0.500 s, Bottom Y Diff = 3.26 cm [Criteria [-2, +3] cm: 미달], Rotation = 4.06° [Criteria <= 15°: PASS], XZ Drift = 31.91 cm, Penetration = 0.00 cm [Criteria <= 2.0 cm: PASS]
+  - Verdict Scenario A:  미달
+------------------------------------------------------------------
+Scenario B (Impulse Throw at 2.5 m/s toward Aisle Center):
+  - Initial Velocity:    L1 vx = +2.5 m/s, R1 vx = -2.5 m/s
+  - L1 Sliding Distance: 0.886 m [Criteria > 0.5 m: PASS], Stop Time = 0.600 s, Penetration = 0.00 cm [Criteria <= 2.0 cm: PASS]
+  - R1 Sliding Distance: 0.823 m [Criteria > 0.5 m: PASS], Stop Time = 0.700 s, Penetration = 0.00 cm [Criteria <= 2.0 cm: PASS]
+  - Verdict Scenario B:  PASS
+------------------------------------------------------------------
+Physics Step Latency (CPU, High-Resolution Timer):
+  - Samples: 300 steps per scenario (dt = 1/60s)
+  - p50 = 6.2133 ms, p95 = 9.3200 ms, Total = 3728.00 ms [Criteria <= 16.67 ms: PASS]
+------------------------------------------------------------------
+Overall Scenarios Verdict: 미달
+==================================================================

@@ -1,0 +1,26 @@
+{
+  "label": "marble_run01_view_v3_off",
+  "timestamp": "2026-09-06T09:18:20.515Z",
+  "resolution": [
+    1280,
+    720
+  ],
+  "superXY": 2,
+  "camera": {
+    "position": [
+      0.6000000000000003,
+      1.3999999999999997,
+      0.2999999999999998
+    ],
+    "target": [
+      1.6960000000000002,
+      0.369,
+      -2
+    ],
+    "fov": 60,
+    "aspect": 1.5592011412268187
+  },
+  "parts": [],
+  "sha256": "fe8817cc44ac7ec31311fcc16a35384cfad2fc57e9e1b7fc1a08ed1175eb55aa",
+  "byte_size": 1234213
+}

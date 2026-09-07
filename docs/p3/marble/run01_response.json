@@ -1,0 +1,70 @@
+{
+  "operation_id": "f0ceca4a-7985-4753-8f9a-1623a582938e",
+  "created_at": "2026-09-06T02:36:16Z",
+  "updated_at": "2026-09-06T02:41:33Z",
+  "expires_at": "2026-09-06T05:36:16Z",
+  "done": true,
+  "error": null,
+  "metadata": {
+    "progress": {
+      "status": "SUCCEEDED",
+      "description": "World generation completed successfully"
+    },
+    "world_id": "f055b5c9-3141-4729-8627-e904aa70828b",
+    "operation_type": "world_generation",
+    "public_model_name": "marble-1.1"
+  },
+  "response": {
+    "world_id": "f055b5c9-3141-4729-8627-e904aa70828b",
+    "display_name": "",
+    "tags": null,
+    "assets": {
+      "mesh": {
+        "collider_mesh_url": "https://cdn.marble.worldlabs.ai/f055b5c9-3141-4729-8627-e904aa70828b/572b908b.glb",
+        "hq_mesh_url": null,
+        "full_res_mesh_url": null
+      },
+      "imagery": {
+        "pano_url": "https://cdn.marble.worldlabs.ai/f055b5c9-3141-4729-8627-e904aa70828b/39314f4d-0cbe-4187-82a9-83131514a0de_panos/rgb_0.png"
+      },
+      "splats": {
+        "spz_urls": {
+          "500k": "https://cdn.marble.worldlabs.ai/f055b5c9-3141-4729-8627-e904aa70828b/adee9e28-2b07-4190-9f70-137e7796ce26_ceramic_500k.spz",
+          "100k": "https://cdn.marble.worldlabs.ai/f055b5c9-3141-4729-8627-e904aa70828b/99eba8e1-2845-4eac-9fc3-652ec3817433_dust_100k.spz",
+          "150k": "https://cdn.marble.worldlabs.ai/f055b5c9-3141-4729-8627-e904aa70828b/31dfd4e8-4e0e-4286-844b-9e94949956e7_ceramic_150k.spz",
+          "full_res": "https://cdn.marble.worldlabs.ai/f055b5c9-3141-4729-8627-e904aa70828b/cc15aeca-d859-4a94-b444-b6d956171791_ceramic.spz"
+        },
+        "semantics_metadata": {
+          "metric_scale_factor": 2.121173,
+          "ground_plane_offset": 1.2561374
+        }
+      },
+      "thumbnail_url": "https://cdn.marble.worldlabs.ai/f055b5c9-3141-4729-8627-e904aa70828b/5c153cbb-915f-4c5a-a8a5-e06fae5243b9_sand_mpi/thumbnail.webp",
+      "caption": "The scene is an industrial warehouse aisle, rendered in a realistic style, conveying a sense of order and functionality within a vast storage facility. The overall tone is utilitarian and stark, emphasizing the practical nature of the space. The aisle is defined by towering pallet racks that stretch upwards, filled with various goods and materials, meticulously organized on pallets. The floor is a smooth, grey concrete, showing signs of wear from heavy machinery traffic, yet maintained for operational efficiency. Overhead, rows of fluorescent lighting fixtures cast a bright, even illumination across the entire area, eliminating shadows and ensuring visibility. The pallet racks are constructed from sturdy metal, painted in a uniform industrial blue or grey, with multiple levels reaching close to the ceiling. Each rack section is interconnected, forming a continuous wall of storage on both sides of the aisle. The concrete floor extends seamlessly throughout the space, reflecting the overhead lights in a subtle sheen. The fluorescent lights are mounted in long, linear fixtures, evenly spaced across the ceiling, providing consistent brightness. The pallet racks stand parallel to each other, creating a clear pathway down the center of the aisle. The concrete floor lies beneath the racks and extends between them. The fluorescent lighting fixtures are positioned directly above the aisle, illuminating the stored goods and the pathway below. The 360 scene is faultless."
+    },
+    "created_at": null,
+    "updated_at": null,
+    "permission": {
+      "public": false,
+      "allowed_readers": [],
+      "allowed_writers": [],
+      "allow_id_access": false
+    },
+    "world_prompt": null,
+    "world_marble_url": "https://marble.worldlabs.ai/world/f055b5c9-3141-4729-8627-e904aa70828b",
+    "model": null
+  },
+  "cost": {
+    "total_credits": 1580,
+    "line_items": [
+      {
+        "name": "Pano generation (text)",
+        "credits": 80
+      },
+      {
+        "name": "World generation",
+        "credits": 1500
+      }
+    ]
+  }
+}

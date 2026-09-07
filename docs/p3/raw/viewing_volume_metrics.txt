@@ -1,0 +1,9 @@
+==================================================================
+  EXE-260906-P3-02-VOL: Viewing Volume Quantitative Verification
+==================================================================
+Total Measured Views:  40 views
+Reference Front Var:   204.05
+Inside Volume (PASS):  2 views (5.0%)
+Outside Volume (FAIL): 38 views (95.0%)
+Pass Criteria:         Var Ratio >= 0.60 AND SSIM >= 0.50
+==================================================================

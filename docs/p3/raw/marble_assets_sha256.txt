@@ -1,0 +1,4 @@
+59981a9f67c3bc399b0be73fe7949fd4b9a495ca38b2363b6ce0ce0a8b097fe7  assets/p3/marble/run01_full_res.spz
+bea791f70242dc9aaa41f4b1975e7891e887c0c02a4c0dec1878fbb258096877  assets/p3/marble/run01_500k.spz
+89dcb0b1eded2ff02c8b27235a2c1f9cbccd286866639cacb697f88b9e7a83bd  assets/p3/marble/run01_collider_mesh.glb
+6a0f7a7a8c811342053601584033269f2d8c26aa3e2dad07db77121ac64a0841  assets/p3/marble/run01_splats.ply

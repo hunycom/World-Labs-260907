@@ -1,0 +1,26 @@
+==================================================================
+  EXE-260906-P3-02-T6-c Task 3: Helper & Splat Binding Remeasurement Ledger
+==================================================================
+Execution Timestamp:     2026-09-06T16:36:54.304Z
+Directive:               EXE-260906-P3-02-T6-c
+Measurement Method:      t0 캡처 ON/OFF 차분 마스크(>=24) 픽셀 중심 vs 헬퍼 중심 2D 투영
+Code Pointer (Mask):     index.html:8984-9012
+Code Pointer (Helper):   index.html:9015-9025
+------------------------------------------------------------------
+t0 2D Projection Centroid Distance (Criteria <= 20 px):
+  - box_l1 (Pallet Box L1):
+    * 2D Helper Center:     [300.1, 375.9] px
+    * 2D Tint Mask Center:  [172.1, 362.3] px
+    * 2D Distance:          128.72 px [Criteria <= 20 px: 미달]
+  - box_r1 (Pallet Box R1):
+    * 2D Helper Center:     [995.4, 376.2] px
+    * 2D Tint Mask Center:  [1091.0, 368.6] px
+    * 2D Distance:          95.90 px [Criteria <= 20 px: 미달]
+------------------------------------------------------------------
+3 Timepoints Visual Enclosure (t0, landing, final):
+  - t0 (Elevation +1.0m):   [감사관 판정 대기]
+  - landing (Ground Impact): [감사관 판정 대기]
+  - final (Resting / Stop):  [감사관 판정 대기]
+------------------------------------------------------------------
+Overall Binding Verdict: 미달
+==================================================================

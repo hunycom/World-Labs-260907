@@ -1,0 +1,146 @@
+{
+  "scene_name": "Dragon 3DGS World Model Assembly",
+  "total_splats": 40000,
+  "parts": [
+    {
+      "id": "head",
+      "name": "드래곤 머리 & 목 (Head)",
+      "icon": "🐲",
+      "splat_count": 7588,
+      "bbox_center": [
+        0.0,
+        0.4,
+        0.485
+      ],
+      "splat_mean": [
+        -0.0,
+        0.376,
+        0.421
+      ],
+      "centroid": [
+        0.0,
+        0.4,
+        0.485
+      ],
+      "explode_dir": [
+        0.0,
+        0.35,
+        0.85
+      ],
+      "color_hex": "#38bdf8",
+      "url": "3d-model/parts/dragon_part_head.ply"
+    },
+    {
+      "id": "left_wing",
+      "name": "좌측 날개 (Left Wing)",
+      "icon": "🪽",
+      "splat_count": 6107,
+      "bbox_center": [
+        -0.71,
+        0.42,
+        0.01
+      ],
+      "splat_mean": [
+        -0.545,
+        0.427,
+        0.005
+      ],
+      "centroid": [
+        -0.71,
+        0.42,
+        0.01
+      ],
+      "explode_dir": [
+        -0.95,
+        0.25,
+        0.0
+      ],
+      "color_hex": "#a855f7",
+      "url": "3d-model/parts/dragon_part_left_wing.ply"
+    },
+    {
+      "id": "right_wing",
+      "name": "우측 날개 (Right Wing)",
+      "icon": "🪽",
+      "splat_count": 6088,
+      "bbox_center": [
+        0.715,
+        0.42,
+        0.015
+      ],
+      "splat_mean": [
+        0.548,
+        0.423,
+        0.005
+      ],
+      "centroid": [
+        0.715,
+        0.42,
+        0.015
+      ],
+      "explode_dir": [
+        0.95,
+        0.25,
+        0.0
+      ],
+      "color_hex": "#f59e0b",
+      "url": "3d-model/parts/dragon_part_right_wing.ply"
+    },
+    {
+      "id": "tail",
+      "name": "꼬리 (Tail)",
+      "icon": "🐉",
+      "splat_count": 2104,
+      "bbox_center": [
+        0.001,
+        0.272,
+        -0.486
+      ],
+      "splat_mean": [
+        0.002,
+        0.19,
+        -0.424
+      ],
+      "centroid": [
+        0.001,
+        0.272,
+        -0.486
+      ],
+      "explode_dir": [
+        0.0,
+        -0.2,
+        -0.9
+      ],
+      "color_hex": "#10b981",
+      "url": "3d-model/parts/dragon_part_tail.ply"
+    },
+    {
+      "id": "body",
+      "name": "중심 몸체 & 코어 (Core Body)",
+      "icon": "🛡️",
+      "splat_count": 18113,
+      "bbox_center": [
+        0.0,
+        0.289,
+        0.2
+      ],
+      "splat_mean": [
+        0.0,
+        0.306,
+        0.092
+      ],
+      "centroid": [
+        0.0,
+        0.289,
+        0.2
+      ],
+      "explode_dir": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "color_hex": "#0ea5e9",
+      "url": "3d-model/parts/dragon_part_body.ply"
+    }
+  ]
+}

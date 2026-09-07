@@ -1,0 +1,127 @@
+{
+  "directive": "EXE-260906-P3-02-T4B-R4",
+  "method": "Deterministic pixel difference between ON and OFF captures (|ON - OFF| >= 24)",
+  "diff_threshold": 24,
+  "parts": {
+    "box_l1": {
+      "name": "Foreground Left Pallet Box (L1)",
+      "on_capture": "marble_run01_part_selected_l1.png",
+      "on_sha256": "6aa684cd76158dc22e3885ff65614ba6c8cc27d8047f338a1ec12ddc2ae338c9",
+      "off_capture": "marble_run01_part_selected_l1_off.png",
+      "off_sha256": "49700dc70cc71e0be27b38ec4239b3121eeb80e9430fdfcd07806edbe591c098",
+      "total_tint_px": 15036,
+      "inside_px": 14450,
+      "outside_px": 586,
+      "outside_ratio_pct": 3.9,
+      "bbox_2d": [
+        546,
+        883,
+        208,
+        555
+      ],
+      "bbox_2d_area": 116939,
+      "coverage_pct": 12.36,
+      "pass": true
+    },
+    "box_r1": {
+      "name": "Foreground Right Pallet Box (R1)",
+      "on_capture": "marble_run01_part_selected_r1.png",
+      "on_sha256": "682e8f66a0485f8593dce3958400a9d86757c5369320992f63ad209de3753e91",
+      "off_capture": "marble_run01_part_selected_r1_off.png",
+      "off_sha256": "f2e07a7ae2872210143b1f204fe50774d1afea76f9814cea9bd725161f09a78e",
+      "total_tint_px": 15619,
+      "inside_px": 14966,
+      "outside_px": 653,
+      "outside_ratio_pct": 4.18,
+      "bbox_2d": [
+        446,
+        734,
+        221,
+        559
+      ],
+      "bbox_2d_area": 97344,
+      "coverage_pct": 15.37,
+      "pass": true
+    },
+    "box_l2": {
+      "name": "Mid-Left Pallet Box 1 (L2)",
+      "on_capture": "marble_run01_part_selected_l2.png",
+      "on_sha256": "834a884b9d3fb4d3a3f3ae70e7755233fd4dd813781c4772f3187c7e61ce5a89",
+      "off_capture": "marble_run01_part_selected_l2_off.png",
+      "off_sha256": "4929ef63918b0c40f2aabe98614aeb128c0ae61e8c120735065295cbe37103ab",
+      "total_tint_px": 3610,
+      "inside_px": 3200,
+      "outside_px": 410,
+      "outside_ratio_pct": 11.36,
+      "bbox_2d": [
+        484,
+        891,
+        191,
+        524
+      ],
+      "bbox_2d_area": 135531,
+      "coverage_pct": 2.36,
+      "pass": true
+    },
+    "box_r2": {
+      "name": "Mid-Right Pallet Box 1 (R2)",
+      "on_capture": "marble_run01_part_selected_r2.png",
+      "on_sha256": "84a7c15f54baffc86823d76437b5d9340ce0dc59c58279b9fab031af7b469dd8",
+      "off_capture": "marble_run01_part_selected_r2_off.png",
+      "off_sha256": "c8eefffc252f1e039e2b18b6d65b332e8a48a26d25f140c861114820c2fd175a",
+      "total_tint_px": 13071,
+      "inside_px": 12502,
+      "outside_px": 569,
+      "outside_ratio_pct": 4.35,
+      "bbox_2d": [
+        343,
+        745,
+        207,
+        557
+      ],
+      "bbox_2d_area": 140700,
+      "coverage_pct": 8.89,
+      "pass": true
+    },
+    "box_l3": {
+      "name": "Mid-Left Pallet Box 2 (L3)",
+      "on_capture": "marble_run01_part_selected_l3.png",
+      "on_sha256": "9b206c73a828a2a347e7ae92e9e0509111ef5ce98987753fe39614a840a72166",
+      "off_capture": "marble_run01_part_selected_l3_off.png",
+      "off_sha256": "233c4953299d24e382c8aaa56d5c6c5d40332a76ffecdabad7c3bee5c4415be5",
+      "total_tint_px": 9817,
+      "inside_px": 8738,
+      "outside_px": 1079,
+      "outside_ratio_pct": 10.99,
+      "bbox_2d": [
+        420,
+        903,
+        193,
+        620
+      ],
+      "bbox_2d_area": 206241,
+      "coverage_pct": 4.24,
+      "pass": true
+    },
+    "box_r3": {
+      "name": "Mid-Right Pallet Box 2 (R3)",
+      "on_capture": "marble_run01_part_selected_r3.png",
+      "on_sha256": "16df580a4d2c388f84876222f3734d8c42dd652d5399786b8c21b61931d38293",
+      "off_capture": "marble_run01_part_selected_r3_off.png",
+      "off_sha256": "173d4b3a358806dfc10fe4a386bcb93b03c3c43d012f3f0d4a458f03f5c26a13",
+      "total_tint_px": 3207,
+      "inside_px": 2679,
+      "outside_px": 528,
+      "outside_ratio_pct": 16.46,
+      "bbox_2d": [
+        420,
+        776,
+        224,
+        599
+      ],
+      "bbox_2d_area": 133500,
+      "coverage_pct": 2.01,
+      "pass": false
+    }
+  }
+}

@@ -1,0 +1,148 @@
+$ sha256sum -c docs/asset_ledger.sha256
+3d-model/generated_3dgs_dragon.ply: 성공
+3d-model/parts/dragon_part_body.ply: 성공
+3d-model/parts/dragon_part_head.ply: 성공
+3d-model/parts/dragon_part_left_wing.ply: 성공
+3d-model/parts/dragon_part_right_wing.ply: 성공
+3d-model/parts/dragon_part_tail.ply: 성공
+3d-model/parts/manifest.json: 성공
+
+------------------------------------------------------------
+$ sha256sum docs/phase2_results.json docs/phase2_results_capture.json
+f6baa35530c41bc4a229fe49f89e76bbb044bf2acccd7e9903a3862963323897  docs/phase2_results.json
+a648b1c86754f7377ee8343bbfcd04bd85f2f4528a3b18084fa2259eb243260a  docs/phase2_results_capture.json
+
+------------------------------------------------------------
+$ git log --oneline -3
+4c3978e feat(physics): fulfill EXE-260905-P2-04 with 14/15 Task 3 pass at explode 50%
+0b17957 feat(physics): complete EXE-260905-P2-03 single-shot benchmark with 2.5m/s impulse and zero-contact angle detection
+437ea57 feat(physics): fulfill EXE-260905-P2-02 re-specifications with explode 15% collision and mass-proportional impulse
+
+------------------------------------------------------------
+$ git status
+현재 브랜치 feature/phase2-physics
+커밋하도록 정하지 않은 변경 사항:
+  (무엇을 커밋할지 바꾸려면 "git add <파일>..."을 사용하십시오)
+  (작업 디렉토리의 변경을 무시하려면 "git restore <file>..."을 사용하시오)
+	수정함:        ai_spatial_server.py
+	수정함:        index.html
+
+추적하지 않는 파일:
+  (커밋할 사항에 포함하려면 "git add <파일>..."을 사용하십시오)
+	docs/p2-06_phase1_picking_summary_win.png
+	docs/p2-06_summary_win.png
+	docs/p2-06_t1_seed21_contact_vp.png
+	docs/p2-06_t1_seed21_contact_win.png
+	docs/p2-06_t1_seed21_settled_vp.png
+	docs/p2-06_t1_seed21_settled_win.png
+	docs/p2-06_t1_seed21_start_vp.png
+	docs/p2-06_t1_seed21_start_win.png
+	docs/p2-06_t1_seed42_contact_vp.png
+	docs/p2-06_t1_seed42_contact_win.png
+	docs/p2-06_t1_seed42_settled_vp.png
+	docs/p2-06_t1_seed42_settled_win.png
+	docs/p2-06_t1_seed42_start_vp.png
+	docs/p2-06_t1_seed42_start_win.png
+	docs/p2-06_t1_seed7_contact_vp.png
+	docs/p2-06_t1_seed7_contact_win.png
+	docs/p2-06_t1_seed7_settled_vp.png
+	docs/p2-06_t1_seed7_settled_win.png
+	docs/p2-06_t1_seed7_start_vp.png
+	docs/p2-06_t1_seed7_start_win.png
+	docs/p2-06_t2_console.txt
+	docs/p2-06_t2_profile_win.png
+	docs/p2-06_t3_01_peak_vp.png
+	docs/p2-06_t3_01_peak_win.png
+	docs/p2-06_t3_01_select_vp.png
+	docs/p2-06_t3_01_settled_vp.png
+	docs/p2-06_t3_02_peak_vp.png
+	docs/p2-06_t3_02_peak_win.png
+	docs/p2-06_t3_02_select_vp.png
+	docs/p2-06_t3_02_settled_vp.png
+	docs/p2-06_t3_03_peak_vp.png
+	docs/p2-06_t3_03_peak_win.png
+	docs/p2-06_t3_03_select_vp.png
+	docs/p2-06_t3_03_settled_vp.png
+	docs/p2-06_t3_04_peak_vp.png
+	docs/p2-06_t3_04_peak_win.png
+	docs/p2-06_t3_04_select_vp.png
+	docs/p2-06_t3_04_settled_vp.png
+	docs/p2-06_t3_05_peak_vp.png
+	docs/p2-06_t3_05_peak_win.png
+	docs/p2-06_t3_05_select_vp.png
+	docs/p2-06_t3_05_settled_vp.png
+	docs/p2-06_t3_06_peak_vp.png
+	docs/p2-06_t3_06_peak_win.png
+	docs/p2-06_t3_06_select_vp.png
+	docs/p2-06_t3_06_settled_vp.png
+	docs/p2-06_t3_07_peak_vp.png
+	docs/p2-06_t3_07_peak_win.png
+	docs/p2-06_t3_07_select_vp.png
+	docs/p2-06_t3_07_settled_vp.png
+	docs/p2-06_t3_08_peak_vp.png
+	docs/p2-06_t3_08_peak_win.png
+	docs/p2-06_t3_08_select_vp.png
+	docs/p2-06_t3_08_settled_vp.png
+	docs/p2-06_t3_09_peak_vp.png
+	docs/p2-06_t3_09_peak_win.png
+	docs/p2-06_t3_09_select_vp.png
+	docs/p2-06_t3_09_settled_vp.png
+	docs/p2-06_t3_10_peak_vp.png
+	docs/p2-06_t3_10_peak_win.png
+	docs/p2-06_t3_10_select_vp.png
+	docs/p2-06_t3_10_settled_vp.png
+	docs/p2-06_t3_11_peak_vp.png
+	docs/p2-06_t3_11_peak_win.png
+	docs/p2-06_t3_11_select_vp.png
+	docs/p2-06_t3_11_settled_vp.png
+	docs/p2-06_t3_12_peak_vp.png
+	docs/p2-06_t3_12_peak_win.png
+	docs/p2-06_t3_12_select_vp.png
+	docs/p2-06_t3_12_settled_vp.png
+	docs/p2-06_t3_13_peak_vp.png
+	docs/p2-06_t3_13_peak_win.png
+	docs/p2-06_t3_13_select_vp.png
+	docs/p2-06_t3_13_settled_vp.png
+	docs/p2-06_t3_14_peak_vp.png
+	docs/p2-06_t3_14_peak_win.png
+	docs/p2-06_t3_14_select_vp.png
+	docs/p2-06_t3_14_settled_vp.png
+	docs/p2-06_t3_15_peak_vp.png
+	docs/p2-06_t3_15_peak_win.png
+	docs/p2-06_t3_15_select_vp.png
+	docs/p2-06_t3_15_settled_vp.png
+	docs/phase2_results_capture.json
+	scripts/run_p2_06_capture_orchestrator.py
+
+커밋할 변경 사항을 추가하지 않았습니다 ("git add" 및/또는 "git commit -a"를
+사용하십시오)
+
+------------------------------------------------------------
+$ npm run lint && npm test
+
+> @sparkjsdev/spark@2.1.0 lint
+> biome check .
+
+Checked 85 files in 41ms. No fixes applied.
+
+> @sparkjsdev/spark@2.1.0 test
+> node --no-warnings --loader ts-node/esm --test test/*.test.ts
+
+TAP version 13
+# ✅ All test cases passed!
+# Subtest: /home/sims/바탕화면/spark/test/utils.test.ts
+ok 1 - /home/sims/바탕화면/spark/test/utils.test.ts
+  ---
+  duration_ms: 337.267511
+  ...
+1..1
+# tests 1
+# suites 0
+# pass 1
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 339.702231
+
+------------------------------------------------------------

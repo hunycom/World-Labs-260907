@@ -1,0 +1,3 @@
+[AUDIT-1][FRAME_TIMING] 2026-09-05T15:34:57.289Z | Frames: 287 in 10001ms | Mean: 34.726ms, p50: 34.14ms, p90: 50.24ms, p95: 51.2ms, p99: 51.3ms, Min: 16.06ms, Max: 67.32ms | Filtered: 0 | FPS: 28.7
+환경 고지: 소프트웨어 래스터라이저(:11.0) 측정, 실 GPU 절대치 이월
+판정: p95 (51.2 ms) <= 64.0 ms (PASS)

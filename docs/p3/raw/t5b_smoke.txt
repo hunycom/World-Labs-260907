@@ -1,0 +1,18 @@
+==================================================================
+  EXE-260906-P3-02-T5-b Task 2: Smoke Test Ledger (20 Out-of-Holdout Clicks)
+==================================================================
+Execution Timestamp:     2026-09-06T11:24:05.659Z
+Directive:               EXE-260906-P3-02-T5-b
+Random Seed:             20260907
+Holdout Overlap Check:   0 overlapping points (Disjoint PASS)
+Renderer / Driver:       llvmpipe (LLVM 18.1.3, 256 bits)
+------------------------------------------------------------------
+Total Smoke Samples:     20 clicks
+  - Dynamic Target:      10 clicks (5 L1 + 5 R1)
+  - Static Target:       10 clicks (10 static)
+------------------------------------------------------------------
+Dynamic Identification:  8 / 10 (80.0%) [Criteria >= 70% (>=7/10): PASS]
+Static False Positives:  0 / 10 (0.0%)
+Response Latency:        p50 = 23.00 ms, p95 = 34.00 ms (llvmpipe (LLVM 18.1.3, 256 bits))
+Overall Smoke Verdict:   PASS
+==================================================================

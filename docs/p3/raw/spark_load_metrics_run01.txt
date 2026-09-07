@@ -1,0 +1,12 @@
+==================================================================
+  P3-02 Task 2: Spark Runtime Load & 10s Frame Telemetry (run01)
+==================================================================
+Renderer:             llvmpipe (LLVM 18.1.3, 256 bits)
+Asset Loaded:         run01_500k.spz
+Splat Count:          500,000 splats
+Load & Decode Time:   136.00 ms
+10-Second Frame p50:  203.34 ms
+10-Second Frame p95:  237.02 ms
+Average FPS:          5.2 fps
+Telemetry Status:     PASS (원문 계측 완료)
+==================================================================

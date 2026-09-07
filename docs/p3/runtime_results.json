@@ -1,0 +1,583 @@
+{
+  "timestamp": "2026-09-05T18:14:51.008Z",
+  "directive": "EXE-260906-P3-01",
+  "task1_butterfly_raycast": {
+    "asset": "assets/butterfly.spz",
+    "sha256": "2e22c9967731bebc0ea74e1747cd42e955dec16a89dba9aac07d62a6c5780e0d",
+    "totalClicks": 50,
+    "nativeHitCount": 50,
+    "hitRate": "100.0%",
+    "pass": true,
+    "results": [
+      {
+        "region": "Center (중앙)",
+        "attempt": 1,
+        "clickScreen": [
+          548,
+          351
+        ],
+        "isHit": true,
+        "distance": 1.3522
+      },
+      {
+        "region": "Center (중앙)",
+        "attempt": 2,
+        "clickScreen": [
+          553,
+          350
+        ],
+        "isHit": true,
+        "distance": 1.381
+      },
+      {
+        "region": "Center (중앙)",
+        "attempt": 3,
+        "clickScreen": [
+          549,
+          352
+        ],
+        "isHit": true,
+        "distance": 1.3537
+      },
+      {
+        "region": "Center (중앙)",
+        "attempt": 4,
+        "clickScreen": [
+          548,
+          348
+        ],
+        "isHit": true,
+        "distance": 1.3982
+      },
+      {
+        "region": "Center (중앙)",
+        "attempt": 5,
+        "clickScreen": [
+          542,
+          345
+        ],
+        "isHit": true,
+        "distance": 1.3517
+      },
+      {
+        "region": "Center (중앙)",
+        "attempt": 6,
+        "clickScreen": [
+          539,
+          350
+        ],
+        "isHit": true,
+        "distance": 1.3487
+      },
+      {
+        "region": "Center (중앙)",
+        "attempt": 7,
+        "clickScreen": [
+          539,
+          352
+        ],
+        "isHit": true,
+        "distance": 1.3507
+      },
+      {
+        "region": "Center (중앙)",
+        "attempt": 8,
+        "clickScreen": [
+          539,
+          354
+        ],
+        "isHit": true,
+        "distance": 1.3504
+      },
+      {
+        "region": "Center (중앙)",
+        "attempt": 9,
+        "clickScreen": [
+          541,
+          357
+        ],
+        "isHit": true,
+        "distance": 1.3494
+      },
+      {
+        "region": "Center (중앙)",
+        "attempt": 10,
+        "clickScreen": [
+          543,
+          344
+        ],
+        "isHit": true,
+        "distance": 1.353
+      },
+      {
+        "region": "Top (상단 앞날개)",
+        "attempt": 1,
+        "clickScreen": [
+          552,
+          276
+        ],
+        "isHit": true,
+        "distance": 1.3655
+      },
+      {
+        "region": "Top (상단 앞날개)",
+        "attempt": 2,
+        "clickScreen": [
+          552,
+          279
+        ],
+        "isHit": true,
+        "distance": 1.3799
+      },
+      {
+        "region": "Top (상단 앞날개)",
+        "attempt": 3,
+        "clickScreen": [
+          542,
+          274
+        ],
+        "isHit": true,
+        "distance": 1.369
+      },
+      {
+        "region": "Top (상단 앞날개)",
+        "attempt": 4,
+        "clickScreen": [
+          543,
+          274
+        ],
+        "isHit": true,
+        "distance": 1.3681
+      },
+      {
+        "region": "Top (상단 앞날개)",
+        "attempt": 5,
+        "clickScreen": [
+          540,
+          285
+        ],
+        "isHit": true,
+        "distance": 1.3651
+      },
+      {
+        "region": "Top (상단 앞날개)",
+        "attempt": 6,
+        "clickScreen": [
+          547,
+          274
+        ],
+        "isHit": true,
+        "distance": 1.3613
+      },
+      {
+        "region": "Top (상단 앞날개)",
+        "attempt": 7,
+        "clickScreen": [
+          539,
+          286
+        ],
+        "isHit": true,
+        "distance": 1.3762
+      },
+      {
+        "region": "Top (상단 앞날개)",
+        "attempt": 8,
+        "clickScreen": [
+          552,
+          279
+        ],
+        "isHit": true,
+        "distance": 1.3691
+      },
+      {
+        "region": "Top (상단 앞날개)",
+        "attempt": 9,
+        "clickScreen": [
+          539,
+          275
+        ],
+        "isHit": true,
+        "distance": 1.3661
+      },
+      {
+        "region": "Top (상단 앞날개)",
+        "attempt": 10,
+        "clickScreen": [
+          542,
+          286
+        ],
+        "isHit": true,
+        "distance": 1.3744
+      },
+      {
+        "region": "Bottom (하단 뒷날개)",
+        "attempt": 1,
+        "clickScreen": [
+          544,
+          409
+        ],
+        "isHit": true,
+        "distance": 1.4074
+      },
+      {
+        "region": "Bottom (하단 뒷날개)",
+        "attempt": 2,
+        "clickScreen": [
+          545,
+          405
+        ],
+        "isHit": true,
+        "distance": 1.4072
+      },
+      {
+        "region": "Bottom (하단 뒷날개)",
+        "attempt": 3,
+        "clickScreen": [
+          541,
+          414
+        ],
+        "isHit": true,
+        "distance": 1.3927
+      },
+      {
+        "region": "Bottom (하단 뒷날개)",
+        "attempt": 4,
+        "clickScreen": [
+          547,
+          407
+        ],
+        "isHit": true,
+        "distance": 1.408
+      },
+      {
+        "region": "Bottom (하단 뒷날개)",
+        "attempt": 5,
+        "clickScreen": [
+          550,
+          403
+        ],
+        "isHit": true,
+        "distance": 1.3837
+      },
+      {
+        "region": "Bottom (하단 뒷날개)",
+        "attempt": 6,
+        "clickScreen": [
+          547,
+          406
+        ],
+        "isHit": true,
+        "distance": 1.4083
+      },
+      {
+        "region": "Bottom (하단 뒷날개)",
+        "attempt": 7,
+        "clickScreen": [
+          540,
+          415
+        ],
+        "isHit": true,
+        "distance": 1.4028
+      },
+      {
+        "region": "Bottom (하단 뒷날개)",
+        "attempt": 8,
+        "clickScreen": [
+          542,
+          417
+        ],
+        "isHit": true,
+        "distance": 1.3979
+      },
+      {
+        "region": "Bottom (하단 뒷날개)",
+        "attempt": 9,
+        "clickScreen": [
+          554,
+          403
+        ],
+        "isHit": true,
+        "distance": 1.378
+      },
+      {
+        "region": "Bottom (하단 뒷날개)",
+        "attempt": 10,
+        "clickScreen": [
+          551,
+          417
+        ],
+        "isHit": true,
+        "distance": 1.4115
+      },
+      {
+        "region": "Left (좌측 날개)",
+        "attempt": 1,
+        "clickScreen": [
+          439,
+          340
+        ],
+        "isHit": true,
+        "distance": 1.3639
+      },
+      {
+        "region": "Left (좌측 날개)",
+        "attempt": 2,
+        "clickScreen": [
+          453,
+          330
+        ],
+        "isHit": true,
+        "distance": 1.367
+      },
+      {
+        "region": "Left (좌측 날개)",
+        "attempt": 3,
+        "clickScreen": [
+          441,
+          336
+        ],
+        "isHit": true,
+        "distance": 1.3622
+      },
+      {
+        "region": "Left (좌측 날개)",
+        "attempt": 4,
+        "clickScreen": [
+          452,
+          330
+        ],
+        "isHit": true,
+        "distance": 1.3655
+      },
+      {
+        "region": "Left (좌측 날개)",
+        "attempt": 5,
+        "clickScreen": [
+          442,
+          331
+        ],
+        "isHit": true,
+        "distance": 1.3634
+      },
+      {
+        "region": "Left (좌측 날개)",
+        "attempt": 6,
+        "clickScreen": [
+          441,
+          340
+        ],
+        "isHit": true,
+        "distance": 1.3645
+      },
+      {
+        "region": "Left (좌측 날개)",
+        "attempt": 7,
+        "clickScreen": [
+          440,
+          341
+        ],
+        "isHit": true,
+        "distance": 1.3635
+      },
+      {
+        "region": "Left (좌측 날개)",
+        "attempt": 8,
+        "clickScreen": [
+          450,
+          339
+        ],
+        "isHit": true,
+        "distance": 1.3654
+      },
+      {
+        "region": "Left (좌측 날개)",
+        "attempt": 9,
+        "clickScreen": [
+          441,
+          340
+        ],
+        "isHit": true,
+        "distance": 1.3643
+      },
+      {
+        "region": "Left (좌측 날개)",
+        "attempt": 10,
+        "clickScreen": [
+          439,
+          342
+        ],
+        "isHit": true,
+        "distance": 1.3618
+      },
+      {
+        "region": "Right (우측 날개)",
+        "attempt": 1,
+        "clickScreen": [
+          644,
+          331
+        ],
+        "isHit": true,
+        "distance": 1.361
+      },
+      {
+        "region": "Right (우측 날개)",
+        "attempt": 2,
+        "clickScreen": [
+          651,
+          328
+        ],
+        "isHit": true,
+        "distance": 1.3572
+      },
+      {
+        "region": "Right (우측 날개)",
+        "attempt": 3,
+        "clickScreen": [
+          646,
+          332
+        ],
+        "isHit": true,
+        "distance": 1.3598
+      },
+      {
+        "region": "Right (우측 날개)",
+        "attempt": 4,
+        "clickScreen": [
+          643,
+          340
+        ],
+        "isHit": true,
+        "distance": 1.3592
+      },
+      {
+        "region": "Right (우측 날개)",
+        "attempt": 5,
+        "clickScreen": [
+          639,
+          343
+        ],
+        "isHit": true,
+        "distance": 1.3635
+      },
+      {
+        "region": "Right (우측 날개)",
+        "attempt": 6,
+        "clickScreen": [
+          646,
+          332
+        ],
+        "isHit": true,
+        "distance": 1.3599
+      },
+      {
+        "region": "Right (우측 날개)",
+        "attempt": 7,
+        "clickScreen": [
+          646,
+          342
+        ],
+        "isHit": true,
+        "distance": 1.3599
+      },
+      {
+        "region": "Right (우측 날개)",
+        "attempt": 8,
+        "clickScreen": [
+          642,
+          335
+        ],
+        "isHit": true,
+        "distance": 1.3618
+      },
+      {
+        "region": "Right (우측 날개)",
+        "attempt": 9,
+        "clickScreen": [
+          643,
+          342
+        ],
+        "isHit": true,
+        "distance": 1.3601
+      },
+      {
+        "region": "Right (우측 날개)",
+        "attempt": 10,
+        "clickScreen": [
+          645,
+          342
+        ],
+        "isHit": true,
+        "distance": 1.3598
+      }
+    ]
+  },
+  "task2_splatedit_highlight": {
+    "insideChangePct": 14,
+    "outsideChangePct": 0,
+    "pass": true
+  },
+  "task3_capture_pipeline": {
+    "determinism": {
+      "sha1": "4c44a5768ad233ee1e53712c76d7b5120d4ad35446d29daf8bba98337169f44f",
+      "sha2": "4c44a5768ad233ee1e53712c76d7b5120d4ad35446d29daf8bba98337169f44f",
+      "match": true,
+      "pass": true
+    },
+    "fitToObjects": {
+      "allInside": true,
+      "partFrames": [
+        {
+          "id": "head",
+          "screenCoord": [
+            639,
+            367
+          ],
+          "inside": true
+        },
+        {
+          "id": "left_wing",
+          "screenCoord": [
+            444,
+            375
+          ],
+          "inside": true
+        },
+        {
+          "id": "right_wing",
+          "screenCoord": [
+            834,
+            375
+          ],
+          "inside": true
+        },
+        {
+          "id": "tail",
+          "screenCoord": [
+            639,
+            365
+          ],
+          "inside": true
+        },
+        {
+          "id": "body",
+          "screenCoord": [
+            639,
+            360
+          ],
+          "inside": true
+        }
+      ],
+      "pass": true,
+      "captureSha256": "4978c6f20d2a30c748c34cbb41e6db3f95c46abc591c7cf9a6140af247e516a2"
+    }
+  },
+  "summary": {
+    "task1_raycast_pass": true,
+    "task1_raycast_hitrate": "100.0%",
+    "task2_splatedit_pass": true,
+    "task2_outside_change_pct": 0,
+    "task3_determinism_pass": true,
+    "task3_fit_pass": true,
+    "overall_pass": true
+  }
+}

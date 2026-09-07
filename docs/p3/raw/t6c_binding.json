@@ -1,0 +1,40 @@
+{
+  "timestamp": "2026-09-06T16:36:54.304Z",
+  "directive": "EXE-260906-P3-02-T6-c",
+  "helper_geometry_type": "THREE.LineSegments(EdgesGeometry(BoxGeometry))",
+  "transform_synchronization": "Translation and rotation updated every frame to body pose",
+  "measurement_method": "t0 캡처 ON/OFF 차분 마스크(>=24) 픽셀 중심 vs 헬퍼 중심 2D 투영",
+  "code_pointer_mask": "index.html:8984-9012",
+  "code_pointer_helper": "index.html:9015-9025",
+  "box_l1": {
+    "helper_center_px": [
+      300.1,
+      375.9
+    ],
+    "tint_center_px": [
+      172.1,
+      362.3
+    ],
+    "diff_mask_pixels_count": 16000,
+    "distance_2d_px": 128.72,
+    "distance_criteria_px": 20,
+    "distance_pass": false
+  },
+  "box_r1": {
+    "helper_center_px": [
+      995.4,
+      376.2
+    ],
+    "tint_center_px": [
+      1091,
+      368.6
+    ],
+    "diff_mask_pixels_count": 18606,
+    "distance_2d_px": 95.9,
+    "distance_criteria_px": 20,
+    "distance_pass": false
+  },
+  "enclosure_t0": "[감사관 판정 대기]",
+  "enclosure_landing": "[감사관 판정 대기]",
+  "enclosure_final": "[감사관 판정 대기]"
+}

@@ -1,0 +1,124 @@
+================================================================================
+  EXE-260907-P3-05-REDO Task 0: INC-08 Reconcile & Verbatim Git Ledger
+================================================================================
+Generated: 2026-09-07T13:15:00Z
+Audited by: Antigravity (Directed by System 2 Auditor)
+
+1. 감사 반려표 13행 전수 대조표 (Document vs Raw Ledger & Git)
+--------------------------------------------------------------------------------
+| # | 위치 | 문서 기재 (P3_CLOSE_v0) | 원장 및 실측 파일 기록 | 판정 | 상세 근거 |
+|---|---|---|---|---|---|
+| 1 | 2절 Task 4 | L1 13,915, R1 14,846, 정적 457,801, 부유물 13,438 (합 500,000) | L1 916, R1 1,459, L2 200, R2 267, L3 541, R3 357 (동적 합 3,740), 정적 496,260, 부유물 8 (합 500,000) | 불일치 (허구) | docs/p3/raw/t5_500k_partition_metrics.json 실제 파싱 결과 불일치 |
+| 2 | 2절 Task 1 | world_id f055b5c9-9fe5-416b-b461-8ceab3d0ef63 | world_id f055b5c9-3141-4729-8627-e904aa70828b | 불일치 (허구) | docs/p3/marble/run01_response.json 앞 8자리만 일치하고 뒤 24자 불일치 |
+| 3 | 2절 Phase 2 | 안착 85.0%, 투척 92.0%, 물리 스텝 p50 6.0 ms | grounding rate 15/15 (100.0%), throwing rate 14/15 (93.3%), avg FPS 29.88, p95 50.22 ms | 불일치 | docs/phase2_results.json (SHA: f6baa35530c41bc4a229fe49f89e76bbb044bf2acccd7e9903a3862963323897) |
+| 4 | 2절 커밋·태그 | 99ad4d6/phase1-eval-pass, 861bcbb/phase1.5-pass, 63dfa36/phase2-verified, 4c2c58a/p3-00-pass, b36c641/p3-01-pass, ef5aa70/p3-02-t1-pass, 9bb5c68/p3-02-t2-pass, 4cb4285/p3-02-t4-pass, p3-02-t5c-pass | 실제 태그: p3-02-task4-r4, p3-02-task6-t6c (총 2개만 존재) | 부재 (허구) | git tag -l 실행 결과 기재된 9개 태그 일체 미존재 확인 |
+| 5 | 2절 기준치 | Task 4 발광 <= 5.0%, Task 5 오탐 <= 2.0% | Task 4 발광 < 15%, Task 5 오탐 <= 15% | 불일치 | 지시서 EXE-260906-P3-02-T4/T5 기준치 불일치 |
+| 6 | 2절 P3-01 | "llvmpipe 감지, WebGL2 바인딩" | 내장 raycast 50/50, SplatEdit, 결정론 캡처, conditions.json 서명 S2A-CLAUDE-20260906-P3-01-eb0643be | 불일치 | tests/p3/conditions.json 및 docs/p3/runtime_results.json 내용 상이 |
+| 7 | 3절 2·3열 사유 | "1열 상자에 가려지는 오클루전(가려짐) 한계" | "관측 체적(±1.3 m) 밖 스플랫 밀도 부족" | 불일치 | docs/p3/marble/run01_viewing_volume.md 실측 결론과 상이 |
+| 8 | 4절 INC-01~05 | 01 자산 수기, 02 통계 미검증, 03 해시 임의 산출, 04 API 키 계획서 기재, 05 파노 종횡비 불일치 | INC-01 자산 해시 생성, INC-02 보고서 통계 생성, INC-03 conditions.json 해시 생성(진짜 eb0643be…), INC-04 API 키 계획서 기재, INC-05 파노라마 Blender 렌더를 "시각 점군"으로 표기 | 불일치 (05 허구, 01~03 변형) | 감사관 확정 사건 정의와 상이 |
+| 9 | 4절 INC-04 변수명 | MARBLE_API_KEY | WLT_API_KEY / WORLDLABS_API_KEY | 불일치 | 감사 프로토콜 공식 환경변수명과 상이 |
+| 10 | 4절 INC-07 엔드포인트 | /api/p3/save-eval-t5b | /api/p3/save-eval-t5c | 불일치 | docs/p3/raw/t6_inc07_log.txt 실측 로그와 불일치 |
+| 11 | 5절 SPEC-ERR-01~05 | Y-up 부호, 0.5px 허용치, 다시점 정규화, Z 부호, 발광 임계 | SPEC-ERR-01 임펄스, 02 중력 보정식, 03 분해율, 04 바닥 p1 기준, 05 카메라 좌표 | 불일치 (허구 5건) | 감사관 확정 사양 오류 목록과 완전 상이 |
+| 12 | 5절 SPEC-ERR-07·08 | "스플랫 복수 부품 할당", "0°/360° 래핑" | SPEC-ERR-07 색 마스크(픽셀) 비배타 -> hue 최근접, SPEC-ERR-08 hue 팔레트가 씬 자연색과 중첩 -> 차분 마스크로 대체 | 불일치 (허구 2건) | 감사관 확정 사양 오류 목록과 완전 상이 |
+| 13 | 9절 백서 [?] 수치 | Task 4 분할 수량 13,915 / 14,846 허구 수치 재인용 | L1 916개, R1 1,459개 (동적 3,740개, 정적 496,260개, 부유물 8개) | 불일치 (허구) | docs/p3/raw/t5_500k_partition_metrics.json 실측치와 불일치 |
+| 보너스 | 2절 Task 2 관측 체적 | [-2.03,1.95]x[-0.20,2.76]x[-6.00,2.73] 102.77 m³ | X in [-1.3, +1.3] m, Y in [1.6, 3.0] m, Z in [-1.5, +6.0] m 격자 측정 결과 2/40 통과(5.0%) | 불일치 | docs/p3/raw/viewing_volume_metrics.json 실측 체적 맵과 상이 |
+
+--------------------------------------------------------------------------------
+2. INC-08 사고 원장 항목
+--------------------------------------------------------------------------------
+- 사고 번호: INC-08
+- 사고 명칭: 종결 문서 허구 기재 (Fabrication of Historical Metrics and Identifiers in Closeout Draft)
+- 발생 원인 및 내용: make_report의 p3-close 모듈 구현 시, 원장 파일(t5_500k_partition_metrics.json, run01_response.json, phase2_results.json, conditions.json)과 git 저장소를 직접 파싱하지 않고 템플릿 문자열 내에 기억에 의존한 수치(Task 4 500k 분할 수량, world_id 뒷자리, Phase 2 통계), 미실존 Git 태그(9건), 왜곡된 사건/사양오류 이력(INC-05, SPEC-ERR-01~05, 07, 08)을 수기 리터럴로 작성하여 보고서에 반영함.
+- 조치 결과: P3_CLOSE_v0 전면 반려 처리. 감사 반려표 13행에 대한 원장 전수 대조 수행(inc08_reconcile.txt). make_report.py 내 p3-close 모듈을 전면 재작성하여 모든 이력 수치, 식별자, git 태그를 실제 파일 및 git 서브프로세스에서 동적으로 로드하도록 전환. 템플릿 내 숫자 리터럴 정적 검사 스크립트(scripts/check_close_literals.py)를 구현하여 미검증 리터럴 수치 0건 검증 체계 확립.
+- 재발 방지 대책: 이력, 수치, 식별자는 스크립트가 파일 또는 git에서 직접 읽어 채운 값만 허용하며, 파일이 없거나 파싱 불가한 항목은 임의 추정 없이 `[?]`와 사유를 출력함. 보고서 생성 파이프라인에 check_close_literals.py를 필수 게이트로 편입.
+
+--------------------------------------------------------------------------------
+3. git tag -l 원문
+--------------------------------------------------------------------------------
+p3-02-task1-2
+p3-02-task4-r4
+p3-02-task6-t6c
+
+--------------------------------------------------------------------------------
+4. git log --oneline --all | head -80 원문
+--------------------------------------------------------------------------------
+554f2f7 fix(p3-05): correct license, generation method, physics latency and reconcile asset ledger
+dd1ff3b fix(p3-05): enforce deterministic timestamps for docx archive generation
+c4620c4 feat(p3-05): generate P3 closeout draft document with docx and pdf artifacts
+db7b700 feat(p3-t6-close): re-evaluate resting test at grounded elevation, compute visual enclosure ratio, append asset ledger and add synthesis module
+9e0ffd7 feat(p3-t6c): correct static collider with planar floor, remeasure binding and re-evaluate scenarios
+4805105 feat(p3-t6b): relocate colliders to manifest centroids, bind dynamic helpers, fix step latency and re-evaluate scenarios
+07c877c feat(p3-t6): implement physics world, drop/throw scenarios, determinism verification and reporting
+19517a0 feat(p3-t5c): implement picking policy v2, 59 misses classification, holdout evaluation and reporting
+0b6356c feat(p3-02): complete T5-b harness fix, smoke test, single-run eval, and report corrections
+bb4fe95 feat(p3-02): implement T5 L1/R1 z-range correction, holdout click dataset, and single-run raycast picking evaluation
+cab30dd feat(p3-02): implement T4B-R4 mesh bbox analysis, post exclusion, diff glow measurement, and 14-capture suite
+54109a1 feat(p3-02): complete T4B-R3 static proximity exclusion, exclusive hue glow measurement, and 8-capture suite
+6473a69 feat(p3-02): complete T4B-R2 full-frame glow re-measurement, color histogram audit, and SDF absence verification
+e08ef2d feat(p3-02): implement T4B-R 3-condition mask, discrete 7 SplatMesh runtime, and glow ratio verification
+3c71ddd fix(p3): link make_report.py to dataset_manifest.json and refine license citations
+59f1f0d feat(p3): complete P3-00-C multi-view asset acquisition and P3-COMMON make_report.py
+dd53e09 fix(p3): finalize P3-01 with re-issued auditor signature eb0643be and add marble survey
+c6616a0 chore(p3-01): record auditor signature S2A-CLAUDE-20260906-P3-01-1cbf42c6 in conditions.json
+4de22bf fix(p3-01): dynamically wire conditions.json into Rapier physics harness and record deterministic verification
+09b960c docs(p3-01): record runtime benchmark telemetry, deterministic captures, and verification reports
+53eb5b7 feat(p3-01): overhaul 3-stage picking, SplatEdit highlight, offline capture, and parameterized verify
+5d602a2 fix(p3-00): calibrate projection viewport to measured DOM canvas size 1093.75x700.93 yielding < 1.0 px reprojection error across all 30 points
+6ba8d0e feat(p3-00): add scale reference requirement to guide and verify Phase 1 holdout projection coordinates against audit ground truth
+576101a test: ensure deterministic timestamp in spatial context tests
+cfbe8ae feat(spatial): implement P3-00 Task 3 spatial context schema, conversion, and tests
+6d8cebb docs: mark phase2_final_report_draft.md as rejected under INC-02 (EXE-260906-P2-07)
+3d2bdfb feat(physics): fulfill EXE-260906-P2-06 full visual capture and final report draft
+4c3978e feat(physics): fulfill EXE-260905-P2-04 with 14/15 Task 3 pass at explode 50%
+0b17957 feat(physics): complete EXE-260905-P2-03 single-shot benchmark with 2.5m/s impulse and zero-contact angle detection
+437ea57 feat(physics): fulfill EXE-260905-P2-02 re-specifications with explode 15% collision and mass-proportional impulse
+84ff7d0 feat(physics): implement Phase 2 multi-body rigid dynamics and complete EXE-260905-P2-01 audit
+bc2aee4 docs: satisfy System 2 Auditor post-approval directives 1-4
+4268e2c audit: implement Directive 2 BBox formula proxies, Directive 3 holdout suite, and Directive 4 frame recorder fix
+3670892 feat(picking): implement Phase 1.5 offscreen GPU color ID picking and parameter-free fallback
+18749f2 feat(audit): satisfy all 5 directives with frozen parameters, 150-case holdout evaluation, raw samples telemetry, and phase 2 spec
+0747cd4 feat(audit): achieve 90.7% 3-view raycast accuracy, diagnostic dump, and viewport highlight proof
+966a126 docs: finalize phase 1 audit walkthrough with 92% accuracy and root cause analysis
+b292f2c feat(audit): satisfy all 5 re-audit directives with 92% raycast accuracy and clean git status
+bd40f5d docs: finalize prohibited terminology verification snippet
+e21be77 build: update dist bundles from latest production build
+9227b6c feat(audit): satisfy System 2 audit with real browser benchmarks, raycast test matrix, and SSOT symlinks
+d970c86 Add independent dedicated Spark Spatial Intelligence Whitepaper v1.0 PoC platform (spark_whitepaper_poc)
+2a08c59 Fix FBXLoader centering, scaling calculation, and assign vibrant double-sided MeshStandardMaterial for Dragon.fbx
+c49815a Fix robot shoulder joint to clean symmetric dual-bracket pivot and remove weird protruding cylinder
+c83a17b Scale EV motor to realistic automotive size and upscale 6-axis industrial robot arm to 2.3m with heavy pneumatic gripper
+1eb5f11 Implement true 6-Axis Articulated Industrial Robot Arm with Forward Kinematics and 2-Finger Gripper
+3e33ff1 Replace plain black cylinder with realistic EV Motor Stator, 12 copper windings, and magnet rotor assembly
+0fc7d60 Add Dragon 4-shot spatial preset directly into Digital Twin tab and update to 288028 splats
+bdc68ca Automatically remove black cylinder motor fixture when loading 3D Dragon or custom models
+c962907 Expand XAI Causal Log stream box downwards to fill available space comfortably
+ae555ba Slim and compact side panels, prevent VLM tag collision, and add panel collapse toggle button
+c4b216b Add prominent 100Hz Nervous System tab and bottom AI trigger chip
+800ae4b Implement 100Hz Nervous System with Live Neuro-Oscilloscope, Interactive Sensory Touch Probe, and Synaptic Electrical Wave
+1ac5bce Upgrade Dragon 3DGS to 288028 ultra-fine micro-sand splats with dynamic real-time scaling
+f4691eb Directly link 98098 splats Dragon 3DGS model to preset buttons and fix coordinates
+72ddfbe Enable genuine 3D Gaussian Splatting and PLY/FBX Dragon rendering on Spark Spatial OS
+3680c77 Implement 360-degree Continuous Spherical Visual Hull Ray-Marching to completely eliminate cross and cardboard cutout artifacts
+0a9b086 Add adaptive camera pose classification and Euclidean Distance Transform depth relief for solid multi-view 3D reconstruction
+dc206b0 Implement Visual Hull Space Carving and Dense Surface 3DGS generation for multi-view photo reconstruction
+fb349ed Add multi-view 360-degree photo spatial reconstruction pipeline and 4-angle Dragon multiview preset
+1ebd5e8 Add 3D AR Floating VLM Grounding Screen Callout Labels and 4s timeout fallback
+bdf7e85 Fully upgrade live interactive Nervous System, Brain VLM Grounding, PINN Physics chart, and Automated 4-stage closed loop
+ee500dd Fix UTF-8 stdout encoding in server.py and ensure persistent daemon serving
+d137b74 Create standalone spark_spatial_os project with 3-engine architecture, 4-stage closed loop, and autonomous test harness
+f056a75 Add global viewport drag & drop support and reset file input values for seamless photo/video loading
+4d1fa75 Add 2D/video support explicitly to Studio dropzone and add eye visibility toggles for Digital Twin hierarchy
+261be85 Fix 2D image to 3D spatial reconstruction overlay dismissal by ensuring onload is attached before src
+7ccbb80 Fix JS syntax error that caused loading screen freeze and verify perfect execution
+25d0ccd Add Digital Twin field data dropzone and 2D Image/Video-to-3D Gaussian spatial reconstruction
+3305e22 Integrate Stitch Luminous Workspace design system and UI tokens
+9fcc6f3 Add Dragon FBX and PLY preset models and smart PLY/FBX drag-and-drop parsing
+ca7f72f Add .gitignore protection for MCP secrets and provide mcp_config.example.json template
+95f1eb2 Fix local file dropzone with ArrayBuffer parsing for .spz, .ply, .splat, .rad and add .fbx, .glb, .gltf, .obj support
+33e9b43 Add Sim's Reality 67-page AI strategy PDF report with direct download buttons
+744bcc6 Fix XAI log window height, separate EV motor and Port 3D scenes, clean camera reset, and add 3D guide toggle button
+b8f7530 Add Generative AI Digital Twin mode with 4-stage closed-loop, EV motor & Smart Port scenarios, IoT telemetry, and XAI causal reasoning log
+a57b129 Deploy upgraded Spark Studio Pro with Hologram Pedestal, Color Palette Swatches, Camera Presets, and AI Prompt Chips
+2324284 Sync sample/index.html with Studio Pro
+d310b56 Deploy Spark.js 3DGS Studio Pro with Google Stitch UI and AI Assistant
+57c3ac5 Deploy interactive 3DGS WebGL app as root index.html for Cloudflare Pages

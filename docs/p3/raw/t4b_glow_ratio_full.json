@@ -1,0 +1,241 @@
+{
+  "directive": "EXE-260906-P3-02-T4B-R2",
+  "round1_sha256": "49f847d22b34c38ebab07eab339482cb09e4e86dc22b188a5a4bc837d8ae296c",
+  "round2_sha256": "72226be4c82be926cef175c84d7ba79511b0ebea8eb01cbdaae9d3304e885000",
+  "parts": {
+    "box_l1": {
+      "name": "Foreground Left Pallet Box (L1)",
+      "bbox_2d": [
+        159,
+        406,
+        470,
+        720
+      ],
+      "full": {
+        "round1": {
+          "total": 63001,
+          "inside": 35140,
+          "outside": 27861,
+          "ratio_pct": 44.22
+        },
+        "round2": {
+          "total": 8988,
+          "inside": 7819,
+          "outside": 1169,
+          "ratio_pct": 13.01
+        },
+        "pass": true
+      },
+      "strip": {
+        "round1": {
+          "total": 37614,
+          "inside": 28510,
+          "outside": 9104,
+          "ratio_pct": 24.2
+        },
+        "round2": {
+          "total": 8042,
+          "inside": 7363,
+          "outside": 679,
+          "ratio_pct": 8.44
+        },
+        "pass": true
+      }
+    },
+    "box_r1": {
+      "name": "Foreground Right Pallet Box (R1)",
+      "bbox_2d": [
+        988,
+        1133,
+        453,
+        720
+      ],
+      "full": {
+        "round1": {
+          "total": 68026,
+          "inside": 28682,
+          "outside": 39344,
+          "ratio_pct": 57.84
+        },
+        "round2": {
+          "total": 11073,
+          "inside": 9855,
+          "outside": 1218,
+          "ratio_pct": 11.0
+        },
+        "pass": true
+      },
+      "strip": {
+        "round1": {
+          "total": 34526,
+          "inside": 25959,
+          "outside": 8567,
+          "ratio_pct": 24.81
+        },
+        "round2": {
+          "total": 10466,
+          "inside": 9852,
+          "outside": 614,
+          "ratio_pct": 5.87
+        },
+        "pass": true
+      }
+    },
+    "box_l2": {
+      "name": "Mid-Left Pallet Box 1 (L2)",
+      "bbox_2d": [
+        255,
+        525,
+        474,
+        669
+      ],
+      "full": {
+        "round1": {
+          "total": 25264,
+          "inside": 17611,
+          "outside": 7653,
+          "ratio_pct": 30.29
+        },
+        "round2": {
+          "total": 7349,
+          "inside": 2008,
+          "outside": 5341,
+          "ratio_pct": 72.68
+        },
+        "pass": false
+      },
+      "strip": {
+        "round1": {
+          "total": 9144,
+          "inside": 7133,
+          "outside": 2011,
+          "ratio_pct": 21.99
+        },
+        "round2": {
+          "total": 394,
+          "inside": 394,
+          "outside": 0,
+          "ratio_pct": 0.0
+        },
+        "pass": true
+      }
+    },
+    "box_r2": {
+      "name": "Mid-Right Pallet Box 1 (R2)",
+      "bbox_2d": [
+        764,
+        1026,
+        471,
+        669
+      ],
+      "full": {
+        "round1": {
+          "total": 87352,
+          "inside": 33927,
+          "outside": 53425,
+          "ratio_pct": 61.16
+        },
+        "round2": {
+          "total": 23575,
+          "inside": 3736,
+          "outside": 19839,
+          "ratio_pct": 84.15
+        },
+        "pass": false
+      },
+      "strip": {
+        "round1": {
+          "total": 24808,
+          "inside": 19338,
+          "outside": 5470,
+          "ratio_pct": 22.05
+        },
+        "round2": {
+          "total": 1056,
+          "inside": 1039,
+          "outside": 17,
+          "ratio_pct": 1.61
+        },
+        "pass": true
+      }
+    },
+    "box_l3": {
+      "name": "Mid-Left Pallet Box 2 (L3)",
+      "bbox_2d": [
+        365,
+        552,
+        428,
+        573
+      ],
+      "full": {
+        "round1": {
+          "total": 19374,
+          "inside": 15346,
+          "outside": 4028,
+          "ratio_pct": 20.79
+        },
+        "round2": {
+          "total": 3004,
+          "inside": 2759,
+          "outside": 245,
+          "ratio_pct": 8.16
+        },
+        "pass": true
+      },
+      "strip": {
+        "round1": {
+          "total": 5092,
+          "inside": 3532,
+          "outside": 1560,
+          "ratio_pct": 30.64
+        },
+        "round2": {
+          "total": 1243,
+          "inside": 1187,
+          "outside": 56,
+          "ratio_pct": 4.51
+        },
+        "pass": true
+      }
+    },
+    "box_r3": {
+      "name": "Mid-Right Pallet Box 2 (R3)",
+      "bbox_2d": [
+        766,
+        907,
+        427,
+        566
+      ],
+      "full": {
+        "round1": {
+          "total": 53290,
+          "inside": 8918,
+          "outside": 44372,
+          "ratio_pct": 83.27
+        },
+        "round2": {
+          "total": 15981,
+          "inside": 1638,
+          "outside": 14343,
+          "ratio_pct": 89.75
+        },
+        "pass": false
+      },
+      "strip": {
+        "round1": {
+          "total": 3633,
+          "inside": 1348,
+          "outside": 2285,
+          "ratio_pct": 62.9
+        },
+        "round2": {
+          "total": 705,
+          "inside": 582,
+          "outside": 123,
+          "ratio_pct": 17.45
+        },
+        "pass": false
+      }
+    }
+  }
+}
