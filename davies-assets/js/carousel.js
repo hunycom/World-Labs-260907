@@ -211,7 +211,7 @@ if ($(".slider-service-wrap").length > 0) {
 }
 
 /*-- Slick Slide --*/
-window.onload = function () {
+function initSlickSliders() {
     if (window.jQuery) {
         jQuery.event.special.touchstart = {
             setup: function (_, ns, handle) {
@@ -226,7 +226,9 @@ window.onload = function () {
     }
 
     if (document.querySelector(".section-selected-work")) {
-        const $for = $(".slick-for").slick({
+        const $for = $(".slick-for");
+        if ($for.hasClass("slick-initialized")) return;
+        $for.slick({
             slidesToShow: 1,
             slidesToScroll: 1,
             arrows: false,
@@ -234,7 +236,8 @@ window.onload = function () {
             asNavFor: ".slick-nav",
             infinite: true,
             autoplay: true,
-            autoplaySpeed: 2000,
+            autoplaySpeed: 4500,
+            pauseOnHover: true,
         });
 
         const $nav = $(".slick-nav").slick({
@@ -260,17 +263,35 @@ window.onload = function () {
         const $tags = $(".work-tag li");
         $for.on("beforeChange", function (event, slick, currentSlide, nextSlide) {
             $tags.removeClass("active");
-            $tags.eq(nextSlide).addClass("active");
+            $tags.eq(nextSlide % $tags.length).addClass("active");
 
             const $award = $(".image-award");
-            if ((nextSlide + 1) % 3 === 0) {
+            if ((nextSlide + 1) % 4 === 0) {
                 $award.addClass("active");
             } else {
                 $award.removeClass("active");
             }
         });
 
+        $for.on("afterChange", function (event, slick, currentSlide) {
+            $(".physics-work-video").each(function () {
+                if (this !== slick.$slides.eq(currentSlide).find("video")[0]) {
+                    this.pause();
+                }
+            });
+            const currentVideo = slick.$slides.eq(currentSlide).find("video")[0];
+            if (currentVideo) {
+                currentVideo.currentTime = 0;
+                currentVideo.play().catch(() => {});
+            }
+        });
+
         $tags.eq(0).addClass("active");
         $nav.trigger("afterChange", [$nav.slick("getSlick"), 0]);
     }
-};
+}
+
+if (typeof jQuery !== "undefined") {
+    jQuery(document).ready(initSlickSliders);
+}
+window.addEventListener("load", initSlickSliders);
