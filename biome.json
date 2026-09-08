@@ -26,6 +26,9 @@
       "tools",
       "scratch",
       "assets",
+      "davies-assets",
+      "davies-personal-portfolio-*",
+      "davies.html",
       "tests/p3/**"
     ]
   },
