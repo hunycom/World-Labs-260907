@@ -122,6 +122,13 @@ $(window).on("load", function () {
                 },
             },
         });
+        if ($this.hasClass("swiper-testimonial")) {
+            swiperT.on("slideChange", function () {
+                $this.find("video").each(function () {
+                    this.play().catch(function () {});
+                });
+            });
+        }
         $(".swiper-button")
             .on("mouseenter", function () {
                 var slideIndex = $(this).data("slide");
