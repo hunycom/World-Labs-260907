@@ -67,6 +67,87 @@
         border: 1px solid rgba(56, 189, 248, 0.4) !important;
         box-shadow: 0 0 25px rgba(56, 189, 248, 0.15);
       }
+      /* Header Navbar Layout Optimization */
+      .tf-header .header-inner {
+        width: 100%;
+      }
+      .header-navbar-flex {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+      }
+      .header-brand-wrap {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        flex-shrink: 0;
+        z-index: 10;
+      }
+      .header-brand-wrap .logo-text {
+        font-weight: 800;
+        font-size: 20px;
+        letter-spacing: -0.5px;
+        color: #fff;
+        white-space: nowrap;
+      }
+      .header-brand-wrap .brand-badge {
+        background: rgba(56, 189, 248, 0.15);
+        color: #38bdf8;
+        border: 1px solid rgba(56, 189, 248, 0.4);
+        font-size: 10px;
+        font-weight: 700;
+        border-radius: 6px;
+        padding: 3px 8px;
+        letter-spacing: 0.5px;
+        white-space: nowrap;
+      }
+      .header-nav-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+        padding: 0 24px;
+      }
+      .header-nav-wrap .nav-menu-main {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+      .header-nav-wrap .nav-menu-main .item-link {
+        white-space: nowrap;
+        font-size: 12px;
+        letter-spacing: 0.5px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .header-nav-wrap .nav-menu-main .item-link span {
+        font-size: 9px;
+        color: rgba(255, 255, 255, 0.5);
+      }
+      .header-actions-wrap {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-shrink: 0;
+      }
+      @media (max-width: 1399px) {
+        .header-nav-wrap .nav-menu-main {
+          gap: 15px;
+        }
+        .header-nav-wrap .nav-menu-main .item-link {
+          font-size: 11px;
+        }
+      }
+      @media (max-width: 1199px) {
+        .header-nav-wrap {
+          display: none !important;
+        }
+      }
     </style>
 </head>
 
@@ -123,15 +204,18 @@
         <!-- Header -->
         <header class="tf-header">
             <div class="header-inner">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-6 col-md-1">
+                <div class="container-fluid px-3 px-md-5">
+                    <div class="header-navbar-flex">
+                        <!-- Left: Brand Logo -->
+                        <div class="header-brand-wrap">
                             <a href="davies.html" class="logo-site d-flex align-items-center gap-2 text-decoration-none">
-                                <span style="font-weight: 800; font-size: 20px; letter-spacing: -0.5px; color: #fff;">WORLD<span style="color: #38bdf8;">LABS</span></span>
-                                <span class="badge" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid #38bdf8; font-size: 10px; font-weight: bold; border-radius: 6px;">SPARK 3D</span>
+                                <span class="logo-text">WORLD<span style="color: #38bdf8;">LABS</span></span>
+                                <span class="badge brand-badge d-none d-sm-inline-block">SPARK 3D</span>
                             </a>
                         </div>
-                        <div class="col-7 d-none d-md-block">
+
+                        <!-- Center: Desktop Navigation -->
+                        <div class="header-nav-wrap">
                             <div class="box-navigation">
                                 <ul class="nav-menu-main">
                                     <li class="menu-item"><a href="#workScroll" class="item-link link text-caption"><span>01 /</span>WORKS</a></li>
@@ -143,15 +227,15 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="col-3 col-md-2 d-none d-sm-block text-end">
-                            <a href="/" class="tf-btn style-2" style="border-color: #38bdf8; color: #38bdf8; padding: 6px 14px; font-size: 11px; border-radius: 20px; font-weight: 700; text-decoration: none; display: inline-flex; align-items: center; gap: 4px;">
+
+                        <!-- Right: Action Buttons -->
+                        <div class="header-actions-wrap">
+                            <a href="/" class="tf-btn style-2 d-none d-md-inline-flex" style="border-color: #38bdf8; color: #38bdf8; padding: 6px 14px; font-size: 11px; border-radius: 20px; font-weight: 700; text-decoration: none; align-items: center; gap: 4px; white-space: nowrap;">
                                 <i class="icon icon-arrow-top-right"></i> MAIN SPATIAL OS
                             </a>
-                        </div>
-                        <div class="col-6 col-sm-3 col-md-2 d-flex justify-content-end align-items-start">
-                            <button type="button" class="btn-mobile-menu open-mb-menu text-caption text-white link">
+                            <button type="button" class="btn-mobile-menu open-mb-menu text-caption text-white link d-flex align-items-center gap-2" style="background: transparent; border: none; padding: 6px 10px; cursor: pointer;">
                                 <i class="icon icon-menu"></i>
-                                MENU
+                                <span>MENU</span>
                             </button>
                         </div>
                     </div>
@@ -1950,8 +2034,9 @@
             <div class="container h-100">
                 <div class="offcanvas-content_wrapin">
                     <div class="canvas_head">
-                        <a href="index.html" class="logo-site">
-                            <i class="icon icon-davies-logo"></i>
+                        <a href="davies.html" class="logo-site d-flex align-items-center gap-2 text-decoration-none">
+                            <span style="font-weight: 800; font-size: 20px; letter-spacing: -0.5px; color: #fff;">WORLD<span style="color: #38bdf8;">LABS</span></span>
+                            <span class="badge" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid #38bdf8; font-size: 10px; font-weight: bold; border-radius: 6px; padding: 3px 8px;">SPARK 3D</span>
                         </a>
                         <div class="btn-mobile-menu close-mb-menu text-caption link">
                             <i class="icon icon-close"></i>
