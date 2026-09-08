@@ -274,14 +274,13 @@ function initSlickSliders() {
         });
 
         $for.on("afterChange", function (event, slick, currentSlide) {
-            $(".physics-work-video").each(function () {
+            $(".slick-for video").each(function () {
                 if (this !== slick.$slides.eq(currentSlide).find("video")[0]) {
                     this.pause();
                 }
             });
             const currentVideo = slick.$slides.eq(currentSlide).find("video")[0];
             if (currentVideo) {
-                currentVideo.currentTime = 0;
                 currentVideo.play().catch(() => {});
             }
         });
