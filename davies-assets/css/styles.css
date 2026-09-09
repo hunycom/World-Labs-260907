@@ -7420,4 +7420,45 @@ button.animate-btn::after,
   }
 }
 
+/* ==========================================================================
+   WORLD LABS AI TEXT-TO-WORLD PROMPT GENERATOR STYLES
+   ========================================================================== */
+.spatial-prompt-generator {
+  transition: all 0.3s ease;
+}
+.spatial-prompt-generator:hover {
+  border-color: rgba(56, 189, 248, 0.6) !important;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7), 0 0 35px rgba(56, 189, 248, 0.18) !important;
+}
+.spatial-prompt-generator .preset-chip {
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(71, 85, 105, 0.6);
+  color: #94a3b8;
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+.spatial-prompt-generator .preset-chip:hover {
+  background: rgba(56, 189, 248, 0.2);
+  border-color: #38bdf8;
+  color: #38bdf8;
+  transform: translateY(-1px);
+}
+.spatial-prompt-generator #inputWorldPrompt:focus {
+  outline: none;
+  border-color: #38bdf8 !important;
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.35) !important;
+}
+.spatial-prompt-generator #btnGenerateWorld:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.1);
+  box-shadow: 0 6px 25px rgba(14, 165, 233, 0.6) !important;
+}
+.spatial-prompt-generator #btnGenerateWorld:active {
+  transform: translateY(1px);
+}
+
 /*# sourceMappingURL=styles.css.map */
