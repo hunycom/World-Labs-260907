@@ -704,13 +704,14 @@
     controls.enableDamping = true;
     controls.dampingFactor = 0.06;
     controls.target.copy(targetPos);
-    // Orbit limits: Azimuth +-30 deg around 20 deg, Polar +-15 deg around 55 deg colatitude
-    controls.minAzimuthAngle = (20 - 30) * Math.PI / 180;
-    controls.maxAzimuthAngle = (20 + 30) * Math.PI / 180;
-    controls.minPolarAngle = (55 - 15) * Math.PI / 180;
-    controls.maxPolarAngle = (55 + 15) * Math.PI / 180;
-    controls.minDistance = 1.5;
-    controls.maxDistance = 4.5; // Constrain within high-density observable volume
+    // 360-degree unconstrained free horizontal rotation (자유 360도 전방향 회전)
+    controls.minAzimuthAngle = -Infinity;
+    controls.maxAzimuthAngle = Infinity;
+    // Smooth vertical polar pitch: from top-down (~9 deg) to floor level (~86 deg)
+    controls.minPolarAngle = 0.05 * Math.PI;
+    controls.maxPolarAngle = 0.48 * Math.PI;
+    controls.minDistance = 0.8;
+    controls.maxDistance = 6.0;
 
     // Ambient and Studio Lighting
     const ambientLight = new THREE.AmbientLight("#8ab4f8", 1.2);
