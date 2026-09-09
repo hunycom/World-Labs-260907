@@ -1252,17 +1252,117 @@
                 <div class="row">
                     <div class="col-lg-5">
                         <div class="col-left mb-lg-0">
-                            <div class="davies-video">
-                                <video class="video" muted="" autoplay="" loop="" playsinline="" style="width: 100%; object-fit: cover;">
-                                    <source src="davies-assets/images/video/7_futuristic-ai-robot.mp4" type="video/mp4">
+                            <div class="davies-video" id="aboutDaviesVideoWrap" style="position: relative; overflow: hidden;">
+                                <video id="aboutRobotVideo1" class="video" muted autoplay playsinline style="width: 100%; object-fit: cover; transition: opacity 0.6s ease-in-out; opacity: 1; position: relative; z-index: 1;">
                                     <source src="davies-assets/images/video/7_robots-carry-boxe.mp4" type="video/mp4">
-                                    <source src="movie/7_futuristic-ai-robot.mp4" type="video/mp4">
+                                    <source src="davies-assets/images/video/7_futuristic-ai-robot.mp4" type="video/mp4">
                                     <source src="movie/7_robots-carry-boxe.mp4" type="video/mp4">
                                 </video>
-                                <div class="overlay v1"></div>
-                                <div class="overlay mark-1"></div>
-                                <div class="overlay mark-2"></div>
+                                <video id="aboutRobotVideo2" class="video" muted playsinline preload="auto" style="width: 100%; height: 100%; object-fit: cover; transition: opacity 0.6s ease-in-out; opacity: 0; position: absolute; top: 0; left: 0; z-index: 1; pointer-events: none;">
+                                    <source src="davies-assets/images/video/5_futuristic-humanoid.mp4" type="video/mp4">
+                                    <source src="movie/5_futuristic-humanoid.mp4" type="video/mp4">
+                                </video>
+                                <div class="overlay v1" style="z-index: 2;"></div>
+                                <div class="overlay mark-1" style="z-index: 2;"></div>
+                                <div class="overlay mark-2" style="z-index: 2;"></div>
                             </div>
+                            <script>
+                                (function () {
+                                    function initAboutRobotLoop() {
+                                        var v1 = document.getElementById("aboutRobotVideo1");
+                                        var v2 = document.getElementById("aboutRobotVideo2");
+                                        if (!v1 || !v2) return;
+
+                                        v1.muted = true;
+                                        v2.muted = true;
+                                        try {
+                                            v2.load();
+                                        } catch (e) {}
+
+                                        var active = 1;
+                                        var switching = false;
+
+                                        function switchTo(target) {
+                                            if (switching) return;
+                                            switching = true;
+
+                                            if (target === 2) {
+                                                v2.currentTime = 0;
+                                                v2.muted = true;
+                                                var p2 = v2.play();
+                                                if (p2 !== undefined) {
+                                                    p2.catch(function () {});
+                                                }
+                                                v2.style.opacity = "1";
+                                                v2.style.zIndex = "3";
+                                                v1.style.opacity = "0";
+                                                v1.style.zIndex = "1";
+                                                active = 2;
+                                                setTimeout(function () {
+                                                    if (active === 2) {
+                                                        try {
+                                                            v1.pause();
+                                                        } catch (e) {}
+                                                    }
+                                                }, 600);
+                                            } else {
+                                                v1.currentTime = 0;
+                                                v1.muted = true;
+                                                var p1 = v1.play();
+                                                if (p1 !== undefined) {
+                                                    p1.catch(function () {});
+                                                }
+                                                v1.style.opacity = "1";
+                                                v1.style.zIndex = "3";
+                                                v2.style.opacity = "0";
+                                                v2.style.zIndex = "1";
+                                                active = 1;
+                                                setTimeout(function () {
+                                                    if (active === 1) {
+                                                        try {
+                                                            v2.pause();
+                                                        } catch (e) {}
+                                                    }
+                                                }, 600);
+                                            }
+
+                                            setTimeout(function () {
+                                                switching = false;
+                                            }, 800);
+                                        }
+
+                                        v1.addEventListener("ended", function () {
+                                            if (active === 1) switchTo(2);
+                                        });
+
+                                        v2.addEventListener("ended", function () {
+                                            if (active === 2) switchTo(1);
+                                        });
+
+                                        v1.addEventListener("timeupdate", function () {
+                                            if (active === 1 && v1.duration && v1.currentTime >= v1.duration - 0.3) {
+                                                switchTo(2);
+                                            }
+                                        });
+
+                                        v2.addEventListener("timeupdate", function () {
+                                            if (active === 2 && v2.duration && v2.currentTime >= v2.duration - 0.3) {
+                                                switchTo(1);
+                                            }
+                                        });
+
+                                        window.__switchAboutRobot = switchTo;
+
+                                        v1.play().catch(function () {});
+                                    }
+
+                                    if (document.readyState === "loading") {
+                                        document.addEventListener("DOMContentLoaded", initAboutRobotLoop);
+                                    } else {
+                                        initAboutRobotLoop();
+                                    }
+                                })();
+                            </script>
                             <div class="signature">
                                 <img loading="lazy" width="111" height="40" src="davies-assets/images/logo/davies-small.svg" alt="Image">
                             </div>
