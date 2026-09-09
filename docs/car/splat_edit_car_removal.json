@@ -1,0 +1,21 @@
+{
+  "clean_spz_path": "assets/p3/marble/car_studio_clean_500k.spz",
+  "clean_spz_sha256": "701a22fa826edd8a3efd86ddf272f10e750e0fa36c4162669312b7ee52a22fc5",
+  "clean_spz_bytes": 7571581,
+  "total_splats": 500000,
+  "box_sdf": {
+    "xmin": -0.85,
+    "xmax": 0.75,
+    "ymin": 0.73,
+    "ymax": 1.45,
+    "zmin": -2.7,
+    "zmax": -0.55
+  },
+  "splats_inside_box": 35383,
+  "splats_inside_zeroed": 35383,
+  "splats_outside_box": 464617,
+  "splats_outside_modified": 0,
+  "outside_change_rate": 0.0,
+  "outside_change_rate_pass": true,
+  "verdict": "PASS"
+}

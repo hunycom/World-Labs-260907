@@ -577,11 +577,11 @@
       <span class="telemetry-val" id="valAltitude">0.42 m</span>
     </div>
     <div class="telemetry-row">
-      <span class="telemetry-label">G-FORCE</span>
+      <span class="telemetry-label">G-FORCE (표시값)</span>
       <span class="telemetry-val" id="valGForce">1.00 G</span>
     </div>
     <div class="telemetry-row">
-      <span class="telemetry-label">BATTERY PACK</span>
+      <span class="telemetry-label">BATTERY PACK (표시값)</span>
       <span class="telemetry-val" style="color:#10b981;">98% (420V)</span>
     </div>
     <div class="telemetry-row">
@@ -683,16 +683,14 @@
     // Three.js Scene & Perspective Camera Setup (Matching Image 4)
     const scene = new THREE.Scene();
     scene.background = new THREE.Color("#07090e");
-    scene.fog = new THREE.FogExp2("#07090e", 0.015);
 
-    // Initial Camera in Perspective Angle matching Image 4
+    // Perspective Camera matching Image 4 (Targeting baked table surface center)
     const camera = new THREE.PerspectiveCamera(46, viewport.clientWidth / viewport.clientHeight, 0.1, 500);
-    // Camera placed slightly to the front-right elevated looking down toward the table
-    const targetPos = new THREE.Vector3(0, 0.45, 0);
-    camera.position.set(3.4, 2.6, 4.8);
+    const targetPos = new THREE.Vector3(-0.05, 0.7375, -1.61);
+    camera.position.set(1.15, 2.06, 0.15);
     camera.lookAt(targetPos);
 
-    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "high-performance" });
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "high-performance", preserveDrawingBuffer: true });
     renderer.setSize(viewport.clientWidth, viewport.clientHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -706,8 +704,8 @@
     controls.dampingFactor = 0.06;
     controls.target.copy(targetPos);
     controls.maxPolarAngle = Math.PI / 2 + 0.05; // Don't go below floor
-    controls.minDistance = 1.2;
-    controls.maxDistance = 25.0;
+    controls.minDistance = 1.0;
+    controls.maxDistance = 3.5; // Constrain within high-density observable volume
 
     // Ambient and Studio Lighting
     const ambientLight = new THREE.AmbientLight("#8ab4f8", 1.2);
@@ -735,7 +733,7 @@
     // -------------------------------------------------------------
     let sparkRenderer = null;
     let splatMesh = null;
-    const defaultSpzUrl = "assets/p3/marble/car_studio_500k.spz";
+    const defaultSpzUrl = "assets/p3/marble/car_studio_clean_500k.spz";
     const fallbackSpzUrl = "assets/p3/marble/run01_500k.spz";
 
     try {
@@ -756,9 +754,10 @@
         splatMesh = new SplatMesh({ url: spzUrl });
         // Set scale & position for automotive studio environment based on World Labs semantics
         if (spzUrl.includes("car_studio")) {
-          const scale = 2.3578;
+          const scale = 2.3577724;
           splatMesh.scale.set(scale, scale, scale);
-          splatMesh.position.set(0, -1.7149, 0);
+          splatMesh.rotation.set(Math.PI, 0, 0);
+          splatMesh.position.set(0, 1.714886, 0);
         } else {
           splatMesh.scale.set(1.0, 1.0, 1.0);
           splatMesh.position.set(0, -0.15, 0);
@@ -774,42 +773,13 @@
     }
 
     // -------------------------------------------------------------
-    // Build Interactive Glass Workbench Table (Matching Image 4)
+    // Holographic Radar Rings & Front Control Panel (Matching Image 4)
     // -------------------------------------------------------------
-    const tableGroup = new THREE.Group();
-    const tableWidth = 4.2;
-    const tableDepth = 2.4;
-    const tableHeight = 0.85;
-    const tableThickness = 0.08;
-
-    // Glass Tabletop
-    const glassGeo = new THREE.BoxGeometry(tableWidth, tableThickness, tableDepth);
-    const glassMat = new THREE.MeshPhysicalMaterial({
-      color: new THREE.Color("#13233a"),
-      metalness: 0.1,
-      roughness: 0.1,
-      transmission: 0.85,
-      transparent: true,
-      opacity: 0.85,
-      ior: 1.52,
-      reflectivity: 0.8,
-      clearcoat: 1.0,
-      clearcoatRoughness: 0.05
-    });
-    const glassTabletop = new THREE.Mesh(glassGeo, glassMat);
-    glassTabletop.position.set(0, tableHeight, 0);
-    glassTabletop.receiveShadow = true;
-    tableGroup.add(glassTabletop);
-
-    // Glowing Cyan Bevel Border around Tabletop
-    const edgeGeo = new THREE.BoxGeometry(tableWidth + 0.04, 0.02, tableDepth + 0.04);
-    const edgeMat = new THREE.MeshBasicMaterial({ color: "#38bdf8", wireframe: true });
-    const edgeMesh = new THREE.Mesh(edgeGeo, edgeMat);
-    edgeMesh.position.set(0, tableHeight, 0);
-    tableGroup.add(edgeMesh);
+    const tableTopY = 0.7375;
+    const bakedCarCenter = { x: -0.05, y: 0.7375, z: -1.61 };
 
     // Front Glass Control Panel ("STARTER", "CONTROL 02 PROTOCOL" in Image 4)
-    const frontPanelGeo = new THREE.PlaneGeometry(tableWidth * 0.7, 0.35);
+    const frontPanelGeo = new THREE.PlaneGeometry(2.8, 0.32);
     const frontCanvas = document.createElement("canvas");
     frontCanvas.width = 1024;
     frontCanvas.height = 256;
@@ -825,8 +795,8 @@
     fctx.font = "20px JetBrains Mono, monospace";
     fctx.fillStyle = "#94a3b8";
     fctx.fillText("CONTROL 02 PROTOCOL : ONLINE", 40, 110);
-    fctx.fillText("TELEMETRY : BUS 100Hz WASM RAPIER ACTIVE", 40, 150);
-    fctx.fillText("WORLD LABS MARBLE 1.1 SPATIAL TWIN", 40, 190);
+    fctx.fillText("TELEMETRY : BUS 100Hz WASM RAPIER ACTIVE (표시값)", 40, 150);
+    fctx.fillText("WORLD LABS MARBLE 1.1 SPATIAL TWIN (표시값)", 40, 190);
     fctx.fillStyle = "#10b981";
     fctx.fillRect(820, 40, 150, 40);
     fctx.fillStyle = "#000";
@@ -836,53 +806,13 @@
     const frontTex = new THREE.CanvasTexture(frontCanvas);
     const frontPanelMat = new THREE.MeshBasicMaterial({ map: frontTex, transparent: true, opacity: 0.95 });
     const frontPanel = new THREE.Mesh(frontPanelGeo, frontPanelMat);
-    frontPanel.position.set(0, tableHeight - 0.22, tableDepth / 2 + 0.01);
-    tableGroup.add(frontPanel);
-
-    // Futuristic Workbench Pedestal / Legs
-    const legMat = new THREE.MeshStandardMaterial({ color: "#1e293b", metalness: 0.8, roughness: 0.2 });
-    const baseMat = new THREE.MeshStandardMaterial({ color: "#0f172a", metalness: 0.9, roughness: 0.3 });
-
-    const legOffsets = [
-      [-tableWidth / 2 + 0.25, -tableDepth / 2 + 0.25],
-      [tableWidth / 2 - 0.25, -tableDepth / 2 + 0.25],
-      [-tableWidth / 2 + 0.25, tableDepth / 2 - 0.25],
-      [tableWidth / 2 - 0.25, tableDepth / 2 - 0.25]
-    ];
-    legOffsets.forEach(([lx, lz]) => {
-      const legGeo = new THREE.CylinderGeometry(0.06, 0.08, tableHeight, 16);
-      const leg = new THREE.Mesh(legGeo, legMat);
-      leg.position.set(lx, tableHeight / 2, lz);
-      leg.castShadow = true;
-      tableGroup.add(leg);
-
-      const footGeo = new THREE.CylinderGeometry(0.12, 0.14, 0.04, 16);
-      const foot = new THREE.Mesh(footGeo, baseMat);
-      foot.position.set(lx, 0.02, lz);
-      tableGroup.add(foot);
-    });
-
-    // Floor Wireframe / Parquet Base below table
-    const floorGeo = new THREE.PlaneGeometry(16, 16, 32, 32);
-    const floorMat = new THREE.MeshStandardMaterial({
-      color: "#0a0f18",
-      metalness: 0.4,
-      roughness: 0.6,
-      wireframe: false
-    });
-    const floorMesh = new THREE.Mesh(floorGeo, floorMat);
-    floorMesh.rotation.x = -Math.PI / 2;
-    floorMesh.position.y = 0;
-    floorMesh.receiveShadow = true;
-    tableGroup.add(floorMesh);
-
-    const gridHelper = new THREE.GridHelper(16, 32, "#38bdf8", "rgba(56,189,248,0.12)");
-    gridHelper.position.y = 0.005;
-    tableGroup.add(gridHelper);
+    // Align with front edge of baked table (z = -0.65)
+    frontPanel.position.set(-0.10, tableTopY - 0.16, -0.65);
+    scene.add(frontPanel);
 
     // Concentric Holographic Radar / Scanner Rings (Image 4 Match)
     const ringGroup = new THREE.Group();
-    ringGroup.position.set(0, tableHeight + 0.042, 0);
+    ringGroup.position.set(bakedCarCenter.x, tableTopY + 0.005, bakedCarCenter.z);
 
     const createRadarRing = (radius, color, width = 0.015) => {
       const ringGeo = new THREE.RingGeometry(radius - width, radius, 64);
@@ -914,14 +844,14 @@
     scannerArc.rotation.x = -Math.PI / 2;
     ringGroup.add(scannerArc);
 
-    tableGroup.add(ringGroup);
-    scene.add(tableGroup);
+    scene.add(ringGroup);
 
     // -------------------------------------------------------------
     // High-Fidelity 3D EV Car Model Construction (Images 1 & 4 Match)
     // -------------------------------------------------------------
     const carVisualGroup = new THREE.Group();
     const carDim = { width: 1.0, height: 0.55, length: 2.1 };
+    const halfH = carDim.height / 2; // 0.275 m
 
     // 1. Chassis Frame (Carbon Fiber / Dark Metallic)
     const chassisGeo = new THREE.BoxGeometry(carDim.width, 0.12, carDim.length);
@@ -931,7 +861,7 @@
       roughness: 0.25
     });
     const chassis = new THREE.Mesh(chassisGeo, chassisMat);
-    chassis.position.y = 0.14;
+    chassis.position.y = 0.14 - halfH; // centered at rigid body centroid
     chassis.castShadow = true;
     carVisualGroup.add(chassis);
 
@@ -945,7 +875,7 @@
       roughness: 0.2
     });
     const batteryMesh = new THREE.Mesh(batteryGeo, batteryMat);
-    batteryMesh.position.y = 0.13;
+    batteryMesh.position.y = 0.13 - halfH;
     carVisualGroup.add(batteryMesh);
 
     // Battery Pack Neon Ribs
@@ -953,7 +883,7 @@
       const ribGeo = new THREE.BoxGeometry(carDim.width * 0.84, 0.04, 0.06);
       const ribMat = new THREE.MeshBasicMaterial({ color: "#34d399" });
       const rib = new THREE.Mesh(ribGeo, ribMat);
-      rib.position.set(0, 0.19, (i * carDim.length * 0.72) / 10);
+      rib.position.set(0, 0.19 - halfH, (i * carDim.length * 0.72) / 10);
       carVisualGroup.add(rib);
     }
 
@@ -971,7 +901,7 @@
       clearcoatRoughness: 0.05
     });
     const canopy = new THREE.Mesh(canopyGeo, canopyMat);
-    canopy.position.set(0, 0.36, -0.05);
+    canopy.position.set(0, 0.36 - halfH, -0.05);
     canopy.castShadow = true;
     carVisualGroup.add(canopy);
 
@@ -980,13 +910,13 @@
     const tailMat = new THREE.MeshBasicMaterial({ color: "#ef4444" });
 
     const hlLeft = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.04, 0.04), lightMat);
-    hlLeft.position.set(-0.35, 0.22, carDim.length / 2 + 0.01);
+    hlLeft.position.set(-0.35, 0.22 - halfH, carDim.length / 2 + 0.01);
     const hlRight = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.04, 0.04), lightMat);
-    hlRight.position.set(0.35, 0.22, carDim.length / 2 + 0.01);
+    hlRight.position.set(0.35, 0.22 - halfH, carDim.length / 2 + 0.01);
     carVisualGroup.add(hlLeft, hlRight);
 
     const tailBar = new THREE.Mesh(new THREE.BoxGeometry(carDim.width * 0.8, 0.03, 0.04), tailMat);
-    tailBar.position.set(0, 0.25, -carDim.length / 2 - 0.01);
+    tailBar.position.set(0, 0.25 - halfH, -carDim.length / 2 - 0.01);
     carVisualGroup.add(tailBar);
 
     // 5. 4 Wheels & Tires
@@ -997,10 +927,10 @@
     const caliperMat = new THREE.MeshBasicMaterial({ color: "#38bdf8" });
 
     const wheelPositions = [
-      [-carDim.width / 2 - 0.02, wheelRadius, carDim.length * 0.32],
-      [carDim.width / 2 + 0.02, wheelRadius, carDim.length * 0.32],
-      [-carDim.width / 2 - 0.02, wheelRadius, -carDim.length * 0.32],
-      [carDim.width / 2 + 0.02, wheelRadius, -carDim.length * 0.32]
+      [-carDim.width / 2 - 0.02, wheelRadius - halfH, carDim.length * 0.32],
+      [carDim.width / 2 + 0.02, wheelRadius - halfH, carDim.length * 0.32],
+      [-carDim.width / 2 - 0.02, wheelRadius - halfH, -carDim.length * 0.32],
+      [carDim.width / 2 + 0.02, wheelRadius - halfH, -carDim.length * 0.32]
     ];
 
     const wheelMeshes = [];
@@ -1021,16 +951,18 @@
 
       const caliperGeo = new THREE.BoxGeometry(0.04, 0.08, 0.05);
       const caliper = new THREE.Mesh(caliperGeo, caliperMat);
-      caliper.position.set(wx > 0 ? -0.04 : 0.04, 0.06, 0);
+      caliper.position.set(wx > 0 ? -0.04 : 0.04, 0.06 - halfH, 0);
       wGroup.add(caliper);
 
       carVisualGroup.add(wGroup);
       wheelMeshes.push(wGroup);
     });
 
-    const initialTableY = tableHeight + tableThickness / 2;
-    const initialCarY = initialTableY + 0.02; // resting on table
-    carVisualGroup.position.set(0, initialCarY, 0);
+    // Zero-penetration initial placement: Table top is 0.7375 m, car half-height is 0.275 m, initial clearance is 5 mm
+    const initialCarX = -0.05;
+    const initialCarY = tableTopY + halfH + 0.005; // 1.0175 m (initial clearance = +0.005 m, penetration = 0 m)
+    const initialCarZ = -1.61;
+    carVisualGroup.position.set(initialCarX, initialCarY, initialCarZ);
     scene.add(carVisualGroup);
 
     // Render first frame immediately
@@ -1051,24 +983,24 @@
       const gravityVal = { x: 0.0, y: -9.81, z: 0.0 };
       physicsWorld = new RAPIER.World(gravityVal);
 
-      // 1. Static Table Collider (Rigid surface for car to rest/slide/bounce on)
-      const tableBodyDesc = RAPIER.RigidBodyDesc.fixed().setTranslation(0, initialTableY, 0);
+      // 1. Static Table Collider (Baked hologram table top surface at y = 0.7375 m)
+      const tableBodyDesc = RAPIER.RigidBodyDesc.fixed().setTranslation(-0.10, 0.7125, -1.925);
       const tableBody = physicsWorld.createRigidBody(tableBodyDesc);
-      const tableColliderDesc = RAPIER.ColliderDesc.cuboid(tableWidth / 2, tableThickness / 2, tableDepth / 2)
+      const tableColliderDesc = RAPIER.ColliderDesc.cuboid(2.0, 0.025, 1.275)
         .setFriction(0.6)
         .setRestitution(0.35);
       tableCollider = physicsWorld.createCollider(tableColliderDesc, tableBody);
 
       // 2. Static Room Floor Collider (At y = 0)
-      const floorBodyDesc = RAPIER.RigidBodyDesc.fixed().setTranslation(0, 0, 0);
+      const floorBodyDesc = RAPIER.RigidBodyDesc.fixed().setTranslation(0, -0.05, 0);
       const floorBody = physicsWorld.createRigidBody(floorBodyDesc);
-      const floorColliderDesc = RAPIER.ColliderDesc.cuboid(8.0, 0.05, 8.0)
+      const floorColliderDesc = RAPIER.ColliderDesc.cuboid(15.0, 0.05, 15.0)
         .setFriction(0.8)
         .setRestitution(0.2);
       floorCollider = physicsWorld.createCollider(floorColliderDesc, floorBody);
 
-      // 3. Dynamic Car Rigid Body
-      createCarPhysicsBody(0, initialCarY, 0);
+      // 3. Dynamic Car Rigid Body (Initial placement centered above table with zero penetration)
+      createCarPhysicsBody(initialCarX, initialCarY, initialCarZ);
 
       // Dismiss loading overlay
       loadingOverlay.style.opacity = "0";
@@ -1091,8 +1023,8 @@
         .setCcdEnabled(true);
       carRigidBody = physicsWorld.createRigidBody(bodyDesc);
 
-      // Collision box for vehicle chassis
-      const colliderDesc = RAPIER.ColliderDesc.cuboid(carDim.width / 2, carDim.height / 2, carDim.length / 2)
+      // Collision box for vehicle chassis matching visual half-extents
+      const colliderDesc = RAPIER.ColliderDesc.cuboid(carDim.width / 2, halfH, carDim.length / 2)
         .setMass(12.0)
         .setFriction(0.55)
         .setRestitution(parseFloat(document.getElementById("sliderBounce").value) || 0.35);
@@ -1105,35 +1037,36 @@
     function dropCarFromSky() {
       if (!carRigidBody) return;
       playSound("drop");
-      // Teleport to 3.2 meters above the table with random slight tilt
-      carRigidBody.setTranslation({ x: 0, y: tableHeight + 2.8, z: 0 }, true);
-      carRigidBody.setLinvel({ x: 0, y: -1.5, z: 0 }, true);
-      carRigidBody.setAngvel({ x: (Math.random() - 0.5) * 1.5, y: 0, z: (Math.random() - 0.5) * 1.5 }, true);
+      // Teleport to 2.4 meters above the table with zero initial spin
+      carRigidBody.setTranslation({ x: initialCarX, y: tableTopY + 2.4, z: initialCarZ }, true);
+      carRigidBody.setRotation({ x: 0, y: 0, z: 0, w: 1 }, true);
+      carRigidBody.setLinvel({ x: 0, y: -0.5, z: 0 }, true);
+      carRigidBody.setAngvel({ x: 0, y: 0, z: 0 }, true);
       showToast("⬇️ 자동차 상공 낙하 시작 (Gravity Fall)");
     }
 
     function pushCarLateral(direction) {
       if (!carRigidBody) return;
       playSound("push");
-      const impulseX = direction === "left" ? -45.0 : 45.0;
-      carRigidBody.applyImpulse({ x: impulseX, y: 8.0, z: 0 }, true);
-      carRigidBody.applyTorqueImpulse({ x: 0, y: 0, z: direction === "left" ? 12.0 : -12.0 }, true);
+      const impulseX = direction === "left" ? -28.0 : 28.0;
+      carRigidBody.applyImpulse({ x: impulseX, y: 2.0, z: 0 }, true);
+      carRigidBody.applyTorqueImpulse({ x: 0, y: 0, z: direction === "left" ? 4.0 : -4.0 }, true);
       showToast(direction === "left" ? "⬅️ 좌측 밀쳐내기 충격 가속" : "➡️ 우측 밀쳐내기 충격 가속");
     }
 
     function pushCarLongitudinal(direction) {
       if (!carRigidBody) return;
       playSound("push");
-      const impulseZ = direction === "forward" ? 45.0 : -45.0;
-      carRigidBody.applyImpulse({ x: 0, y: 6.0, z: impulseZ }, true);
-      carRigidBody.applyTorqueImpulse({ x: direction === "forward" ? 8.0 : -8.0, y: 0, z: 0 }, true);
+      const impulseZ = direction === "forward" ? 28.0 : -28.0;
+      carRigidBody.applyImpulse({ x: 0, y: 2.0, z: impulseZ }, true);
+      carRigidBody.applyTorqueImpulse({ x: direction === "forward" ? 4.0 : -4.0, y: 0, z: 0 }, true);
       showToast(direction === "forward" ? "⬆️ 전방 가속 추진" : "⬇️ 후방 밀어내기");
     }
 
     function resetCarPosition() {
       if (!carRigidBody) return;
       playSound("push");
-      carRigidBody.setTranslation({ x: 0, y: initialCarY, z: 0 }, true);
+      carRigidBody.setTranslation({ x: initialCarX, y: initialCarY, z: initialCarZ }, true);
       carRigidBody.setRotation({ x: 0, y: 0, z: 0, w: 1 }, true);
       carRigidBody.setLinvel({ x: 0, y: 0, z: 0 }, true);
       carRigidBody.setAngvel({ x: 0, y: 0, z: 0 }, true);
@@ -1192,26 +1125,26 @@
 
     // Camera Perspective Presets
     document.getElementById("btnCamPerspective").addEventListener("click", () => {
-      camera.position.set(3.4, 2.6, 4.8);
-      controls.target.set(0, 0.45, 0);
+      camera.position.set(1.15, 2.06, 0.15);
+      controls.target.set(-0.05, 0.7375, -1.61);
       setActiveCamBtn("btnCamPerspective");
       showToast("🎥 원근감 뷰 (Perspective Image 4)");
     });
     document.getElementById("btnCamTop").addEventListener("click", () => {
-      camera.position.set(0, 5.8, 0.1);
-      controls.target.set(0, 0.8, 0);
+      camera.position.set(-0.05, 3.25, -1.60);
+      controls.target.set(-0.05, 0.7375, -1.61);
       setActiveCamBtn("btnCamTop");
       showToast("🔍 탑다운 R&D 뷰");
     });
     document.getElementById("btnCamSide").addEventListener("click", () => {
-      camera.position.set(4.5, 1.2, 0);
-      controls.target.set(0, 0.8, 0);
+      camera.position.set(2.40, 0.95, -1.61);
+      controls.target.set(-0.05, 0.7375, -1.61);
       setActiveCamBtn("btnCamSide");
       showToast("🚘 측면 섀시 뷰");
     });
     document.getElementById("btnCamReset").addEventListener("click", () => {
-      camera.position.set(3.4, 2.6, 4.8);
-      controls.target.set(0, 0.45, 0);
+      camera.position.set(1.15, 2.06, 0.15);
+      controls.target.set(-0.05, 0.7375, -1.61);
       setActiveCamBtn("btnCamReset");
       showToast("🌐 자유 궤도 카메라");
     });
@@ -1410,6 +1343,9 @@
     let frameCount = 0;
     let fpsTimer = performance.now();
 
+    let physicsAccumulator = 0;
+    const physicsTimeStep = 1 / 60;
+
     function animate() {
       requestAnimationFrame(animate);
 
@@ -1417,9 +1353,18 @@
       const delta = Math.min((now - lastFrameTime) / 1000, 0.1);
       lastFrameTime = now;
 
-      // 1. Step Rapier Physics World
+      // 1. Step Rapier Physics World with fixed timestep accumulator
       if (physicsWorld) {
-        physicsWorld.step();
+        physicsAccumulator += delta;
+        let pSteps = 0;
+        while (physicsAccumulator >= physicsTimeStep && pSteps < 8) {
+          physicsWorld.step();
+          physicsAccumulator -= physicsTimeStep;
+          pSteps++;
+        }
+        if (physicsAccumulator > physicsTimeStep * 2) {
+          physicsAccumulator = 0;
+        }
       }
 
       // 2. Synchronize Three.js Car Model with Rapier Rigid Body
@@ -1436,13 +1381,15 @@
         valVelocity.textContent = `${speedKmh.toFixed(1)} km/h`;
         valAltitude.textContent = `${pos.y.toFixed(2)} m`;
 
-        // Check if car is resting on the workbench table
-        const onTable = Math.abs(pos.y - initialCarY) < 0.12 && Math.abs(pos.x) < tableWidth / 2 && Math.abs(pos.z) < tableDepth / 2;
+        // Check if car is resting on the baked workbench table
+        // Table footprint: x in [-2.10, 1.90], z in [-3.20, -0.65], tabletop y = 0.7375
+        // When settled on table, pos.y ~ 1.011 m
+        const onTable = Math.abs(pos.y - 1.0125) < 0.10 && (pos.x >= -2.20 && pos.x <= 2.00) && (pos.z >= -3.30 && pos.z <= -0.55);
         if (onTable) {
           badgeContact.textContent = "ON TABLE";
           badgeContact.style.color = "#10b981";
           badgeContact.style.borderColor = "rgba(16,185,129,0.3)";
-        } else if (pos.y < initialTableY) {
+        } else if (pos.y < 0.65) {
           badgeContact.textContent = "ON FLOOR";
           badgeContact.style.color = "#f59e0b";
           badgeContact.style.borderColor = "rgba(245,158,11,0.3)";
@@ -1489,6 +1436,233 @@
     initRapierPhysics().catch((err) => {
       console.warn("[Rapier] Init warning:", err);
     });
+
+    // Expose programmatic audit interface for automated verification suite
+    window.__carAudit = {
+      isReady: () => !!(physicsWorld && carRigidBody && splatMesh),
+      getCarPose: () => {
+        if (!carRigidBody) return null;
+        const p = carRigidBody.translation();
+        const v = carRigidBody.linvel();
+        const r = carRigidBody.rotation();
+        return {
+          x: +p.x.toFixed(4),
+          y: +p.y.toFixed(4),
+          z: +p.z.toFixed(4),
+          car_bottom_y: +(p.y - halfH).toFixed(4),
+          clearance_from_table_m: +(p.y - halfH - tableTopY).toFixed(4),
+          vx: +v.x.toFixed(4),
+          vy: +v.y.toFixed(4),
+          vz: +v.z.toFixed(4),
+          speed_kmh: +(Math.sqrt(v.x*v.x + v.y*v.y + v.z*v.z) * 3.6).toFixed(2),
+          rot: { x: +r.x.toFixed(4), y: +r.y.toFixed(4), z: +r.z.toFixed(4), w: +r.w.toFixed(4) }
+        };
+      },
+      dropCar: dropCarFromSky,
+      pushLeft: () => pushCarLateral("left"),
+      pushRight: () => pushCarLateral("right"),
+      resetCar: resetCarPosition,
+      setCameraDistance: (dist) => {
+        const theta = 32 * Math.PI / 180;
+        const phi = 35 * Math.PI / 180;
+        const dy = dist * Math.sin(theta);
+        const dh = dist * Math.cos(theta);
+        const dx = dh * Math.sin(phi);
+        const dz = dh * Math.cos(phi);
+        camera.position.set(-0.05 + dx, 0.7375 + dy, -1.61 + dz);
+        controls.target.set(-0.05, 0.7375, -1.61);
+        controls.update();
+        renderer.render(scene, camera);
+      },
+      setPresetView: (preset) => {
+        if (preset === "perspective") {
+          camera.position.set(1.15, 2.06, 0.15);
+        } else if (preset === "top") {
+          camera.position.set(-0.05, 3.25, -1.60);
+        } else if (preset === "side") {
+          camera.position.set(2.40, 0.95, -1.61);
+        }
+        controls.target.set(-0.05, 0.7375, -1.61);
+        controls.update();
+        renderer.render(scene, camera);
+      },
+      captureCanvas: () => {
+        renderer.render(scene, camera);
+        return renderer.domElement.toDataURL("image/png");
+      }
+    };
+
+    // Automated Audit Test Runner
+    async function runAutoAudit() {
+      console.log("[Car Audit] Starting Auto Audit Suite...");
+      showToast("🔍 Running Automated Audit Verification Suite...");
+
+      const sleep = (ms) => new Promise(r => setTimeout(r, ms));
+      const postCapture = async (label, pose, extra = {}) => {
+        renderer.render(scene, camera);
+        const dataUrl = renderer.domElement.toDataURL("image/png");
+        try {
+          await fetch("/api/save_audit", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ label, dataUrl, pose, extra })
+          });
+          console.log("[Car Audit] Saved capture:", label);
+        } catch (e) {
+          console.warn("[Car Audit] Failed to post capture:", label, e);
+        }
+      };
+
+      // Wait until physicsWorld and splatMesh are ready
+      while (!window.__carAudit.isReady()) {
+        await sleep(200);
+      }
+      await sleep(1500); // Allow initial settle and splats to render
+
+      const auditResults = {};
+
+      // 1. Initial Rest (t0)
+      const pose0 = window.__carAudit.getCarPose();
+      auditResults.t0_init_rest = {
+        pose: pose0,
+        no_flying: pose0.speed_kmh < 2.0,
+        on_table: Math.abs(pose0.car_bottom_y - tableTopY) <= 0.015,
+        verdict: (pose0.speed_kmh < 2.0 && Math.abs(pose0.car_bottom_y - tableTopY) <= 0.015) ? "PASS" : "FAIL"
+      };
+      await postCapture("test_01_init_rest", pose0, auditResults.t0_init_rest);
+
+      // 2. 5s Rest (Drift check)
+      await sleep(5000);
+      const pose5s = window.__carAudit.getCarPose();
+      const drift = Math.sqrt(
+        Math.pow(pose5s.x - pose0.x, 2) +
+        Math.pow(pose5s.y - pose0.y, 2) +
+        Math.pow(pose5s.z - pose0.z, 2)
+      );
+      auditResults.rest_5s = {
+        pose: pose5s,
+        drift_m: +drift.toFixed(5),
+        speed_kmh: pose5s.speed_kmh,
+        max_drift_allowed_m: 0.01,
+        drift_pass: drift <= 0.01,
+        verdict: (drift <= 0.01 && pose5s.speed_kmh < 0.1) ? "PASS" : "FAIL"
+      };
+      await postCapture("test_02_5s_rest", pose5s, auditResults.rest_5s);
+
+      // 3. [R] Drop from Sky (In Air)
+      dropCarFromSky();
+      await sleep(250);
+      const poseAir = window.__carAudit.getCarPose();
+      auditResults.r_drop_air = {
+        pose: poseAir,
+        in_air: poseAir.y > 1.5,
+        verdict: poseAir.y > 1.5 ? "PASS" : "FAIL"
+      };
+      await postCapture("test_03_r_drop_air", poseAir, auditResults.r_drop_air);
+
+      // 4. [R] Landed - wait until car settles on tabletop
+      const dropStart = performance.now();
+      let poseLanded = null;
+      while (performance.now() - dropStart < 4500) {
+        poseLanded = window.__carAudit.getCarPose();
+        if (Math.abs(poseLanded.car_bottom_y - tableTopY) <= 0.015 && poseLanded.speed_kmh < 1.0) {
+          break;
+        }
+        await sleep(50);
+      }
+      poseLanded = window.__carAudit.getCarPose();
+      auditResults.r_drop_landed = {
+        pose: poseLanded,
+        on_table: Math.abs(poseLanded.car_bottom_y - tableTopY) <= 0.015,
+        verdict: Math.abs(poseLanded.car_bottom_y - tableTopY) <= 0.015 ? "PASS" : "FAIL"
+      };
+      await postCapture("test_04_r_landed", poseLanded, auditResults.r_drop_landed);
+
+      // 5. [A] Push Left
+      pushCarLateral("left");
+      await sleep(600);
+      const poseLeft = window.__carAudit.getCarPose();
+      auditResults.push_left = {
+        pose: poseLeft,
+        pushed_left: poseLeft.x < poseLanded.x,
+        verdict: poseLeft.x < poseLanded.x ? "PASS" : "FAIL"
+      };
+      await postCapture("test_05_a_push_left", poseLeft, auditResults.push_left);
+
+      // Reset car back to center before rightward push test
+      resetCarPosition();
+      await sleep(600);
+      const poseCenter = window.__carAudit.getCarPose();
+
+      // 6. [D] Push Right
+      pushCarLateral("right");
+      await sleep(600);
+      const poseRight = window.__carAudit.getCarPose();
+      auditResults.push_right = {
+        pose: poseRight,
+        pushed_right: poseRight.x > poseCenter.x,
+        verdict: poseRight.x > poseCenter.x ? "PASS" : "FAIL"
+      };
+      await postCapture("test_06_d_push_right", poseRight, auditResults.push_right);
+
+      // Reset car back to center
+      resetCarPosition();
+      await sleep(600);
+
+      // 7. Camera Presets
+      window.__carAudit.setPresetView("top");
+      await sleep(400);
+      await postCapture("test_07_cam_top", window.__carAudit.getCarPose(), { view: "top" });
+
+      window.__carAudit.setPresetView("side");
+      await sleep(400);
+      await postCapture("test_08_cam_side", window.__carAudit.getCarPose(), { view: "side" });
+
+      // 8. Camera Volume Sweep (2.0m, 2.5m, 3.0m, 3.5m)
+      const sweepDistances = [2.0, 2.5, 3.0, 3.5];
+      for (const dist of sweepDistances) {
+        window.__carAudit.setCameraDistance(dist);
+        await sleep(400);
+        await postCapture(`cam_sweep_${dist.toFixed(1)}m`, window.__carAudit.getCarPose(), { distance_m: dist });
+      }
+
+      // Restore perspective default view
+      window.__carAudit.setPresetView("perspective");
+      await sleep(400);
+
+      // Final Audit Summary
+      const allPassed = Object.values(auditResults).every(r => r.verdict === "PASS");
+      const finalReport = {
+        suite: "EXE-260909-CAR-02 Car Physics 3D Audit",
+        timestamp: new Date().toISOString(),
+        table_surface_y: tableTopY,
+        car_dimensions: carDim,
+        camera_chosen_distance_m: 2.5,
+        camera_observable_volume_bounds_m: { min: 1.0, max: 3.5 },
+        audit_tests: auditResults,
+        overall_verdict: allPassed ? "PASS" : "FAIL"
+      };
+
+      try {
+        await fetch("/api/save_audit", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ label: "physics_audit_result", dataUrl: null, meta: finalReport })
+        });
+      } catch (e) {
+        console.warn("[Car Audit] Failed to post final report:", e);
+      }
+
+      window.__carAuditComplete = true;
+      window.__carAuditReport = finalReport;
+      showToast(`✅ 감사 테스트 완료! 전체 결과: ${finalReport.overall_verdict}`);
+      console.log("[Car Audit] Final Report:", finalReport);
+    }
+
+    window.__runAutoAudit = runAutoAudit;
+    if (new URLSearchParams(window.location.search).get("audit") === "true") {
+      setTimeout(runAutoAudit, 2000);
+    }
   </script>
 </body>
 </html>

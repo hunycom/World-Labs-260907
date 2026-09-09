@@ -1,0 +1,19 @@
+{
+  "run_id": "car_studio",
+  "total_splats": 500000,
+  "total_mesh_vertices": 26076,
+  "metric_scale_factor": 2.3577724,
+  "ground_plane_offset": 1.714886,
+  "y_floor_m": -0.00499999999999956,
+  "splat_floor_peak_count": 40206,
+  "y_mesh_floor_m": 0.0025000000000000855,
+  "mesh_floor_peak_count": 311,
+  "floor_align_diff_m": 0.007499999999999646,
+  "floor_to_zero_diff_m": 0.00499999999999956,
+  "collider_glb_sha256": "7ef68ab276b856017ff547b34768e36895af48157cc3bcf40c14862935fc3b76",
+  "criteria_mesh_diff_m": 0.02,
+  "criteria_zero_diff_m": 0.02,
+  "mesh_diff_pass": true,
+  "zero_diff_pass": true,
+  "verdict": "PASS"
+}

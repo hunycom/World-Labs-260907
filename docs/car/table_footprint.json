@@ -1,0 +1,30 @@
+{
+  "y_table": 0.7375,
+  "table_footprint_bbox": {
+    "xmin": -2.1,
+    "xmax": 1.9,
+    "zmin": -3.2,
+    "zmax": -0.65,
+    "width_m": 4.0,
+    "depth_m": 2.55
+  },
+  "table_center": {
+    "x": -0.1,
+    "y": 0.7375,
+    "z": -1.925
+  },
+  "cuboid_half_extents": {
+    "hx": 2.0,
+    "hy": 0.025,
+    "hz": 1.275
+  },
+  "cuboid_body_center": {
+    "x": -0.1,
+    "y": 0.7125,
+    "z": -1.925
+  },
+  "top_surface_y": 0.7375,
+  "difference_from_y_table_m": 0.0,
+  "pass_criteria_m": 0.01,
+  "pass": true
+}

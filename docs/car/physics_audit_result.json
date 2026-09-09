@@ -1,0 +1,148 @@
+{
+  "suite": "EXE-260909-CAR-02 Car Physics 3D Audit",
+  "timestamp": "2026-09-09T03:28:16.109Z",
+  "table_surface_y": 0.7375,
+  "car_dimensions": {
+    "width": 1,
+    "height": 0.55,
+    "length": 2.1
+  },
+  "camera_chosen_distance_m": 2.5,
+  "camera_observable_volume_bounds_m": {
+    "min": 1,
+    "max": 3.5
+  },
+  "audit_tests": {
+    "t0_init_rest": {
+      "pose": {
+        "x": -0.05,
+        "y": 1.011,
+        "z": -1.61,
+        "car_bottom_y": 0.736,
+        "clearance_from_table_m": -0.0015,
+        "vx": 0,
+        "vy": 0,
+        "vz": 0,
+        "speed_kmh": 0,
+        "rot": {
+          "x": -0.0001,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        }
+      },
+      "no_flying": true,
+      "on_table": true,
+      "verdict": "PASS"
+    },
+    "rest_5s": {
+      "pose": {
+        "x": -0.05,
+        "y": 1.011,
+        "z": -1.61,
+        "car_bottom_y": 0.736,
+        "clearance_from_table_m": -0.0015,
+        "vx": 0,
+        "vy": 0,
+        "vz": 0,
+        "speed_kmh": 0,
+        "rot": {
+          "x": -0.0001,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        }
+      },
+      "drift_m": 0,
+      "speed_kmh": 0,
+      "max_drift_allowed_m": 0.01,
+      "drift_pass": true,
+      "verdict": "PASS"
+    },
+    "r_drop_air": {
+      "pose": {
+        "x": -0.05,
+        "y": 3.0378,
+        "z": -1.61,
+        "car_bottom_y": 2.7628,
+        "clearance_from_table_m": 2.0253,
+        "vx": 0,
+        "vy": -1.4441,
+        "vz": 0,
+        "speed_kmh": 5.2,
+        "rot": {
+          "x": 0,
+          "y": 0,
+          "z": 0,
+          "w": 1
+        }
+      },
+      "in_air": true,
+      "verdict": "PASS"
+    },
+    "r_drop_landed": {
+      "pose": {
+        "x": 0.0409,
+        "y": 1.014,
+        "z": -1.6599,
+        "car_bottom_y": 0.739,
+        "clearance_from_table_m": 0.0015,
+        "vx": 0.0144,
+        "vy": -0.0629,
+        "vz": -0.0003,
+        "speed_kmh": 0.23,
+        "rot": {
+          "x": 0.0013,
+          "y": -0.0308,
+          "z": -0.0002,
+          "w": 0.9995
+        }
+      },
+      "on_table": true,
+      "verdict": "PASS"
+    },
+    "push_left": {
+      "pose": {
+        "x": -0.4565,
+        "y": 1.0137,
+        "z": -1.6626,
+        "car_bottom_y": 0.7387,
+        "clearance_from_table_m": 0.0012,
+        "vx": -0.9709,
+        "vy": -0.1537,
+        "vz": -0.0346,
+        "speed_kmh": 3.54,
+        "rot": {
+          "x": 0,
+          "y": -0.0219,
+          "z": 0.0026,
+          "w": 0.9998
+        }
+      },
+      "pushed_left": true,
+      "verdict": "PASS"
+    },
+    "push_right": {
+      "pose": {
+        "x": 0.5253,
+        "y": 1.0111,
+        "z": -1.6145,
+        "car_bottom_y": 0.7361,
+        "clearance_from_table_m": -0.0014,
+        "vx": 0.4894,
+        "vy": -0.0013,
+        "vz": -0.0264,
+        "speed_kmh": 1.76,
+        "rot": {
+          "x": -0.0001,
+          "y": -0.0164,
+          "z": -0.0004,
+          "w": 0.9999
+        }
+      },
+      "pushed_right": true,
+      "verdict": "PASS"
+    }
+  },
+  "overall_verdict": "PASS"
+}
