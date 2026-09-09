@@ -18,7 +18,7 @@
     "assets:clean": "node scripts/clean-assets.js",
     "assets:compress": "node scripts/compress-to-spz.js",
     "assets:download": "node scripts/download-assets.js",
-    "build": "npm run build:production && npm run build:dev && cp -r index.html davies.html davies-assets assets 3d-model docs movie *.pdf warehouse-story.html dist/ 2>/dev/null || true",
+    "build": "npm run build:production && npm run build:dev && cp -r index.html davies.html car-physics.html davies-assets assets 3d-model docs movie *.pdf warehouse-story.html dist/ 2>/dev/null || true",
     "build:dev": "vite build --mode dev",
     "build:production": "vite build --mode production",
     "build:wasm": "node rust/build_wasm.js",

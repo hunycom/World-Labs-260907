@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>World Labs Spark 3D - Automotive Physics Studio & Marble AI</title>
+  <link rel="shortcut icon" href="davies-assets/images/logo/favicon.png">
+
+  <!-- Google Fonts Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <!-- Import Maps for Three.js, Spark.js, Rapier 3D -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://unpkg.com/three@0.180.0/build/three.module.js",
+      "three/addons/": "https://unpkg.com/three@0.180.0/examples/jsm/",
+      "@sparkjsdev/spark": "https://unpkg.com/@sparkjsdev/spark@2.1.0/dist/spark.module.js",
+      "@dimforge/rapier3d-compat": "https://cdn.jsdelivr.net/npm/@dimforge/rapier3d-compat@0.12.0/rapier.es.js"
+    }
+  }
+  </script>
+
+  <style>
+    :root {
+      --bg-space: #07090e;
+      --panel-bg: rgba(14, 20, 32, 0.85);
+      --panel-border: rgba(56, 189, 248, 0.22);
+      --accent-cyan: #38bdf8;
+      --accent-blue: #0ea5e9;
+      --accent-indigo: #6366f1;
+      --accent-green: #10b981;
+      --accent-amber: #f59e0b;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body, html {
+      width: 100vw;
+      height: 100vh;
+      overflow: hidden;
+      background: var(--bg-space);
+      font-family: 'Inter', -apple-system, sans-serif;
+      color: var(--text-main);
+      user-select: none;
+    }
+
+    /* Top Navigation Header */
+    .top-header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 60px;
+      background: rgba(7, 9, 14, 0.85);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      z-index: 50;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand-title {
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: #fff;
+    }
+    .brand-badge {
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent-cyan);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .brand-badge::before {
+      content: "";
+      width: 6px;
+      height: 6px;
+      background: var(--accent-cyan);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent-cyan);
+      animation: pulseDot 1.5s infinite alternate;
+    }
+    @keyframes pulseDot {
+      0% { opacity: 0.4; transform: scale(0.8); }
+      100% { opacity: 1; transform: scale(1.2); }
+    }
+
+    .header-links {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .header-btn {
+      color: var(--text-main);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(255, 255, 255, 0.04);
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .header-btn:hover {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: var(--accent-cyan);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+    .header-btn.primary {
+      background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);
+      border-color: rgba(255, 255, 255, 0.25);
+      box-shadow: 0 2px 10px rgba(14, 165, 233, 0.35);
+    }
+
+    /* 3D Viewport Container */
+    #viewport3D {
+      position: absolute;
+      top: 60px;
+      left: 0;
+      width: 100vw;
+      height: calc(100vh - 60px);
+      z-index: 10;
+    }
+
+    /* AI Prompt Studio Bar */
+    .prompt-studio-bar {
+      position: absolute;
+      top: 76px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 960px;
+      background: rgba(13, 19, 33, 0.88);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--panel-border);
+      border-radius: 14px;
+      padding: 12px 18px;
+      z-index: 40;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      transition: all 0.3s ease;
+    }
+    .prompt-input-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .prompt-input {
+      flex: 1;
+      background: rgba(6, 10, 20, 0.7);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      border-radius: 10px;
+      padding: 10px 14px;
+      color: #fff;
+      font-size: 13px;
+      outline: none;
+      transition: border 0.2s;
+    }
+    .prompt-input:focus {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+    }
+    .btn-generate {
+      background: linear-gradient(135deg, #38bdf8 0%, #6366f1 100%);
+      color: #000;
+      font-weight: 800;
+      font-size: 12px;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 18px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+    .btn-generate:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 15px rgba(56, 189, 248, 0.6);
+    }
+
+    .preset-chips-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 8px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+    }
+    .preset-chip {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #cbd5e1;
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 15px;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+    .preset-chip:hover {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: var(--accent-cyan);
+      color: #fff;
+    }
+
+    /* Floating Autopilot Badge (Image 4 Match) */
+    .hologram-autopilot-badge {
+      position: absolute;
+      top: 175px;
+      left: 42px;
+      background: rgba(14, 28, 48, 0.75);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(56, 189, 248, 0.45);
+      border-left: 4px solid var(--accent-cyan);
+      border-radius: 10px;
+      padding: 14px 18px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5), 0 0 15px rgba(56, 189, 248, 0.2);
+      z-index: 30;
+      pointer-events: none;
+      animation: floatBadge 4s ease-in-out infinite;
+    }
+    @keyframes floatBadge {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+    .autopilot-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .autopilot-status {
+      font-size: 13px;
+      font-weight: 800;
+      color: #f59e0b;
+      margin-top: 2px;
+    }
+    .autopilot-sub {
+      font-size: 11px;
+      color: #94a3b8;
+      margin-top: 4px;
+    }
+
+    /* Left Bottom: Interactive Physics Control Dock */
+    .physics-dock {
+      position: absolute;
+      bottom: 24px;
+      left: 24px;
+      background: var(--panel-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--panel-border);
+      border-radius: 14px;
+      padding: 16px;
+      width: 320px;
+      z-index: 35;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+    }
+    .dock-title {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--accent-cyan);
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .physics-btn-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .phy-btn {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 9px 8px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+    .phy-btn:hover {
+      background: rgba(56, 189, 248, 0.2);
+      border-color: var(--accent-cyan);
+      transform: translateY(-1px);
+    }
+    .phy-btn:active {
+      transform: translateY(1px);
+    }
+    .phy-btn.drop {
+      grid-column: span 2;
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.25) 0%, rgba(99, 102, 241, 0.25) 100%);
+      border-color: var(--accent-cyan);
+      font-weight: 700;
+      font-size: 12px;
+      padding: 11px;
+    }
+    .phy-btn.drop:hover {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.45) 0%, rgba(99, 102, 241, 0.45) 100%);
+      box-shadow: 0 0 14px rgba(56, 189, 248, 0.4);
+    }
+
+    .slider-row {
+      margin-top: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .slider-label {
+      font-size: 10px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+    }
+    .slider-input {
+      width: 100%;
+      accent-color: var(--accent-cyan);
+      height: 4px;
+      cursor: pointer;
+    }
+
+    /* Right Bottom: Telemetry & Perspective Controls */
+    .telemetry-dock {
+      position: absolute;
+      bottom: 24px;
+      right: 24px;
+      background: var(--panel-bg);
+      backdrop-filter: blur(16px);
+      border: 1px solid var(--panel-border);
+      border-radius: 14px;
+      padding: 16px;
+      width: 280px;
+      z-index: 35;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .telemetry-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 11px;
+      padding: 4px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    .telemetry-label {
+      color: var(--text-muted);
+    }
+    .telemetry-val {
+      color: var(--accent-cyan);
+      font-weight: 700;
+    }
+
+    .cam-presets {
+      display: flex;
+      gap: 6px;
+      margin-top: 10px;
+    }
+    .cam-btn {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #94a3b8;
+      font-size: 10px;
+      padding: 6px 0;
+      border-radius: 6px;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+    }
+    .cam-btn.active, .cam-btn:hover {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: var(--accent-cyan);
+      color: #fff;
+    }
+
+    /* Loading Overlay */
+    #loadingOverlay {
+      position: absolute;
+      top: 60px;
+      left: 0;
+      width: 100vw;
+      height: calc(100vh - 60px);
+      background: #07090e;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 60;
+      transition: opacity 0.5s ease;
+    }
+    .spinner {
+      width: 48px;
+      height: 48px;
+      border: 3px solid rgba(56, 189, 248, 0.2);
+      border-top-color: var(--accent-cyan);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 16px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* Toast Notification */
+    #toastMsg {
+      position: absolute;
+      top: 140px;
+      right: 30px;
+      background: rgba(14, 20, 32, 0.95);
+      border: 1px solid var(--accent-cyan);
+      color: #fff;
+      font-size: 12px;
+      padding: 10px 16px;
+      border-radius: 8px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+      z-index: 55;
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body>
+
+  <!-- Top Header Navigation -->
+  <header class="top-header">
+    <div class="brand-group">
+      <div class="brand-title">WORLD LABS SPARK 3D</div>
+      <div class="brand-badge">CAR PHYSICS STUDIO</div>
+      <span style="font-size: 11px; color: #64748b;">MARBLE 1.1 DIGITAL TWIN</span>
+    </div>
+
+    <div class="header-links">
+      <a href="davies.html" class="header-btn">
+        <span>← RETURN TO PORTFOLIO</span>
+      </a>
+      <a href="/" class="header-btn">
+        <span>↗ MAIN SPATIAL OS</span>
+      </a>
+      <button id="btnFullscreen" class="header-btn primary">
+        <span>⛶ FULLSCREEN</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- 3D Three.js Viewport -->
+  <div id="viewport3D"></div>
+
+  <!-- AI Text-to-World Prompt Studio Bar -->
+  <div class="prompt-studio-bar">
+    <div class="prompt-input-row">
+      <input type="text" id="inputCarWorldPrompt" class="prompt-input" 
+             placeholder="World Labs 자동차 배경 프롬프트 입력 (예: Futuristic cyber auto lab, Tokyo neon garage...)" 
+             value="Automotive R&D design studio laboratory with interactive glass holographic table, vehicle sketches on wall, dark moody lighting">
+      <button id="btnGenerateCarWorld" class="btn-generate">
+        <span>✨ 3D 공간 생성</span>
+      </button>
+      <button id="btnRestoreCarWorld" class="phy-btn" style="padding: 10px 12px; border-radius: 10px;">
+        <span>↺ 초기 랩 복원</span>
+      </button>
+    </div>
+    <div class="preset-chips-row">
+      <span class="preset-chip" data-prompt="Automotive R&D design studio laboratory with interactive glass holographic table, vehicle blueprints on wall, dark industrial moody lighting">🏢 R&D 홀로그램 디자인 랩 (기본)</span>
+      <span class="preset-chip" data-prompt="Futuristic automotive wind tunnel aerodynamic testing laboratory, carbon fiber walls, laser sensor grids, cold cinematic blue lighting">🏎️ 차세대 EV 풍동 시험실</span>
+      <span class="preset-chip" data-prompt="Cyberpunk underground hypercar hangar, glowing neon cyan lightstrips, concrete hangar floor, volumetric fog">⚡ 사이버펑크 네온 격납고</span>
+      <span class="preset-chip" data-prompt="Gigafactory cleanroom robotics manufacturing floor, robotic assembly arms, polished epoxy floor, LED high bay lighting">🏭 로보틱스 기가팩토리</span>
+    </div>
+    <div id="promptProgressRow" style="display: none; margin-top: 8px;">
+      <div style="display: flex; justify-content: space-between; font-size: 11px; color: #38bdf8; margin-bottom: 4px;">
+        <span id="promptStatusText">World Labs Marble 1.1 공간 생성 중...</span>
+        <span id="promptTimerText">⏱ 0s</span>
+      </div>
+      <div style="width: 100%; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden;">
+        <div id="promptProgressBar" style="width: 25%; height: 100%; background: linear-gradient(90deg, #38bdf8, #6366f1); transition: width 0.3s;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Autopilot Glass Badge (Image 4 Match) -->
+  <div class="hologram-autopilot-badge">
+    <div class="autopilot-title">
+      <span style="display:inline-block; width:8px; height:8px; background:#10b981; border-radius:50%; box-shadow:0 0 8px #10b981;"></span>
+      Autopilot / Self-Driving
+    </div>
+    <div class="autopilot-status">Activated</div>
+    <div class="autopilot-sub">The car is protected. Dynamic Collision Active.</div>
+  </div>
+
+  <!-- Left Bottom: Interactive Physics Control Dock -->
+  <div class="physics-dock">
+    <div class="dock-title">
+      <span>🚗 RAPIER 3D RIGID BODY PHYSICS</span>
+      <span id="badgeContact" style="font-size: 10px; color: #10b981; border: 1px solid rgba(16,185,129,0.3); padding: 2px 6px; border-radius: 4px;">ON TABLE</span>
+    </div>
+
+    <div class="physics-btn-grid">
+      <button id="btnDropCar" class="phy-btn drop">
+        <span>⬇️ 자동차 상공 낙하 (Drop from Sky [R])</span>
+      </button>
+      <button id="btnPushLeft" class="phy-btn">
+        <span>⬅️ 좌측 밀기 [A]</span>
+      </button>
+      <button id="btnPushRight" class="phy-btn">
+        <span>➡️ 우측 밀기 [D]</span>
+      </button>
+      <button id="btnPushForward" class="phy-btn">
+        <span>⬆️ 전방 가속 [W]</span>
+      </button>
+      <button id="btnPushBack" class="phy-btn">
+        <span>⬇️ 후방 밀기 [S]</span>
+      </button>
+      <button id="btnResetCar" class="phy-btn" style="grid-column: span 2; background: rgba(245, 158, 11, 0.15); border-color: rgba(245, 158, 11, 0.4); color: #f59e0b;">
+        <span>🔄 원위치 정렬 (Reset Position [Space])</span>
+      </button>
+    </div>
+
+    <div class="slider-row">
+      <div class="slider-label">
+        <span>중력 가속도 (Gravity)</span>
+        <span id="lblGravity">9.8 m/s² (지구)</span>
+      </div>
+      <input type="range" id="sliderGravity" class="slider-input" min="0" max="25" step="0.5" value="9.8">
+    </div>
+
+    <div class="slider-row" style="margin-top: 6px;">
+      <div class="slider-label">
+        <span>충격 반발력 (Restitution / Bounce)</span>
+        <span id="lblBounce">0.35</span>
+      </div>
+      <input type="range" id="sliderBounce" class="slider-input" min="0" max="1" step="0.05" value="0.35">
+    </div>
+
+    <div style="font-size: 10px; color: #64748b; margin-top: 10px; line-height: 1.4;">
+      💡 Tip: 마우스로 자동차를 직접 클릭 & 드래그하여 공중에 던질 수 있습니다.
+    </div>
+  </div>
+
+  <!-- Right Bottom: Telemetry & Perspective Controls -->
+  <div class="telemetry-dock">
+    <div style="font-size: 11px; font-weight: 700; color: #fff; margin-bottom: 8px; letter-spacing: 0.05em;">
+      📊 VEHICLE TELEMETRY & VIEW
+    </div>
+
+    <div class="telemetry-row">
+      <span class="telemetry-label">VELOCITY</span>
+      <span class="telemetry-val" id="valVelocity">0.0 km/h</span>
+    </div>
+    <div class="telemetry-row">
+      <span class="telemetry-label">ALTITUDE (Y)</span>
+      <span class="telemetry-val" id="valAltitude">0.42 m</span>
+    </div>
+    <div class="telemetry-row">
+      <span class="telemetry-label">G-FORCE</span>
+      <span class="telemetry-val" id="valGForce">1.00 G</span>
+    </div>
+    <div class="telemetry-row">
+      <span class="telemetry-label">BATTERY PACK</span>
+      <span class="telemetry-val" style="color:#10b981;">98% (420V)</span>
+    </div>
+    <div class="telemetry-row">
+      <span class="telemetry-label">RENDER LATENCY</span>
+      <span class="telemetry-val" id="valLatency">16.4 ms (60 FPS)</span>
+    </div>
+
+    <div class="cam-presets">
+      <button class="cam-btn active" id="btnCamPerspective">원근감 뷰</button>
+      <button class="cam-btn" id="btnCamTop">탑다운</button>
+      <button class="cam-btn" id="btnCamSide">측면 섀시</button>
+      <button class="cam-btn" id="btnCamReset">자유 시점</button>
+    </div>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div id="loadingOverlay">
+    <div class="spinner"></div>
+    <div style="font-size: 14px; font-weight: 700; color: #38bdf8; letter-spacing: 0.05em;">
+      INITIALIZING AUTOMOTIVE 3D PHYSICS & MARBLE SPATIAL RUNTIME...
+    </div>
+    <div id="loadingSubtext" style="font-size: 12px; color: #64748b; margin-top: 6px;">
+      Loading Three.js, Rapier 3D WASM & 3D Gaussian Splats...
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toastMsg"></div>
+
+  <!-- ================================================================= -->
+  <!-- 3D CAR PHYSICS & WORLD LABS GAUSSIAN SPLATTING RUNTIME SCRIPT     -->
+  <!-- ================================================================= -->
+  <script type="module">
+    import * as THREE from "three";
+    import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+    import { SparkRenderer, SplatMesh } from "@sparkjsdev/spark";
+    import RAPIER from "@dimforge/rapier3d-compat";
+
+    console.log("[Car Physics Studio] Initializing Three.js & Rapier WASM Engine...");
+
+    const viewport = document.getElementById("viewport3D");
+    const loadingOverlay = document.getElementById("loadingOverlay");
+    const loadingSubtext = document.getElementById("loadingSubtext");
+    const toast = document.getElementById("toastMsg");
+
+    function showToast(msg, duration = 3000) {
+      if (!toast) return;
+      toast.textContent = msg;
+      toast.style.display = "block";
+      clearTimeout(toast._timer);
+      toast._timer = setTimeout(() => {
+        toast.style.display = "none";
+      }, duration);
+    }
+
+    // Audio Synthesizer for Interactive Physics Feedback
+    let audioCtx = null;
+    function playSound(type) {
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === "suspended") audioCtx.resume();
+
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        const now = audioCtx.currentTime;
+        if (type === "drop") {
+          osc.type = "sine";
+          osc.frequency.setValueAtTime(320, now);
+          osc.frequency.exponentialRampToValueAtTime(110, now + 0.18);
+          gain.gain.setValueAtTime(0.35, now);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.18);
+          osc.start(now);
+          osc.stop(now + 0.18);
+        } else if (type === "push") {
+          osc.type = "triangle";
+          osc.frequency.setValueAtTime(180, now);
+          osc.frequency.exponentialRampToValueAtTime(480, now + 0.12);
+          gain.gain.setValueAtTime(0.28, now);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.12);
+          osc.start(now);
+          osc.stop(now + 0.12);
+        } else if (type === "impact") {
+          osc.type = "sine";
+          osc.frequency.setValueAtTime(140, now);
+          osc.frequency.exponentialRampToValueAtTime(40, now + 0.22);
+          gain.gain.setValueAtTime(0.45, now);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.22);
+          osc.start(now);
+          osc.stop(now + 0.22);
+        }
+      } catch (e) {
+        // AudioContext ignored if blocked by policy
+      }
+    }
+
+    // Three.js Scene & Perspective Camera Setup (Matching Image 4)
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color("#07090e");
+    scene.fog = new THREE.FogExp2("#07090e", 0.015);
+
+    // Initial Camera in Perspective Angle matching Image 4
+    const camera = new THREE.PerspectiveCamera(46, viewport.clientWidth / viewport.clientHeight, 0.1, 500);
+    // Camera placed slightly to the front-right elevated looking down toward the table
+    const targetPos = new THREE.Vector3(0, 0.45, 0);
+    camera.position.set(3.4, 2.6, 4.8);
+    camera.lookAt(targetPos);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "high-performance" });
+    renderer.setSize(viewport.clientWidth, viewport.clientHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure = 1.2;
+    renderer.shadowMap.enabled = true;
+    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    viewport.appendChild(renderer.domElement);
+
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.06;
+    controls.target.copy(targetPos);
+    controls.maxPolarAngle = Math.PI / 2 + 0.05; // Don't go below floor
+    controls.minDistance = 1.2;
+    controls.maxDistance = 25.0;
+
+    // Ambient and Studio Lighting
+    const ambientLight = new THREE.AmbientLight("#8ab4f8", 1.2);
+    scene.add(ambientLight);
+
+    const mainSpot = new THREE.SpotLight("#ffffff", 4.5);
+    mainSpot.position.set(2, 6, 3);
+    mainSpot.angle = Math.PI / 4;
+    mainSpot.penumbra = 0.6;
+    mainSpot.castShadow = true;
+    mainSpot.shadow.mapSize.width = 1024;
+    mainSpot.shadow.mapSize.height = 1024;
+    scene.add(mainSpot);
+
+    const cyanFillLight = new THREE.PointLight("#38bdf8", 3.0, 15);
+    cyanFillLight.position.set(-3, 3, -1);
+    scene.add(cyanFillLight);
+
+    const blueBackLight = new THREE.PointLight("#6366f1", 2.5, 15);
+    blueBackLight.position.set(3, 1.5, -3);
+    scene.add(blueBackLight);
+
+    // -------------------------------------------------------------
+    // Spark Gaussian Splatting Background Integration
+    // -------------------------------------------------------------
+    let sparkRenderer = null;
+    let splatMesh = null;
+    const defaultSpzUrl = "assets/p3/marble/car_studio_500k.spz";
+    const fallbackSpzUrl = "assets/p3/marble/run01_500k.spz";
+
+    try {
+      sparkRenderer = new SparkRenderer({ renderer });
+      scene.add(sparkRenderer);
+    } catch (err) {
+      console.warn("[Spark] SparkRenderer init warning:", err);
+    }
+
+    async function loadSplatWorld(spzUrl) {
+      if (splatMesh) {
+        scene.remove(splatMesh);
+        splatMesh.dispose?.();
+        splatMesh = null;
+      }
+      try {
+        console.log("[Spark] Loading SPZ Splat World:", spzUrl);
+        splatMesh = new SplatMesh({ url: spzUrl });
+        // Set scale & position for automotive studio environment based on World Labs semantics
+        if (spzUrl.includes("car_studio")) {
+          const scale = 2.3578;
+          splatMesh.scale.set(scale, scale, scale);
+          splatMesh.position.set(0, -1.7149, 0);
+        } else {
+          splatMesh.scale.set(1.0, 1.0, 1.0);
+          splatMesh.position.set(0, -0.15, 0);
+        }
+        scene.add(splatMesh);
+        showToast("World Labs 3D 공간 로드 완료!");
+      } catch (err) {
+        console.warn("[Spark] Failed to load SPZ from " + spzUrl + ", trying fallback...", err);
+        if (spzUrl !== fallbackSpzUrl) {
+          loadSplatWorld(fallbackSpzUrl);
+        }
+      }
+    }
+
+    // -------------------------------------------------------------
+    // Build Interactive Glass Workbench Table (Matching Image 4)
+    // -------------------------------------------------------------
+    const tableGroup = new THREE.Group();
+    const tableWidth = 4.2;
+    const tableDepth = 2.4;
+    const tableHeight = 0.85;
+    const tableThickness = 0.08;
+
+    // Glass Tabletop
+    const glassGeo = new THREE.BoxGeometry(tableWidth, tableThickness, tableDepth);
+    const glassMat = new THREE.MeshPhysicalMaterial({
+      color: new THREE.Color("#13233a"),
+      metalness: 0.1,
+      roughness: 0.1,
+      transmission: 0.85,
+      transparent: true,
+      opacity: 0.85,
+      ior: 1.52,
+      reflectivity: 0.8,
+      clearcoat: 1.0,
+      clearcoatRoughness: 0.05
+    });
+    const glassTabletop = new THREE.Mesh(glassGeo, glassMat);
+    glassTabletop.position.set(0, tableHeight, 0);
+    glassTabletop.receiveShadow = true;
+    tableGroup.add(glassTabletop);
+
+    // Glowing Cyan Bevel Border around Tabletop
+    const edgeGeo = new THREE.BoxGeometry(tableWidth + 0.04, 0.02, tableDepth + 0.04);
+    const edgeMat = new THREE.MeshBasicMaterial({ color: "#38bdf8", wireframe: true });
+    const edgeMesh = new THREE.Mesh(edgeGeo, edgeMat);
+    edgeMesh.position.set(0, tableHeight, 0);
+    tableGroup.add(edgeMesh);
+
+    // Front Glass Control Panel ("STARTER", "CONTROL 02 PROTOCOL" in Image 4)
+    const frontPanelGeo = new THREE.PlaneGeometry(tableWidth * 0.7, 0.35);
+    const frontCanvas = document.createElement("canvas");
+    frontCanvas.width = 1024;
+    frontCanvas.height = 256;
+    const fctx = frontCanvas.getContext("2d");
+    fctx.fillStyle = "rgba(10, 20, 36, 0.85)";
+    fctx.fillRect(0, 0, 1024, 256);
+    fctx.strokeStyle = "#38bdf8";
+    fctx.lineWidth = 4;
+    fctx.strokeRect(10, 10, 1004, 236);
+    fctx.fillStyle = "#38bdf8";
+    fctx.font = "bold 26px JetBrains Mono, monospace";
+    fctx.fillText("STARTER // READY", 40, 60);
+    fctx.font = "20px JetBrains Mono, monospace";
+    fctx.fillStyle = "#94a3b8";
+    fctx.fillText("CONTROL 02 PROTOCOL : ONLINE", 40, 110);
+    fctx.fillText("TELEMETRY : BUS 100Hz WASM RAPIER ACTIVE", 40, 150);
+    fctx.fillText("WORLD LABS MARBLE 1.1 SPATIAL TWIN", 40, 190);
+    fctx.fillStyle = "#10b981";
+    fctx.fillRect(820, 40, 150, 40);
+    fctx.fillStyle = "#000";
+    fctx.font = "bold 20px sans-serif";
+    fctx.fillText("ACTIVE OK", 845, 67);
+
+    const frontTex = new THREE.CanvasTexture(frontCanvas);
+    const frontPanelMat = new THREE.MeshBasicMaterial({ map: frontTex, transparent: true, opacity: 0.95 });
+    const frontPanel = new THREE.Mesh(frontPanelGeo, frontPanelMat);
+    frontPanel.position.set(0, tableHeight - 0.22, tableDepth / 2 + 0.01);
+    tableGroup.add(frontPanel);
+
+    // Futuristic Workbench Pedestal / Legs
+    const legMat = new THREE.MeshStandardMaterial({ color: "#1e293b", metalness: 0.8, roughness: 0.2 });
+    const baseMat = new THREE.MeshStandardMaterial({ color: "#0f172a", metalness: 0.9, roughness: 0.3 });
+
+    const legOffsets = [
+      [-tableWidth / 2 + 0.25, -tableDepth / 2 + 0.25],
+      [tableWidth / 2 - 0.25, -tableDepth / 2 + 0.25],
+      [-tableWidth / 2 + 0.25, tableDepth / 2 - 0.25],
+      [tableWidth / 2 - 0.25, tableDepth / 2 - 0.25]
+    ];
+    legOffsets.forEach(([lx, lz]) => {
+      const legGeo = new THREE.CylinderGeometry(0.06, 0.08, tableHeight, 16);
+      const leg = new THREE.Mesh(legGeo, legMat);
+      leg.position.set(lx, tableHeight / 2, lz);
+      leg.castShadow = true;
+      tableGroup.add(leg);
+
+      const footGeo = new THREE.CylinderGeometry(0.12, 0.14, 0.04, 16);
+      const foot = new THREE.Mesh(footGeo, baseMat);
+      foot.position.set(lx, 0.02, lz);
+      tableGroup.add(foot);
+    });
+
+    // Floor Wireframe / Parquet Base below table
+    const floorGeo = new THREE.PlaneGeometry(16, 16, 32, 32);
+    const floorMat = new THREE.MeshStandardMaterial({
+      color: "#0a0f18",
+      metalness: 0.4,
+      roughness: 0.6,
+      wireframe: false
+    });
+    const floorMesh = new THREE.Mesh(floorGeo, floorMat);
+    floorMesh.rotation.x = -Math.PI / 2;
+    floorMesh.position.y = 0;
+    floorMesh.receiveShadow = true;
+    tableGroup.add(floorMesh);
+
+    const gridHelper = new THREE.GridHelper(16, 32, "#38bdf8", "rgba(56,189,248,0.12)");
+    gridHelper.position.y = 0.005;
+    tableGroup.add(gridHelper);
+
+    // Concentric Holographic Radar / Scanner Rings (Image 4 Match)
+    const ringGroup = new THREE.Group();
+    ringGroup.position.set(0, tableHeight + 0.042, 0);
+
+    const createRadarRing = (radius, color, width = 0.015) => {
+      const ringGeo = new THREE.RingGeometry(radius - width, radius, 64);
+      const ringMat = new THREE.MeshBasicMaterial({
+        color: color,
+        side: THREE.DoubleSide,
+        transparent: true,
+        opacity: 0.7
+      });
+      const mesh = new THREE.Mesh(ringGeo, ringMat);
+      mesh.rotation.x = -Math.PI / 2;
+      return mesh;
+    };
+
+    const ring1 = createRadarRing(0.85, "#38bdf8", 0.02);
+    const ring2 = createRadarRing(1.35, "#0ea5e9", 0.015);
+    const ring3 = createRadarRing(1.75, "rgba(56, 189, 248, 0.4)", 0.01);
+    ringGroup.add(ring1, ring2, ring3);
+
+    // Glowing Hologram Scanner Arc
+    const arcGeo = new THREE.RingGeometry(0.7, 1.4, 32, 1, 0, Math.PI / 3);
+    const arcMat = new THREE.MeshBasicMaterial({
+      color: "#38bdf8",
+      side: THREE.DoubleSide,
+      transparent: true,
+      opacity: 0.35
+    });
+    const scannerArc = new THREE.Mesh(arcGeo, arcMat);
+    scannerArc.rotation.x = -Math.PI / 2;
+    ringGroup.add(scannerArc);
+
+    tableGroup.add(ringGroup);
+    scene.add(tableGroup);
+
+    // -------------------------------------------------------------
+    // High-Fidelity 3D EV Car Model Construction (Images 1 & 4 Match)
+    // -------------------------------------------------------------
+    const carVisualGroup = new THREE.Group();
+    const carDim = { width: 1.0, height: 0.55, length: 2.1 };
+
+    // 1. Chassis Frame (Carbon Fiber / Dark Metallic)
+    const chassisGeo = new THREE.BoxGeometry(carDim.width, 0.12, carDim.length);
+    const chassisMat = new THREE.MeshStandardMaterial({
+      color: "#1e2430",
+      metalness: 0.85,
+      roughness: 0.25
+    });
+    const chassis = new THREE.Mesh(chassisGeo, chassisMat);
+    chassis.position.y = 0.14;
+    chassis.castShadow = true;
+    carVisualGroup.add(chassis);
+
+    // 2. Center Battery Pack with Neon Green Glowing Cells ("BATTERY" in Image 1 & 4)
+    const batteryGeo = new THREE.BoxGeometry(carDim.width * 0.82, 0.10, carDim.length * 0.72);
+    const batteryMat = new THREE.MeshStandardMaterial({
+      color: "#08331a",
+      emissive: new THREE.Color("#10b981"),
+      emissiveIntensity: 0.7,
+      metalness: 0.3,
+      roughness: 0.2
+    });
+    const batteryMesh = new THREE.Mesh(batteryGeo, batteryMat);
+    batteryMesh.position.y = 0.13;
+    carVisualGroup.add(batteryMesh);
+
+    // Battery Pack Neon Ribs
+    for (let i = -4; i <= 4; i++) {
+      const ribGeo = new THREE.BoxGeometry(carDim.width * 0.84, 0.04, 0.06);
+      const ribMat = new THREE.MeshBasicMaterial({ color: "#34d399" });
+      const rib = new THREE.Mesh(ribGeo, ribMat);
+      rib.position.set(0, 0.19, (i * carDim.length * 0.72) / 10);
+      carVisualGroup.add(rib);
+    }
+
+    // 3. Aerodynamic Translucent Glass Canopy Shell (Translucent White / Cyan Glass in Image 4)
+    const canopyGeo = new THREE.BoxGeometry(carDim.width * 0.94, 0.36, carDim.length * 0.88);
+    const canopyMat = new THREE.MeshPhysicalMaterial({
+      color: new THREE.Color("#dbeafe"),
+      metalness: 0.1,
+      roughness: 0.08,
+      transmission: 0.78,
+      transparent: true,
+      opacity: 0.65,
+      ior: 1.45,
+      clearcoat: 1.0,
+      clearcoatRoughness: 0.05
+    });
+    const canopy = new THREE.Mesh(canopyGeo, canopyMat);
+    canopy.position.set(0, 0.36, -0.05);
+    canopy.castShadow = true;
+    carVisualGroup.add(canopy);
+
+    // 4. Glowing Blue Headlights & Rear Tail LEDs
+    const lightMat = new THREE.MeshBasicMaterial({ color: "#38bdf8" });
+    const tailMat = new THREE.MeshBasicMaterial({ color: "#ef4444" });
+
+    const hlLeft = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.04, 0.04), lightMat);
+    hlLeft.position.set(-0.35, 0.22, carDim.length / 2 + 0.01);
+    const hlRight = new THREE.Mesh(new THREE.BoxGeometry(0.2, 0.04, 0.04), lightMat);
+    hlRight.position.set(0.35, 0.22, carDim.length / 2 + 0.01);
+    carVisualGroup.add(hlLeft, hlRight);
+
+    const tailBar = new THREE.Mesh(new THREE.BoxGeometry(carDim.width * 0.8, 0.03, 0.04), tailMat);
+    tailBar.position.set(0, 0.25, -carDim.length / 2 - 0.01);
+    carVisualGroup.add(tailBar);
+
+    // 5. 4 Wheels & Tires
+    const wheelRadius = 0.18;
+    const wheelWidth = 0.12;
+    const tireMat = new THREE.MeshStandardMaterial({ color: "#111827", roughness: 0.85, metalness: 0.1 });
+    const rimMat = new THREE.MeshStandardMaterial({ color: "#cbd5e1", roughness: 0.2, metalness: 0.85 });
+    const caliperMat = new THREE.MeshBasicMaterial({ color: "#38bdf8" });
+
+    const wheelPositions = [
+      [-carDim.width / 2 - 0.02, wheelRadius, carDim.length * 0.32],
+      [carDim.width / 2 + 0.02, wheelRadius, carDim.length * 0.32],
+      [-carDim.width / 2 - 0.02, wheelRadius, -carDim.length * 0.32],
+      [carDim.width / 2 + 0.02, wheelRadius, -carDim.length * 0.32]
+    ];
+
+    const wheelMeshes = [];
+    wheelPositions.forEach(([wx, wy, wz], idx) => {
+      const wGroup = new THREE.Group();
+      wGroup.position.set(wx, wy, wz);
+
+      const tireGeo = new THREE.CylinderGeometry(wheelRadius, wheelRadius, wheelWidth, 24);
+      const tire = new THREE.Mesh(tireGeo, tireMat);
+      tire.rotation.z = Math.PI / 2;
+      tire.castShadow = true;
+      wGroup.add(tire);
+
+      const rimGeo = new THREE.CylinderGeometry(wheelRadius * 0.65, wheelRadius * 0.65, wheelWidth + 0.005, 16);
+      const rim = new THREE.Mesh(rimGeo, rimMat);
+      rim.rotation.z = Math.PI / 2;
+      wGroup.add(rim);
+
+      const caliperGeo = new THREE.BoxGeometry(0.04, 0.08, 0.05);
+      const caliper = new THREE.Mesh(caliperGeo, caliperMat);
+      caliper.position.set(wx > 0 ? -0.04 : 0.04, 0.06, 0);
+      wGroup.add(caliper);
+
+      carVisualGroup.add(wGroup);
+      wheelMeshes.push(wGroup);
+    });
+
+    const initialTableY = tableHeight + tableThickness / 2;
+    const initialCarY = initialTableY + 0.02; // resting on table
+    carVisualGroup.position.set(0, initialCarY, 0);
+    scene.add(carVisualGroup);
+
+    // Render first frame immediately
+    renderer.render(scene, camera);
+
+    // -------------------------------------------------------------
+    // Rapier 3D WASM Physics Setup
+    // -------------------------------------------------------------
+    let physicsWorld = null;
+    let carRigidBody = null;
+    let tableCollider = null;
+    let floorCollider = null;
+
+    async function initRapierPhysics() {
+      await RAPIER.init();
+      console.log("[Rapier 3D] WASM loaded successfully!");
+
+      const gravityVal = { x: 0.0, y: -9.81, z: 0.0 };
+      physicsWorld = new RAPIER.World(gravityVal);
+
+      // 1. Static Table Collider (Rigid surface for car to rest/slide/bounce on)
+      const tableBodyDesc = RAPIER.RigidBodyDesc.fixed().setTranslation(0, initialTableY, 0);
+      const tableBody = physicsWorld.createRigidBody(tableBodyDesc);
+      const tableColliderDesc = RAPIER.ColliderDesc.cuboid(tableWidth / 2, tableThickness / 2, tableDepth / 2)
+        .setFriction(0.6)
+        .setRestitution(0.35);
+      tableCollider = physicsWorld.createCollider(tableColliderDesc, tableBody);
+
+      // 2. Static Room Floor Collider (At y = 0)
+      const floorBodyDesc = RAPIER.RigidBodyDesc.fixed().setTranslation(0, 0, 0);
+      const floorBody = physicsWorld.createRigidBody(floorBodyDesc);
+      const floorColliderDesc = RAPIER.ColliderDesc.cuboid(8.0, 0.05, 8.0)
+        .setFriction(0.8)
+        .setRestitution(0.2);
+      floorCollider = physicsWorld.createCollider(floorColliderDesc, floorBody);
+
+      // 3. Dynamic Car Rigid Body
+      createCarPhysicsBody(0, initialCarY, 0);
+
+      // Dismiss loading overlay
+      loadingOverlay.style.opacity = "0";
+      setTimeout(() => { loadingOverlay.style.display = "none"; }, 500);
+
+      // Load World Labs Gaussian Splatting Background
+      loadSplatWorld(defaultSpzUrl);
+    }
+
+    function createCarPhysicsBody(x, y, z) {
+      if (carRigidBody && physicsWorld) {
+        physicsWorld.removeRigidBody(carRigidBody);
+        carRigidBody = null;
+      }
+
+      const bodyDesc = RAPIER.RigidBodyDesc.dynamic()
+        .setTranslation(x, y, z)
+        .setLinearDamping(0.35)
+        .setAngularDamping(0.55)
+        .setCcdEnabled(true);
+      carRigidBody = physicsWorld.createRigidBody(bodyDesc);
+
+      // Collision box for vehicle chassis
+      const colliderDesc = RAPIER.ColliderDesc.cuboid(carDim.width / 2, carDim.height / 2, carDim.length / 2)
+        .setMass(12.0)
+        .setFriction(0.55)
+        .setRestitution(parseFloat(document.getElementById("sliderBounce").value) || 0.35);
+      physicsWorld.createCollider(colliderDesc, carRigidBody);
+    }
+
+    // -------------------------------------------------------------
+    // Physics Interactive Commands
+    // -------------------------------------------------------------
+    function dropCarFromSky() {
+      if (!carRigidBody) return;
+      playSound("drop");
+      // Teleport to 3.2 meters above the table with random slight tilt
+      carRigidBody.setTranslation({ x: 0, y: tableHeight + 2.8, z: 0 }, true);
+      carRigidBody.setLinvel({ x: 0, y: -1.5, z: 0 }, true);
+      carRigidBody.setAngvel({ x: (Math.random() - 0.5) * 1.5, y: 0, z: (Math.random() - 0.5) * 1.5 }, true);
+      showToast("⬇️ 자동차 상공 낙하 시작 (Gravity Fall)");
+    }
+
+    function pushCarLateral(direction) {
+      if (!carRigidBody) return;
+      playSound("push");
+      const impulseX = direction === "left" ? -45.0 : 45.0;
+      carRigidBody.applyImpulse({ x: impulseX, y: 8.0, z: 0 }, true);
+      carRigidBody.applyTorqueImpulse({ x: 0, y: 0, z: direction === "left" ? 12.0 : -12.0 }, true);
+      showToast(direction === "left" ? "⬅️ 좌측 밀쳐내기 충격 가속" : "➡️ 우측 밀쳐내기 충격 가속");
+    }
+
+    function pushCarLongitudinal(direction) {
+      if (!carRigidBody) return;
+      playSound("push");
+      const impulseZ = direction === "forward" ? 45.0 : -45.0;
+      carRigidBody.applyImpulse({ x: 0, y: 6.0, z: impulseZ }, true);
+      carRigidBody.applyTorqueImpulse({ x: direction === "forward" ? 8.0 : -8.0, y: 0, z: 0 }, true);
+      showToast(direction === "forward" ? "⬆️ 전방 가속 추진" : "⬇️ 후방 밀어내기");
+    }
+
+    function resetCarPosition() {
+      if (!carRigidBody) return;
+      playSound("push");
+      carRigidBody.setTranslation({ x: 0, y: initialCarY, z: 0 }, true);
+      carRigidBody.setRotation({ x: 0, y: 0, z: 0, w: 1 }, true);
+      carRigidBody.setLinvel({ x: 0, y: 0, z: 0 }, true);
+      carRigidBody.setAngvel({ x: 0, y: 0, z: 0 }, true);
+      showToast("🔄 자동차 원위치 및 자세 초기화 완료");
+    }
+
+    // Button Bindings
+    document.getElementById("btnDropCar").addEventListener("click", dropCarFromSky);
+    document.getElementById("btnPushLeft").addEventListener("click", () => pushCarLateral("left"));
+    document.getElementById("btnPushRight").addEventListener("click", () => pushCarLateral("right"));
+    document.getElementById("btnPushForward").addEventListener("click", () => pushCarLongitudinal("forward"));
+    document.getElementById("btnPushBack").addEventListener("click", () => pushCarLongitudinal("back"));
+    document.getElementById("btnResetCar").addEventListener("click", resetCarPosition);
+
+    // Keyboard Shortcuts
+    window.addEventListener("keydown", (e) => {
+      if (document.activeElement?.tagName === "INPUT") return;
+      switch (e.key.toLowerCase()) {
+        case "r": dropCarFromSky(); break;
+        case "a": pushCarLateral("left"); break;
+        case "d": pushCarLateral("right"); break;
+        case "w": pushCarLongitudinal("forward"); break;
+        case "s": pushCarLongitudinal("back"); break;
+        case " ": e.preventDefault(); resetCarPosition(); break;
+      }
+    });
+
+    // Gravity Slider
+    const sliderGravity = document.getElementById("sliderGravity");
+    const lblGravity = document.getElementById("lblGravity");
+    sliderGravity.addEventListener("input", (e) => {
+      const g = parseFloat(e.target.value);
+      if (physicsWorld) {
+        physicsWorld.gravity = { x: 0, y: -g, z: 0 };
+      }
+      let desc = "커스텀";
+      if (g === 0) desc = "무중력 (Zero-G)";
+      else if (Math.abs(g - 9.8) < 0.5) desc = "지구 (Earth 1.0G)";
+      else if (Math.abs(g - 3.7) < 0.5) desc = "화성 (Mars 0.38G)";
+      else if (g > 18) desc = "초중력 (Heavy-G)";
+      lblGravity.textContent = `${g.toFixed(1)} m/s² (${desc})`;
+    });
+
+    // Restitution (Bounce) Slider
+    const sliderBounce = document.getElementById("sliderBounce");
+    const lblBounce = document.getElementById("lblBounce");
+    sliderBounce.addEventListener("input", (e) => {
+      const b = parseFloat(e.target.value);
+      lblBounce.textContent = b.toFixed(2);
+      if (carRigidBody) {
+        // Re-create collider with new restitution
+        const p = carRigidBody.translation();
+        createCarPhysicsBody(p.x, p.y, p.z);
+      }
+    });
+
+    // Camera Perspective Presets
+    document.getElementById("btnCamPerspective").addEventListener("click", () => {
+      camera.position.set(3.4, 2.6, 4.8);
+      controls.target.set(0, 0.45, 0);
+      setActiveCamBtn("btnCamPerspective");
+      showToast("🎥 원근감 뷰 (Perspective Image 4)");
+    });
+    document.getElementById("btnCamTop").addEventListener("click", () => {
+      camera.position.set(0, 5.8, 0.1);
+      controls.target.set(0, 0.8, 0);
+      setActiveCamBtn("btnCamTop");
+      showToast("🔍 탑다운 R&D 뷰");
+    });
+    document.getElementById("btnCamSide").addEventListener("click", () => {
+      camera.position.set(4.5, 1.2, 0);
+      controls.target.set(0, 0.8, 0);
+      setActiveCamBtn("btnCamSide");
+      showToast("🚘 측면 섀시 뷰");
+    });
+    document.getElementById("btnCamReset").addEventListener("click", () => {
+      camera.position.set(3.4, 2.6, 4.8);
+      controls.target.set(0, 0.45, 0);
+      setActiveCamBtn("btnCamReset");
+      showToast("🌐 자유 궤도 카메라");
+    });
+
+    function setActiveCamBtn(activeId) {
+      document.querySelectorAll(".cam-btn").forEach(btn => btn.classList.remove("active"));
+      document.getElementById(activeId)?.classList.add("active");
+    }
+
+    // Fullscreen Toggle
+    document.getElementById("btnFullscreen").addEventListener("click", () => {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    });
+
+    // -------------------------------------------------------------
+    // Mouse Raycast Drag & Toss Interaction
+    // -------------------------------------------------------------
+    const raycaster = new THREE.Raycaster();
+    const mouse = new THREE.Vector2();
+    let isDragging = false;
+    let dragPlane = new THREE.Plane();
+    let dragIntersection = new THREE.Vector3();
+    let lastDragPos = new THREE.Vector3();
+    let dragVelocity = new THREE.Vector3();
+
+    window.addEventListener("pointerdown", (e) => {
+      if (e.target !== renderer.domElement) return;
+      mouse.x = (e.clientX / viewport.clientWidth) * 2 - 1;
+      mouse.y = -((e.clientY - 60) / viewport.clientHeight) * 2 + 1;
+      raycaster.setFromCamera(mouse, camera);
+
+      const intersects = raycaster.intersectObjects(carVisualGroup.children, true);
+      if (intersects.length > 0 && carRigidBody) {
+        isDragging = true;
+        controls.enabled = false;
+        // Plane facing camera through car center
+        const carPos = carVisualGroup.position;
+        dragPlane.setFromNormalAndCoplanarPoint(camera.getWorldDirection(new THREE.Vector3()).negate(), carPos);
+        lastDragPos.copy(carPos);
+        dragVelocity.set(0, 0, 0);
+        showToast("🖐️ 자동차 픽업 (드래그하여 공중에 던져보세요)");
+      }
+    });
+
+    window.addEventListener("pointermove", (e) => {
+      if (!isDragging || !carRigidBody) return;
+      mouse.x = (e.clientX / viewport.clientWidth) * 2 - 1;
+      mouse.y = -((e.clientY - 60) / viewport.clientHeight) * 2 + 1;
+      raycaster.setFromCamera(mouse, camera);
+
+      if (raycaster.ray.intersectPlane(dragPlane, dragIntersection)) {
+        dragVelocity.subVectors(dragIntersection, lastDragPos).multiplyScalar(30.0);
+        lastDragPos.copy(dragIntersection);
+        carRigidBody.setTranslation({ x: dragIntersection.x, y: dragIntersection.y, z: dragIntersection.z }, true);
+        carRigidBody.setLinvel({ x: 0, y: 0, z: 0 }, true);
+      }
+    });
+
+    window.addEventListener("pointerup", () => {
+      if (isDragging && carRigidBody) {
+        isDragging = false;
+        controls.enabled = true;
+        // Apply throw velocity with scale cap
+        dragVelocity.clampLength(0, 20.0);
+        carRigidBody.setLinvel({ x: dragVelocity.x, y: dragVelocity.y, z: dragVelocity.z }, true);
+        playSound("push");
+        showToast("🚀 자동차 투척 완료!");
+      }
+    });
+
+    // -------------------------------------------------------------
+    // World Labs Marble 1.1 Live AI Prompt Studio
+    // -------------------------------------------------------------
+    const inputPrompt = document.getElementById("inputCarWorldPrompt");
+    const btnGenerate = document.getElementById("btnGenerateCarWorld");
+    const btnRestore = document.getElementById("btnRestoreCarWorld");
+    const progressRow = document.getElementById("promptProgressRow");
+    const statusText = document.getElementById("promptStatusText");
+    const timerText = document.getElementById("promptTimerText");
+    const progressBar = document.getElementById("promptProgressBar");
+
+    // Preset Chips
+    document.querySelectorAll(".preset-chip").forEach(chip => {
+      chip.addEventListener("click", () => {
+        inputPrompt.value = chip.getAttribute("data-prompt");
+        generateCarWorld(inputPrompt.value);
+      });
+    });
+
+    btnGenerate.addEventListener("click", () => generateCarWorld(inputPrompt.value));
+    btnRestore.addEventListener("click", () => {
+      loadSplatWorld(defaultSpzUrl);
+      showToast("기본 자동차 랩 공간으로 복원되었습니다.");
+    });
+
+    async function generateCarWorld(prompt) {
+      if (!prompt.trim()) return;
+      progressRow.style.display = "block";
+      statusText.textContent = "World Labs API 요청 전송 중...";
+      progressBar.style.width = "10%";
+
+      const startTime = Date.now();
+      const timerInterval = setInterval(() => {
+        const sec = Math.floor((Date.now() - startTime) / 1000);
+        timerText.textContent = `⏱ ${sec}s`;
+      }, 1000);
+
+      try {
+        const apiKey = "9JrGmNDHVgDV7AYv9NHJN6C74p9qnT0u";
+        const resp = await fetch("https://api.worldlabs.ai/marble/v1/worlds:generate", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "WLT-Api-Key": apiKey
+          },
+          body: JSON.stringify({
+            display_name: "Car-Studio-" + Date.now().toString(36),
+            model: "marble-1.1",
+            world_prompt: {
+              type: "text",
+              text_prompt: prompt
+            }
+          })
+        });
+
+        if (!resp.ok) {
+          const errText = await resp.text();
+          throw new Error(`HTTP ${resp.status}: ${errText}`);
+        }
+
+        const data = await resp.json();
+        const opId = (data.operation_id || data.name || "").replace("operations/", "");
+        console.log("[Marble AI] Operation started:", opId);
+        statusText.textContent = "World Labs 신경망 3D 공간 합성 중...";
+        progressBar.style.width = "35%";
+
+        // Poll Operation until complete
+        const pollInterval = setInterval(async () => {
+          try {
+            const opResp = await fetch(`https://api.worldlabs.ai/marble/v1/operations/${opId}`, {
+              headers: { "WLT-Api-Key": apiKey }
+            });
+            if (!opResp.ok) return;
+            const opData = await opResp.json();
+            console.log("[Marble AI] Polling:", opData.status, opData.done);
+
+            if (opData.done) {
+              clearInterval(pollInterval);
+              clearInterval(timerInterval);
+              progressBar.style.width = "100%";
+              statusText.textContent = "3D 가우시안 스플랫 생성 완료! 렌더링 중...";
+
+              const worldObj = opData.response?.world || opData.response || {};
+              const spzUrls = worldObj.assets?.splats?.spz_urls || worldObj.spz_urls || {};
+              const targetSpz = spzUrls["500k"] || spzUrls["full_res"] || spzUrls["low_res"];
+
+              if (targetSpz) {
+                loadSplatWorld(targetSpz);
+                showToast("✨ 새로운 World Labs 3D 공간이 렌더링되었습니다!");
+              } else {
+                showToast("생성 완료되었으나 SPZ URL을 찾을 수 없습니다.");
+              }
+              setTimeout(() => { progressRow.style.display = "none"; }, 4000);
+            } else {
+              const currentW = parseInt(progressBar.style.width) || 35;
+              if (currentW < 88) progressBar.style.width = `${currentW + 5}%`;
+            }
+          } catch (pollErr) {
+            console.warn("Polling warning:", pollErr);
+          }
+        }, 3000);
+
+      } catch (err) {
+        clearInterval(timerInterval);
+        console.error("Marble generation failed:", err);
+        statusText.textContent = "생성 오류: " + err.message;
+        progressBar.style.background = "#ef4444";
+        showToast("World Labs API 호출 오류 발생");
+      }
+    }
+
+    // -------------------------------------------------------------
+    // Main Render & Simulation Loop
+    // -------------------------------------------------------------
+    const valVelocity = document.getElementById("valVelocity");
+    const valAltitude = document.getElementById("valAltitude");
+    const valGForce = document.getElementById("valGForce");
+    const badgeContact = document.getElementById("badgeContact");
+    const valLatency = document.getElementById("valLatency");
+
+    let lastFrameTime = performance.now();
+    let frameCount = 0;
+    let fpsTimer = performance.now();
+
+    function animate() {
+      requestAnimationFrame(animate);
+
+      const now = performance.now();
+      const delta = Math.min((now - lastFrameTime) / 1000, 0.1);
+      lastFrameTime = now;
+
+      // 1. Step Rapier Physics World
+      if (physicsWorld) {
+        physicsWorld.step();
+      }
+
+      // 2. Synchronize Three.js Car Model with Rapier Rigid Body
+      if (carRigidBody && !isDragging) {
+        const pos = carRigidBody.translation();
+        const rot = carRigidBody.rotation();
+        const vel = carRigidBody.linvel();
+
+        carVisualGroup.position.set(pos.x, pos.y, pos.z);
+        carVisualGroup.quaternion.set(rot.x, rot.y, rot.z, rot.w);
+
+        // Telemetry calculation
+        const speedKmh = Math.sqrt(vel.x * vel.x + vel.y * vel.y + vel.z * vel.z) * 3.6;
+        valVelocity.textContent = `${speedKmh.toFixed(1)} km/h`;
+        valAltitude.textContent = `${pos.y.toFixed(2)} m`;
+
+        // Check if car is resting on the workbench table
+        const onTable = Math.abs(pos.y - initialCarY) < 0.12 && Math.abs(pos.x) < tableWidth / 2 && Math.abs(pos.z) < tableDepth / 2;
+        if (onTable) {
+          badgeContact.textContent = "ON TABLE";
+          badgeContact.style.color = "#10b981";
+          badgeContact.style.borderColor = "rgba(16,185,129,0.3)";
+        } else if (pos.y < initialTableY) {
+          badgeContact.textContent = "ON FLOOR";
+          badgeContact.style.color = "#f59e0b";
+          badgeContact.style.borderColor = "rgba(245,158,11,0.3)";
+        } else {
+          badgeContact.textContent = "IN AIR (FALLING)";
+          badgeContact.style.color = "#38bdf8";
+          badgeContact.style.borderColor = "rgba(56,189,248,0.3)";
+        }
+      }
+
+      // 3. Animate Hologram Radar Rings & Scanning Arc
+      if (ringGroup) {
+        ringGroup.rotation.y += 0.008;
+      }
+      if (scannerArc) {
+        scannerArc.rotation.z += 0.025;
+      }
+
+      // 4. Controls & Renderer
+      controls.update();
+      renderer.render(scene, camera);
+
+      // FPS & Latency Counter
+      frameCount++;
+      if (now - fpsTimer >= 1000) {
+        const fps = Math.round((frameCount * 1000) / (now - fpsTimer));
+        valLatency.textContent = `${(1000 / Math.max(fps, 1)).toFixed(1)} ms (${fps} FPS)`;
+        frameCount = 0;
+        fpsTimer = now;
+      }
+    }
+
+    // Window Resize Handler
+    window.addEventListener("resize", () => {
+      camera.aspect = viewport.clientWidth / viewport.clientHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(viewport.clientWidth, viewport.clientHeight);
+    });
+
+    // Start Animation Loop Immediately
+    animate();
+
+    // Initialize Rapier 3D WASM in background
+    initRapierPhysics().catch((err) => {
+      console.warn("[Rapier] Init warning:", err);
+    });
+  </script>
+</body>
+</html>
