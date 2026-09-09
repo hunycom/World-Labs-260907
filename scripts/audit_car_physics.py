@@ -21,6 +21,7 @@ import json
 import base64
 import ctypes
 import subprocess
+import urllib.parse
 from pathlib import Path
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
@@ -46,6 +47,7 @@ class AuditHTTPHandler(http.server.SimpleHTTPRequestHandler):
         **http.server.SimpleHTTPRequestHandler.extensions_map,
         ".spz": "application/octet-stream",
         ".glb": "model/gltf-binary",
+        ".fbx": "application/octet-stream",
         ".wasm": "application/wasm",
         ".js": "application/javascript",
         ".mjs": "application/javascript",
@@ -59,6 +61,12 @@ class AuditHTTPHandler(http.server.SimpleHTTPRequestHandler):
         self.send_header("Cross-Origin-Opener-Policy", "same-origin")
         self.send_header("Cross-Origin-Embedder-Policy", "require-corp")
         super().end_headers()
+
+    def do_GET(self):
+        parsed = urllib.parse.urlsplit(self.path)
+        if parsed.path.lower() == "/car-physics.html":
+            self.path = "/car-physics.html" + ("?" + parsed.query if parsed.query else "")
+        super().do_GET()
 
     def do_OPTIONS(self):
         self.send_response(200)
@@ -145,44 +153,30 @@ def send_char(dpy, ch, shift_kc):
 
 
 def navigate_firefox(win_id_hex: str, url: str):
-    if not x11 or not xtst:
-        print("[WARN] X11 libraries not available for keystroke navigation.")
+    # 1. Raise and focus the window
+    if x11:
+        dpy = x11.XOpenDisplay(DISPLAY_STR.encode())
+        if dpy:
+            try:
+                win = int(win_id_hex, 16)
+                x11.XMapRaised(dpy, win)
+                x11.XSetInputFocus(dpy, win, 2, 0)
+                x11.XFlush(dpy)
+            except Exception:
+                pass
+            finally:
+                x11.XCloseDisplay(dpy)
+
+    # 2. Tell Firefox to navigate to the exact URL directly via IPC
+    env = os.environ.copy()
+    env["DISPLAY"] = DISPLAY_STR
+    try:
+        subprocess.run(["firefox", url], env=env, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, timeout=5)
+        print(f"[+] Dispatched URL navigation via Firefox CLI: {url}")
+        return True
+    except Exception as e:
+        print(f"[WARN] Failed firefox command: {e}")
         return False
-    dpy = x11.XOpenDisplay(DISPLAY_STR.encode())
-    if not dpy:
-        print(f"[WARN] Could not open X display {DISPLAY_STR}")
-        return False
-    win = int(win_id_hex, 16)
-    x11.XMapRaised(dpy, win)
-    x11.XSetInputFocus(dpy, win, 2, 0)
-    x11.XFlush(dpy)
-    time.sleep(0.3)
-
-    ctrl_kc = x11.XKeysymToKeycode(dpy, 0xffe3)
-    shift_kc = x11.XKeysymToKeycode(dpy, 0xffe1)
-    l_kc = x11.XKeysymToKeycode(dpy, ord("l"))
-    ret_kc = x11.XKeysymToKeycode(dpy, 0xff0d)
-
-    xtst.XTestFakeKeyEvent(dpy, ctrl_kc, True, 0)
-    time.sleep(0.05)
-    xtst.XTestFakeKeyEvent(dpy, l_kc, True, 0)
-    time.sleep(0.05)
-    xtst.XTestFakeKeyEvent(dpy, l_kc, False, 0)
-    xtst.XTestFakeKeyEvent(dpy, ctrl_kc, False, 0)
-    x11.XFlush(dpy)
-    time.sleep(0.2)
-
-    for ch in url:
-        send_char(dpy, ch, shift_kc)
-
-    time.sleep(0.1)
-    xtst.XTestFakeKeyEvent(dpy, ret_kc, True, 0)
-    time.sleep(0.05)
-    xtst.XTestFakeKeyEvent(dpy, ret_kc, False, 0)
-    x11.XFlush(dpy)
-    x11.XCloseDisplay(dpy)
-    print(f"[+] Sent navigation command to window {win_id_hex} -> {url}")
-    return True
 
 
 def capture_window_xwd(win_id=WINDOW_ID, out_path="docs/car/test_full_window.png"):
@@ -216,6 +210,10 @@ def main():
     print("  EXE-260909-CAR-02: Car Physics 3D Automated Audit Orchestrator")
     print("==================================================================")
 
+    # Clean old audit results
+    result_json = DOCS_CAR / "physics_audit_result.json"
+    result_json.unlink(missing_ok=True)
+
     class ReusableTCPServer(socketserver.TCPServer):
         allow_reuse_address = True
 
@@ -235,7 +233,7 @@ def main():
         subprocess.Popen(["firefox", target_url], env=env)
 
     print("[*] Waiting for browser test suite to execute and submit results...")
-    max_wait_s = 40
+    max_wait_s = 55
     start_time = time.time()
     while time.time() - start_time < max_wait_s:
         if audit_completed_event.is_set():

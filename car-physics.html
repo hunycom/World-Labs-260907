@@ -617,6 +617,7 @@
   <script type="module">
     import * as THREE from "three";
     import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+    import { FBXLoader } from "three/addons/loaders/FBXLoader.js";
     import { SparkRenderer, SplatMesh } from "@sparkjsdev/spark";
     import RAPIER from "@dimforge/rapier3d-compat";
 
@@ -803,7 +804,7 @@
     fctx.fillText("STARTER // READY", 40, 60);
     fctx.font = "20px JetBrains Mono, monospace";
     fctx.fillStyle = "#94a3b8";
-    fctx.fillText("CONTROL 02 PROTOCOL : ONLINE", 40, 110);
+    fctx.fillText("AUDI R8 V10 PLUS PROTOCOL : ONLINE", 40, 110);
     fctx.fillText("TELEMETRY : BUS 100Hz WASM RAPIER ACTIVE (표시값)", 40, 150);
     fctx.fillText("WORLD LABS MARBLE 1.1-plus SPATIAL TWIN (표시값)", 40, 190);
     fctx.fillStyle = "#10b981";
@@ -856,122 +857,228 @@
     scene.add(ringGroup);
 
     // -------------------------------------------------------------
-    // High-Fidelity 3D EV Car Model Construction (Direct Rescaling: 60% Table Depth)
+    // High-Fidelity 3D Audi R8 V10 Plus Model Integration
+    // Loaded directly from 3D_FBX/audi.fbx
     // -------------------------------------------------------------
     const carVisualGroup = new THREE.Group();
-    // Directly scaled dimensions: L = 1.35m (60% table depth 2.28m), s_car = 1.35 / 2.1 = 0.6429
-    const sCar = 0.6429;
-    const carDim = { width: 0.643, height: 0.354, length: 1.350 };
-    const halfH = carDim.height / 2; // 0.177 m
+    // Scaled dimensions: L = 1.350 m (60% table depth 2.28 m), W = 0.618 m, H = 0.380 m
+    const carDim = { width: 0.618, height: 0.380, length: 1.350 };
+    const halfH = carDim.height / 2; // 0.190 m
 
-    // 1. Chassis Frame (Carbon Fiber / Dark Metallic)
-    const chassisGeo = new THREE.BoxGeometry(carDim.width, 0.08, carDim.length);
-    const chassisMat = new THREE.MeshStandardMaterial({
-      color: "#1e2430",
-      metalness: 0.85,
-      roughness: 0.25
-    });
-    const chassis = new THREE.Mesh(chassisGeo, chassisMat);
-    chassis.position.y = 0.09 - halfH; // centered at rigid body centroid
-    chassis.castShadow = true;
-    carVisualGroup.add(chassis);
+    let audiModelLoaded = false;
+    let audiModel = null;
+    const fbxLoader = new FBXLoader();
 
-    // 2. Center Battery Pack with Neon Green Glowing Cells ("BATTERY" in Image 1 & 4)
-    const batteryGeo = new THREE.BoxGeometry(carDim.width * 0.82, 0.065, carDim.length * 0.72);
-    const batteryMat = new THREE.MeshStandardMaterial({
-      color: "#08331a",
-      emissive: new THREE.Color("#10b981"),
-      emissiveIntensity: 0.7,
-      metalness: 0.3,
-      roughness: 0.2
-    });
-    const batteryMesh = new THREE.Mesh(batteryGeo, batteryMat);
-    batteryMesh.position.y = 0.08 - halfH;
-    carVisualGroup.add(batteryMesh);
+    // PBR Automotive Materials for Audi R8
+    function enhanceAudiMaterials(fbx) {
+      // 1. Sleek Suzuka / Glacier Metallic Silver Paint with High-Gloss Clearcoat
+      const bodyPaintMat = new THREE.MeshPhysicalMaterial({
+        color: new THREE.Color("#d1d5db"),
+        metalness: 0.88,
+        roughness: 0.18,
+        clearcoat: 1.0,
+        clearcoatRoughness: 0.04,
+        reflectivity: 0.9
+      });
 
-    // Battery Pack Neon Ribs
-    for (let i = -4; i <= 4; i++) {
-      const ribGeo = new THREE.BoxGeometry(carDim.width * 0.84, 0.025, 0.04);
-      const ribMat = new THREE.MeshBasicMaterial({ color: "#34d399" });
-      const rib = new THREE.Mesh(ribGeo, ribMat);
-      rib.position.set(0, 0.12 - halfH, (i * carDim.length * 0.72) / 10);
-      carVisualGroup.add(rib);
+      // 2. Dark Carbon Fiber Aero Trim (replaces FBX default green phong1)
+      const carbonTrimMat = new THREE.MeshStandardMaterial({
+        color: new THREE.Color("#1e293b"),
+        metalness: 0.8,
+        roughness: 0.3
+      });
+
+      // 3. Mirror Polish Chrome (Exhaust tips, badges, grille surround)
+      const chromeMat = new THREE.MeshStandardMaterial({
+        color: new THREE.Color("#ffffff"),
+        metalness: 0.95,
+        roughness: 0.08
+      });
+
+      // 4. Lightweight Alloy Wheel Rims
+      const wheelRimMat = new THREE.MeshStandardMaterial({
+        color: new THREE.Color("#e2e8f0"),
+        metalness: 0.85,
+        roughness: 0.22
+      });
+
+      // 5. Performance Tire Rubber
+      const tireRubberMat = new THREE.MeshStandardMaterial({
+        color: new THREE.Color("#111827"),
+        metalness: 0.08,
+        roughness: 0.88
+      });
+
+      // 6. Automotive Windshield and Windows (Physical Glass)
+      const windshieldGlassMat = new THREE.MeshPhysicalMaterial({
+        color: new THREE.Color("#0f172a"),
+        metalness: 0.1,
+        roughness: 0.05,
+        transmission: 0.82,
+        transparent: true,
+        opacity: 0.55,
+        ior: 1.52,
+        clearcoat: 1.0,
+        clearcoatRoughness: 0.04
+      });
+
+      // 7. Signature LED Taillights (Vibrant Glowing Red)
+      const tailLightMat = new THREE.MeshStandardMaterial({
+        color: new THREE.Color("#ef4444"),
+        emissive: new THREE.Color("#dc2626"),
+        emissiveIntensity: 2.5,
+        roughness: 0.15,
+        metalness: 0.1
+      });
+
+      // 8. Laser Headlight Projectors (Glowing Electric Cyan)
+      const headLightMat = new THREE.MeshStandardMaterial({
+        color: new THREE.Color("#38bdf8"),
+        emissive: new THREE.Color("#38bdf8"),
+        emissiveIntensity: 2.0,
+        roughness: 0.1,
+        metalness: 0.2
+      });
+
+      // 9. Cabin Interior & Sport Seats
+      const interiorMat = new THREE.MeshStandardMaterial({
+        color: new THREE.Color("#1e2430"),
+        metalness: 0.35,
+        roughness: 0.75
+      });
+
+      // 10. Window Surrounds & Black Seals
+      const windowTrimMat = new THREE.MeshStandardMaterial({
+        color: new THREE.Color("#09090b"),
+        roughness: 0.65,
+        metalness: 0.2
+      });
+
+      // 11. Audi Sport High-Tech Blue / Cyan Brake Calipers
+      const caliperMat = new THREE.MeshStandardMaterial({
+        color: new THREE.Color("#0284c7"),
+        emissive: new THREE.Color("#0369a1"),
+        emissiveIntensity: 0.4,
+        metalness: 0.6,
+        roughness: 0.25
+      });
+
+      // 12. Rearview & Side Mirrors
+      const mirrorMat = new THREE.MeshStandardMaterial({
+        color: new THREE.Color("#f1f5f9"),
+        metalness: 0.98,
+        roughness: 0.02
+      });
+
+      // Traverse all child meshes and assign PBR materials
+      fbx.traverse((child) => {
+        if (child.isMesh) {
+          child.castShadow = true;
+          child.receiveShadow = true;
+
+          // Dedicated material for brake calipers
+          if (child.name.includes("WheelBrake")) {
+            child.material = caliperMat;
+            return;
+          }
+
+          const remapMat = (oldMat) => {
+            if (!oldMat) return bodyPaintMat;
+            const name = (oldMat.name || "").toLowerCase();
+            if (name === "phong1") return carbonTrimMat;
+            if (name === "phong2") return bodyPaintMat;
+            if (name === "chrome") return chromeMat;
+            if (name === "wheel") return wheelRimMat;
+            if (name.includes("wheel1a") || name === "phong15") return tireRubberMat;
+            if (name === "glass") return windshieldGlassMat;
+            if (name === "red_glass") return tailLightMat;
+            if (name === "color_glass" || name === "phong14") return headLightMat;
+            if (name === "glass_surr") return windowTrimMat;
+            if (name === "mirror") return mirrorMat;
+            if (name === "phong6" || name === "phong10" || name === "phong12" || name === "phong3") return interiorMat;
+            return bodyPaintMat;
+          };
+
+          if (Array.isArray(child.material)) {
+            child.material = child.material.map(remapMat);
+          } else {
+            child.material = remapMat(child.material);
+          }
+        }
+      });
     }
 
-    // 3. Aerodynamic Translucent Glass Canopy Shell (Translucent White / Cyan Glass in Image 4)
-    const canopyGeo = new THREE.BoxGeometry(carDim.width * 0.94, 0.23, carDim.length * 0.88);
-    const canopyMat = new THREE.MeshPhysicalMaterial({
-      color: new THREE.Color("#dbeafe"),
-      metalness: 0.1,
-      roughness: 0.08,
-      transmission: 0.78,
-      transparent: true,
-      opacity: 0.65,
-      ior: 1.45,
-      clearcoat: 1.0,
-      clearcoatRoughness: 0.05
-    });
-    const canopy = new THREE.Mesh(canopyGeo, canopyMat);
-    canopy.position.set(0, 0.23 - halfH, -0.03);
-    canopy.castShadow = true;
-    carVisualGroup.add(canopy);
+    // Audi Model Loader Promise
+    function loadAudiModel() {
+      return new Promise((resolve, reject) => {
+        fbxLoader.load(
+          "3D_FBX/audi.fbx",
+          (fbx) => {
+            // Compute bounding box at FBX initial scale
+            const initialBox = new THREE.Box3().setFromObject(fbx);
+            const initialSize = new THREE.Vector3();
+            initialBox.getSize(initialSize);
+            const initialCenter = new THREE.Vector3();
+            initialBox.getCenter(initialCenter);
 
-    // 4. Glowing Blue Headlights & Rear Tail LEDs
-    const lightMat = new THREE.MeshBasicMaterial({ color: "#38bdf8" });
-    const tailMat = new THREE.MeshBasicMaterial({ color: "#ef4444" });
+            console.log("[Car Physics] Raw Audi FBX size:", initialSize, "center:", initialCenter);
 
-    const hlLeft = new THREE.Mesh(new THREE.BoxGeometry(0.13, 0.025, 0.025), lightMat);
-    hlLeft.position.set(-0.22, 0.14 - halfH, carDim.length / 2 + 0.01);
-    const hlRight = new THREE.Mesh(new THREE.BoxGeometry(0.13, 0.025, 0.025), lightMat);
-    hlRight.position.set(0.22, 0.14 - halfH, carDim.length / 2 + 0.01);
-    carVisualGroup.add(hlLeft, hlRight);
+            // Center FBX model locally around (0, 0, 0)
+            fbx.position.x = -initialCenter.x;
+            fbx.position.y = -initialCenter.y;
+            fbx.position.z = -initialCenter.z;
 
-    const tailBar = new THREE.Mesh(new THREE.BoxGeometry(carDim.width * 0.8, 0.02, 0.025), tailMat);
-    tailBar.position.set(0, 0.16 - halfH, -carDim.length / 2 - 0.01);
-    carVisualGroup.add(tailBar);
+            // Container group to scale the centered model to exact target dimensions
+            const modelContainer = new THREE.Group();
+            modelContainer.add(fbx);
 
-    // 5. 4 Wheels & Tires
-    const wheelRadius = 0.116;
-    const wheelWidth = 0.077;
-    const tireMat = new THREE.MeshStandardMaterial({ color: "#111827", roughness: 0.85, metalness: 0.1 });
-    const rimMat = new THREE.MeshStandardMaterial({ color: "#cbd5e1", roughness: 0.2, metalness: 0.85 });
-    const caliperMat = new THREE.MeshBasicMaterial({ color: "#38bdf8" });
+            const targetLength = 1.350; // 60% table depth (2.28m)
+            const scale = targetLength / initialSize.z;
+            modelContainer.scale.set(scale, scale, scale);
 
-    const wheelPositions = [
-      [-carDim.width / 2 - 0.015, wheelRadius - halfH, carDim.length * 0.32],
-      [carDim.width / 2 + 0.015, wheelRadius - halfH, carDim.length * 0.32],
-      [-carDim.width / 2 - 0.015, wheelRadius - halfH, -carDim.length * 0.32],
-      [carDim.width / 2 + 0.015, wheelRadius - halfH, -carDim.length * 0.32]
-    ];
+            // Enhance materials with PBR automotive finish
+            enhanceAudiMaterials(fbx);
 
-    const wheelMeshes = [];
-    wheelPositions.forEach(([wx, wy, wz], idx) => {
-      const wGroup = new THREE.Group();
-      wGroup.position.set(wx, wy, wz);
+            // Add twin headlights and taillight glow point lights inside carVisualGroup
+            const leftHeadLight = new THREE.PointLight("#38bdf8", 1.2, 2.5);
+            leftHeadLight.position.set(-0.25, 0.02, 0.66);
+            const rightHeadLight = new THREE.PointLight("#38bdf8", 1.2, 2.5);
+            rightHeadLight.position.set(0.25, 0.02, 0.66);
+            const leftTailLight = new THREE.PointLight("#ef4444", 0.9, 1.8);
+            leftTailLight.position.set(-0.24, 0.05, -0.66);
+            const rightTailLight = new THREE.PointLight("#ef4444", 0.9, 1.8);
+            rightTailLight.position.set(0.24, 0.05, -0.66);
+            carVisualGroup.add(leftHeadLight, rightHeadLight, leftTailLight, rightTailLight);
 
-      const tireGeo = new THREE.CylinderGeometry(wheelRadius, wheelRadius, wheelWidth, 24);
-      const tire = new THREE.Mesh(tireGeo, tireMat);
-      tire.rotation.z = Math.PI / 2;
-      tire.castShadow = true;
-      wGroup.add(tire);
+            carVisualGroup.add(modelContainer);
+            audiModel = modelContainer;
+            audiModelLoaded = true;
 
-      const rimGeo = new THREE.CylinderGeometry(wheelRadius * 0.65, wheelRadius * 0.65, wheelWidth + 0.003, 16);
-      const rim = new THREE.Mesh(rimGeo, rimMat);
-      rim.rotation.z = Math.PI / 2;
-      wGroup.add(rim);
+            console.log("[Car Physics] Audi R8 model loaded and scaled successfully:", {
+              scale,
+              targetLength,
+              width: initialSize.x * scale,
+              height: initialSize.y * scale
+            });
+            resolve(modelContainer);
+          },
+          (xhr) => {
+            if (xhr.lengthComputable) {
+              const percent = Math.round((xhr.loaded / xhr.total) * 100);
+              console.log(`[Car Physics] Loading Audi FBX: ${percent}%`);
+            }
+          },
+          (error) => {
+            console.error("[Car Physics] Failed to load Audi FBX model:", error);
+            reject(error);
+          }
+        );
+      });
+    }
 
-      const caliperGeo = new THREE.BoxGeometry(0.025, 0.05, 0.03);
-      const caliper = new THREE.Mesh(caliperGeo, caliperMat);
-      caliper.position.set(wx > 0 ? -0.025 : 0.025, 0.04 - halfH, 0);
-      wGroup.add(caliper);
-
-      carVisualGroup.add(wGroup);
-      wheelMeshes.push(wGroup);
-    });
-
-    // Zero-penetration initial placement: Table top is 0.725 m, car half-height is 0.177 m, initial clearance is 5 mm
+    // Zero-penetration initial placement: Table top is 0.725 m, car half-height is 0.190 m, initial clearance is 5 mm
     const initialCarX = 0.0;
-    const initialCarY = tableTopY + halfH + 0.005; // 0.907 m (initial clearance = +0.005 m, penetration = 0 m)
+    const initialCarY = tableTopY + halfH + 0.005; // 0.920 m (initial clearance = +0.005 m, penetration = 0 m)
     const initialCarZ = -1.30;
     carVisualGroup.position.set(initialCarX, initialCarY, initialCarZ);
     scene.add(carVisualGroup);
@@ -990,6 +1097,14 @@
     async function initRapierPhysics() {
       await RAPIER.init();
       console.log("[Rapier 3D] WASM loaded successfully!");
+
+      // Load Audi FBX 3D Model
+      try {
+        if (loadingSubtext) loadingSubtext.textContent = "Loading 3D Audi R8 Model & Physics...";
+        await loadAudiModel();
+      } catch (err) {
+        console.error("[Car Physics] Error loading Audi model:", err);
+      }
 
       const gravityVal = { x: 0.0, y: -9.81, z: 0.0 };
       physicsWorld = new RAPIER.World(gravityVal);
@@ -1397,9 +1512,9 @@
         valAltitude.textContent = `${pos.y.toFixed(2)} m`;
 
         // Check if car is resting on the baked workbench table
-        // Table footprint: x in [-2.10, 1.90], z in [-3.20, -0.65], tabletop y = 0.7375
-        // When settled on table, pos.y ~ 1.011 m
-        const onTable = Math.abs(pos.y - 1.0125) < 0.10 && (pos.x >= -2.20 && pos.x <= 2.00) && (pos.z >= -3.30 && pos.z <= -0.55);
+        // Table footprint: x in [-2.10, 1.90], z in [-3.20, -0.65], tabletop y = 0.725
+        // When settled on table, pos.y ~ tableTopY + halfH = 0.915 m
+        const onTable = Math.abs(pos.y - (tableTopY + halfH)) < 0.10 && (pos.x >= -2.20 && pos.x <= 2.00) && (pos.z >= -3.30 && pos.z <= -0.55);
         if (onTable) {
           badgeContact.textContent = "ON TABLE";
           badgeContact.style.color = "#10b981";
@@ -1454,7 +1569,7 @@
 
     // Expose programmatic audit interface for automated verification suite
     window.__carAudit = {
-      isReady: () => !!(physicsWorld && carRigidBody && splatMesh),
+      isReady: () => !!(physicsWorld && carRigidBody && splatMesh && audiModelLoaded),
       getCarPose: () => {
         if (!carRigidBody) return null;
         const p = carRigidBody.translation();
