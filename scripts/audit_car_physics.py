@@ -250,6 +250,13 @@ def main():
     if full_win_path.exists():
         print(f"[+] Captured full window UI: {full_win_path} ({full_win_path.stat().st_size:,} bytes)")
 
+    # Generate Side-by-Side Comparison Composite
+    try:
+        from scripts.create_side_by_side import create_comparison
+        create_comparison()
+    except Exception as e:
+        print(f"[WARN] Failed to generate side-by-side comparison: {e}")
+
     result_json = DOCS_CAR / "physics_audit_result.json"
     if result_json.exists():
         data = json.loads(result_json.read_text(encoding="utf-8"))

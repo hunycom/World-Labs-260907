@@ -1,0 +1,74 @@
+{
+  "operation_id": "a853df32-68b3-493d-8c23-c6f50e5f55f3",
+  "created_at": "2026-09-09T03:40:54Z",
+  "updated_at": "2026-09-09T03:49:07Z",
+  "expires_at": "2026-09-09T06:40:54Z",
+  "done": true,
+  "error": null,
+  "metadata": {
+    "progress": {
+      "status": "SUCCEEDED",
+      "description": "World generation completed successfully"
+    },
+    "world_id": "df5fff43-29a6-45d6-8e0b-f762bf56d0c1",
+    "operation_type": "world_generation",
+    "public_model_name": "marble-1.1-plus"
+  },
+  "response": {
+    "world_id": "df5fff43-29a6-45d6-8e0b-f762bf56d0c1",
+    "display_name": "",
+    "tags": null,
+    "assets": {
+      "mesh": {
+        "collider_mesh_url": "https://cdn.marble.worldlabs.ai/df5fff43-29a6-45d6-8e0b-f762bf56d0c1/a5167a89.glb",
+        "hq_mesh_url": null,
+        "full_res_mesh_url": null
+      },
+      "imagery": {
+        "pano_url": "https://cdn.marble.worldlabs.ai/df5fff43-29a6-45d6-8e0b-f762bf56d0c1/0176143c-cd3e-463d-a5ec-3a255f7664d9_panos/rgb_0.png"
+      },
+      "splats": {
+        "spz_urls": {
+          "500k": "https://cdn.marble.worldlabs.ai/df5fff43-29a6-45d6-8e0b-f762bf56d0c1/8a31293f-aa2a-40db-9601-a02abafa129d_ceramic_500k.spz",
+          "100k": "https://cdn.marble.worldlabs.ai/df5fff43-29a6-45d6-8e0b-f762bf56d0c1/c6a45478-e526-4725-9280-5d4b8c125552_dust_100k.spz",
+          "150k": "https://cdn.marble.worldlabs.ai/df5fff43-29a6-45d6-8e0b-f762bf56d0c1/d6c7d863-9906-4ef3-926c-06125dc42c67_ceramic_150k.spz",
+          "full_res": "https://cdn.marble.worldlabs.ai/df5fff43-29a6-45d6-8e0b-f762bf56d0c1/412b506a-d6d7-4453-bdce-f38f0d67eb3b_ceramic.spz"
+        },
+        "semantics_metadata": {
+          "metric_scale_factor": 2.2508733,
+          "ground_plane_offset": 1.6300833
+        }
+      },
+      "thumbnail_url": "https://cdn.marble.worldlabs.ai/df5fff43-29a6-45d6-8e0b-f762bf56d0c1/004ee22e-409a-4c0f-a37c-7711a3070b18_sand_mpi/thumbnail.webp",
+      "caption": "The scene is a modern, technologically advanced automotive design studio, depicted in a realistic style with a professional and innovative tone, reflecting cutting-edge development. The studio space is expansive, featuring polished concrete floors that extend across the entire area, giving a clean and industrial feel. Several display tables are strategically placed, showcasing various automotive design concepts and prototypes. On one side, a large, interactive display screen illuminates an area, presenting dynamic visualizations of vehicle designs. Behind this display, additional concept sketches and technical drawings are pinned to a board, offering insight into the design process. An easel holds more detailed blueprints or artistic renderings of car models, indicating ongoing creative work. Further into the studio, beyond the visible area, there are workstations with computer-aided design equipment, where engineers and designers meticulously craft digital models. Storage units with organized parts and tools line the walls, maintaining the studio's efficient and structured environment. Overhead, a system of track lighting provides focused illumination on key display areas and work zones, ensuring optimal visibility for detailed work. The overall layout encourages collaboration and innovation, with open spaces facilitating movement and interaction among design teams. The 360 scene is faultless."
+    },
+    "created_at": null,
+    "updated_at": null,
+    "permission": {
+      "public": false,
+      "allowed_readers": [],
+      "allowed_writers": [],
+      "allow_id_access": false
+    },
+    "world_prompt": null,
+    "world_marble_url": "https://marble.worldlabs.ai/world/df5fff43-29a6-45d6-8e0b-f762bf56d0c1",
+    "model": null
+  },
+  "cost": {
+    "total_credits": 3080,
+    "line_items": [
+      {
+        "name": "Pano generation (image, non-pano)",
+        "credits": 80
+      },
+      {
+        "name": "Base world generation",
+        "credits": 1500
+      },
+      {
+        "name": "Variable world generation",
+        "credits": 1500
+      }
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "task": "EXE-260909-CAR-03 Marble 1.1-plus Generation",
+  "timestamp": "2026-09-09T03:49:19Z",
+  "operation_id": "a853df32-68b3-493d-8c23-c6f50e5f55f3",
+  "model": "marble-1.1-plus",
+  "display_name": "Car-Studio-v2",
+  "input_image": {
+    "name": "media_1788925055621.png",
+    "bytes": 912365,
+    "sha256": "50e7268361fabc96ed27ca7c478d3a563f2c497d1d2188396ca5477cd1059866"
+  },
+  "text_prompt_included": false,
+  "credits": {
+    "before": 31930.0,
+    "after": 28850.0,
+    "spent": 3080.0
+  },
+  "downloaded_assets": {
+    "500k_spz": {
+      "path": "/home/sims/\ubc14\ud0d5\ud654\uba74/spark/assets/p3/marble/car_studio_v2_500k.spz",
+      "sha256": "f56665b84b9ae90d076365ea9f206564c1126a97051cdb43ccf6fbada65854d3",
+      "bytes": 7732669
+    },
+    "100k_spz": {
+      "path": "/home/sims/\ubc14\ud0d5\ud654\uba74/spark/assets/p3/marble/car_studio_v2_100k.spz",
+      "sha256": "8baed51a4bb326c494ee120f0bccd52ee2186fadd0b1f2b980917a7159d65393",
+      "bytes": 1378189
+    },
+    "full_res_spz": {
+      "path": "/home/sims/\ubc14\ud0d5\ud654\uba74/spark/assets/p3/marble/car_studio_v2_full_res.spz",
+      "sha256": "0d190f230a7f46443b173548cd6dc09f5bd5c9b5fb4a99f4c68ec32cedcbd320",
+      "bytes": 66632636
+    },
+    "collider_mesh_glb": {
+      "path": "/home/sims/\ubc14\ud0d5\ud654\uba74/spark/assets/p3/marble/car_studio_v2_collider_mesh.glb",
+      "sha256": "ba21128477cd94109445bd8ed3ab85a9c34131857c9e171ee1680083151cb0d2",
+      "bytes": 1658100
+    },
+    "pano_png": {
+      "path": "/home/sims/\ubc14\ud0d5\ud654\uba74/spark/assets/p3/marble/car_studio_v2_pano.png",
+      "sha256": "25dfdfc55f0df0442d1f78a419d124aa49190a1684ba6cab0aeae59cc7e49294",
+      "bytes": 10532052
+    }
+  },
+  "semantics": {
+    "metric_scale_factor": 2.2508733,
+    "ground_plane_offset": 1.6300833
+  }
+}

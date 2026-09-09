@@ -1,24 +1,24 @@
 {
-  "suite": "EXE-260909-CAR-02 Car Physics 3D Audit",
-  "timestamp": "2026-09-09T03:28:16.109Z",
-  "table_surface_y": 0.7375,
+  "suite": "EXE-260909-CAR-03 Car Physics 3D Audit (v2)",
+  "timestamp": "2026-09-09T03:52:31.897Z",
+  "table_surface_y": 0.725,
   "car_dimensions": {
-    "width": 1,
-    "height": 0.55,
-    "length": 2.1
+    "width": 0.643,
+    "height": 0.354,
+    "length": 1.35
   },
-  "camera_chosen_distance_m": 2.5,
+  "camera_chosen_distance_m": 3.4,
   "camera_observable_volume_bounds_m": {
-    "min": 1,
-    "max": 3.5
+    "min": 1.5,
+    "max": 4.5
   },
   "audit_tests": {
     "t0_init_rest": {
       "pose": {
-        "x": -0.05,
-        "y": 1.011,
-        "z": -1.61,
-        "car_bottom_y": 0.736,
+        "x": 0,
+        "y": 0.9005,
+        "z": -1.3,
+        "car_bottom_y": 0.7235,
         "clearance_from_table_m": -0.0015,
         "vx": 0,
         "vy": 0,
@@ -27,7 +27,7 @@
         "rot": {
           "x": -0.0001,
           "y": 0,
-          "z": 0,
+          "z": -0.0001,
           "w": 1
         }
       },
@@ -37,10 +37,10 @@
     },
     "rest_5s": {
       "pose": {
-        "x": -0.05,
-        "y": 1.011,
-        "z": -1.61,
-        "car_bottom_y": 0.736,
+        "x": 0,
+        "y": 0.9005,
+        "z": -1.3,
+        "car_bottom_y": 0.7235,
         "clearance_from_table_m": -0.0015,
         "vx": 0,
         "vy": 0,
@@ -49,7 +49,7 @@
         "rot": {
           "x": -0.0001,
           "y": 0,
-          "z": 0,
+          "z": -0.0001,
           "w": 1
         }
       },
@@ -61,11 +61,11 @@
     },
     "r_drop_air": {
       "pose": {
-        "x": -0.05,
-        "y": 3.0378,
-        "z": -1.61,
-        "car_bottom_y": 2.7628,
-        "clearance_from_table_m": 2.0253,
+        "x": 0,
+        "y": 2.6253,
+        "z": -1.3,
+        "car_bottom_y": 2.4483,
+        "clearance_from_table_m": 1.7233,
         "vx": 0,
         "vy": -1.4441,
         "vz": 0,
@@ -82,20 +82,20 @@
     },
     "r_drop_landed": {
       "pose": {
-        "x": 0.0409,
-        "y": 1.014,
-        "z": -1.6599,
-        "car_bottom_y": 0.739,
-        "clearance_from_table_m": 0.0015,
-        "vx": 0.0144,
-        "vy": -0.0629,
-        "vz": -0.0003,
-        "speed_kmh": 0.23,
+        "x": 0.0582,
+        "y": 0.906,
+        "z": -1.3844,
+        "car_bottom_y": 0.729,
+        "clearance_from_table_m": 0.004,
+        "vx": -0.0212,
+        "vy": -0.1133,
+        "vz": -0.0703,
+        "speed_kmh": 0.49,
         "rot": {
-          "x": 0.0013,
-          "y": -0.0308,
-          "z": -0.0002,
-          "w": 0.9995
+          "x": -0.0006,
+          "y": -0.0116,
+          "z": -0.0069,
+          "w": 0.9999
         }
       },
       "on_table": true,
@@ -103,20 +103,20 @@
     },
     "push_left": {
       "pose": {
-        "x": -0.4565,
-        "y": 1.0137,
-        "z": -1.6626,
-        "car_bottom_y": 0.7387,
-        "clearance_from_table_m": 0.0012,
-        "vx": -0.9709,
-        "vy": -0.1537,
-        "vz": -0.0346,
-        "speed_kmh": 3.54,
+        "x": -0.6228,
+        "y": 1.0462,
+        "z": -1.3903,
+        "car_bottom_y": 0.8692,
+        "clearance_from_table_m": 0.1442,
+        "vx": -1.6057,
+        "vy": 0.1224,
+        "vz": -0.012,
+        "speed_kmh": 5.8,
         "rot": {
-          "x": 0,
-          "y": -0.0219,
-          "z": 0.0026,
-          "w": 0.9998
+          "x": -0.0045,
+          "y": -0.0153,
+          "z": 0.2826,
+          "w": 0.9591
         }
       },
       "pushed_left": true,
@@ -124,20 +124,20 @@
     },
     "push_right": {
       "pose": {
-        "x": 0.5253,
-        "y": 1.0111,
-        "z": -1.6145,
-        "car_bottom_y": 0.7361,
-        "clearance_from_table_m": -0.0014,
-        "vx": 0.4894,
-        "vy": -0.0013,
-        "vz": -0.0264,
-        "speed_kmh": 1.76,
+        "x": 0.6808,
+        "y": 1.047,
+        "z": -1.2964,
+        "car_bottom_y": 0.87,
+        "clearance_from_table_m": 0.145,
+        "vx": 1.6002,
+        "vy": 0.1274,
+        "vz": 0.0076,
+        "speed_kmh": 5.78,
         "rot": {
-          "x": -0.0001,
-          "y": -0.0164,
-          "z": -0.0004,
-          "w": 0.9999
+          "x": 0.0015,
+          "y": -0.0052,
+          "z": -0.2848,
+          "w": 0.9586
         }
       },
       "pushed_right": true,
