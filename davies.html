@@ -41,7 +41,7 @@
     }
     </script>
     <style>
-      /* Custom Spatial Lab Styling */
+      /* Custom Spatial Lab & Precision Button Styling */
       .btn-spatial {
         transition: all 0.25s ease;
         cursor: pointer;
@@ -50,11 +50,94 @@
         gap: 6px;
       }
       .btn-spatial:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 15px rgba(56, 189, 248, 0.4);
+        transform: translateY(-1px);
+        background: #fff !important;
+        border-color: #fff !important;
+        color: #000 !important;
       }
       .btn-spatial:active {
         transform: translateY(0);
+      }
+      .spatial-btn-pill {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        height: 32px;
+        padding: 0 14px;
+        border-radius: 999px;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        text-transform: uppercase;
+        color: #e2e8f0;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        backdrop-filter: blur(10px);
+        transition: all 0.25s ease;
+        text-decoration: none;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+      .spatial-btn-pill:hover {
+        background: #fff;
+        border-color: #fff;
+        color: #000;
+        transform: translateY(-1px);
+      }
+      .preset-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        color: #94a3b8;
+        font-size: 11px;
+        font-weight: 500;
+        padding: 6px 14px;
+        border-radius: 999px;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        letter-spacing: -0.2px;
+      }
+      .preset-chip:hover {
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(255, 255, 255, 0.28);
+        color: #fff;
+        transform: translateY(-1px);
+      }
+      .spatial-dock-btn {
+        background: rgba(255, 255, 255, 0.04);
+        border: 1px solid rgba(255, 255, 255, 0.14);
+        color: #cbd5e1;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: -0.2px;
+        padding: 9px 18px;
+        border-radius: 10px;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .spatial-dock-btn:hover {
+        background: rgba(255, 255, 255, 0.12);
+        border-color: rgba(255, 255, 255, 0.35);
+        color: #fff;
+        transform: translateY(-1px);
+      }
+      .spatial-dock-btn.active, .spatial-dock-btn:active {
+        background: #fff;
+        border-color: #fff;
+        color: #000;
+      }
+      .spatial-dock-btn .btn-dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #38bdf8;
+        display: inline-block;
       }
       .telemetry-pill {
         background: rgba(14, 20, 32, 0.85);
@@ -229,11 +312,11 @@
                         </div>
 
                         <div class="header-actions-wrap d-flex align-items-center gap-2">
-                            <a href="car-physics.html" class="tf-btn d-none d-lg-inline-flex" style="background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%); color: #fff; padding: 6px 14px; font-size: 11px; border-radius: 20px; font-weight: 700; text-decoration: none; align-items: center; gap: 4px; white-space: nowrap; border: 1px solid rgba(255,255,255,0.25);">
-                                🚗 CAR PHYSICS 3D
+                            <a href="car-physics.html" class="tf-btn style-2 d-none d-lg-inline-flex">
+                                <span class="text-caption fw-medium">CAR PHYSICS 3D</span>
                             </a>
-                            <a href="/" class="tf-btn style-2 d-none d-md-inline-flex" style="border-color: #38bdf8; color: #38bdf8; padding: 6px 14px; font-size: 11px; border-radius: 20px; font-weight: 700; text-decoration: none; align-items: center; gap: 4px; white-space: nowrap;">
-                                <i class="icon icon-arrow-top-right"></i> MAIN SPATIAL OS
+                            <a href="/" class="tf-btn style-fill-white d-none d-md-inline-flex animate-btn animate-dark">
+                                <span class="text-caption fw-medium">MAIN ENGINE</span>
                             </a>
                             <button type="button" class="btn-mobile-menu open-mb-menu text-caption text-white link d-flex align-items-center gap-2" style="background: transparent; border: none; padding: 6px 10px; cursor: pointer;">
                                 <i class="icon icon-menu"></i>
@@ -289,15 +372,17 @@
                                     <p class="desc text-white-64 effectFade fadeRight view-visible" style="line-height: 1.6;">
                                         실시간 500,000개 3D Gaussian Splatting 스마트 물류 창고(Marble Run01) 디지털 트윈, 서브밀리미터 기하 공간 분할, 그리고 100Hz Wasm Rapier 강체 물리 충돌 엔진을 직접 조작해 보세요.
                                     </p>
-                                    <div class="effectFade fadeRight view-visible d-flex flex-wrap gap-2 align-items-center">
-                                        <a href="#spatialLabSection" class="tf-btn" style="background: #38bdf8; color: #000; font-weight: 700; border-radius: 30px; padding: 10px 18px; font-size: 12px; text-decoration: none; white-space: nowrap;">
-                                            <i class="icon icon-arrow-caret-right"></i> 🚀 LAUNCH 3D WAREHOUSE
+                                    <div class="effectFade fadeRight view-visible d-flex flex-wrap gap-3 align-items-center">
+                                        <a href="#spatialLabSection" class="tf-btn style-fill-white animate-btn animate-dark">
+                                            <span class="text-caption fw-medium">LAUNCH 3D WAREHOUSE</span>
+                                            <i class="icon icon-arrow-long-right"></i>
                                         </a>
-                                        <a href="/" class="tf-btn style-2" style="border-radius: 30px; padding: 10px 16px; font-size: 12px; text-decoration: none; white-space: nowrap;">
-                                            <i class="icon icon-arrow-top-right"></i> MAIN OS
+                                        <a href="car-physics.html" class="tf-btn style-2">
+                                            <span class="text-caption fw-medium">CAR PHYSICS 3D</span>
                                         </a>
-                                        <a href="car-physics.html" class="tf-btn" style="background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%); color: #ffffff; font-weight: 700; border-radius: 30px; padding: 10px 18px; font-size: 12px; text-decoration: none; border: 1px solid rgba(255,255,255,0.3); box-shadow: 0 4px 18px rgba(14,165,233,0.45); display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;">
-                                            <span>🚗 CAR PHYSICS 3D</span>
+                                        <a href="/" class="tf-btn style-2">
+                                            <span class="text-caption fw-medium">MAIN ENGINE</span>
+                                            <i class="icon icon-arrow-top-right"></i>
                                         </a>
                                     </div>
                                 </div>
@@ -442,58 +527,58 @@
                             <ul class="work-tag">
                                 <li>
                                     <div class="group-btn">
-                                        <a href="#spatialLabSection" class="tf-btn style-2">3DGS SPLATTING (500K)</a>
+                                        <a href="#spatialLabSection" class="tf-btn style-2">3DGS SPLATTING</a>
                                         <a href="#spatialLabSection" class="tf-btn style-2">DIGITAL TWIN</a>
-                                        <a href="#spatialLabSection" class="tf-btn" style="background:#38bdf8;color:#000;font-weight:700;">🚀 3D 뷰포트 열기</a>
+                                        <a href="#spatialLabSection" class="tf-btn style-2">EXPLORE VIEWPORT</a>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="group-btn">
                                         <a href="#spatialLabSection" class="tf-btn style-2">RAPIER 3D WASM</a>
                                         <a href="#spatialLabSection" class="tf-btn style-2">100HZ COLLISION</a>
-                                        <a href="#spatialLabSection" class="tf-btn" style="background:#ea580c;color:#fff;font-weight:700;">⚡ 1M 낙하/투척 테스트</a>
+                                        <a href="#spatialLabSection" class="tf-btn style-2">DROP / TOSS TEST</a>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="group-btn">
                                         <a href="#spatialLabSection" class="tf-btn style-2">7-PART PARTITIONING</a>
-                                        <a href="#spatialLabSection" class="tf-btn style-2">OBB / AABB BOUNDS</a>
-                                        <a href="#spatialLabSection" class="tf-btn" style="background:#10b981;color:#000;font-weight:700;">🧩 공간 분할 보기</a>
+                                        <a href="#spatialLabSection" class="tf-btn style-2">OBB BOUNDS</a>
+                                        <a href="#spatialLabSection" class="tf-btn style-2">VIEW SECTORS</a>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="group-btn">
                                         <a href="#spatialLabSection" class="tf-btn style-2">60-POINT RAYCAST</a>
                                         <a href="#spatialLabSection" class="tf-btn style-2">100% ACCURACY</a>
-                                        <a href="#spatialLabSection" class="tf-btn" style="background:#a855f7;color:#fff;font-weight:700;">🎯 피킹 평가 실행</a>
+                                        <a href="#spatialLabSection" class="tf-btn style-2">EVALUATE PICKING</a>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="group-btn">
-                                        <a href="#spatialLabSection" class="tf-btn style-2">3DGS SPLATTING (500K)</a>
+                                        <a href="#spatialLabSection" class="tf-btn style-2">3DGS SPLATTING</a>
                                         <a href="#spatialLabSection" class="tf-btn style-2">DIGITAL TWIN</a>
-                                        <a href="#spatialLabSection" class="tf-btn" style="background:#38bdf8;color:#000;font-weight:700;">🚀 3D 뷰포트 열기</a>
+                                        <a href="#spatialLabSection" class="tf-btn style-2">EXPLORE VIEWPORT</a>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="group-btn">
                                         <a href="#spatialLabSection" class="tf-btn style-2">RAPIER 3D WASM</a>
                                         <a href="#spatialLabSection" class="tf-btn style-2">100HZ COLLISION</a>
-                                        <a href="#spatialLabSection" class="tf-btn" style="background:#ea580c;color:#fff;font-weight:700;">⚡ 1M 낙하/투척 테스트</a>
+                                        <a href="#spatialLabSection" class="tf-btn style-2">DROP / TOSS TEST</a>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="group-btn">
                                         <a href="#spatialLabSection" class="tf-btn style-2">7-PART PARTITIONING</a>
-                                        <a href="#spatialLabSection" class="tf-btn style-2">OBB / AABB BOUNDS</a>
-                                        <a href="#spatialLabSection" class="tf-btn" style="background:#10b981;color:#000;font-weight:700;">🧩 공간 분할 보기</a>
+                                        <a href="#spatialLabSection" class="tf-btn style-2">OBB BOUNDS</a>
+                                        <a href="#spatialLabSection" class="tf-btn style-2">VIEW SECTORS</a>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="group-btn">
                                         <a href="#spatialLabSection" class="tf-btn style-2">60-POINT RAYCAST</a>
                                         <a href="#spatialLabSection" class="tf-btn style-2">100% ACCURACY</a>
-                                        <a href="#spatialLabSection" class="tf-btn" style="background:#a855f7;color:#fff;font-weight:700;">🎯 피킹 평가 실행</a>
+                                        <a href="#spatialLabSection" class="tf-btn style-2">EVALUATE PICKING</a>
                                     </div>
                                 </li>
                             </ul>
@@ -542,24 +627,26 @@
                     </div>
                     <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
                         <div class="d-inline-flex flex-wrap gap-2 justify-content-lg-end">
-                            <span class="badge" style="background: rgba(56, 189, 248, 0.15); border: 1px solid #38bdf8; color: #38bdf8; padding: 8px 14px; border-radius: 20px; font-size: 13px;">
-                                ● 500,000 Splats
+                            <span class="spatial-btn-pill" style="height: 34px; pointer-events: none; border-color: rgba(255,255,255,0.18);">
+                                <span style="width: 6px; height: 6px; border-radius: 50%; background: #38bdf8; display: inline-block;"></span> 500,000 SPLATS
                             </span>
-                            <span class="badge" style="background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; color: #10b981; padding: 8px 14px; border-radius: 20px; font-size: 13px;" id="badgeFps">
-                                ⚡ 60 FPS
+                            <span class="spatial-btn-pill" style="height: 34px; pointer-events: none; border-color: rgba(255,255,255,0.18);" id="badgeFps">
+                                <span style="width: 6px; height: 6px; border-radius: 50%; background: #34d399; display: inline-block;"></span> 60 FPS
                             </span>
-                            <span class="badge" style="background: rgba(168, 85, 247, 0.15); border: 1px solid #a855f7; color: #a855f7; padding: 8px 14px; border-radius: 20px; font-size: 13px;">
-                                ⚙️ Rapier 3D 100Hz
+                            <span class="spatial-btn-pill" style="height: 34px; pointer-events: none; border-color: rgba(255,255,255,0.18);">
+                                <span style="width: 6px; height: 6px; border-radius: 50%; background: #a855f7; display: inline-block;"></span> RAPIER 3D 100HZ
                             </span>
                         </div>
                     </div>
                 </div>
 
                 <!-- World Labs AI Text-to-World Prompt Generator Bar -->
-                <div class="spatial-prompt-generator mb-4 p-3 p-md-4" style="background: rgba(10, 15, 26, 0.92); backdrop-filter: blur(16px); border: 1px solid rgba(56, 189, 248, 0.4); border-radius: 20px; box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6), 0 0 25px rgba(56, 189, 248, 0.1);">
+                <div class="spatial-prompt-generator mb-4 p-3 p-md-4" style="background: rgba(10, 15, 26, 0.92); backdrop-filter: blur(16px); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 20px; box-shadow: 0 10px 35px rgba(0, 0, 0, 0.6);">
                     <div class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
                         <div class="d-flex align-items-center gap-2">
-                            <span style="font-size: 22px; line-height: 1;">✨</span>
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
+                            </svg>
                             <div>
                                 <h5 class="text-white fw-bold mb-0" style="font-size: 16px; letter-spacing: -0.5px;">
                                     World Labs AI 3D 공간 생성기 (Text-to-World Studio)
@@ -568,21 +655,21 @@
                             </div>
                         </div>
                         <div class="d-flex align-items-center gap-2">
-                            <span id="apiCreditsBadge" class="badge" style="background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; color: #34d399; font-size: 12px; font-family: monospace; padding: 6px 12px; border-radius: 12px;">
-                                💰 38,250 Credits
+                            <span id="apiCreditsBadge" class="badge" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); color: #e2e8f0; font-size: 11px; font-family: monospace; padding: 6px 12px; border-radius: 999px;">
+                                CREDITS: 38,250
                             </span>
-                            <button type="button" id="btnToggleApiKey" class="btn btn-sm" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: #94a3b8; font-size: 11px; padding: 4px 10px; border-radius: 10px;">
-                                🔑 API Key
+                            <button type="button" id="btnToggleApiKey" class="spatial-btn-pill" style="height: 30px; padding: 0 12px; font-size: 10px;">
+                                API KEY
                             </button>
                         </div>
                     </div>
                     
                     <!-- Collapsible API Key setting row -->
-                    <div id="apiKeyRow" style="display: none; margin-bottom: 14px; padding: 10px 14px; background: rgba(15, 23, 42, 0.8); border-radius: 10px; border: 1px dashed rgba(56, 189, 248, 0.3);">
+                    <div id="apiKeyRow" style="display: none; margin-bottom: 14px; padding: 10px 14px; background: rgba(15, 23, 42, 0.8); border-radius: 10px; border: 1px dashed rgba(255, 255, 255, 0.2);">
                         <div class="d-flex flex-column flex-sm-row gap-2 align-items-sm-center">
                             <span style="color: #94a3b8; font-size: 12px; font-family: monospace; white-space: nowrap;">WLT-Api-Key:</span>
-                            <input type="password" id="inputApiKey" class="form-control form-control-sm" value="9JrGmNDHVgDV7AYv9NHJN6C74p9qnT0u" style="background: #07090e; border-color: #334155; color: #38bdf8; font-family: monospace; font-size: 12px;">
-                            <button class="btn btn-sm btn-outline-info text-nowrap" type="button" id="btnSaveApiKey" style="font-size: 12px;">키 저장</button>
+                            <input type="password" id="inputApiKey" class="form-control form-control-sm" value="9JrGmNDHVgDV7AYv9NHJN6C74p9qnT0u" style="background: #07090e; border-color: #334155; color: #fff; font-family: monospace; font-size: 12px;">
+                            <button class="tf-btn style-2 text-nowrap" type="button" id="btnSaveApiKey" style="height: 32px; font-size: 11px; padding: 0 14px;">SAVE KEY</button>
                         </div>
                     </div>
 
@@ -591,40 +678,40 @@
                         <div class="position-relative flex-grow-1">
                             <input type="text" id="inputWorldPrompt" class="form-control" 
                                    placeholder="생성할 공간을 자유롭게 입력하세요 (예: 첨단 자율주행 물류 허브, 반도체 클린룸, 사이버펑크 격납고...)" 
-                                   style="background: rgba(15, 23, 42, 0.95); border: 1px solid rgba(56, 189, 248, 0.45); color: #fff; font-size: 14px; padding: 12px 18px; border-radius: 12px; box-shadow: inset 0 2px 6px rgba(0,0,0,0.5);"
+                                   style="background: rgba(15, 23, 42, 0.95); border: 1px solid rgba(255, 255, 255, 0.15); color: #fff; font-size: 14px; padding: 12px 18px; border-radius: 12px; box-shadow: inset 0 2px 6px rgba(0,0,0,0.5);"
                                    value="A futuristic automated smart warehouse with high-bay pallet racks, AGV logistics robots, and glowing LED path guides">
                         </div>
-                        <button type="button" id="btnGenerateWorld" class="btn text-nowrap" 
-                                style="background: linear-gradient(135deg, #0284c7, #0ea5e9, #38bdf8); color: #000; font-weight: 800; font-size: 14px; padding: 12px 26px; border-radius: 12px; border: none; box-shadow: 0 4px 20px rgba(14, 165, 233, 0.45); display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer; transition: all 0.2s;">
-                            <span id="btnGenerateIcon">⚡</span>
-                            <span id="btnGenerateText">3D 공간 즉시 생성</span>
+                        <button type="button" id="btnGenerateWorld" class="tf-btn style-fill-white animate-btn animate-dark" 
+                                style="height: 48px; padding: 0 28px; border-radius: 12px; font-size: 13px; font-weight: 600; white-space: nowrap; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+                            <span id="btnGenerateText">GENERATE 3D WORLD</span>
+                            <i class="icon icon-arrow-long-right"></i>
                         </button>
                     </div>
 
                     <!-- Recommended Preset Chips -->
                     <div class="d-flex flex-wrap align-items-center gap-2 mt-3 pt-1">
-                        <span style="font-size: 11px; color: #64748b; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">추천 공간:</span>
-                        <button type="button" class="preset-chip" data-prompt="A futuristic automated smart warehouse with high-bay pallet racks, AGV logistics robots, and glowing LED path guides">🏢 스마트 물류 허브</button>
-                        <button type="button" class="preset-chip" data-prompt="A high-tech cleanroom semiconductor fabrication plant with robotic wafer handling arms and overhead conveyor tracks">🔬 반도체 클린룸 팩토리</button>
-                        <button type="button" class="preset-chip" data-prompt="A massive cyberpunk industrial cargo hangar with heavy lifter drones and neon holographic waypoints">🌌 사이버펑크 격납고</button>
-                        <button type="button" class="preset-chip" data-prompt="An automated cold-chain logistics facility with autonomous mobile forklift robots and stacked cooling crates">❄️ 콜드체인 자동화 창고</button>
+                        <span style="font-size: 11px; color: #64748b; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;">PRESET WORLDS:</span>
+                        <button type="button" class="preset-chip" data-prompt="A futuristic automated smart warehouse with high-bay pallet racks, AGV logistics robots, and glowing LED path guides">스마트 물류 허브</button>
+                        <button type="button" class="preset-chip" data-prompt="A high-tech cleanroom semiconductor fabrication plant with robotic wafer handling arms and overhead conveyor tracks">반도체 클린룸 팩토리</button>
+                        <button type="button" class="preset-chip" data-prompt="A massive cyberpunk industrial cargo hangar with heavy lifter drones and neon holographic waypoints">사이버펑크 격납고</button>
+                        <button type="button" class="preset-chip" data-prompt="An automated cold-chain logistics facility with autonomous mobile forklift robots and stacked cooling crates">콜드체인 자동화 창고</button>
                     </div>
 
                     <!-- Real-time Status / Progress Bar (Hidden initially) -->
-                    <div id="promptStatusContainer" style="display: none; margin-top: 16px; padding: 14px 18px; background: rgba(15, 23, 42, 0.98); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 14px;">
+                    <div id="promptStatusContainer" style="display: none; margin-top: 16px; padding: 14px 18px; background: rgba(15, 23, 42, 0.98); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 14px;">
                         <div class="d-flex justify-content-between align-items-center mb-1">
-                            <span id="promptStatusText" style="color: #38bdf8; font-size: 13px; font-weight: 700;">
+                            <span id="promptStatusText" style="color: #fff; font-size: 13px; font-weight: 600;">
                                 World Labs Marble 1.1 API 요청 전송 중...
                             </span>
                             <span id="promptElapsedText" style="color: #94a3b8; font-family: monospace; font-size: 12px;">
                                 0s 경과
                             </span>
                         </div>
-                        <div class="progress" style="height: 8px; background: rgba(255,255,255,0.08); border-radius: 6px; overflow: hidden;">
-                            <div id="promptProgressBar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 15%; background: linear-gradient(90deg, #0284c7, #38bdf8);"></div>
+                        <div class="progress" style="height: 6px; background: rgba(255,255,255,0.08); border-radius: 6px; overflow: hidden;">
+                            <div id="promptProgressBar" class="progress-bar" role="progressbar" style="width: 15%; background: #fff;"></div>
                         </div>
                         <div class="d-flex flex-wrap justify-content-between align-items-center mt-2" style="font-size: 11px; color: #64748b;">
-                            <span id="promptStatusSub">Operation: <code id="promptOpId" style="color: #93c5fd; font-family: monospace;">-</code></span>
+                            <span id="promptStatusSub">Operation: <code id="promptOpId" style="color: #94a3b8; font-family: monospace;">-</code></span>
                             <span id="promptStageText" style="color: #cbd5e1;">예상 소요 시간: 약 30~60초 (Marble 1.1 뉴럴 렌더링)</span>
                         </div>
                     </div>
@@ -635,28 +722,28 @@
                     
                     <!-- Top HUD Overlay -->
                     <div style="position: absolute; top: 18px; left: 18px; z-index: 20; display: flex; flex-direction: column; gap: 8px; pointer-events: none;">
-                        <div style="background: rgba(10, 15, 26, 0.88); backdrop-filter: blur(14px); border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 12px; padding: 12px 18px; color: #e2e8f0; font-family: monospace; font-size: 12px; pointer-events: auto;">
-                            <div style="color: #38bdf8; font-weight: bold; margin-bottom: 4px;">// SPATIAL RUNTIME HUD</div>
+                        <div style="background: rgba(10, 15, 26, 0.88); backdrop-filter: blur(14px); border: 1px solid rgba(255, 255, 255, 0.15); border-radius: 12px; padding: 12px 18px; color: #e2e8f0; font-family: monospace; font-size: 12px; pointer-events: auto;">
+                            <div style="color: #fff; font-weight: bold; margin-bottom: 4px;">// SPATIAL RUNTIME HUD</div>
                             <div>Asset: <span id="telemetryAssetName" style="color: #f1f5f9;">Marble run01_500k.spz</span></div>
                             <div>Physics: <span id="telemetryPhysicsStatus" style="color: #34d399; font-weight: bold;">STANDBY / READY</span></div>
                             <div>Collision Contacts: <span id="telemetryCollisions" style="color: #fbbf24; font-weight: bold;">0</span></div>
-                            <div>Spatial Partitions: <span id="telemetryPartitions" style="color: #93c5fd;">7 Dissected Sectors</span></div>
-                            <div>Picking Accuracy: <span id="telemetryPicking" style="color: #a855f7;">100.0% (60/60)</span></div>
+                            <div>Spatial Partitions: <span id="telemetryPartitions" style="color: #cbd5e1;">7 Dissected Sectors</span></div>
+                            <div>Picking Accuracy: <span id="telemetryPicking" style="color: #fff;">100.0% (60/60)</span></div>
                         </div>
-                        <div id="spatialLogToast" style="background: rgba(15, 23, 42, 0.95); border-left: 3px solid #38bdf8; border-radius: 8px; padding: 8px 14px; color: #94a3b8; font-size: 11px; font-family: monospace; max-width: 340px; display: none; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
+                        <div id="spatialLogToast" style="background: rgba(15, 23, 42, 0.95); border-left: 3px solid #fff; border-radius: 8px; padding: 8px 14px; color: #94a3b8; font-size: 11px; font-family: monospace; max-width: 340px; display: none; box-shadow: 0 4px 15px rgba(0,0,0,0.5);">
                         </div>
                     </div>
 
                     <!-- Top Right Quick Controls -->
                     <div style="position: absolute; top: 18px; right: 18px; z-index: 20; display: flex; gap: 8px;">
-                        <button type="button" class="btn btn-sm btn-spatial" id="btnRestoreWarehouse" style="background: rgba(14, 165, 233, 0.2); backdrop-filter: blur(10px); border: 1px solid rgba(56, 189, 248, 0.5); color: #38bdf8; font-weight: 700; padding: 6px 12px; border-radius: 8px; font-size: 12px; display: none;">
-                            🏬 기본 창고 복귀
+                        <button type="button" class="spatial-btn-pill" id="btnRestoreWarehouse" style="height: 32px; padding: 0 14px; font-size: 11px; display: none;">
+                            RESET SCENE
                         </button>
-                        <button type="button" class="btn btn-sm btn-spatial" id="btnResetPhysics" style="background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.15); color: #94a3b8; font-weight: 600; padding: 6px 12px; border-radius: 8px; font-size: 12px;">
-                            🔄 Reset
+                        <button type="button" class="spatial-btn-pill" id="btnResetPhysics" style="height: 32px; padding: 0 14px; font-size: 11px;">
+                            RESET PHYSICS
                         </button>
-                        <button type="button" class="btn btn-sm btn-spatial" id="btnFullscreen" style="background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.15); color: #94a3b8; font-weight: 600; padding: 6px 12px; border-radius: 8px; font-size: 12px;">
-                            ⛶ Fullscreen
+                        <button type="button" class="spatial-btn-pill" id="btnFullscreen" style="height: 32px; padding: 0 14px; font-size: 11px;">
+                            FULLSCREEN
                         </button>
                     </div>
 
@@ -674,21 +761,26 @@
 
                     <!-- Floating Bottom Control Dock -->
                     <div class="viewport-controls-dock" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 25; width: 95%; max-width: 980px;">
-                        <div style="background: rgba(10, 15, 26, 0.92); backdrop-filter: blur(18px); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 18px; padding: 12px 18px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7); display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: center;">
-                            <button type="button" class="btn btn-sm btn-spatial" id="btnDropTest" style="background: linear-gradient(135deg, #0284c7, #0369a1); color: white; border: none; font-weight: 700; padding: 8px 18px; border-radius: 10px; font-size: 13px;">
-                                ⬇️ 1m 낙하 충돌
+                        <div style="background: rgba(10, 15, 26, 0.92); backdrop-filter: blur(18px); border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 18px; padding: 10px 16px; box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7); display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: center;">
+                            <button type="button" class="spatial-dock-btn" id="btnDropTest">
+                                <span class="btn-dot" style="background:#38bdf8;"></span>
+                                1M DROP TEST
                             </button>
-                            <button type="button" class="btn btn-sm btn-spatial" id="btnTossTest" style="background: linear-gradient(135deg, #ea580c, #c2410c); color: white; border: none; font-weight: 700; padding: 8px 18px; border-radius: 10px; font-size: 13px;">
-                                🚀 2.5m/s 투척
+                            <button type="button" class="spatial-dock-btn" id="btnTossTest">
+                                <span class="btn-dot" style="background:#fbbf24;"></span>
+                                2.5M/S TOSS TEST
                             </button>
-                            <button type="button" class="btn btn-sm btn-spatial" id="btnToggleWire" style="background: rgba(30, 41, 59, 0.9); border: 1px solid #475569; color: #cbd5e1; font-weight: 600; padding: 8px 16px; border-radius: 10px; font-size: 13px;">
-                                📐 충돌체 와이어프레임
+                            <button type="button" class="spatial-dock-btn" id="btnToggleWire">
+                                <span class="btn-dot" style="background:#94a3b8;"></span>
+                                COLLISION WIREFRAME
                             </button>
-                            <button type="button" class="btn btn-sm btn-spatial" id="btnTogglePartition" style="background: rgba(30, 41, 59, 0.9); border: 1px solid #475569; color: #cbd5e1; font-weight: 600; padding: 8px 16px; border-radius: 10px; font-size: 13px;">
-                                🧩 7부품 공간 분할
+                            <button type="button" class="spatial-dock-btn" id="btnTogglePartition">
+                                <span class="btn-dot" style="background:#94a3b8;"></span>
+                                7-PART OBB SECTORS
                             </button>
-                            <button type="button" class="btn btn-sm btn-spatial" id="btnRunPicking" style="background: rgba(30, 41, 59, 0.9); border: 1px solid #475569; color: #cbd5e1; font-weight: 600; padding: 8px 16px; border-radius: 10px; font-size: 13px;">
-                                🎯 60점 피킹 평가
+                            <button type="button" class="spatial-dock-btn" id="btnRunPicking">
+                                <span class="btn-dot" style="background:#94a3b8;"></span>
+                                60-PT RAYCAST PICKING
                             </button>
                         </div>
                     </div>
@@ -733,7 +825,7 @@
             <div class="container">
                 <div class="s-header" style="padding-bottom: 36px; align-items: flex-end;">
                     <div style="max-width: 720px;">
-                        <p class="mini-title text-caption text-primary mb-2" style="color: #38bdf8 !important; font-weight: 700; letter-spacing: 2px;">
+                        <p class="mini-title text-caption mb-2" style="color: #94a3b8; font-weight: 700; letter-spacing: 2px;">
                             // RESEARCH & STRATEGY PAPERS
                         </p>
                         <h2 class="text-display-2 fw-bold text-white mb-3" style="letter-spacing: -1.5px;">
@@ -744,7 +836,7 @@
                         </p>
                     </div>
                     <div>
-                        <a href="/warehouse-story.html" target="_blank" class="tf-btn" style="background: rgba(16, 185, 129, 0.15); border: 1px solid #10b981; color: #34d399; font-weight: 700; border-radius: 12px; padding: 12px 24px; display: inline-flex; align-items: center; gap: 8px; text-decoration: none; transition: all 0.3s ease; white-space: nowrap;">
+                        <a href="/warehouse-story.html" target="_blank" class="tf-btn style-2" style="padding: 10px 22px; display: inline-flex; align-items: center; gap: 8px; text-decoration: none; white-space: nowrap;">
                             <i class="icon icon-arrow-top-right"></i> 6가지 쉽게 이해돕기
                         </a>
                     </div>
@@ -752,9 +844,9 @@
                 <div class="row g-4">
                     <!-- Whitepaper Part 1 -->
                     <div class="col-md-4 col-12">
-                        <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 20px; padding: 32px; height: 100%; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                        <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 32px; height: 100%; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
                             <div>
-                                <div style="display: inline-block; background: rgba(56, 189, 248, 0.12); border: 1px solid #38bdf8; color: #38bdf8; font-size: 11px; font-weight: bold; padding: 4px 12px; border-radius: 12px; margin-bottom: 16px;">
+                                <div class="spatial-btn-pill" style="height: 24px; font-size: 10px; margin-bottom: 16px; pointer-events: none; border-color: rgba(255,255,255,0.2);">
                                     PART 1 // 37 PAGES
                                 </div>
                                 <h4 class="text-white fw-bold mb-3" style="font-size: 20px; letter-spacing: -0.5px;">공간 지능 아키텍처 및 3DGS 평가 백서</h4>
@@ -763,7 +855,7 @@
                                 </p>
                             </div>
                             <div>
-                                <a href="/ai-system-implementation-guide.pdf" download="World_Labs_공간지능_Spark_아키텍처_백서_Part1_37P.pdf" target="_blank" class="tf-btn" style="background: #38bdf8; color: #000; font-weight: 700; width: 100%; text-align: center; border-radius: 12px; text-decoration: none; padding: 12px; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+                                <a href="/ai-system-implementation-guide.pdf" download="World_Labs_공간지능_Spark_아키텍처_백서_Part1_37P.pdf" target="_blank" class="tf-btn w-100" style="text-align: center; border-radius: 12px; text-decoration: none; padding: 12px; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
                                     <i class="icon icon-arrow-caret-right"></i> 백서 Part 1 다운로드 (PDF)
                                 </a>
                             </div>
@@ -771,9 +863,9 @@
                     </div>
                     <!-- Whitepaper Part 2 -->
                     <div class="col-md-4 col-12">
-                        <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(168, 85, 247, 0.25); border-radius: 20px; padding: 32px; height: 100%; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                        <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 20px; padding: 32px; height: 100%; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
                             <div>
-                                <div style="display: inline-block; background: rgba(168, 85, 247, 0.12); border: 1px solid #a855f7; color: #a855f7; font-size: 11px; font-weight: bold; padding: 4px 12px; border-radius: 12px; margin-bottom: 16px;">
+                                <div class="spatial-btn-pill" style="height: 24px; font-size: 10px; margin-bottom: 16px; pointer-events: none; border-color: rgba(255,255,255,0.2);">
                                     PART 2 // 45 PAGES
                                 </div>
                                 <h4 class="text-white fw-bold mb-3" style="font-size: 20px; letter-spacing: -0.5px;">Rapier 3D 물리 충돌 및 공간 분할 백서</h4>
@@ -782,7 +874,7 @@
                                 </p>
                             </div>
                             <div>
-                                <a href="/Spark_Spatial_Intelligence_Whitepaper_v1.0.pdf" download="World_Labs_Rapier3D_물리충돌_및_공간분할_백서_Part2_45P.pdf" target="_blank" class="tf-btn" style="background: #a855f7; color: #fff; font-weight: 700; width: 100%; text-align: center; border-radius: 12px; text-decoration: none; padding: 12px; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+                                <a href="/Spark_Spatial_Intelligence_Whitepaper_v1.0.pdf" download="World_Labs_Rapier3D_물리충돌_및_공간분할_백서_Part2_45P.pdf" target="_blank" class="tf-btn w-100" style="text-align: center; border-radius: 12px; text-decoration: none; padding: 12px; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
                                     <i class="icon icon-arrow-caret-right"></i> 백서 Part 2 다운로드 (PDF)
                                 </a>
                             </div>
@@ -790,9 +882,9 @@
                     </div>
                     <!-- Compact Neural Appearance Models (3DGS Viewer) -->
                     <div class="col-md-4 col-12">
-                        <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 20px; padding: 32px; height: 100%; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+                        <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.16); border-radius: 20px; padding: 32px; height: 100%; display: flex; flex-direction: column; justify-content: space-between; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
                             <div>
-                                <div style="display: inline-block; background: rgba(16, 185, 129, 0.12); border: 1px solid #10b981; color: #10b981; font-size: 11px; font-weight: bold; padding: 4px 12px; border-radius: 12px; margin-bottom: 16px;">
+                                <div class="spatial-btn-pill" style="height: 24px; font-size: 10px; margin-bottom: 16px; pointer-events: none; border-color: rgba(255,255,255,0.25);">
                                     3DGS RESEARCH // INTERACTIVE VIEWER
                                 </div>
                                 <h4 class="text-white fw-bold mb-3" style="font-size: 19px; line-height: 1.35; letter-spacing: -0.5px;">Viewer – Compact Neural Appearance Models for Efficient Gaussian Splatting</h4>
@@ -801,11 +893,11 @@
                                 </p>
                             </div>
                             <div>
-                                <a href="https://share.google/btKkSJm7YrKrLm6qX" target="_blank" rel="noopener noreferrer" class="tf-btn" style="background: #10b981; color: #000; font-weight: 700; width: 100%; text-align: center; border-radius: 12px; text-decoration: none; padding: 12px; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
+                                <a href="https://share.google/btKkSJm7YrKrLm6qX" target="_blank" rel="noopener noreferrer" class="tf-btn style-fill-white w-100 animate-btn animate-dark" style="text-align: center; border-radius: 12px; text-decoration: none; padding: 12px; display: inline-flex; align-items: center; justify-content: center; gap: 8px;">
                                     <i class="icon icon-arrow-top-right"></i> 3DGS 뉴럴 뷰어 열기 (Viewer)
                                 </a>
                                 <div class="d-flex justify-content-end mt-2">
-                                    <a href="/warehouse-story.html" target="_blank" style="background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.35); color: #34d399; font-size: 12px; font-weight: 700; padding: 5px 12px; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; transition: all 0.2s ease;">
+                                    <a href="/warehouse-story.html" target="_blank" class="spatial-btn-pill" style="height: 28px; font-size: 11px; padding: 0 12px; text-decoration: none;">
                                         <span>6가지 쉽게 이해돕기</span> <i class="icon icon-arrow-top-right" style="font-size: 10px;"></i>
                                     </a>
                                 </div>
@@ -1332,8 +1424,12 @@
                                     <h6 class="process fw-normal text-primary">500K Splats (SPZ 7.7MB)</h6>
                                 </div>
                             </div>
-                            <div class="app_icon">
-                                <span style="font-size: 24px;">✨</span>
+                            <div class="app_icon d-flex align-items-center justify-content-center" style="width: 54px; height: 54px; color: #fff;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                                    <polyline points="2 17 12 22 22 17"></polyline>
+                                    <polyline points="2 12 12 17 22 12"></polyline>
+                                </svg>
                             </div>
                             <!-- Clone 2 -->
                             <div class="app_name">
@@ -1342,8 +1438,12 @@
                                     <h6 class="process fw-normal text-primary">500K Splats (SPZ 7.7MB)</h6>
                                 </div>
                             </div>
-                            <div class="app_icon">
-                                <span style="font-size: 24px;">✨</span>
+                            <div class="app_icon d-flex align-items-center justify-content-center" style="width: 54px; height: 54px; color: #fff;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                                    <polyline points="2 17 12 22 22 17"></polyline>
+                                    <polyline points="2 12 12 17 22 12"></polyline>
+                                </svg>
                             </div>
                         </div>
                     </div>
@@ -1362,8 +1462,11 @@
                                     <h6 class="process fw-normal text-primary">100Hz Deterministic Loop</h6>
                                 </div>
                             </div>
-                            <div class="app_icon">
-                                <span style="font-size: 24px;">⚡</span>
+                            <div class="app_icon d-flex align-items-center justify-content-center" style="width: 54px; height: 54px; color: #fff;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                                </svg>
                             </div>
                             <!-- Clone 2 -->
                             <div class="app_name">
@@ -1372,8 +1475,11 @@
                                     <h6 class="process fw-normal text-primary">100Hz Deterministic Loop</h6>
                                 </div>
                             </div>
-                            <div class="app_icon">
-                                <span style="font-size: 24px;">⚡</span>
+                            <div class="app_icon d-flex align-items-center justify-content-center" style="width: 54px; height: 54px; color: #fff;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                                </svg>
                             </div>
                         </div>
                     </div>
@@ -1392,8 +1498,16 @@
                                     <h6 class="process fw-normal text-primary">7-Part Geometry &amp; 60-Pt Raycast</h6>
                                 </div>
                             </div>
-                            <div class="app_icon">
-                                <span style="font-size: 24px;">🎯</span>
+                            <div class="app_icon d-flex align-items-center justify-content-center" style="width: 54px; height: 54px; color: #fff;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <circle cx="12" cy="12" r="6"></circle>
+                                    <circle cx="12" cy="12" r="2"></circle>
+                                    <line x1="12" y1="2" x2="12" y2="4"></line>
+                                    <line x1="12" y1="20" x2="12" y2="22"></line>
+                                    <line x1="2" y1="12" x2="4" y2="12"></line>
+                                    <line x1="20" y1="12" x2="22" y2="12"></line>
+                                </svg>
                             </div>
                             <!-- Clone 2 -->
                             <div class="app_name">
@@ -1402,8 +1516,16 @@
                                     <h6 class="process fw-normal text-primary">7-Part Geometry &amp; 60-Pt Raycast</h6>
                                 </div>
                             </div>
-                            <div class="app_icon">
-                                <span style="font-size: 24px;">🎯</span>
+                            <div class="app_icon d-flex align-items-center justify-content-center" style="width: 54px; height: 54px; color: #fff;">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <circle cx="12" cy="12" r="6"></circle>
+                                    <circle cx="12" cy="12" r="2"></circle>
+                                    <line x1="12" y1="2" x2="12" y2="4"></line>
+                                    <line x1="12" y1="20" x2="12" y2="22"></line>
+                                    <line x1="2" y1="12" x2="4" y2="12"></line>
+                                    <line x1="20" y1="12" x2="22" y2="12"></line>
+                                </svg>
                             </div>
                         </div>
                     </div>
@@ -2545,7 +2667,7 @@
 
       function runPickingBenchmark() {
         pickingGroup.clear();
-        showToast("🎯 60점 레이캐스팅 정확도 평가 시작...");
+        showToast("[AUDIT] 60점 레이캐스팅 정확도 평가 시작...");
         telemetryStatus.textContent = "RUNNING 60-POINT PICKING AUDIT";
         telemetryStatus.style.color = "#a855f7";
 
@@ -2587,7 +2709,7 @@
         telemetryPicking.textContent = "100.0% (60/60 Hits, 0.04ms)";
         telemetryStatus.textContent = "60-POINT AUDIT COMPLETED (100%)";
         telemetryStatus.style.color = "#34d399";
-        showToast("✅ 60/60 피킹 포인트 100% 검출 완료! (평균 응답: 0.04ms)");
+        showToast("[COMPLETE] 60/60 피킹 포인트 100% 검출 완료! (평균 응답: 0.04ms)");
 
         setTimeout(() => {
           pickingGroup.clear();
@@ -2596,7 +2718,7 @@
 
       // Button Handlers
       btnDrop.addEventListener("click", () => {
-        showToast("⬇️ 1m 낙하 충돌 시뮬레이션 실행 (+1.0m 자유낙하)");
+        showToast("[DROP TEST] 1m 낙하 충돌 시뮬레이션 실행 (+1.0m 자유낙하)");
         telemetryStatus.textContent = "1M DROP SIMULATION RUNNING";
         telemetryStatus.style.color = "#0284c7";
         collisionCount++;
@@ -2605,7 +2727,7 @@
       });
 
       btnToss.addEventListener("click", () => {
-        showToast("🚀 2.5m/s 투척 충돌 시뮬레이션 실행 (통로 중심 충돌)");
+        showToast("[TOSS TEST] 2.5m/s 투척 충돌 시뮬레이션 실행 (통로 중심 충돌)");
         telemetryStatus.textContent = "2.5M/S TOSS COLLISION RUNNING";
         telemetryStatus.style.color = "#ea580c";
         collisionCount++;
@@ -2617,12 +2739,12 @@
         floorWire.visible = !floorWire.visible;
         wireL1.visible = floorWire.visible;
         wireR1.visible = floorWire.visible;
-        showToast(floorWire.visible ? "📐 와이어프레임 표시 활성화" : "📐 와이어프레임 숨김");
+        showToast(floorWire.visible ? "[WIREFRAME] 와이어프레임 표시 활성화" : "[WIREFRAME] 와이어프레임 숨김");
       });
 
       btnPartition.addEventListener("click", () => {
         partitionGroup.visible = !partitionGroup.visible;
-        showToast(partitionGroup.visible ? "🧩 7부품 공간 분할(Spatial Partitioning) 표시" : "🧩 7부품 공간 분할 숨김");
+        showToast(partitionGroup.visible ? "[PARTITION] 7부품 공간 분할(Spatial Partitioning) 표시" : "[PARTITION] 7부품 공간 분할 숨김");
       });
 
       btnPicking.addEventListener("click", () => {
@@ -2630,7 +2752,7 @@
       });
 
       btnReset.addEventListener("click", () => {
-        showToast("🔄 물리 시뮬레이션 및 카메라 리셋");
+        showToast("[RESET] 물리 시뮬레이션 및 카메라 리셋");
         createRigidBodies(0);
         camera.position.set(0, 2.5, 6.0);
         controls.target.set(0, 0.4, 0);
@@ -2691,7 +2813,7 @@
             const data = await resp.json();
             const cr = data.remaining_credits ?? data.credits;
             if (cr !== undefined && apiCreditsBadge) {
-              apiCreditsBadge.textContent = `💰 ${Number(cr).toLocaleString()} Credits`;
+              apiCreditsBadge.textContent = `CREDITS: ${Number(cr).toLocaleString()}`;
             }
           }
         } catch (e) {
@@ -2712,7 +2834,7 @@
         if (val) {
           currentApiKey = val;
           localStorage.setItem("WORLDLABS_API_KEY", val);
-          showToast("🔑 World Labs API Key가 성공적으로 저장되었습니다!");
+          showToast("[AUTH] World Labs API Key가 성공적으로 저장되었습니다!");
           updateCreditsDisplay();
           if (apiKeyRow) apiKeyRow.style.display = "none";
         }
@@ -2724,7 +2846,7 @@
           const p = chip.getAttribute("data-prompt");
           if (p && inputPrompt) {
             inputPrompt.value = p;
-            showToast(`💡 프롬프트가 설정되었습니다: "${chip.textContent.trim()}"`);
+            showToast(`[PRESET] 프롬프트가 설정되었습니다: "${chip.textContent.trim()}"`);
           }
         });
       });
@@ -2735,7 +2857,7 @@
         if (isGenerating) return;
         const prompt = inputPrompt ? inputPrompt.value.trim() : "";
         if (!prompt) {
-          showToast("⚠️ 프롬프트를 입력해주세요!");
+          showToast("[NOTICE] 프롬프트를 입력해주세요!");
           return;
         }
 
@@ -2763,7 +2885,7 @@
         }, 1000);
 
         try {
-          showToast("✨ World Labs Marble 1.1 AI 공간 생성 요청을 전송합니다...");
+          showToast("[GENERATION] World Labs Marble 1.1 AI 공간 생성 요청을 전송합니다...");
           
           const genResp = await fetch("https://api.worldlabs.ai/marble/v1/worlds:generate", {
             method: "POST",
@@ -2795,7 +2917,7 @@
           if (promptOpId) promptOpId.textContent = cleanOpId;
           if (promptProgressBar) promptProgressBar.style.width = "25%";
           if (promptStatusText) promptStatusText.textContent = "Marble 1.1 AI 3D 뉴럴 공간 합성 진행 중...";
-          showToast(`⚡ 공간 합성이 시작되었습니다 (작업 ID: ${cleanOpId.substring(0, 8)}...)`);
+          showToast(`[PROCESSING] 공간 합성이 시작되었습니다 (작업 ID: ${cleanOpId.substring(0, 8)}...)`);
 
           // Polling operations endpoint
           const pollUrl = `https://api.worldlabs.ai/marble/v1/operations/${cleanOpId}`;
@@ -2903,13 +3025,13 @@
 
           if (promptProgressBar) promptProgressBar.style.width = "100%";
           if (promptStatusText) {
-            promptStatusText.textContent = "✅ 새로운 3D 공간 생성 및 실시간 뷰포트 전환 완료!";
+            promptStatusText.textContent = "[SUCCESS] 새로운 3D 공간 생성 및 실시간 뷰포트 전환 완료!";
             promptStatusText.style.color = "#34d399";
           }
           if (promptStageText) {
             promptStageText.textContent = `World ID: ${worldData.world_id || cleanOpId} (3DGS 렌더링 활성화)`;
           }
-          showToast("🎉 새로운 3D 공간이 성공적으로 생성되었습니다! 화면을 둘러보고 물리 버튼을 실행해보세요.");
+          showToast("[SUCCESS] 새로운 3D 공간이 성공적으로 생성되었습니다! 화면을 둘러보고 물리 버튼을 실행해보세요.");
 
           updateCreditsDisplay();
 
@@ -2921,13 +3043,13 @@
         } catch (err) {
           console.error("[WorldLabs Error]", err);
           if (promptStatusText) {
-            promptStatusText.textContent = `❌ 생성 오류: ${err.message || err}`;
+            promptStatusText.textContent = `[ERROR] 생성 오류: ${err.message || err}`;
             promptStatusText.style.color = "#ef4444";
           }
           if (promptStageText) {
             promptStageText.textContent = "API 키 또는 네트워크 상태를 확인해주세요.";
           }
-          showToast(`❌ 오류 발생: ${err.message || err}`, 5000);
+          showToast(`[ERROR] 오류 발생: ${err.message || err}`, 5000);
         } finally {
           clearInterval(timerId);
           isGenerating = false;
@@ -2935,8 +3057,7 @@
             btnGenerate.disabled = false;
             btnGenerate.style.opacity = "1";
           }
-          if (btnGenerateIcon) btnGenerateIcon.textContent = "⚡";
-          if (btnGenerateText) btnGenerateText.textContent = "3D 공간 즉시 생성";
+          if (btnGenerateText) btnGenerateText.textContent = "GENERATE 3D WORLD";
         }
       }
 
@@ -2950,7 +3071,7 @@
 
       // Restore Default Warehouse Handler
       btnRestoreWarehouse?.addEventListener("click", async () => {
-        showToast("🏬 기본 스마트 물류 창고(Marble Run01)로 복원 중...");
+        showToast("[RESTORE] 기본 스마트 물류 창고(Marble Run01)로 복원 중...");
         loadingOverlay.style.display = "flex";
         loadingOverlay.style.opacity = "1";
         loadingText.textContent = "기본 스마트 물류 창고 SPZ 복원 중...";
@@ -2984,7 +3105,7 @@
         }
         if (btnRestoreWarehouse) btnRestoreWarehouse.style.display = "none";
         if (promptStatusContainer) promptStatusContainer.style.display = "none";
-        showToast("✅ 기본 스마트 물류 창고가 복원되었습니다.");
+        showToast("[RESTORED] 기본 스마트 물류 창고가 복원되었습니다.");
 
         setTimeout(() => {
           loadingOverlay.style.opacity = "0";
@@ -3033,7 +3154,7 @@
         const now = performance.now();
         if (now - lastTime >= 1000) {
           const fps = Math.round((frameCount * 1000) / (now - lastTime));
-          badgeFps.textContent = `⚡ ${fps} FPS`;
+          badgeFps.innerHTML = `<span style="width: 6px; height: 6px; border-radius: 50%; background: #34d399; display: inline-block;"></span> ${fps} FPS`;
           frameCount = 0;
           lastTime = now;
         }
