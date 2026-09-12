@@ -5998,17 +5998,18 @@ button.animate-btn::after,
 }
 .testimonial-v01 .tes-author {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .testimonial-v01 .author_image {
   position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 14px;
 }
 .testimonial-v01 .author_image::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(270deg, #000 0%, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0) 80%, #000 100%), linear-gradient(180deg, #000 0%, rgba(255, 255, 255, 0) 20%, rgba(255, 255, 255, 0) 80%, #000 100%);
-  mix-blend-mode: luminosity;
-  pointer-events: none;
+  display: none;
 }
 .testimonial-v01 .author_image img,
 .testimonial-v01 .author_image video {
@@ -6016,16 +6017,14 @@ button.animate-btn::after,
   height: 100%;
   object-fit: cover;
   display: block;
-}
-.testimonial-v01 .author_image img {
-  filter: grayscale(100);
+  filter: none;
+  border-radius: 14px;
 }
 .testimonial-v01 .author_info {
-  position: absolute;
-  bottom: 0;
-  left: 15px;
-  right: 15px;
+  position: static;
+  margin-top: 18px;
   text-align: center;
+  width: 100%;
 }
 .testimonial-v01 .tes-text {
   text-align: center;

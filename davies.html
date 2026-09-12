@@ -231,6 +231,75 @@
           display: none !important;
         }
       }
+      /* Testimonial Cards & Video Visibility Enhancement */
+      .testimonial-v01 {
+        background: rgba(15, 23, 42, 0.65) !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+        backdrop-filter: blur(14px);
+        border-radius: 20px;
+        padding: 30px !important;
+        box-shadow: 0 16px 36px rgba(0, 0, 0, 0.45);
+        transition: all 0.3s ease;
+      }
+      .testimonial-v01:hover {
+        border-color: rgba(56, 189, 248, 0.35) !important;
+        box-shadow: 0 20px 45px rgba(56, 189, 248, 0.12);
+        transform: translateY(-2px);
+      }
+      .testimonial-v01 .tes-author {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .testimonial-v01 .author_image {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        border-radius: 14px;
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+        background: #020617;
+      }
+      .testimonial-v01 .author_image::after {
+        display: none !important;
+      }
+      .testimonial-v01 .author_image img,
+      .testimonial-v01 .author_image video {
+        filter: none !important;
+        border-radius: 14px !important;
+        display: block;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 437 / 328;
+        object-fit: cover;
+      }
+      .testimonial-v01 .author_info {
+        position: static !important;
+        margin-top: 20px !important;
+        width: 100%;
+        text-align: center !important;
+      }
+      .testimonial-v01 .author_info .info__name {
+        color: #f8fafc !important;
+        font-weight: 700;
+        margin-bottom: 5px;
+      }
+      .testimonial-v01 .author_info .info__duty {
+        color: #38bdf8 !important;
+        font-size: 13px;
+        font-weight: 500;
+      }
+      .testimonial-v01 .br-line {
+        background: rgba(255, 255, 255, 0.1) !important;
+        margin: 20px 0 !important;
+      }
+      .testimonial-v01 .tes-text {
+        color: #cbd5e1 !important;
+        font-size: 15px;
+        line-height: 1.65;
+        text-align: center !important;
+      }
     </style>
 </head>
 
@@ -1686,7 +1755,7 @@
                         <div class="testimonial-v01">
                             <div class="tes-author">
                                 <div class="author_image">
-                                    <video class="testimonial-robot-video" autoplay loop muted playsinline 
+                                    <video class="testimonial-robot-video" autoplay loop muted playsinline poster="davies-assets/images/section/tes-1.jpg"
                                            style="width: 100%; height: 100%; aspect-ratio: 437/328; object-fit: cover; display: block; border-radius: 8px;">
                                         <source src="davies-assets/images/video/4_robots-carry-boxes.mp4" type="video/mp4">
                                         <source src="movie/4_robots-carry-boxes.mp4" type="video/mp4">
