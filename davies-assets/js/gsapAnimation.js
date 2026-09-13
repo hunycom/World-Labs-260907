@@ -435,245 +435,208 @@
         const $section = $(".section-service-2");
         const $bgList = $(".bg-image-list");
         const $bg = $bgList.find(".bg-image");
+        const $cards = $section.find(".wg-service-2");
 
-        if (!$section.length) return;
+        if (!$section.length || !$cards.length) return;
 
-        gsap.registerPlugin(ScrollTrigger);
+        let currentIndex = 0;
+        const total = $cards.length;
+        let isTransitioning = false;
 
-        let mode = null;
-        let tl = null;
-        let stInstance = null;
-        let isNavigating = false;
+        // Initialize state
+        function setupInitialState() {
+            $cards.each(function (i) {
+                const $card = $(this);
+                if (i === currentIndex) {
+                    $card.css({
+                        opacity: 1,
+                        visibility: "visible",
+                        "pointer-events": "auto",
+                        "z-index": 5
+                    });
+                } else {
+                    $card.css({
+                        opacity: 0,
+                        visibility: "hidden",
+                        "pointer-events": "none",
+                        "z-index": 1
+                    });
+                }
+            });
 
-        function debounce(fn, wait = 100) {
-            let timeout;
-            return function (...args) {
-                const ctx = this;
-                clearTimeout(timeout);
-                timeout = setTimeout(() => fn.apply(ctx, args), wait);
-            };
+            $bg.each(function (i) {
+                if (i === currentIndex) {
+                    $(this).css({ opacity: 1, visibility: "visible" });
+                } else {
+                    $(this).css({ opacity: 0, visibility: "hidden" });
+                }
+            });
+
+            updateIndicators(currentIndex);
         }
 
-        const detectAnchorNavigation = () => {
-            $('a[href^="#"]').on("click", function (e) {
-                const targetId = $(this).attr("href");
-                const $target = $(targetId);
+        function updateIndicators(idx) {
+            $(".service-slide-counter").text(`0${idx + 1} / 0${total}`);
+            $(".service-dot").each(function () {
+                const dotIdx = parseInt($(this).data("index"), 10);
+                if (dotIdx === idx) {
+                    $(this).addClass("active").css({
+                        width: "28px",
+                        background: "#38bdf8"
+                    });
+                } else {
+                    $(this).removeClass("active").css({
+                        width: "8px",
+                        background: "rgba(255, 255, 255, 0.25)"
+                    });
+                }
+            });
+        }
 
-                if ($target.length) {
-                    isNavigating = true;
+        const goToService = (nextIndex, direction = 1) => {
+            if (isTransitioning) return;
+            if (nextIndex === currentIndex) return;
 
-                    setTimeout(() => {
-                        isNavigating = false;
-                    }, 1500);
+            isTransitioning = true;
+            const $currentCard = $cards.eq(currentIndex);
+            const $nextCard = $cards.eq(nextIndex);
+            const $currentBg = $bg.eq(currentIndex);
+            const $nextBg = $bg.eq(nextIndex);
+
+            // Prepare next card
+            $nextCard.css({
+                visibility: "visible",
+                "pointer-events": "auto",
+                "z-index": 6
+            });
+            $currentCard.css({
+                "pointer-events": "none",
+                "z-index": 4
+            });
+
+            if ($nextBg.length) {
+                $nextBg.css({ visibility: "visible" });
+            }
+
+            const xOffset = direction > 0 ? 40 : -40;
+
+            const tl = gsap.timeline({
+                onComplete: () => {
+                    $currentCard.css({
+                        opacity: 0,
+                        visibility: "hidden",
+                        "z-index": 1
+                    });
+                    if ($currentBg.length) {
+                        $currentBg.css({ opacity: 0, visibility: "hidden" });
+                    }
+                    $nextCard.css({ "z-index": 5 });
+                    currentIndex = nextIndex;
+                    updateIndicators(currentIndex);
+                    isTransitioning = false;
                 }
             });
 
-            if (window.location.hash) {
-                isNavigating = true;
-                setTimeout(() => {
-                    isNavigating = false;
-                }, 1500);
+            // 1. Fade & slide out current card
+            tl.to($currentCard, {
+                opacity: 0,
+                x: -xOffset * 0.7,
+                scale: 0.97,
+                duration: 0.4,
+                ease: "power2.inOut"
+            }, 0);
+
+            // 2. Crossfade background
+            if ($currentBg.length && $nextBg.length) {
+                tl.to($currentBg, { opacity: 0, duration: 0.45, ease: "power2.inOut" }, 0);
+                tl.fromTo($nextBg, { opacity: 0 }, { opacity: 1, duration: 0.55, ease: "power2.out" }, 0.05);
+            }
+
+            // 3. Fade & slide in next card
+            tl.fromTo($nextCard, 
+                { opacity: 0, x: xOffset, scale: 1.02 },
+                { opacity: 1, x: 0, scale: 1, duration: 0.5, ease: "power2.out" },
+                0.08
+            );
+
+            // 4. Subtle zoom settle on next main image
+            const $nextImg = $nextCard.find(".main-image img");
+            if ($nextImg.length) {
+                tl.fromTo($nextImg,
+                    { scale: 1.08 },
+                    { scale: 1, duration: 0.7, ease: "power2.out" },
+                    0.08
+                );
+            }
+
+            // 5. Mini image (image-2) animation
+            const $nextMini = $nextCard.find(".image-2");
+            if ($nextMini.length) {
+                tl.fromTo($nextMini,
+                    { opacity: 0, x: 25, scale: 0.92 },
+                    { opacity: 1, x: 0, scale: 1, duration: 0.6, ease: "power2.out" },
+                    0.12
+                );
             }
         };
 
-        const initDesktop = () => {
-            const $mainScrolls = $section.find(".wg-service-2");
-
-            $mainScrolls.css("pointer-events", "none");
-            $mainScrolls.eq(0).css("pointer-events", "auto");
-
-            tl = gsap.timeline({ paused: true });
-
-            $mainScrolls.each(function (i, el) {
-                const $main = $(el);
-                const $itemImage = $main.find(".image-2");
-                const $next = $mainScrolls.eq(i + 1);
-                const $bgCurrent = $bg.eq(i);
-                const $bgNext = $bg.eq(i + 1);
-
-                if ($next.length) {
-                    if ($itemImage.length) {
-                        tl.to($itemImage, {
-                            left: 0,
-                            width: 424,
-                            height: 530,
-                            opacity: 0,
-                            duration: 1,
-                            ease: "power2.out",
-                        });
-                    }
-
-                    tl.to(
-                        $main,
-                        {
-                            opacity: 0,
-                            duration: 0.8,
-                            ease: "power2.out",
-                            onStart: () => {
-                                $main.css("pointer-events", "none");
-                            },
-                            onReverseComplete: () => {
-                                $main.css("pointer-events", "auto");
-                            },
-                        },
-                        "<"
-                    );
-
-                    tl.fromTo(
-                        $next,
-                        { scale: 0.95, opacity: 0 },
-                        {
-                            scale: 1,
-                            opacity: 1,
-                            duration: 1,
-                            ease: "power2.out",
-                            onStart: () => {
-                                $next.css("pointer-events", "auto");
-                            },
-                            onReverseComplete: () => {
-                                $next.css("pointer-events", "none");
-                            },
-                        },
-                        "<"
-                    );
-
-                    if ($bgCurrent.length && $bgNext.length) {
-                        tl.to(
-                            $bgCurrent,
-                            {
-                                opacity: 0,
-                                duration: 1,
-                                ease: "power2.out",
-                            },
-                            "<"
-                        );
-
-                        tl.fromTo(
-                            $bgNext,
-                            { opacity: 0 },
-                            {
-                                opacity: 1,
-                                duration: 1,
-                                ease: "power2.out",
-                            },
-                            "<"
-                        );
-                    }
-                }
-            });
-
-            const totalSteps = $mainScrolls.length - 1;
-            const stepLength = 1 / totalSteps;
-            let currentStep = 0;
-            let isAnimating = false;
-            let lastScrollTime = Date.now();
-            let scrollVelocity = 0;
-
-            const startValue = window.innerWidth < 1600 ? "top top" : "top top";
-
-            stInstance = ScrollTrigger.create({
-                trigger: $section[0],
-                start: startValue,
-                end: "+=" + totalSteps * 1000,
-                pin: true,
-                scrub: false,
-                markers: false,
-                anticipatePin: 1,
-                onUpdate: (self) => {
-                    if (isNavigating) {
-                        return;
-                    }
-
-                    const now = Date.now();
-                    const timeDelta = now - lastScrollTime;
-                    const progressDelta = Math.abs(self.progress - currentStep * stepLength);
-                    scrollVelocity = progressDelta / (timeDelta || 1);
-                    lastScrollTime = now;
-
-                    const progress = self.progress;
-                    const targetStep = Math.round(progress * totalSteps);
-
-                    if (targetStep !== currentStep) {
-                        if (isAnimating && scrollVelocity > 0.001) {
-                            self.scroll(self.start + (currentStep / totalSteps) * (self.end - self.start));
-                            return;
-                        }
-
-                        if (!isAnimating) {
-                            isAnimating = true;
-                            const oldStep = currentStep;
-                            currentStep = targetStep;
-                            const distance = Math.abs(targetStep - oldStep);
-                            const baseDuration = 1;
-                            const duration = baseDuration * Math.min(distance, 1.2);
-
-                            tl.tweenTo(currentStep * stepLength * tl.duration(), {
-                                duration: duration,
-                                ease: "power2.inOut",
-                                onComplete: () => {
-                                    isAnimating = false;
-                                },
-                            });
-                        }
-                    }
-                },
-            });
-
-            detectAnchorNavigation();
+        const nextService = () => {
+            const nextIndex = (currentIndex + 1) % total;
+            goToService(nextIndex, 1);
         };
 
-        const destroyDesktop = () => {
-            if (stInstance) {
-                stInstance.kill();
-                stInstance = null;
-            }
-
-            if (tl) {
-                tl.kill();
-                tl = null;
-            }
-
-            ScrollTrigger.getAll().forEach((st) => {
-                if (st.trigger === $section[0]) {
-                    st.kill();
-                }
-            });
-
-            $section.find(".wg-service-2, .image-2").removeAttr("style");
-            $section.find(".wg-service-2").css({
-                opacity: "",
-                transform: "",
-                "pointer-events": "",
-            });
-            $section.find(".image-2").css({
-                opacity: "",
-                transform: "",
-                left: "",
-                width: "",
-                height: "",
-            });
-
-            $section.removeAttr("style");
-            ScrollTrigger.refresh();
+        const prevService = () => {
+            const prevIndex = (currentIndex - 1 + total) % total;
+            goToService(prevIndex, -1);
         };
 
-        const checkAndInit = () => {
-            if (window.innerWidth >= 1200) {
-                if (mode !== "desktop") {
-                    destroyDesktop();
-                    initDesktop();
-                    mode = "desktop";
-                }
-            } else {
-                if (mode !== "mobile") {
-                    destroyDesktop();
-                    mode = "mobile";
+        setupInitialState();
+
+        // Round circle right arrow button click handler
+        $section.off("click", ".main-image .action").on("click", ".main-image .action", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            nextService();
+        });
+
+        // Also clicking the main image advances to next service
+        $section.off("click", ".main-image .image").on("click", ".main-image .image", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            nextService();
+        });
+
+        // Dot indicator click handler
+        $(document).off("click", ".service-dot").on("click", ".service-dot", function (e) {
+            e.preventDefault();
+            const targetIdx = parseInt($(this).data("index"), 10);
+            if (!isNaN(targetIdx)) {
+                goToService(targetIdx, targetIdx > currentIndex ? 1 : -1);
+            }
+        });
+
+        // Touch swipe support
+        let touchStartX = 0;
+        let touchEndX = 0;
+        $section.off("touchstart touchend").on("touchstart", function (e) {
+            if (e.originalEvent && e.originalEvent.changedTouches) {
+                touchStartX = e.originalEvent.changedTouches[0].screenX;
+            }
+        }).on("touchend", function (e) {
+            if (e.originalEvent && e.originalEvent.changedTouches) {
+                touchEndX = e.originalEvent.changedTouches[0].screenX;
+                if (touchStartX - touchEndX > 50) {
+                    nextService();
+                } else if (touchEndX - touchStartX > 50) {
+                    prevService();
                 }
             }
-        };
+        });
 
-        checkAndInit();
-        $(window).on("resize", debounce(checkAndInit, 300));
+        // Expose helpers globally
+        window.nextServiceSlide = nextService;
+        window.prevServiceSlide = prevService;
+        window.goToServiceSlide = goToService;
     };
 
     var runAnimations = () => {
