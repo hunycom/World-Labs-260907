@@ -183,6 +183,13 @@
         opacity: 1 !important;
         transform: scale(1.03);
       }
+      .simsreality-about-logo {
+        transition: opacity 0.25s ease, transform 0.25s ease;
+      }
+      .simsreality-about-logo:hover {
+        opacity: 1 !important;
+        transform: scale(1.05);
+      }
       .header-brand-wrap .logo-text {
         font-weight: 800;
         font-size: 20px;
@@ -1498,8 +1505,11 @@
                                 <div class="overlay mark-1"></div>
                                 <div class="overlay mark-2"></div>
                             </div>
-                            <div class="signature">
+                            <div class="signature d-flex flex-column align-items-center gap-1">
                                 <span style="font-weight: 800; font-size: 18px; color: #38bdf8; letter-spacing: 1px;">WORLD LABS</span>
+                                <div class="about-simsreality-wrap mt-1">
+                                    <img src="davies-assets/images/logo/simsreality_logo.png" alt="SimsReality Logo" style="height: 22px; width: auto; max-width: 155px; object-fit: contain; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.8)); opacity: 0.95;" class="simsreality-about-logo">
+                                </div>
                             </div>
                             <div class="badget">
                                 <img loading="lazy" width="156" height="156" src="davies-assets/images/item/badge-design.png" alt="Image">
