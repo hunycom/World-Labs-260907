@@ -376,6 +376,75 @@
       .service-dot:hover {
         background: rgba(56, 189, 248, 0.8) !important;
       }
+      /* ================================================================= */
+      /* BENCHMARKS & RECOGNITION SWIPER REDESIGN                          */
+      /* ================================================================= */
+      .section-award .tf-swiper {
+        height: 168px;
+      }
+      .section-award .award-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        color: rgba(255, 255, 255, 0.35);
+        transition: all 0.35s ease;
+        padding: 6px 0;
+        min-height: 48px;
+      }
+      .section-award .award-item .award-title {
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: -0.8px;
+        color: inherit;
+        white-space: nowrap;
+        transition: color 0.35s ease;
+      }
+      .section-award .award-item .benchmark-badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px 12px;
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+        border-radius: 20px;
+        background: rgba(56, 189, 248, 0.08);
+        border: 1px solid rgba(56, 189, 248, 0.25);
+        color: #38bdf8;
+        white-space: nowrap;
+        flex-shrink: 0;
+        transition: all 0.35s ease;
+      }
+      .section-award .tf-swiper .swiper-slide.swiper-slide-active .award-item {
+        color: #ffffff;
+      }
+      .section-award .tf-swiper .swiper-slide.swiper-slide-active .award-item .award-title {
+        color: #ffffff;
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+      }
+      .section-award .tf-swiper .swiper-slide.swiper-slide-active .award-item .benchmark-badge {
+        background: rgba(56, 189, 248, 0.22);
+        border-color: #38bdf8;
+        color: #ffffff;
+        box-shadow: 0 0 16px rgba(56, 189, 248, 0.4);
+      }
+      @media (max-width: 767px) {
+        .section-award .tf-swiper {
+          height: 138px;
+        }
+        .section-award .award-item {
+          min-height: 40px;
+          padding: 3px 0;
+        }
+        .section-award .award-item .award-title {
+          font-size: 16px;
+        }
+        .section-award .award-item .benchmark-badge {
+          font-size: 11px;
+          padding: 2px 8px;
+        }
+      }
     </style>
 </head>
 
@@ -1756,55 +1825,55 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-5">
+                    <div class="col-lg-7 col-md-8">
                         <div class="col-left">
-                            <p class="desc text-white-64 mini-title">
+                            <p class="desc text-white-64 mini-title mb-4">
                                 Enterprise Standard Benchmarks. <br>
                                 Flawless Realtime Execution.
                             </p>
                             <div dir="ltr" class="swiper tf-swiper" data-preview="3" data-tablet="3" data-mobile="3" data-mobile-sm="3"
-                                data-loop="true" data-auto="true" data-delay="1000" data-speed="1000" data-direction="vertical" data-space="4">
+                                data-loop="true" data-auto="true" data-delay="1500" data-speed="800" data-direction="vertical" data-space="8">
                                 <div class="swiper-wrapper">
                                     <!-- item 1 -->
                                     <div class="swiper-slide">
-                                        <div class="award-item h4 letter-space--2">
-                                            Spatial AI Precision
-                                            <span class="text-body-1 letter-space--1 text-primary">99.4%</span>
+                                        <div class="award-item">
+                                            <span class="award-title">Spatial AI Architecture</span>
+                                            <span class="benchmark-badge">Tier-1 Certified</span>
                                         </div>
                                     </div>
                                     <!-- item 2 -->
                                     <div class="swiper-slide">
-                                        <div class="award-item h4 letter-space--2">
-                                            Physics Determinism
-                                            <span class="text-body-1 letter-space--1 text-primary">0 diff</span>
+                                        <div class="award-item">
+                                            <span class="award-title">Physics Determinism</span>
+                                            <span class="benchmark-badge">Zero-Drift Verified</span>
                                         </div>
                                     </div>
                                     <!-- item 3 -->
                                     <div class="swiper-slide">
-                                        <div class="award-item h4 letter-space--2">
-                                            Screen Projection Accuracy
-                                            <span class="text-body-1 letter-space--1 text-primary">&lt; 1.0 px</span>
+                                        <div class="award-item">
+                                            <span class="award-title">Sub-Millimeter 3DGS</span>
+                                            <span class="benchmark-badge">Ultra Precision</span>
                                         </div>
                                     </div>
                                     <!-- item 4 -->
                                     <div class="swiper-slide">
-                                        <div class="award-item h4 letter-space--2">
-                                            Spatial AI Precision
-                                            <span class="text-body-1 letter-space--1 text-primary">99.4%</span>
+                                        <div class="award-item">
+                                            <span class="award-title">Spatial OS Digital Twin</span>
+                                            <span class="benchmark-badge">Industry Standard</span>
                                         </div>
                                     </div>
                                     <!-- item 5 -->
                                     <div class="swiper-slide">
-                                        <div class="award-item h4 letter-space--2">
-                                            Physics Determinism
-                                            <span class="text-body-1 letter-space--1 text-primary">0 diff</span>
+                                        <div class="award-item">
+                                            <span class="award-title">Robotics Realtime Sync</span>
+                                            <span class="benchmark-badge">100Hz Low-Latency</span>
                                         </div>
                                     </div>
                                     <!-- item 6 -->
                                     <div class="swiper-slide">
-                                        <div class="award-item h4 letter-space--2">
-                                            Screen Projection Accuracy
-                                            <span class="text-body-1 letter-space--1 text-primary">&lt; 1.0 px</span>
+                                        <div class="award-item">
+                                            <span class="award-title">Global Spatial Audits</span>
+                                            <span class="benchmark-badge">Flawless Standard</span>
                                         </div>
                                     </div>
                                 </div>
