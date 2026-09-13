@@ -2247,44 +2247,46 @@
         </section>
         <!-- /Pricing -->
         <!-- Faq -->
-        <section class="section-faq flat-spacing">
+        <section class="section-faq flat-spacing" id="faqScroll">
             <div class="container">
                 <div class="s-header d-block">
                     <h2 class="text-display-2 letter-space--3 text-center effectFade fadeUp">
-                        Frequently <br>
-                        asked questions
+                        자주 묻는 질문
                     </h2>
+                    <p class="text-white-64 text-center mt-2 mb-0" style="font-size: 14px; letter-spacing: 2px; font-weight: 600; color: #38bdf8 !important;">
+                        // FREQUENTLY ASKED QUESTIONS
+                    </p>
                 </div>
                 <div class="row">
                     <div class="col-lg-8 mx-auto">
                         <div class="accordion-faq_list" id="accordion-faq_list">
                             <div class="accordion-faq_item" role="presentation">
-                                <div class="accordion-action text-body-1 letter-space--1 fw-medium collapsed" data-bs-target="#faq-1" role="button"
+                                <div class="accordion-action text-body-1 letter-space--1 fw-medium" data-bs-target="#faq-1" role="button"
                                     data-bs-toggle="collapse" aria-controls="faq-1" aria-expanded="true">
                                     <span class="accordion-order">01</span>
-                                    <p class="accordion-text">What is the core difference between 3D Gaussian Splatting (3DGS) and traditional mesh polygons?</p>
+                                    <p class="accordion-text">3D 가우시안 스플래팅(3DGS)과 전통적인 폴리곤 메시의 핵심 차이점은 무엇인가요?</p>
                                     <div class="ic-wrap d-flex">
                                         <i class="icon icon-arrow-caret-down fs-10"></i>
                                     </div>
                                 </div>
-                                <div id="faq-1" class="collapse" data-bs-parent="#accordion-faq_list">
+                                <div id="faq-1" class="collapse show" data-bs-parent="#accordion-faq_list">
                                     <p class="accordion-content">
-                                        Traditional 3D meshes rely on heavy triangular polygons, UV textures, and complex shader passes that quickly degrade browser frame rates. In contrast, 3D Gaussian Splatting represents scenes as continuous radiance ellipsoids. Using Spark.js and spherical harmonics, World Labs streams 500K+ splats in a lightweight 7.7MB SPZ format, delivering photorealistic volumetric radiance at 60 FPS directly in WebGL without plug-ins.
+                                        기존의 3D 메시는 무거운 삼각 폴리곤, UV 텍스처 맵, 복잡한 셰이더 연산에 의존하여 웹 브라우저의 렌더링 프레임을 급격히 저하시킵니다. 반면 3D 가우시안 스플래팅(3DGS)은 3차원 공간을 연속적인 복사 휘도 타원체(Radiance Ellipsoids)로 표현합니다. World Labs는 독자적인 Spark.js 엔진과 구면 조화 함수(Spherical Harmonics)를 결합하여 500,000개 이상의 스플랫을 단 7.7MB의 초경량 SPZ 포맷으로 실시간 스트리밍하며, 별도의 플러그인 설치 없이 순수 WebGL 환경에서 60 FPS의 초고화질 실사형 체적 광원 효과를 구현합니다.
                                     </p>
                                 </div>
                             </div>
                             <div class="accordion-faq_item" role="presentation">
-                                <div class="accordion-action text-body-1 letter-space--1 fw-medium " data-bs-target="#faq-2" role="button"
+                                <div class="accordion-action text-body-1 letter-space--1 fw-medium collapsed" data-bs-target="#faq-2" role="button"
                                     data-bs-toggle="collapse" aria-controls="faq-2" aria-expanded="false">
                                     <span class="accordion-order">02</span>
-                                    <p class="accordion-text">How does Rapier 3D achieve 100Hz deterministic physics in a web browser?</p>
+                                    <p class="accordion-text">웹 브라우저에서 Rapier 3D를 통해 어떻게 100Hz 결정론적 물리 엔진을 구현하나요?</p>
                                     <div class="ic-wrap d-flex">
                                         <i class="icon icon-arrow-caret-down fs-10"></i>
                                     </div>
                                 </div>
-                                <div id="faq-2" class="collapse show" data-bs-parent="#accordion-faq_list">
+                                <div id="faq-2" class="collapse" data-bs-parent="#accordion-faq_list">
                                     <p class="accordion-content">
-                                        World Labs compiles the Rapier 3D physics engine directly from Rust into WebAssembly (Wasm). By decoupling physics integration into fixed 10ms steps (100Hz) and binding collision colliders directly to our 7-part geometric OBBs, we guarantee zero physics divergence, sub-millimeter restitution, and zero-drift box drops/tosses in standard web browsers.
+                                        World Labs는 고성능 Rust 언어로 작성된 Rapier 3D 강체 물리 엔진을 WebAssembly(Wasm)로 직접 컴파일하여 구동합니다. 물리 연산 루프를 렌더링 프레임과 완벽히 분리된 고정 10ms 단위(100Hz)로 제어하고, 충돌 콜라이더를 7부품 기하 지향성 바운딩 박스(OBB)에 직접 바인딩함으로써, 표준 웹 브라우저에서도 연산 발산 없이 완벽한 서브밀리미터 반발 계수 및 박스 낙하·투척 충돌의 무오차 결정론(Zero-Drift Determinism)을 보장합니다.
                                     </p>
                                 </div>
                             </div>
@@ -2292,14 +2294,14 @@
                                 <div class="accordion-action text-body-1 letter-space--1 fw-medium collapsed" data-bs-target="#faq-3" role="button"
                                     data-bs-toggle="collapse" aria-controls="faq-3" aria-expanded="false">
                                     <span class="accordion-order">03</span>
-                                    <p class="accordion-text">Can World Labs Spark 3D integrate with ROS2 and physical warehouse robots?</p>
+                                    <p class="accordion-text">World Labs Spark 3D를 실제 스마트 물류 로봇 및 ROS2 시스템과 연동할 수 있나요?</p>
                                     <div class="ic-wrap d-flex">
                                         <i class="icon icon-arrow-caret-down fs-10"></i>
                                     </div>
                                 </div>
                                 <div id="faq-3" class="collapse" data-bs-parent="#accordion-faq_list">
                                     <p class="accordion-content">
-                                        Yes. Spark 3D provides a native bi-directional telemetry bridge over WebSockets and WebRTC. Joint states, LiDAR point clouds, and gripper poses from ROS/ROS2 nodes synchronize seamlessly with the browser-based digital twin, enabling real-time teleoperation, path replay, and remote multi-agent fleet dispatch.
+                                        네, 완벽하게 연동됩니다. Spark 3D는 WebSocket 및 WebRTC 기반의 초저지연 양방향 실시간 텔레메트리 브리지를 자체 내장하고 있습니다. 실제 산업 현장의 AMR 물류 로봇 및 ROS/ROS2 노드에서 전송되는 다관절 상태(Joint States), 라이다(LiDAR) 포인트 클라우드, 엔드이펙터 그리퍼 위치 데이터를 브라우저 3D 디지털 트윈과 밀리초 단위로 동기화하여 실시간 원격 관제, 이동 경로 리플레이, 다중 에이전트 군집 제어를 수행합니다.
                                     </p>
                                 </div>
                             </div>
@@ -2307,14 +2309,14 @@
                                 <div class="accordion-action text-body-1 letter-space--1 fw-medium collapsed" data-bs-target="#faq-4" role="button"
                                     data-bs-toggle="collapse" aria-controls="faq-4" aria-expanded="false">
                                     <span class="accordion-order">04</span>
-                                    <p class="accordion-text">What spatial sensor formats are supported for 3D digital twin ingestion?</p>
+                                    <p class="accordion-text">3D 디지털 트윈 구축을 위해 어떤 공간 센서 및 데이터 포맷을 지원하나요?</p>
                                     <div class="ic-wrap d-flex">
                                         <i class="icon icon-arrow-caret-down fs-10"></i>
                                     </div>
                                 </div>
                                 <div id="faq-4" class="collapse" data-bs-parent="#accordion-faq_list">
                                     <p class="accordion-content">
-                                        We accept standard aerial and terrestrial inputs: photogrammetric multi-view RGB imagery, structured-light and LiDAR point clouds (LAS/LAZ/E57), and industrial CAD definitions (STEP/GLTF/OBJ). The neural reconstruction pipeline automatically registers world coordinates, generates SPZ splat radiance, and partitions spatial collision bounds.
+                                        드론 항공 촬영 및 지상 스캔에서 수집되는 모든 표준 센서 데이터를 폭넓게 수용합니다. 다각도 사진 측량(Photogrammetry) RGB 영상, 구조광 및 라이다 포인트 클라우드(LAS, LAZ, E57), 산업 표준 정밀 CAD 모델(STEP, GLTF, OBJ) 등을 원클릭으로 변환할 수 있습니다. 자체 뉴럴 복원 파이프라인이 전역 좌표계를 자동으로 정렬하고, SPZ 스플랫 렌더링 자산을 빌드하며, 기하 공간 충돌 경계를 실시간으로 자동 분할합니다.
                                     </p>
                                 </div>
                             </div>
@@ -2322,14 +2324,14 @@
                                 <div class="accordion-action text-body-1 letter-space--1 fw-medium collapsed" data-bs-target="#faq-5" role="button"
                                     data-bs-toggle="collapse" aria-controls="faq-5" aria-expanded="false">
                                     <span class="accordion-order">05</span>
-                                    <p class="accordion-text">How accurate is the 60-point raycasting for autonomous robotic picking?</p>
+                                    <p class="accordion-text">자율 로봇 피킹을 위한 60점 레이캐스팅의 정밀도는 어느 수준인가요?</p>
                                     <div class="ic-wrap d-flex">
                                         <i class="icon icon-arrow-caret-down fs-10"></i>
                                     </div>
                                 </div>
                                 <div id="faq-5" class="collapse" data-bs-parent="#accordion-faq_list">
                                     <p class="accordion-content">
-                                        Our dual-pass raycasting queries both Gaussian radiance density and oriented bounding boxes (OBBs) across 60 discrete spatial probe rays. This yields 100% picking repeatability and sub-pixel screen projection accuracy (<1.0px), enabling precise conveyor grasping, bin-picking, and autonomous drone docking without collision jitter.
+                                        World Labs의 이중 패스(Dual-Pass) 레이캐스팅 알고리즘은 60개의 정밀 공간 탐침 레이를 방출하여 가우시안 체적 광원 밀도와 지향성 바운딩 박스(OBB)를 동시에 고속 교차 검증합니다. 이를 통해 100% 피킹 재현율과 서브픽셀 단위의 초고정밀 화면 투영 정확도를 달성하여 충돌 지터나 연산 떨림 없이 고속 컨베이어 물품 파지, 빈 피킹(Bin-Picking), 자율 충전 드론 도킹을 완벽하게 수행합니다.
                                     </p>
                                 </div>
                             </div>
