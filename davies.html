@@ -170,11 +170,23 @@
         z-index: 10;
       }
       .simsreality-header-logo {
+        height: 38px;
+        width: auto;
+        max-width: 202px;
+        object-fit: contain;
+        display: block;
+        opacity: 0.95;
         transition: opacity 0.25s ease, transform 0.25s ease;
       }
       .simsreality-header-logo:hover {
         opacity: 1 !important;
-        transform: translateY(-1px);
+        transform: scale(1.02);
+      }
+      @media (max-width: 575px) {
+        .header-brand-wrap .simsreality-header-logo {
+          height: 24px;
+          max-width: 125px;
+        }
       }
       .simsreality-footer-logo {
         transition: opacity 0.25s ease, transform 0.25s ease;
@@ -430,9 +442,9 @@
                                     <span class="badge brand-badge d-none d-sm-inline-block">SPARK 3D</span>
                                 </a>
                             </div>
-                            <div class="header-simsreality-wrap" style="margin-top: 2px;">
+                            <div class="header-simsreality-wrap" style="margin-top: 3px;">
                                 <a href="davies.html" class="d-inline-flex align-items-center text-decoration-none" title="SimsReality">
-                                    <img src="davies-assets/images/logo/simsreality_logo.png" alt="SimsReality Logo" style="height: 18px; width: auto; max-width: 145px; object-fit: contain; opacity: 0.92; display: block;" class="simsreality-header-logo">
+                                    <img src="davies-assets/images/logo/simsreality_logo.png" alt="SimsReality Logo" class="simsreality-header-logo">
                                 </a>
                             </div>
                         </div>
@@ -2450,8 +2462,8 @@
                                 <span style="font-weight: 800; font-size: 20px; letter-spacing: -0.5px; color: #fff;">WORLD<span style="color: #38bdf8;">LABS</span></span>
                                 <span class="badge" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid #38bdf8; font-size: 10px; font-weight: bold; border-radius: 6px; padding: 3px 8px;">SPARK 3D</span>
                             </a>
-                            <div class="mt-1">
-                                <img src="davies-assets/images/logo/simsreality_logo.png" alt="SimsReality Logo" style="height: 18px; width: auto; max-width: 140px; object-fit: contain; opacity: 0.92; display: block;">
+                            <div class="mt-2">
+                                <img src="davies-assets/images/logo/simsreality_logo.png" alt="SimsReality Logo" style="height: 36px; width: auto; max-width: 196px; object-fit: contain; opacity: 0.95; display: block;">
                             </div>
                         </div>
                         <div class="btn-mobile-menu close-mb-menu text-caption link">
