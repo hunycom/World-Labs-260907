@@ -129,6 +129,8 @@
           desc = `AI 3D 월드 생성: "${prompt}"`;
         }
         break;
+      }
+
       case "open_research_article": {
         window.open("https://www.aicitybuilders.com/gn1#1", "_blank", "noopener,noreferrer");
         desc = "AI City Builders 시뮬레이션 칼럼 새 창 열기";
@@ -608,25 +610,25 @@
     style.textContent = `
       #voiceAssistantFab {
         position: fixed;
-        bottom: 88px;
-        right: 20px;
-        width: 52px;
-        height: 52px;
+        bottom: 28px;
+        right: 28px;
+        width: 56px;
+        height: 56px;
         border-radius: 50%;
         background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
-        box-shadow: 0 4px 20px rgba(56, 189, 248, 0.45);
+        box-shadow: 0 4px 25px rgba(56, 189, 248, 0.6), 0 0 20px rgba(56, 189, 248, 0.4);
         color: #ffffff;
         display: flex;
         align-items: center;
         justify-content: center;
         cursor: pointer;
-        z-index: 1040;
-        border: 1px solid rgba(255, 255, 255, 0.3);
+        z-index: 99999;
+        border: 2px solid rgba(255, 255, 255, 0.4);
         transition: transform 0.25s ease, box-shadow 0.25s ease;
       }
       #voiceAssistantFab:hover {
-        transform: scale(1.08);
-        box-shadow: 0 6px 28px rgba(56, 189, 248, 0.65);
+        transform: scale(1.1);
+        box-shadow: 0 6px 32px rgba(56, 189, 248, 0.8), 0 0 25px rgba(56, 189, 248, 0.5);
       }
       #voiceAssistantFab .pulse-ring {
         position: absolute;
@@ -643,17 +645,17 @@
       }
       #voiceAssistantModal {
         position: fixed;
-        bottom: 150px;
-        right: 20px;
+        bottom: 96px;
+        right: 28px;
         width: 380px;
         max-width: calc(100vw - 32px);
-        background: rgba(10, 15, 26, 0.92);
+        background: rgba(10, 15, 26, 0.95);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         border: 1px solid rgba(56, 189, 248, 0.35);
         border-radius: 20px;
-        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 35px rgba(56, 189, 248, 0.15);
-        z-index: 1050;
+        box-shadow: 0 24px 60px rgba(0, 0, 0, 0.85), 0 0 35px rgba(56, 189, 248, 0.2);
+        z-index: 100000;
         display: none;
         flex-direction: column;
         overflow: hidden;
@@ -998,6 +1000,14 @@
       const isHidden = modal.style.display === "none" || modal.style.display === "";
       modal.style.display = isHidden ? "flex" : "none";
     });
+
+    const promptMic = document.getElementById("btnPromptMic");
+    if (promptMic) {
+      promptMic.addEventListener("click", () => {
+        modal.style.display = "flex";
+        startListening();
+      });
+    }
 
     document.getElementById("novaBtnClose").addEventListener("click", () => {
       modal.style.display = "none";
