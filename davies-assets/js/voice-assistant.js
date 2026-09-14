@@ -129,6 +129,10 @@
           desc = `AI 3D 월드 생성: "${prompt}"`;
         }
         break;
+      case "open_research_article": {
+        window.open("https://www.aicitybuilders.com/gn1#1", "_blank", "noopener,noreferrer");
+        desc = "AI City Builders 시뮬레이션 칼럼 새 창 열기";
+        break;
       }
 
       default:
@@ -188,6 +192,14 @@
     if (t.includes("소개") || t.includes("월드랩스") || t.includes("회사") || t.includes("about")) {
       executeAction("navigate_section", { section: "about" });
       return "월드랩스 공간 지능 소개 섹션으로 이동합니다.";
+    }
+    if (t.includes("칼럼") || t.includes("시티빌더스") || t.includes("aicity") || t.includes("굿나잇") || t.includes("시뮬레이션칼럼")) {
+      executeAction("open_research_article");
+      return "AI City Builders의 'LLM 다음은 시뮬레이션이다, 강화학습' 특별 연구 칼럼을 새 창에서 열었습니다.";
+    }
+    if (t.includes("백서") || t.includes("논문") || t.includes("리포트") || t.includes("연구") || t.includes("whitepaper")) {
+      executeAction("navigate_section", { section: "whitepapers" });
+      return "연구 전략 백서 및 Physical AI 시뮬레이션 섹션으로 안내합니다.";
     }
     if (t.includes("전체화면") || t.includes("크게") || t.includes("화면확대")) {
       executeAction("toggle_fullscreen");
@@ -287,6 +299,14 @@
           },
           required: ["prompt"]
         }
+      }
+    },
+    {
+      type: "function",
+      function: {
+        name: "open_research_article",
+        description: "AI City Builders의 'LLM 다음은 시뮬레이션이다, 강화학습' 특별 연구 칼럼을 새 브라우저 창에서 엽니다.",
+        parameters: { type: "object", properties: {} }
       }
     }
   ];
