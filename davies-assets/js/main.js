@@ -78,73 +78,10 @@
 
         startClocks(".clock");
     };
-    /* Cursor Trail
+    /* Cursor Trail (Disabled)
     -------------------------------------------------------------------------*/
     var cursorTrail = () => {
-        const canvas = document.getElementById("trail");
-        const ctx = canvas.getContext("2d");
-        let w = window.innerWidth,
-            h = window.innerHeight;
-        canvas.width = w;
-        canvas.height = h;
-
-        let points = [];
-        let ripples = [];
-
-        window.addEventListener("resize", () => {
-            w = window.innerWidth;
-            h = window.innerHeight;
-            canvas.width = w;
-            canvas.height = h;
-        });
-
-        window.addEventListener("mousemove", (e) => {
-            points.push({ x: e.clientX, y: e.clientY });
-            if (points.length > 10) points.shift();
-        });
-
-        window.addEventListener("click", (e) => {
-            ripples.push({
-                x: e.clientX,
-                y: e.clientY,
-                radius: 0,
-                alpha: 1,
-            });
-        });
-
-        function draw() {
-            ctx.clearRect(0, 0, w, h);
-
-            if (points.length > 1) {
-                ctx.beginPath();
-                ctx.moveTo(points[0].x, points[0].y);
-                for (let i = 1; i < points.length; i++) {
-                    ctx.lineTo(points[i].x, points[i].y);
-                }
-                let last = points[points.length - 1];
-                let grad = ctx.createLinearGradient(points[0].x, points[0].y, last.x, last.y);
-                grad.addColorStop(0, "black");
-                grad.addColorStop(1, "white");
-                ctx.strokeStyle = grad;
-                ctx.lineWidth = 3;
-                ctx.lineCap = "round";
-                ctx.stroke();
-            }
-
-            ripples.forEach((r, i) => {
-                ctx.beginPath();
-                ctx.arc(r.x, r.y, r.radius, 0, Math.PI * 2);
-                ctx.strokeStyle = `rgba(255,255,255,${r.alpha})`;
-                ctx.lineWidth = 2;
-                ctx.stroke();
-                r.radius += 1;
-                r.alpha -= 0.02;
-            });
-            ripples = ripples.filter((r) => r.alpha > 0);
-
-            requestAnimationFrame(draw);
-        }
-        draw();
+        // Cursor trail line disabled per user request
     };
     /* Counter Odo
     -------------------------------------------------------------------------*/
@@ -230,7 +167,7 @@
     $(function () {
         infiniteSlide();
         updateClock();
-        cursorTrail();
+        // cursorTrail(); // Disabled per user request
         goTop();
         // settingColor();
         counterOdo();

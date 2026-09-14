@@ -4548,12 +4548,8 @@ button.animate-btn::after,
 }
 
 .cursor-trail {
-  position: fixed;
-  inset: 0;
-  width: 100%;
-  height: 100%;
+  display: none !important;
   pointer-events: none;
-  z-index: 9999;
 }
 
 @media (min-width: 1200px) {
