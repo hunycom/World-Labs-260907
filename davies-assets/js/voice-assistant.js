@@ -415,10 +415,96 @@
     return URL.createObjectURL(audioBlob);
   }
 
-  // Speech Output Helper
+  // Pre-load and cache voices for Web Speech API
+  let cachedVoices = [];
+  function populateVoices() {
+    if (typeof window !== "undefined" && "speechSynthesis" in window) {
+      cachedVoices = window.speechSynthesis.getVoices();
+    }
+  }
+  populateVoices();
+  if (typeof window !== "undefined" && "speechSynthesis" in window) {
+    window.speechSynthesis.onvoiceschanged = populateVoices;
+  }
+
+  function getKoreanFemaleVoice() {
+    let voices = cachedVoices;
+    if (!voices || voices.length === 0) {
+      if (typeof window !== "undefined" && "speechSynthesis" in window) {
+        voices = window.speechSynthesis.getVoices();
+        cachedVoices = voices;
+      }
+    }
+    if (!voices || voices.length === 0) return null;
+
+    // Filter all Korean voice entries
+    const koVoices = voices.filter((v) => {
+      const lang = (v.lang || "").toLowerCase().replace("_", "-");
+      const name = (v.name || "").toLowerCase();
+      return lang.includes("ko") || lang.startsWith("ko-kr") || name.includes("korean") || name.includes("한국");
+    });
+
+    if (koVoices.length === 0) return null;
+
+    // Known female voice keywords across Windows, Edge, macOS, iOS, Android, Chrome
+    const femaleKeywords = [
+      "sunhi", "sun-hi", "선희",
+      "heami", "혜미",
+      "yuna", "유나",
+      "sora", "소라",
+      "chaewon", "chae-won", "채원",
+      "jimin", "지민",
+      "soonbok", "순복",
+      "female", "woman", "girl", "여성", "여자",
+      "kfg", "ko-kr-x-kfg",
+      "neural2-a", "neural2-b",
+      "wavenet-a", "wavenet-b",
+      "standard-a", "standard-b",
+      "google 한국어"
+    ];
+
+    // Explicit male exclusion keywords
+    const maleKeywords = [
+      "injoon", "in-joon", "인준",
+      "bongjin", "봉진",
+      "sehyeon", "se-hyeon", "세현",
+      "jinho", "진호",
+      "male", "남성", "남자",
+      "standard-c", "standard-d",
+      "wavenet-c", "wavenet-d",
+      "neural2-c"
+    ];
+
+    // 1st priority: Verified female Korean voice that does not match male keywords
+    for (const v of koVoices) {
+      const name = (v.name || "").toLowerCase();
+      const isFemale = femaleKeywords.some((kw) => name.includes(kw));
+      const isMale = maleKeywords.some((kw) => name.includes(kw));
+      if (isFemale && !isMale) {
+        console.log(`[Nova] Selected verified Korean Female voice: ${v.name}`);
+        return v;
+      }
+    }
+
+    // 2nd priority: Any Korean voice that is NOT explicitly male
+    for (const v of koVoices) {
+      const name = (v.name || "").toLowerCase();
+      const isMale = maleKeywords.some((kw) => name.includes(kw));
+      if (!isMale) {
+        console.log(`[Nova] Selected non-male Korean voice: ${v.name}`);
+        return v;
+      }
+    }
+
+    // 3rd priority: Fallback to first Korean voice (pitch shift will feminine it)
+    console.log(`[Nova] Fallback to OS Korean voice: ${koVoices[0].name}`);
+    return koVoices[0];
+  }
+
+  // Speech Output Helper (Dedicated Female Voice)
   function speakResponse(text, audioUrl = null) {
     state.isSpeaking = true;
-    updateStatus("speaking", "Nova 답변 중...");
+    updateStatus("speaking", "Nova 답변 중 (여성 보이스)...");
 
     if (audioUrl) {
       if (state.audioElement) {
@@ -442,14 +528,25 @@
       window.speechSynthesis.cancel();
       const utter = new SpeechSynthesisUtterance(text);
       utter.lang = "ko-KR";
-      utter.rate = 1.0;
 
-      // Try selecting female Korean voice if available
-      const voices = window.speechSynthesis.getVoices();
-      const koFemale = voices.find(
-        (v) => v.lang.includes("ko") && (v.name.includes("Female") || v.name.includes("Yuna") || v.name.includes("Sun-Hi") || v.name.includes("Google 한국어"))
-      ) || voices.find((v) => v.lang.includes("ko"));
-      if (koFemale) utter.voice = koFemale;
+      const femaleVoice = getKoreanFemaleVoice();
+      if (femaleVoice) {
+        utter.voice = femaleVoice;
+        const nameLower = (femaleVoice.name || "").toLowerCase();
+        const isMale = ["injoon", "in-joon", "인준", "bongjin", "봉진", "sehyeon", "세현", "jinho", "진호", "male", "남성"].some((kw) => nameLower.includes(kw));
+        if (isMale) {
+          // If OS only provides a male Korean voice, pitch-shift it up to sound feminine
+          utter.pitch = 1.36;
+          utter.rate = 1.08;
+        } else {
+          // Pure natural feminine pitch & pacing
+          utter.pitch = 1.22;
+          utter.rate = 1.05;
+        }
+      } else {
+        utter.pitch = 1.25;
+        utter.rate = 1.05;
+      }
 
       utter.onend = () => {
         state.isSpeaking = false;
@@ -990,6 +1087,7 @@
           <span class="nova-chip" data-cmd="60점 레이캐스팅 정확도 평가">60점 피킹</span>
           <span class="nova-chip" data-cmd="물리 시뮬레이션 리셋">초기화</span>
           <span class="nova-chip" data-cmd="자주 묻는 질문 보여줘">FAQ</span>
+          <span class="nova-chip" id="novaChipVoiceTest" style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.5);">🔊 여성 목소리 테스트</span>
         </div>
       </div>
     `;
@@ -1053,11 +1151,18 @@
     document.querySelectorAll(".nova-chip").forEach((chip) => {
       chip.addEventListener("click", () => {
         const cmd = chip.dataset.cmd;
+        if (!cmd) return;
         updateTranscript(cmd);
         const reply = parseLocalIntent(cmd);
         updateResponse(reply);
         speakResponse(reply, null);
       });
+    });
+
+    document.getElementById("novaChipVoiceTest")?.addEventListener("click", () => {
+      const greeting = "안녕하세요! World Labs Nova 음성 어시스턴트입니다. 자연스러운 한국어 여성 목소리로 설정되었습니다. 원하시는 음성 명령이나 질문을 말씀해 주세요.";
+      updateResponse(greeting);
+      speakResponse(greeting, null);
     });
   }
 
