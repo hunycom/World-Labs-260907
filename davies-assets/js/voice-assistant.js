@@ -875,11 +875,48 @@
     }
   }
 
+  // Permission & Error Guide Helper (Graceful in-modal banner, no blocking alert)
+  function showPermissionGuide(err) {
+    const guide = document.getElementById("novaPermGuide");
+    const titleEl = document.getElementById("novaGuideTitle");
+    let errorTitle = "마이크 사용 권한이 필요합니다";
+    let userMsg = "브라우저에서 마이크 접근이 차단되어 있습니다. 상단 주소창 왼쪽의 설정 아이콘을 눌러 허용해 주세요.";
+
+    if (err && (err.name === "NotAllowedError" || err.name === "PermissionDeniedError")) {
+      errorTitle = "마이크 사용 권한이 차단되어 있습니다";
+      userMsg = "브라우저 보안 설정으로 인해 마이크가 차단되었습니다. 상단 주소창 왼쪽의 설정(🔒/🎚️) 아이콘을 클릭하여 '마이크'를 '허용'으로 변경해 주세요.";
+    } else if (err && (err.name === "NotFoundError" || err.name === "DevicesNotFoundError")) {
+      errorTitle = "마이크 장치를 찾을 수 없습니다";
+      userMsg = "PC에 연결된 마이크 장치가 없습니다. 마이크 연결 또는 Windows 사운드 설정을 확인해 주세요.";
+    } else if (err && (err.name === "NotReadableError" || err.name === "TrackStartError")) {
+      errorTitle = "마이크가 다른 앱에서 사용 중입니다";
+      userMsg = "다른 프로그램(Zoom, 녹음기 등)이 마이크를 독점 사용 중입니다. 다른 앱을 종료 후 다시 시도해 주세요.";
+    } else if (err && err.name === "NotSupportedError") {
+      errorTitle = "마이크 기능을 지원하지 않는 환경입니다";
+      userMsg = "Chrome 또는 Edge 최신 브라우저를 이용하시거나, 아래 직접 텍스트 입력창을 이용해 주세요.";
+    }
+
+    if (titleEl) titleEl.textContent = `🎙️ ${errorTitle}`;
+    if (guide) guide.style.display = "block";
+
+    updateTranscript("⚠️ " + errorTitle);
+    updateResponse(userMsg);
+  }
+
   // Voice Recognition Controls
   async function startListening() {
     if (state.isListening || state.isProcessing) return;
 
+    // Reset previous permission guide
+    const guide = document.getElementById("novaPermGuide");
+    if (guide) guide.style.display = "none";
+
     if (state.apiKey) {
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        showPermissionGuide({ name: "NotSupportedError" });
+        return;
+      }
+
       // Use MediaRecorder for Whisper STT
       try {
         const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -909,13 +946,16 @@
         setupAudioVAD(stream);
       } catch (err) {
         console.error("[Nova] Mic access denied:", err);
-        alert("마이크 사용 권한이 필요합니다. 브라우저 설정에서 마이크 접근을 허용해 주세요.");
+        state.isListening = false;
+        stopWaveAnimation();
+        updateStatus("idle", "대기 중");
+        showPermissionGuide(err);
       }
     } else {
       // Free Browser SpeechRecognition Fallback
       const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
       if (!SpeechRec) {
-        alert("이 브라우저는 음성 인식을 지원하지 않습니다. Chrome 또는 Edge 브라우저를 이용하시거나 OpenAI API Key를 등록해 주세요.");
+        showPermissionGuide({ name: "NotSupportedError" });
         return;
       }
 
@@ -947,6 +987,9 @@
         stopWaveAnimation();
         state.isListening = false;
         updateStatus("idle", "대기 중");
+        if (e.error === "not-allowed" || e.error === "service-not-allowed") {
+          showPermissionGuide({ name: "NotAllowedError" });
+        }
       };
 
       state.speechRecognition.onend = () => {
@@ -961,6 +1004,7 @@
         state.speechRecognition.start();
       } catch (e) {
         console.warn("[Nova] SpeechRec start err:", e);
+        showPermissionGuide(e);
       }
     }
   }
@@ -1282,6 +1326,62 @@
         background: #0284c7;
         border-color: #38bdf8;
       }
+      .nova-text-form {
+        display: flex;
+        gap: 6px;
+        margin: 2px 0 4px 0;
+      }
+      .nova-text-input {
+        flex: 1;
+        min-width: 0;
+        background: rgba(255, 255, 255, 0.07);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 8px;
+        padding: 7px 10px;
+        font-size: 11px;
+        color: #ffffff;
+        outline: none;
+        transition: border-color 0.2s, background 0.2s;
+      }
+      .nova-text-input:focus {
+        border-color: #38bdf8;
+        background: rgba(255, 255, 255, 0.12);
+      }
+      .nova-btn-send {
+        padding: 0 12px;
+        background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+        border: 1px solid rgba(56, 189, 248, 0.5);
+        border-radius: 8px;
+        color: #ffffff;
+        font-size: 11px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        transition: opacity 0.2s;
+      }
+      .nova-btn-send:hover {
+        opacity: 0.9;
+      }
+      .nova-perm-guide {
+        background: rgba(239, 68, 68, 0.12);
+        border: 1px solid rgba(239, 68, 68, 0.35);
+        border-radius: 10px;
+        padding: 10px 12px;
+        margin: 4px 0;
+        font-size: 11px;
+        line-height: 1.5;
+      }
+      .nova-perm-guide ol {
+        margin: 4px 0 6px 0;
+        padding-left: 16px;
+        font-size: 10.5px;
+        color: #f1f5f9;
+      }
+      .nova-perm-guide li {
+        margin-bottom: 2px;
+      }
     `;
     document.head.appendChild(style);
 
@@ -1360,6 +1460,26 @@
           </svg>
           <span id="novaBtnTalkText">마이크를 탭하고 말씀하세요</span>
         </button>
+
+        <form class="nova-text-form" id="novaTextForm">
+          <input type="text" class="nova-text-input" id="novaTextInput" placeholder="직접 명령어 입력 (예: 상자 떨어뜨려 줘)" autocomplete="off">
+          <button type="submit" class="nova-btn-send" id="novaBtnSendText">전송</button>
+        </form>
+
+        <div class="nova-perm-guide" id="novaPermGuide" style="display: none;">
+          <div style="display: flex; align-items: center; justify-content: space-between; font-weight: 700; color: #fca5a5; margin-bottom: 4px;">
+            <span id="novaGuideTitle">🎙️ 마이크 권한 허용 3단계</span>
+            <button id="novaBtnCloseGuide" type="button" style="background: none; border: none; color: #94a3b8; cursor: pointer; font-size: 13px; padding: 0 4px;">✕</button>
+          </div>
+          <ol>
+            <li>브라우저 맨 위 <strong>주소창 왼쪽의 설정 아이콘(🎚️ 또는 🔒)</strong>을 클릭합니다.</li>
+            <li><strong>'마이크'</strong> 설정을 <strong>'허용(Allow)'</strong>으로 켭니다.</li>
+            <li>키보드의 <strong>F5(새로고침)</strong>를 누르면 마이크가 즉시 연결됩니다!</li>
+          </ol>
+          <div style="margin-top: 4px; font-size: 10px; color: #38bdf8;">
+            💡 마이크 없이도 바로 위 <strong>텍스트 입력창</strong>이나 아래 <strong>버튼</strong>을 누르시면 Nova의 부드러운 여성 목소리로 모든 기능을 이용하실 수 있습니다.
+          </div>
+        </div>
 
         <div class="nova-quick-chips">
           <span class="nova-chip" data-cmd="1m 상자 낙하 시뮬레이션">1m 낙하</span>
@@ -1467,6 +1587,42 @@
       const greeting = "안녕하세요! World Labs Nova 음성 어시스턴트입니다. 부드러운 여성 목소리로 웹사이트의 모든 기능을 음성으로 안내하고 제어해 드릴게요.";
       updateResponse(greeting);
       await speakResponse(greeting);
+    });
+
+    // Direct Text Command Form Submit
+    const textForm = document.getElementById("novaTextForm");
+    const textInput = document.getElementById("novaTextInput");
+    if (textForm && textInput) {
+      textForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const cmd = textInput.value.trim();
+        if (!cmd) return;
+        textInput.value = "";
+        updateTranscript(cmd);
+        updateStatus("processing", "명령 분석 및 화면 제어 중...");
+
+        if (state.apiKey) {
+          try {
+            const reply = await callGPT4oMini(cmd);
+            updateResponse(reply);
+            await speakResponse(reply);
+          } catch (err) {
+            console.warn("[Nova] GPT call failed on text submit:", err);
+            const fallbackReply = parseLocalIntent(cmd);
+            updateResponse(fallbackReply);
+            await speakResponse(fallbackReply);
+          }
+        } else {
+          const reply = parseLocalIntent(cmd);
+          updateResponse(reply);
+          await speakResponse(reply);
+        }
+      });
+    }
+
+    document.getElementById("novaBtnCloseGuide")?.addEventListener("click", () => {
+      const guide = document.getElementById("novaPermGuide");
+      if (guide) guide.style.display = "none";
     });
   }
 
