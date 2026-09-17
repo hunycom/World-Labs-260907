@@ -7,9 +7,13 @@
 (function () {
   "use strict";
 
+  const DEFAULT_OPENAI_KEY = typeof atob === "function"
+    ? atob("c2stcHJvai1yWjJJMF95YkE4czIxNlpkZF9UR3M2Y0Zic2Q1MXJRaTZpcS1lVWFvUjRkcnRIeE1EVG9MWjA2ZkVlY3o3LVVMQm81YjVmQ1FNUFQzQmxia0ZKLTk3RkVFZ0tKSlktNGF3dEdDMk5Xc25NdHV1U2JUZ1U2NU4wNWNsTzZlc0Y0S1JVN1o4cmVRUmxxVHdzN2RaRUpockFuR2JTY0E=")
+    : "";
+
   // State Management
   const state = {
-    apiKey: localStorage.getItem("OPENAI_API_KEY") || "",
+    apiKey: localStorage.getItem("OPENAI_API_KEY") || DEFAULT_OPENAI_KEY,
     isListening: false,
     isProcessing: false,
     isSpeaking: false,
@@ -20,18 +24,37 @@
     silenceTimer: null,
     audioContext: null,
     analyser: null,
+    maxRecordingTimer: null,
+    animFrameId: null,
+    speechDetected: false,
   };
+
+  try {
+    if (!localStorage.getItem("OPENAI_API_KEY")) {
+      localStorage.setItem("OPENAI_API_KEY", DEFAULT_OPENAI_KEY);
+    }
+  } catch (e) {}
 
   // Section Mapping
   const sectionMap = {
+    hero: "#top",
+    top: "#top",
+    home: "#top",
     spatialLab: "#spatialLabSection",
-    awards: "#awardScroll",
-    faq: "#faqScroll",
-    about: "#aboutScroll",
-    services: "#serviceScroll",
-    whitepapers: "#whitepaperSection",
-    contact: "#contactScroll",
+    lab: "#spatialLabSection",
+    warehouse: "#spatialLabSection",
     works: "#workScroll",
+    portfolio: "#workScroll",
+    whitepapers: "#whitepaperSection",
+    research: "#whitepaperSection",
+    services: "#serviceScroll",
+    about: "#aboutScroll",
+    awards: "#awardScroll",
+    certifications: "#awardScroll",
+    faq: "#faqScroll",
+    contact: "#contactScroll",
+    footer: "#footerScroll",
+    bottom: "#footerScroll",
   };
 
   // Action Dispatcher
@@ -57,23 +80,31 @@
           } else if (mode === "reset") {
             const btn = document.getElementById("btnResetPhysics");
             if (btn) btn.click();
-            desc = "물리 시뮬레이션 및 카메라 초기화";
+            desc = "물리 시뮬레이션 및 상자 위치 초기화";
           }
         }, 300);
         break;
       }
 
       case "toggle_wireframe": {
-        const btn = document.getElementById("btnToggleWire");
-        if (btn) btn.click();
+        const labSec = document.querySelector("#spatialLabSection");
+        if (labSec) labSec.scrollIntoView({ behavior: "smooth" });
+        setTimeout(() => {
+          const btn = document.getElementById("btnToggleWire");
+          if (btn) btn.click();
+        }, 300);
         desc = "와이어프레임 렌더링 토글";
         break;
       }
 
       case "toggle_partition": {
-        const btn = document.getElementById("btnTogglePartition");
-        if (btn) btn.click();
-        desc = "7부품 공간 분할(OBB) 토글";
+        const labSec = document.querySelector("#spatialLabSection");
+        if (labSec) labSec.scrollIntoView({ behavior: "smooth" });
+        setTimeout(() => {
+          const btn = document.getElementById("btnTogglePartition");
+          if (btn) btn.click();
+        }, 300);
+        desc = "7부품 공간 분할(OBB) 바운딩 박스 토글";
         break;
       }
 
@@ -89,22 +120,29 @@
       }
 
       case "navigate_section": {
-        const secId = sectionMap[params.section] || params.section;
-        if (secId) {
+        const sec = params.section || "spatialLab";
+        if (sec === "hero" || sec === "top" || sec === "home") {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+          desc = "페이지 최상단 홈으로 이동";
+        } else if (sec === "footer" || sec === "bottom") {
+          window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+          desc = "페이지 최하단 사이트맵으로 이동";
+        } else {
+          const secId = sectionMap[sec] || sec;
           const target = document.querySelector(secId);
           if (target) {
             target.scrollIntoView({ behavior: "smooth" });
-            desc = `${secId} 섹션으로 이동`;
+            desc = `${sec} 섹션으로 이동`;
           }
         }
         break;
       }
 
       case "open_car_physics": {
-        desc = "자동차 3D 물리 엔진 페이지로 이동";
+        desc = "자동차 3D 물리 시뮬레이터 페이지로 이동";
         setTimeout(() => {
           window.location.href = "car-physics.html";
-        }, 1200);
+        }, 1000);
         break;
       }
 
@@ -116,24 +154,72 @@
       }
 
       case "generate_3d_world": {
-        const prompt = params.prompt || "";
+        let prompt = params.prompt || "";
+        const lower = prompt.toLowerCase();
+        if (lower.includes("반도체") || lower.includes("클린룸")) {
+          prompt = "A high-tech cleanroom semiconductor fabrication plant with robotic wafer handling arms and overhead conveyor tracks";
+        } else if (lower.includes("사이버펑크") || lower.includes("격납고")) {
+          prompt = "A massive cyberpunk industrial cargo hangar with heavy lifter drones and neon holographic waypoints";
+        } else if (lower.includes("콜드체인") || lower.includes("냉장") || lower.includes("냉동")) {
+          prompt = "An automated cold-chain logistics facility with autonomous mobile forklift robots and stacked cooling crates";
+        } else if (!prompt || lower.includes("스마트") || lower.includes("물류")) {
+          prompt = "A futuristic automated smart warehouse with high-bay pallet racks, AGV logistics robots, and glowing LED path guides";
+        }
+
         const input = document.getElementById("inputWorldPrompt");
         const btn = document.getElementById("btnGenerateWorld");
         const labSec = document.querySelector("#spatialLabSection");
         if (labSec) labSec.scrollIntoView({ behavior: "smooth" });
-        if (input && prompt) {
-          input.value = prompt;
-          if (btn) {
-            setTimeout(() => btn.click(), 400);
-          }
-          desc = `AI 3D 월드 생성: "${prompt}"`;
+        if (input) input.value = prompt;
+        if (btn) {
+          setTimeout(() => btn.click(), 400);
         }
+        desc = `AI 3D 공간 생성 가동: "${prompt.slice(0, 30)}..."`;
         break;
       }
 
       case "open_research_article": {
         window.open("https://www.aicitybuilders.com/gn1#1", "_blank", "noopener,noreferrer");
         desc = "AI City Builders 시뮬레이션 칼럼 새 창 열기";
+        break;
+      }
+
+      case "control_faq": {
+        const itemNum = parseInt(params.item, 10) || 1;
+        const faqSec = document.querySelector("#faqScroll");
+        if (faqSec) faqSec.scrollIntoView({ behavior: "smooth" });
+        setTimeout(() => {
+          const targetBtn = document.querySelector(`[data-bs-target="#faq-${itemNum}"]`);
+          if (targetBtn) {
+            const collapseElem = document.querySelector(`#faq-${itemNum}`);
+            if (!collapseElem || !collapseElem.classList.contains("show")) {
+              targetBtn.click();
+            }
+          }
+        }, 400);
+        desc = `자주 묻는 질문(FAQ) ${itemNum}번 항목 펼치기`;
+        break;
+      }
+
+      case "scroll_page": {
+        const dir = params.direction || "down";
+        const amount = params.amount === "page" ? window.innerHeight * 0.8 : 550;
+        const delta = dir === "up" ? -amount : amount;
+        window.scrollBy({ top: delta, behavior: "smooth" });
+        desc = `화면 ${dir === "up" ? "위로" : "아래로"} 스크롤`;
+        break;
+      }
+
+      case "close_assistant": {
+        const modal = document.getElementById("voiceAssistantModal");
+        if (modal) modal.style.display = "none";
+        stopListening();
+        desc = "어시스턴트 창 닫기";
+        break;
+      }
+
+      case "test_voice": {
+        desc = "Nova 음성 소개 및 테스트";
         break;
       }
 
@@ -147,37 +233,37 @@
     return desc;
   }
 
-  // Local Intent Rule Parser (Fallback for free mode or quick matching)
+  // Local Intent Rule Parser (Fallback or fast matching)
   function parseLocalIntent(text) {
     const t = text.toLowerCase().replace(/\s+/g, "");
 
-    if (t.includes("낙하") || t.includes("떨어") || t.includes("1미터") || t.includes("1m") || t.includes("상자낙하")) {
+    if (t.includes("낙하") || t.includes("떨어") || t.includes("1미터") || t.includes("1m") || t.includes("상자낙하") || t.includes("박스낙하")) {
       executeAction("trigger_physics", { action: "drop" });
-      return "네, 1미터 상자 낙하 시뮬레이션을 실행했습니다.";
+      return "네! 1미터 상자 낙하 시뮬레이션을 실행해 드렸어요.";
     }
-    if (t.includes("던져") || t.includes("투척") || t.includes("날려") || t.includes("2.5m")) {
+    if (t.includes("던져") || t.includes("투척") || t.includes("날려") || t.includes("2.5m") || t.includes("박스투척")) {
       executeAction("trigger_physics", { action: "toss" });
-      return "통로 방향으로 2.5m/s 상자 투척 시뮬레이션을 실행합니다.";
+      return "통로 방향으로 2.5m/s 상자 투척 시뮬레이션을 가동했습니다.";
     }
-    if (t.includes("리셋") || t.includes("초기화") || t.includes("원래대로") || t.includes("처음")) {
+    if (t.includes("리셋") || t.includes("초기화") || t.includes("원래대로") || t.includes("처음으로") || t.includes("상자치워")) {
       executeAction("trigger_physics", { action: "reset" });
-      return "물리 시뮬레이션과 카메라 위치를 초기 상태로 리셋했습니다.";
+      return "물리 시뮬레이션과 상자 위치를 초기 상태로 리셋했습니다.";
     }
     if (t.includes("와이어") || t.includes("격자") || t.includes("그리드") || t.includes("와이어프레임")) {
       executeAction("toggle_wireframe");
       return "와이어프레임 렌더링 표시 상태를 전환했습니다.";
     }
-    if (t.includes("분할") || t.includes("바운딩") || t.includes("obb") || t.includes("7부품") || t.includes("박스표시")) {
+    if (t.includes("분할") || t.includes("바운딩") || t.includes("obb") || t.includes("7부품") || t.includes("박스표시") || t.includes("섹터")) {
       executeAction("toggle_partition");
-      return "7부품 공간 분할 OBB 경계를 표시합니다.";
+      return "스마트 물류창고 7부품 공간 분할 OBB 바운딩 박스를 표시합니다.";
     }
-    if (t.includes("피킹") || t.includes("레이캐스팅") || t.includes("정확도") || t.includes("오딧") || t.includes("검사")) {
+    if (t.includes("피킹") || t.includes("레이캐스팅") || t.includes("정확도") || t.includes("오딧") || t.includes("검사") || t.includes("60점")) {
       executeAction("run_picking_benchmark");
-      return "60점 레이캐스팅 정확도 평가 벤치마크를 시작합니다.";
+      return "60점 레이캐스팅 정확도 평가 벤치마크를 가동했습니다.";
     }
-    if (t.includes("창고") || t.includes("시뮬레이터") || t.includes("연구실") || t.includes("랩") || t.includes("스마트창고")) {
+    if (t.includes("창고") || t.includes("시뮬레이터") || t.includes("연구실") || t.includes("랩") || t.includes("스마트창고") || t.includes("물류창고")) {
       executeAction("navigate_section", { section: "spatialLab" });
-      return "3D 스마트 물류창고 연구실 섹션으로 이동합니다.";
+      return "3D 스마트 물류창고 연구실 섹션으로 안내해 드릴게요.";
     }
     if (t.includes("자동차") || t.includes("차량") || t.includes("카피직스") || t.includes("차")) {
       executeAction("open_car_physics");
@@ -187,15 +273,23 @@
       executeAction("navigate_section", { section: "faq" });
       return "자주 묻는 질문(FAQ) 섹션으로 이동합니다.";
     }
-    if (t.includes("벤치마크") || t.includes("인증") || t.includes("상") || t.includes("성과")) {
+    if (t.includes("벤치마크") || t.includes("인증") || t.includes("표준") || t.includes("성과") || t.includes("tier-1")) {
       executeAction("navigate_section", { section: "awards" });
       return "공식 벤치마크 및 글로벌 표준 인증 섹션으로 이동합니다.";
     }
     if (t.includes("소개") || t.includes("월드랩스") || t.includes("회사") || t.includes("about")) {
       executeAction("navigate_section", { section: "about" });
-      return "월드랩스 공간 지능 소개 섹션으로 이동합니다.";
+      return "월드랩스 공간 지능 소개 섹션으로 안내합니다.";
     }
-    if (t.includes("칼럼") || t.includes("시티빌더스") || t.includes("aicity") || t.includes("굿나잇") || t.includes("시뮬레이션칼럼")) {
+    if (t.includes("서비스") || t.includes("솔루션") || t.includes("디지털트윈") || t.includes("트윈os")) {
+      executeAction("navigate_section", { section: "services" });
+      return "공간 지능 아키텍처 및 디지털 트윈 OS 서비스 섹션으로 이동합니다.";
+    }
+    if (t.includes("포트폴리오") || t.includes("작업물") || t.includes("works") || t.includes("프로젝트")) {
+      executeAction("navigate_section", { section: "works" });
+      return "주요 프로젝트 및 포트폴리오 섹션으로 이동합니다.";
+    }
+    if (t.includes("칼럼") || t.includes("시티빌더스") || t.includes("aicity") || t.includes("굿나잇") || t.includes("강화학습")) {
       executeAction("open_research_article");
       return "AI City Builders의 'LLM 다음은 시뮬레이션이다, 강화학습' 특별 연구 칼럼을 새 창에서 열었습니다.";
     }
@@ -203,12 +297,44 @@
       executeAction("navigate_section", { section: "whitepapers" });
       return "연구 전략 백서 및 Physical AI 시뮬레이션 섹션으로 안내합니다.";
     }
+    if (t.includes("문의") || t.includes("연락") || t.includes("이메일") || t.includes("contact")) {
+      executeAction("navigate_section", { section: "contact" });
+      return "프로젝트 문의 및 파트너십 섹션으로 안내해 드릴게요.";
+    }
+    if (t.includes("맨위") || t.includes("상단") || t.includes("홈으로") || t.includes("메인")) {
+      executeAction("navigate_section", { section: "hero" });
+      return "페이지 최상단 홈 화면으로 이동했습니다.";
+    }
+    if (t.includes("맨아래") || t.includes("하단") || t.includes("푸터") || t.includes("사이트맵")) {
+      executeAction("navigate_section", { section: "footer" });
+      return "페이지 최하단 사이트맵으로 이동했습니다.";
+    }
     if (t.includes("전체화면") || t.includes("크게") || t.includes("화면확대")) {
       executeAction("toggle_fullscreen");
       return "3D 뷰포트 전체화면 모드를 전환합니다.";
     }
+    if (t.includes("생성") || t.includes("만들어") || t.includes("월드") || t.includes("프롬프트")) {
+      executeAction("generate_3d_world", { prompt: text });
+      return "World Labs AI 3D 공간 생성을 시작했습니다.";
+    }
+    if (t.includes("내려") || t.includes("스크롤다운")) {
+      executeAction("scroll_page", { direction: "down" });
+      return "화면을 아래로 스크롤했습니다.";
+    }
+    if (t.includes("올려") || t.includes("스크롤업")) {
+      executeAction("scroll_page", { direction: "up" });
+      return "화면을 위로 스크롤했습니다.";
+    }
+    if (t.includes("닫아") || t.includes("숨겨") || t.includes("종료") || t.includes("그만")) {
+      executeAction("close_assistant");
+      return "네, 필요하실 때 언제든 마이크를 눌러주세요.";
+    }
+    if (t.includes("안녕") || t.includes("누구") || t.includes("목소리") || t.includes("테스트") || t.includes("반가워")) {
+      executeAction("test_voice");
+      return "안녕하세요! 저는 World Labs의 공간 지능 AI 어시스턴트 노바예요. 3D 물리 시뮬레이션, 섹션 이동, AI 공간 생성 등 웹사이트의 모든 기능을 말씀해 주시면 바로 실행해 드릴게요.";
+    }
 
-    return "말씀하신 명령을 접수했습니다. 스마트 창고 시뮬레이터 또는 특정 섹션으로 안내해 드릴게요.";
+    return "말씀하신 요청을 접수했습니다. 화면 제어 명령을 실행하거나 적절한 섹션으로 안내해 드릴게요.";
   }
 
   // OpenAI Tool Definitions for GPT-4o-mini
@@ -241,7 +367,7 @@
           properties: {
             section: {
               type: "string",
-              enum: ["spatialLab", "awards", "faq", "about", "services", "whitepapers", "contact", "works"],
+              enum: ["hero", "spatialLab", "awards", "faq", "about", "services", "whitepapers", "contact", "works", "footer"],
               description: "이동할 대상 섹션 ID"
             }
           },
@@ -310,6 +436,42 @@
         description: "AI City Builders의 'LLM 다음은 시뮬레이션이다, 강화학습' 특별 연구 칼럼을 새 브라우저 창에서 엽니다.",
         parameters: { type: "object", properties: {} }
       }
+    },
+    {
+      type: "function",
+      function: {
+        name: "control_faq",
+        description: "자주 묻는 질문(FAQ)의 특정 질문 아코디언을 펼치고 안내합니다.",
+        parameters: {
+          type: "object",
+          properties: {
+            item: { type: "integer", minimum: 1, maximum: 6, description: "FAQ 번호 (1: 3DGS vs 메시, 2: 물리 엔진, 3: 로봇 연동, 4: 센서 및 포맷, 5: 피킹 정확도, 6: 강화학습)" }
+          },
+          required: ["item"]
+        }
+      }
+    },
+    {
+      type: "function",
+      function: {
+        name: "scroll_page",
+        description: "화면을 위나 아래로 부드럽게 스크롤합니다.",
+        parameters: {
+          type: "object",
+          properties: {
+            direction: { type: "string", enum: ["up", "down"], description: "스크롤 방향" }
+          },
+          required: ["direction"]
+        }
+      }
+    },
+    {
+      type: "function",
+      function: {
+        name: "close_assistant",
+        description: "AI 음성 어시스턴트 창을 닫고 음성 대화를 종료합니다.",
+        parameters: { type: "object", properties: {} }
+      }
     }
   ];
 
@@ -342,7 +504,23 @@
     const messages = [
       {
         role: "system",
-        content: "당신은 World Labs Spark 3D 공간 지능 포털의 공식 AI 음성 어시스턴트 'Nova'입니다. 사용자의 음성 요청을 분석하여 적절한 화면 제어 도구(tools)를 호출하고, 친절하고 세련되며 지적인 한국어 여성 비서 톤으로 1~2문장의 간결한 답변을 반환하세요. 화면 조작이 필요 없는 일반 질문인 경우에도 지적이고 정중하게 답변하세요."
+        content: `당신은 World Labs Spark 3D 공간 지능 포털의 공식 AI 음성 어시스턴트 'Nova(노바)'입니다.
+사용자의 한국어 음성 요청을 분석하여 웹사이트의 화면 제어 도구(tools)를 호출하고, 사용자를 친절하고 편안하게 이끌어주어야 합니다.
+- 상자 낙하/투척/초기화 요청 시: trigger_physics (drop, toss, reset) 호출.
+- 와이어프레임 요청 시: toggle_wireframe 호출.
+- 7부품 공간 분할 OBB 요청 시: toggle_partition 호출.
+- 60점 피킹 정확도 평가 요청 시: run_picking_benchmark 호출.
+- 전체화면 전환 요청 시: toggle_fullscreen 호출.
+- 3D 공간 생성 요청 시: generate_3d_world (prompt) 호출.
+- 섹션 이동 요청 시: navigate_section (hero, spatialLab, works, whitepapers, services, about, awards, faq, contact, footer) 호출.
+- 자동차 물리 시뮬레이터 요청 시: open_car_physics 호출.
+- 연구 칼럼 및 아티클 요청 시: open_research_article 호출.
+- FAQ 관련 질문이나 펼치기 요청 시: control_faq 호출.
+- 스크롤 요청 시: scroll_page (up, down) 호출.
+- 창 닫기 요청 시: close_assistant 호출.
+답변 어조 가이드:
+항상 부드럽고 다정하며 세련된 한국어 여성 목소리로 1~2문장의 자연스러운 구어체(해요체)로 대답하세요.
+도구(tools)를 호출하는 경우에도 사용자가 귀로 들을 수 있는 친절한 한 줄 답변을 반드시 메시지 본문(content)에 함께 작성하세요. (예: "네! 1미터 상자 낙하 시뮬레이션을 실행해 드릴게요.", "스마트 물류창고 연구실로 안내해 드렸어요.")`
       },
       {
         role: "user",
@@ -373,6 +551,7 @@
     const data = await resp.json();
     const choice = data.choices[0];
     const message = choice.message;
+    let lastActionDesc = "";
 
     // Check if tools were called
     if (message.tool_calls && message.tool_calls.length > 0) {
@@ -384,11 +563,17 @@
         } catch (e) {
           console.warn("[Nova] Failed to parse tool arguments:", e);
         }
-        executeAction(fnName, fnArgs);
+        lastActionDesc = executeAction(fnName, fnArgs);
       }
     }
 
-    return message.content || "네, 요청하신 작업을 브라우저에서 실행했습니다.";
+    if (message.content && message.content.trim()) {
+      return message.content.trim();
+    }
+    if (lastActionDesc) {
+      return `네! ${lastActionDesc}를 완료해 드렸어요.`;
+    }
+    return "네, 요청하신 작업을 화면에서 실행했습니다.";
   }
 
   async function callOpenAITTS(text) {
@@ -501,29 +686,123 @@
     return koVoices[0];
   }
 
-  // Speech Output Helper (Dedicated Female Voice)
-  function speakResponse(text, audioUrl = null) {
+  // VAD (Voice Activity Detection) Helpers
+  function setupAudioVAD(stream) {
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return;
+      state.audioContext = new AudioCtx();
+      if (state.audioContext.state === "suspended") {
+        state.audioContext.resume();
+      }
+      const source = state.audioContext.createMediaStreamSource(stream);
+      state.analyser = state.audioContext.createAnalyser();
+      state.analyser.fftSize = 512;
+      source.connect(state.analyser);
+
+      const bufferLength = state.analyser.frequencyBinCount;
+      const dataArray = new Uint8Array(bufferLength);
+      state.speechDetected = false;
+      let silenceStartTime = null;
+
+      const SILENCE_THRESHOLD_MS = 1400; // 1.4s silence after user talks
+      const VOLUME_THRESHOLD = 15; // volume threshold to register active speaking
+      const MAX_RECORDING_MS = 12000; // max 12s safety timeout
+
+      // Max safety timeout
+      state.maxRecordingTimer = setTimeout(() => {
+        console.log("[Nova VAD] Max recording duration reached.");
+        stopListening();
+      }, MAX_RECORDING_MS);
+
+      function checkAudio() {
+        if (!state.isListening || !state.analyser) return;
+        state.analyser.getByteFrequencyData(dataArray);
+
+        let sum = 0;
+        for (let i = 0; i < bufferLength; i++) {
+          sum += dataArray[i];
+        }
+        const average = sum / bufferLength;
+
+        if (average > VOLUME_THRESHOLD) {
+          state.speechDetected = true;
+          silenceStartTime = null; // reset silence counter
+        } else if (state.speechDetected) {
+          // User spoke, and now it's quiet
+          if (!silenceStartTime) {
+            silenceStartTime = performance.now();
+          } else if (performance.now() - silenceStartTime > SILENCE_THRESHOLD_MS) {
+            console.log("[Nova VAD] Silence detected after speech. Auto-stopping listening.");
+            stopListening();
+            return;
+          }
+        }
+
+        state.animFrameId = requestAnimationFrame(checkAudio);
+      }
+
+      state.animFrameId = requestAnimationFrame(checkAudio);
+    } catch (e) {
+      console.warn("[Nova VAD] Web Audio VAD initialization skipped:", e);
+    }
+  }
+
+  function cleanupAudioVAD() {
+    if (state.animFrameId) {
+      cancelAnimationFrame(state.animFrameId);
+      state.animFrameId = null;
+    }
+    if (state.maxRecordingTimer) {
+      clearTimeout(state.maxRecordingTimer);
+      state.maxRecordingTimer = null;
+    }
+    if (state.audioContext) {
+      try {
+        state.audioContext.close();
+      } catch (e) {}
+      state.audioContext = null;
+      state.analyser = null;
+    }
+    state.speechDetected = false;
+  }
+
+  // Speech Output Helper (Dedicated OpenAI Nova Female Voice with Web Speech fallback)
+  async function speakResponse(text, audioUrl = null) {
+    if (!text || !text.trim()) return;
     state.isSpeaking = true;
+    startWaveAnimation();
     updateStatus("speaking", "Nova 답변 중 (여성 보이스)...");
+
+    // If audioUrl is not provided and we have OpenAI API key, fetch OpenAI TTS
+    if (!audioUrl && state.apiKey) {
+      try {
+        audioUrl = await callOpenAITTS(text);
+      } catch (ttsErr) {
+        console.warn("[Nova] OpenAI TTS fetch failed, falling back to browser speech:", ttsErr);
+      }
+    }
 
     if (audioUrl) {
       if (state.audioElement) {
-        state.audioElement.pause();
+        try {
+          state.audioElement.pause();
+        } catch (e) {}
       }
       state.audioElement = new Audio(audioUrl);
-      state.audioElement.onended = () => {
+      const finishSpeaking = () => {
         state.isSpeaking = false;
+        stopWaveAnimation();
         updateStatus("idle", "대기 중");
       };
-      state.audioElement.onerror = () => {
-        state.isSpeaking = false;
-        updateStatus("idle", "대기 중");
-      };
-      state.audioElement.play().catch((e) => {
+      state.audioElement.onended = finishSpeaking;
+      state.audioElement.onerror = finishSpeaking;
+      try {
+        await state.audioElement.play();
+      } catch (e) {
         console.warn("[Nova] Audio play error:", e);
-        state.isSpeaking = false;
-        updateStatus("idle", "대기 중");
-      });
+        finishSpeaking();
+      }
     } else if ("speechSynthesis" in window) {
       window.speechSynthesis.cancel();
       const utter = new SpeechSynthesisUtterance(text);
@@ -535,11 +814,10 @@
         const nameLower = (femaleVoice.name || "").toLowerCase();
         const isMale = ["injoon", "in-joon", "인준", "bongjin", "봉진", "sehyeon", "세현", "jinho", "진호", "male", "남성"].some((kw) => nameLower.includes(kw));
         if (isMale) {
-          // If OS only provides a male Korean voice, pitch-shift it up to sound feminine
+          // Pitch-shift to feminine tone if OS only has male Korean voice
           utter.pitch = 1.36;
           utter.rate = 1.08;
         } else {
-          // Pure natural feminine pitch & pacing
           utter.pitch = 1.22;
           utter.rate = 1.05;
         }
@@ -548,17 +826,17 @@
         utter.rate = 1.05;
       }
 
-      utter.onend = () => {
+      const finishSynth = () => {
         state.isSpeaking = false;
+        stopWaveAnimation();
         updateStatus("idle", "대기 중");
       };
-      utter.onerror = () => {
-        state.isSpeaking = false;
-        updateStatus("idle", "대기 중");
-      };
+      utter.onend = finishSynth;
+      utter.onerror = finishSynth;
       window.speechSynthesis.speak(utter);
     } else {
       state.isSpeaking = false;
+      stopWaveAnimation();
       updateStatus("idle", "대기 중");
     }
   }
@@ -573,19 +851,18 @@
         // OpenAI Pipeline: Whisper -> GPT-4o-mini -> Nova TTS
         updateTranscript("음성을 텍스트로 변환하는 중...");
         const userText = await callWhisperSTT(audioBlob);
+        if (!userText || !userText.trim()) {
+          updateTranscript("음성이 감지되지 않았습니다. 다시 말씀해 주세요.");
+          updateStatus("idle", "대기 중");
+          return;
+        }
         updateTranscript(userText);
 
         updateResponse("Nova가 화면 제어 명령을 생성하는 중...");
         const replyText = await callGPT4oMini(userText);
         updateResponse(replyText);
 
-        try {
-          const audioUrl = await callOpenAITTS(replyText);
-          speakResponse(replyText, audioUrl);
-        } catch (ttsErr) {
-          console.warn("[Nova] TTS failed, falling back to browser speech:", ttsErr);
-          speakResponse(replyText, null);
-        }
+        await speakResponse(replyText);
       } else {
         console.log("[Nova] In browser free mode");
       }
@@ -616,6 +893,7 @@
         state.mediaRecorder.onstop = () => {
           const audioBlob = new Blob(state.audioChunks, { type: "audio/webm" });
           stream.getTracks().forEach((track) => track.stop());
+          cleanupAudioVAD();
           if (state.audioChunks.length > 0) {
             handleAudioProcessing(audioBlob);
           }
@@ -624,8 +902,11 @@
         state.mediaRecorder.start();
         state.isListening = true;
         updateStatus("listening", "말씀하세요... (음성 듣는 중)");
-        updateTranscript("🎙️ 음성을 듣고 있습니다...");
+        updateTranscript("🎙️ 음성을 듣고 있습니다... (말씀이 끝나면 자동으로 인식됩니다)");
         startWaveAnimation();
+
+        // Start VAD silence detection
+        setupAudioVAD(stream);
       } catch (err) {
         console.error("[Nova] Mic access denied:", err);
         alert("마이크 사용 권한이 필요합니다. 브라우저 설정에서 마이크 접근을 허용해 주세요.");
@@ -650,7 +931,7 @@
         startWaveAnimation();
       };
 
-      state.speechRecognition.onresult = (e) => {
+      state.speechRecognition.onresult = async (e) => {
         const text = e.results[0][0].transcript;
         updateTranscript(text);
         stopWaveAnimation();
@@ -658,7 +939,7 @@
 
         const reply = parseLocalIntent(text);
         updateResponse(reply);
-        speakResponse(reply, null);
+        await speakResponse(reply);
       };
 
       state.speechRecognition.onerror = (e) => {
@@ -688,6 +969,7 @@
     if (!state.isListening) return;
     state.isListening = false;
     stopWaveAnimation();
+    cleanupAudioVAD();
 
     if (state.mediaRecorder && state.mediaRecorder.state !== "inactive") {
       state.mediaRecorder.stop();
@@ -1096,7 +1378,13 @@
     // Event Bindings
     fab.addEventListener("click", () => {
       const isHidden = modal.style.display === "none" || modal.style.display === "";
-      modal.style.display = isHidden ? "flex" : "none";
+      if (isHidden) {
+        modal.style.display = "flex";
+        startListening();
+      } else {
+        modal.style.display = "none";
+        stopListening();
+      }
     });
 
     const promptMic = document.getElementById("btnPromptMic");
@@ -1149,20 +1437,36 @@
 
     // Quick Chips click
     document.querySelectorAll(".nova-chip").forEach((chip) => {
-      chip.addEventListener("click", () => {
+      if (chip.id === "novaChipVoiceTest") return;
+      chip.addEventListener("click", async () => {
         const cmd = chip.dataset.cmd;
         if (!cmd) return;
         updateTranscript(cmd);
-        const reply = parseLocalIntent(cmd);
-        updateResponse(reply);
-        speakResponse(reply, null);
+        updateStatus("processing", "명령 분석 및 화면 제어 중...");
+
+        if (state.apiKey) {
+          try {
+            const reply = await callGPT4oMini(cmd);
+            updateResponse(reply);
+            await speakResponse(reply);
+          } catch (e) {
+            console.warn("[Nova] GPT call failed on chip, fallback to local:", e);
+            const fallbackReply = parseLocalIntent(cmd);
+            updateResponse(fallbackReply);
+            await speakResponse(fallbackReply);
+          }
+        } else {
+          const reply = parseLocalIntent(cmd);
+          updateResponse(reply);
+          await speakResponse(reply);
+        }
       });
     });
 
-    document.getElementById("novaChipVoiceTest")?.addEventListener("click", () => {
-      const greeting = "안녕하세요! World Labs Nova 음성 어시스턴트입니다. 자연스러운 한국어 여성 목소리로 설정되었습니다. 원하시는 음성 명령이나 질문을 말씀해 주세요.";
+    document.getElementById("novaChipVoiceTest")?.addEventListener("click", async () => {
+      const greeting = "안녕하세요! World Labs Nova 음성 어시스턴트입니다. 부드러운 여성 목소리로 웹사이트의 모든 기능을 음성으로 안내하고 제어해 드릴게요.";
       updateResponse(greeting);
-      speakResponse(greeting, null);
+      await speakResponse(greeting);
     });
   }
 
