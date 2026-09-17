@@ -30,7 +30,6 @@
     about: "#aboutScroll",
     services: "#serviceScroll",
     whitepapers: "#whitepaperSection",
-    techday: "#techdayShowcaseSection",
     contact: "#contactScroll",
     works: "#workScroll",
   };
@@ -138,26 +137,6 @@
         break;
       }
 
-      case "open_techday_video": {
-        if (typeof window.openTechDayTheater === "function") {
-          window.openTechDayTheater();
-          desc = "TechDay 2026 전체화면 비디오 쇼케이스 재생";
-        } else {
-          const sec = document.querySelector("#techdayShowcaseSection");
-          if (sec) sec.scrollIntoView({ behavior: "smooth" });
-          desc = "TechDay 2026 비디오 쇼케이스 섹션으로 이동";
-        }
-        break;
-      }
-
-      case "close_techday_video": {
-        if (typeof window.closeTechDayTheater === "function") {
-          window.closeTechDayTheater();
-          desc = "전체화면 영상 종료 및 웹사이트 복귀";
-        }
-        break;
-      }
-
       default:
         console.warn("[Nova] Unknown action:", actionName);
     }
@@ -227,14 +206,6 @@
     if (t.includes("전체화면") || t.includes("크게") || t.includes("화면확대")) {
       executeAction("toggle_fullscreen");
       return "3D 뷰포트 전체화면 모드를 전환합니다.";
-    }
-    if (t.includes("테크데이") || t.includes("키노트") || t.includes("영상재생") || t.includes("동영상") || t.includes("쇼케이스") || t.includes("비디오") || t.includes("techday")) {
-      executeAction("open_techday_video");
-      return "World Labs TechDay 2026 키노트 영상을 전체화면으로 재생합니다. 영상이 끝나면 자동으로 웹사이트로 복귀합니다.";
-    }
-    if (t.includes("영상닫기") || t.includes("영상종료") || t.includes("비디오닫기") || t.includes("화면복귀") || t.includes("영상꺼")) {
-      executeAction("close_techday_video");
-      return "영상을 닫고 웹사이트로 복귀했습니다.";
     }
 
     return "말씀하신 명령을 접수했습니다. 스마트 창고 시뮬레이터 또는 특정 섹션으로 안내해 드릴게요.";
@@ -337,22 +308,6 @@
       function: {
         name: "open_research_article",
         description: "AI City Builders의 'LLM 다음은 시뮬레이션이다, 강화학습' 특별 연구 칼럼을 새 브라우저 창에서 엽니다.",
-        parameters: { type: "object", properties: {} }
-      }
-    },
-    {
-      type: "function",
-      function: {
-        name: "open_techday_video",
-        description: "World Labs TechDay 2026 공식 키노트 및 실시간 시연 영상을 전체화면 시네마틱 플레이어로 재생합니다 (완료 시 자동으로 웹사이트 복귀).",
-        parameters: { type: "object", properties: {} }
-      }
-    },
-    {
-      type: "function",
-      function: {
-        name: "close_techday_video",
-        description: "재생 중인 전체화면 비디오를 닫고 원래 웹사이트 위치로 복귀합니다.",
         parameters: { type: "object", properties: {} }
       }
     }
