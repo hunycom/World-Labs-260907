@@ -49,6 +49,9 @@
     research: "#whitepaperSection",
     services: "#serviceScroll",
     about: "#aboutScroll",
+    pricing: "#pricingSection",
+    price: "#pricingSection",
+    tier: "#pricingSection",
     awards: "#awardScroll",
     certifications: "#awardScroll",
     faq: "#faqScroll",
@@ -285,6 +288,10 @@
       executeAction("navigate_section", { section: "services" });
       return "공간 지능 아키텍처 및 디지털 트윈 OS 서비스 섹션으로 이동합니다.";
     }
+    if (t.includes("요금") || t.includes("가격") || t.includes("얼마") || t.includes("달러") || t.includes("원화") || t.includes("환율") || t.includes("pricing") || t.includes("tier")) {
+      executeAction("navigate_section", { section: "pricing" });
+      return "요금 정책 섹션으로 이동해 드렸어요! 본 요금제는 상용화 도입 가이드라인(예시)이며, 각 달러 가격 위에 마우스를 올리시면 원화 환산 금액을 실시간으로 확인하실 수 있습니다.";
+    }
     if (t.includes("포트폴리오") || t.includes("작업물") || t.includes("works") || t.includes("프로젝트")) {
       executeAction("navigate_section", { section: "works" });
       return "주요 프로젝트 및 포트폴리오 섹션으로 이동합니다.";
@@ -367,7 +374,7 @@
           properties: {
             section: {
               type: "string",
-              enum: ["hero", "spatialLab", "awards", "faq", "about", "services", "whitepapers", "contact", "works", "footer"],
+              enum: ["hero", "spatialLab", "awards", "faq", "about", "services", "whitepapers", "contact", "works", "pricing", "footer"],
               description: "이동할 대상 섹션 ID"
             }
           },
@@ -1646,6 +1653,7 @@
             <button type="button" class="nova-chip-btn" data-action="navigate_section" data-param='{"section":"spatialLab"}' data-label="3D 스마트 창고 섹션으로 가줘">🏭 3D 스마트 창고</button>
             <button type="button" class="nova-chip-btn" data-action="navigate_section" data-param='{"section":"works"}' data-label="포트폴리오 쇼케이스 보여줘">💼 작품 쇼케이스</button>
             <button type="button" class="nova-chip-btn" data-action="navigate_section" data-param='{"section":"services"}' data-label="서비스 안내로 가줘">🛠️ 기술 솔루션</button>
+            <button type="button" class="nova-chip-btn highlight" data-action="navigate_section" data-param='{"section":"pricing"}' data-label="요금 정책 및 원화 가격 확인">💰 요금 정책 (KRW)</button>
             <button type="button" class="nova-chip-btn" data-action="navigate_section" data-param='{"section":"about"}' data-label="회사 소개 보여줘">🏢 회사 소개</button>
             <button type="button" class="nova-chip-btn" data-action="navigate_section" data-param='{"section":"awards"}' data-label="표준 인증 내역 보여줘">🏆 표준 인증 6종</button>
             <button type="button" class="nova-chip-btn" data-action="navigate_section" data-param='{"section":"contact"}' data-label="문의하기 섹션으로 가줘">✉️ 프로젝트 문의</button>

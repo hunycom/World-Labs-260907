@@ -445,6 +445,120 @@
           padding: 2px 8px;
         }
       }
+      /* ================================================================= */
+      /* PRICING PLANS KRW HOVER CONVERSION                                */
+      /* ================================================================= */
+      .wg-plan .plan-price {
+        position: relative !important;
+        cursor: pointer;
+        display: inline-flex !important;
+        align-items: baseline !important;
+        gap: 6px !important;
+        transition: all 0.25s ease;
+      }
+      .wg-plan .price-val-wrap {
+        display: inline-flex;
+        align-items: baseline;
+        position: relative;
+        font-weight: 700;
+      }
+      .wg-plan .val-usd {
+        display: inline-block;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+      .wg-plan .val-krw {
+        display: none;
+        color: #38bdf8 !important;
+        font-weight: 800;
+        animation: krwFadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+        text-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+      }
+      @keyframes krwFadeIn {
+        from { opacity: 0; transform: translateY(4px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      /* Hover State: on .plan-price hover or card hover */
+      .wg-plan .plan-price:hover .val-usd,
+      .wg-plan:hover .val-usd,
+      .wg-plan.show-krw .val-usd {
+        display: none !important;
+      }
+      .wg-plan .plan-price:hover .val-krw,
+      .wg-plan:hover .val-krw,
+      .wg-plan.show-krw .val-krw {
+        display: inline-block !important;
+      }
+      .wg-plan .krw-badge-hint {
+        display: inline-flex;
+        align-items: center;
+        gap: 3px;
+        font-size: 10px;
+        font-weight: 600;
+        color: #94a3b8;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        border-radius: 6px;
+        padding: 2px 7px;
+        vertical-align: middle;
+        transition: all 0.25s ease;
+        margin-left: 4px;
+        cursor: pointer;
+      }
+      .wg-plan .plan-price:hover .krw-badge-hint,
+      .wg-plan:hover .krw-badge-hint,
+      .wg-plan.show-krw .krw-badge-hint {
+        color: #38bdf8;
+        border-color: rgba(56, 189, 248, 0.5);
+        background: rgba(56, 189, 248, 0.18);
+        box-shadow: 0 0 10px rgba(56, 189, 248, 0.25);
+      }
+      .wg-plan .krw-tooltip-box {
+        position: absolute;
+        bottom: calc(100% + 10px);
+        left: 0;
+        background: rgba(10, 15, 26, 0.96);
+        border: 1px solid rgba(56, 189, 248, 0.65);
+        border-radius: 10px;
+        padding: 6px 12px;
+        font-size: 12px;
+        font-weight: 700;
+        color: #ffffff;
+        white-space: nowrap;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(56, 189, 248, 0.35);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(6px);
+        transition: opacity 0.22s cubic-bezier(0.16, 1, 0.3, 1), transform 0.22s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.22s;
+        pointer-events: none;
+        z-index: 50;
+      }
+      .wg-plan .krw-tooltip-box::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        left: 20px;
+        border-width: 6px;
+        border-style: solid;
+        border-color: rgba(56, 189, 248, 0.65) transparent transparent transparent;
+      }
+      .wg-plan .plan-price:hover .krw-tooltip-box,
+      .wg-plan:hover .krw-tooltip-box,
+      .wg-plan.show-krw .krw-tooltip-box {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+      }
+      .wg-plan .krw-tooltip-box strong {
+        color: #38bdf8;
+      }
+      .wg-plan .krw-tooltip-box .sub-rate {
+        font-size: 10px;
+        color: #94a3b8;
+        font-weight: normal;
+        margin-left: 4px;
+      }
     </style>
 </head>
 
@@ -2126,15 +2240,18 @@
         </section>
         <!-- /Testimonial -->
         <!-- Pricing -->
-        <section class="section-pricing flat-spacing flat-animate-tab">
+        <section class="section-pricing flat-spacing flat-animate-tab" id="pricingSection">
             <div class="bg-img">
                 <img loading="lazy" width="1440" height="1081" src="davies-assets/images/item/bg-4.png" alt="Image">
             </div>
             <div class="container">
-                <div class="s-header justify-content-center">
+                <div class="s-header justify-content-center text-center">
                     <h2 class="text-display-2 letter-space--3 effectFade fadeUp">
                         Spatial Deployment Tiers
                     </h2>
+                    <p class="mt-2 mb-0" style="font-size: 13px; color: #94a3b8; letter-spacing: 0.2px;">
+                        💡 <span style="color: #38bdf8; font-weight: 600;">상용화 표준 가이드라인 요금제(예시)</span>이며 실제 결제는 진행되지 않습니다. <span style="color: #ffffff; text-decoration: underline; text-underline-offset: 3px;">달러($) 가격에 마우스를 올리시면 원화(KRW) 환산 금액</span>을 실시간으로 확인하실 수 있습니다.
+                    </p>
                 </div>
                 <ul class="pricing-tab_btn" role="tablist">
                     <li class="nav-tab-item" role="presentation">
@@ -2158,8 +2275,16 @@
                             <div class="wg-plan">
                                 <div class="br-line"></div>
                                 <p class="plan-name letter-space--1 fw-medium">Developer Starter</p>
-                                <h4 class="plan-price">
-                                    $490 <span class="text-body-2 fw-normal text-white-64 letter-space--1">/month</span>
+                                <h4 class="plan-price price-krw-interactive" title="마우스를 올리면 원화 환산 가격을 확인하실 수 있습니다.">
+                                    <div class="krw-tooltip-box">
+                                        🇰🇷 한화 약 <strong>₩686,000원</strong> /월 <span class="sub-rate">(환율 1,400원/$)</span>
+                                    </div>
+                                    <div class="price-val-wrap">
+                                        <span class="val-usd">$490</span>
+                                        <span class="val-krw">₩686,000</span>
+                                    </div>
+                                    <span class="text-body-2 fw-normal text-white-64 letter-space--1">/month</span>
+                                    <span class="krw-badge-hint">KRW ₩</span>
                                 </h4>
                                 <p class="plan-desc text-white-64">
                                     Lightweight SDK license for academic researchers, individual roboticists, and 3DGS web prototype testing.
@@ -2183,9 +2308,16 @@
                                 </div>
                                 <div class="br-line bg-primary"></div>
                                 <p class="plan-name letter-space--1 fw-medium">Spatial Pro</p>
-                                <h4 class="plan-price">
-                                    <span><span class="text-primary">$</span>1,850</span>
+                                <h4 class="plan-price price-krw-interactive" title="마우스를 올리면 원화 환산 가격을 확인하실 수 있습니다.">
+                                    <div class="krw-tooltip-box">
+                                        🇰🇷 한화 약 <strong>₩2,590,000원</strong> /월 <span class="sub-rate">(환율 1,400원/$)</span>
+                                    </div>
+                                    <div class="price-val-wrap">
+                                        <span class="val-usd"><span><span class="text-primary">$</span>1,850</span></span>
+                                        <span class="val-krw">₩2,590,000</span>
+                                    </div>
                                     <span class="text-body-2 fw-normal text-white-64 letter-space--1">/month</span>
+                                    <span class="krw-badge-hint">KRW ₩</span>
                                 </h4>
                                 <p class="plan-desc text-white-64">
                                     Complete spatial twin platform for autonomous facility monitoring, conveyor physics, and robot fleet telemetry.
@@ -2206,8 +2338,16 @@
                                 <div class="bg-img bg-img_1"></div>
                                 <div class="br-line bg-white"></div>
                                 <p class="plan-name letter-space--1 fw-medium">Enterprise Twin-OS</p>
-                                <h4 class="plan-price">
-                                    $4,800 <span class="text-body-2 fw-normal text-white-64 letter-space--1">/month</span>
+                                <h4 class="plan-price price-krw-interactive" title="마우스를 올리면 원화 환산 가격을 확인하실 수 있습니다.">
+                                    <div class="krw-tooltip-box">
+                                        🇰🇷 한화 약 <strong>₩6,720,000원</strong> /월 <span class="sub-rate">(환율 1,400원/$)</span>
+                                    </div>
+                                    <div class="price-val-wrap">
+                                        <span class="val-usd">$4,800</span>
+                                        <span class="val-krw">₩6,720,000</span>
+                                    </div>
+                                    <span class="text-body-2 fw-normal text-white-64 letter-space--1">/month</span>
+                                    <span class="krw-badge-hint">KRW ₩</span>
                                 </h4>
                                 <p class="plan-desc text-white-64">
                                     Dedicated on-premise spatial intelligence operating system with multi-agent simulation and hardware sync.
@@ -2231,8 +2371,16 @@
                             <div class="wg-plan">
                                 <div class="br-line"></div>
                                 <p class="plan-name letter-space--1 fw-medium">Developer Starter</p>
-                                <h4 class="plan-price">
-                                    $390 <span class="text-body-2 fw-normal text-white-64 letter-space--1">/mo (billed annually)</span>
+                                <h4 class="plan-price price-krw-interactive" title="마우스를 올리면 원화 환산 가격을 확인하실 수 있습니다.">
+                                    <div class="krw-tooltip-box">
+                                        🇰🇷 한화 약 <strong>₩546,000원</strong> /월 <span class="sub-rate">(연간 ₩6,552,000원)</span>
+                                    </div>
+                                    <div class="price-val-wrap">
+                                        <span class="val-usd">$390</span>
+                                        <span class="val-krw">₩546,000</span>
+                                    </div>
+                                    <span class="text-body-2 fw-normal text-white-64 letter-space--1">/mo (billed annually)</span>
+                                    <span class="krw-badge-hint">KRW ₩</span>
                                 </h4>
                                 <p class="plan-desc text-white-64">
                                     Lightweight SDK license for academic researchers, individual roboticists, and 3DGS web prototype testing.
@@ -2256,9 +2404,16 @@
                                 </div>
                                 <div class="br-line bg-primary"></div>
                                 <p class="plan-name letter-space--1 fw-medium">Spatial Pro</p>
-                                <h4 class="plan-price">
-                                    <span><span class="text-primary">$</span>1,480</span>
+                                <h4 class="plan-price price-krw-interactive" title="마우스를 올리면 원화 환산 가격을 확인하실 수 있습니다.">
+                                    <div class="krw-tooltip-box">
+                                        🇰🇷 한화 약 <strong>₩2,072,000원</strong> /월 <span class="sub-rate">(연간 ₩24,864,000원)</span>
+                                    </div>
+                                    <div class="price-val-wrap">
+                                        <span class="val-usd"><span><span class="text-primary">$</span>1,480</span></span>
+                                        <span class="val-krw">₩2,072,000</span>
+                                    </div>
                                     <span class="text-body-2 fw-normal text-white-64 letter-space--1">/mo (billed annually)</span>
+                                    <span class="krw-badge-hint">KRW ₩</span>
                                 </h4>
                                 <p class="plan-desc text-white-64">
                                     Complete spatial twin platform for autonomous facility monitoring, conveyor physics, and robot fleet telemetry.
@@ -2279,8 +2434,16 @@
                                 <div class="bg-img bg-img_1"></div>
                                 <div class="br-line bg-white"></div>
                                 <p class="plan-name letter-space--1 fw-medium">Enterprise Twin-OS</p>
-                                <h4 class="plan-price">
-                                    $3,840 <span class="text-body-2 fw-normal text-white-64 letter-space--1">/mo (billed annually)</span>
+                                <h4 class="plan-price price-krw-interactive" title="마우스를 올리면 원화 환산 가격을 확인하실 수 있습니다.">
+                                    <div class="krw-tooltip-box">
+                                        🇰🇷 한화 약 <strong>₩5,376,000원</strong> /월 <span class="sub-rate">(연간 ₩64,512,000원)</span>
+                                    </div>
+                                    <div class="price-val-wrap">
+                                        <span class="val-usd">$3,840</span>
+                                        <span class="val-krw">₩5,376,000</span>
+                                    </div>
+                                    <span class="text-body-2 fw-normal text-white-64 letter-space--1">/mo (billed annually)</span>
+                                    <span class="krw-badge-hint">KRW ₩</span>
                                 </h4>
                                 <p class="plan-desc text-white-64">
                                     Dedicated on-premise spatial intelligence operating system with multi-agent simulation and hardware sync.
@@ -3494,6 +3657,14 @@
           }, 400);
         }
       }, 1200);
+
+      // Touch toggle for KRW price display on mobile/tablet devices
+      document.querySelectorAll('.wg-plan').forEach(function (plan) {
+        plan.addEventListener('click', function (e) {
+          if (e.target.closest('a')) return; // Allow action buttons to function normally
+          this.classList.toggle('show-krw');
+        });
+      });
     </script>
     <!-- World Labs Nova AI Voice Assistant -->
     <script src="davies-assets/js/voice-assistant.js"></script>
