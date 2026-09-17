@@ -1070,9 +1070,10 @@
         position: fixed;
         bottom: 96px;
         right: 28px;
-        width: 380px;
+        width: 390px;
         max-width: calc(100vw - 32px);
-        background: rgba(10, 15, 26, 0.95);
+        max-height: calc(100vh - 120px);
+        background: rgba(10, 15, 26, 0.96);
         backdrop-filter: blur(20px);
         -webkit-backdrop-filter: blur(20px);
         border: 1px solid rgba(56, 189, 248, 0.35);
@@ -1160,10 +1161,22 @@
         background: rgba(255, 255, 255, 0.1);
       }
       .nova-body {
-        padding: 16px 18px;
+        padding: 14px 16px 16px 16px;
         display: flex;
         flex-direction: column;
-        gap: 12px;
+        gap: 10px;
+        overflow-y: auto;
+        max-height: calc(100vh - 180px);
+      }
+      .nova-body::-webkit-scrollbar {
+        width: 4px;
+      }
+      .nova-body::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .nova-body::-webkit-scrollbar-thumb {
+        background: rgba(56, 189, 248, 0.3);
+        border-radius: 4px;
       }
       .nova-status-text {
         font-size: 11px;
@@ -1382,6 +1395,102 @@
       .nova-perm-guide li {
         margin-bottom: 2px;
       }
+
+      /* Category Tabs (대분류) */
+      .nova-cat-tabs {
+        display: flex;
+        gap: 4px;
+        background: rgba(255, 255, 255, 0.04);
+        padding: 4px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .nova-cat-tab {
+        flex: 1;
+        padding: 6px 3px;
+        font-size: 10.5px;
+        font-weight: 700;
+        color: #94a3b8;
+        background: transparent;
+        border: none;
+        border-radius: 7px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        text-align: center;
+        white-space: nowrap;
+      }
+      .nova-cat-tab:hover {
+        color: #ffffff;
+        background: rgba(255, 255, 255, 0.06);
+      }
+      .nova-cat-tab.active {
+        color: #ffffff;
+        background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+        box-shadow: 0 2px 8px rgba(2, 132, 199, 0.4);
+      }
+
+      /* Category Panes */
+      .nova-cat-pane {
+        display: none;
+        flex-direction: column;
+        gap: 7px;
+        animation: novaFadeIn 0.2s ease;
+      }
+      .nova-cat-pane.active {
+        display: flex;
+      }
+      @keyframes novaFadeIn {
+        from { opacity: 0; transform: translateY(4px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      /* Group Title (중분류) */
+      .nova-group-title {
+        font-size: 10px;
+        font-weight: 700;
+        color: #38bdf8;
+        letter-spacing: 0.5px;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        margin-top: 2px;
+      }
+
+      /* Action Chips (소분류) */
+      .nova-chip-grid {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 5px;
+      }
+      .nova-chip-btn {
+        font-size: 10px;
+        font-weight: 600;
+        color: #e2e8f0;
+        background: rgba(255, 255, 255, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        padding: 5px 8px;
+        border-radius: 7px;
+        cursor: pointer;
+        transition: all 0.18s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+      }
+      .nova-chip-btn:hover {
+        color: #ffffff;
+        background: rgba(56, 189, 248, 0.25);
+        border-color: #38bdf8;
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(56, 189, 248, 0.25);
+      }
+      .nova-chip-btn:active {
+        transform: translateY(0);
+      }
+      .nova-chip-btn.highlight {
+        color: #38bdf8;
+        background: rgba(56, 189, 248, 0.12);
+        border-color: rgba(56, 189, 248, 0.4);
+      }
     `;
     document.head.appendChild(style);
 
@@ -1481,15 +1590,89 @@
           </div>
         </div>
 
-        <div class="nova-quick-chips">
-          <span class="nova-chip" data-cmd="1m 상자 낙하 시뮬레이션">1m 낙하</span>
-          <span class="nova-chip" data-cmd="2.5m 투척 시뮬레이션">2.5m 투척</span>
-          <span class="nova-chip" data-cmd="와이어프레임 토글">와이어프레임</span>
-          <span class="nova-chip" data-cmd="7부품 공간 분할 보여줘">7부품 OBB</span>
-          <span class="nova-chip" data-cmd="60점 레이캐스팅 정확도 평가">60점 피킹</span>
-          <span class="nova-chip" data-cmd="물리 시뮬레이션 리셋">초기화</span>
-          <span class="nova-chip" data-cmd="자주 묻는 질문 보여줘">FAQ</span>
-          <span class="nova-chip" id="novaChipVoiceTest" style="color: #38bdf8; border-color: rgba(56, 189, 248, 0.5);">🔊 여성 목소리 테스트</span>
+        <!-- Category Navigation Tabs (대분류) -->
+        <div class="nova-cat-tabs" id="novaCatTabs">
+          <button type="button" class="nova-cat-tab active" data-target="panePhysics">🎮 3D 물리/시각화</button>
+          <button type="button" class="nova-cat-tab" data-target="paneLab">🌐 AI 공간 생성</button>
+          <button type="button" class="nova-cat-tab" data-target="paneNav">🏢 사이트 탐색</button>
+          <button type="button" class="nova-cat-tab" data-target="paneFaq">❓ FAQ/음성</button>
+        </div>
+
+        <!-- [대분류 1] 3D 물리 & 시각화 -->
+        <div class="nova-cat-pane active" id="panePhysics">
+          <div class="nova-group-title">📦 스마트 창고 물리 엔진 (Warehouse Physics)</div>
+          <div class="nova-chip-grid">
+            <button type="button" class="nova-chip-btn" data-action="trigger_physics" data-param='{"action":"drop"}' data-label="1m 상자 낙하 시뮬레이션">💥 1m 상자 낙하</button>
+            <button type="button" class="nova-chip-btn" data-action="trigger_physics" data-param='{"action":"toss"}' data-label="2.5m 투척 시뮬레이션">🚀 2.5m 투척</button>
+            <button type="button" class="nova-chip-btn" data-action="trigger_physics" data-param='{"action":"reset"}' data-label="물리 시뮬레이션 리셋">🔄 물리 리셋</button>
+          </div>
+
+          <div class="nova-group-title">🔬 3D 정밀 공간 시각화 (Spatial Vision)</div>
+          <div class="nova-chip-grid">
+            <button type="button" class="nova-chip-btn" data-action="toggle_wireframe" data-param='{}' data-label="와이어프레임 렌더링 토글">🕸️ 와이어프레임</button>
+            <button type="button" class="nova-chip-btn" data-action="toggle_partition" data-param='{}' data-label="7부품 공간 분할 OBB 보여줘">📐 7부품 OBB 분할</button>
+            <button type="button" class="nova-chip-btn" data-action="run_picking_benchmark" data-param='{}' data-label="60점 레이캐스팅 정확도 평가">🎯 60점 피킹 벤치마크</button>
+            <button type="button" class="nova-chip-btn" data-action="toggle_fullscreen" data-param='{}' data-label="전체화면 전환">🖥️ 3D 전체화면</button>
+          </div>
+
+          <div class="nova-group-title">🏎️ 특수 시뮬레이터 (Simulator)</div>
+          <div class="nova-chip-grid">
+            <button type="button" class="nova-chip-btn highlight" data-action="open_car_physics" data-param='{}' data-label="자동차 물리 시뮬레이터 열어줘">🏎️ 자동차 3D 물리 ↗</button>
+          </div>
+        </div>
+
+        <!-- [대분류 2] AI 공간 생성 & 연구 -->
+        <div class="nova-cat-pane" id="paneLab">
+          <div class="nova-group-title">✨ 3D 월드 자동 생성 (World Generator)</div>
+          <div class="nova-chip-grid">
+            <button type="button" class="nova-chip-btn" data-action="generate_3d_world" data-param='{"prompt":"반도체 클린룸 로봇 연구실"}' data-label="반도체 클린룸 생성">🔬 반도체 클린룸</button>
+            <button type="button" class="nova-chip-btn" data-action="generate_3d_world" data-param='{"prompt":"사이버펑크 산업용 격납고"}' data-label="사이버펑크 격납고 생성">🤖 사이버펑크 격납고</button>
+            <button type="button" class="nova-chip-btn" data-action="generate_3d_world" data-param='{"prompt":"스마트 자동화 물류센터"}' data-label="스마트 물류창고 생성">📦 스마트 풀필먼트</button>
+            <button type="button" class="nova-chip-btn" data-action="generate_3d_world" data-param='{"prompt":"초저온 백신 콜드체인 창고"}' data-label="콜드체인 냉동창고 생성">❄️ 초저온 콜드체인</button>
+          </div>
+
+          <div class="nova-group-title">📄 물리 AI & 강화학습 연구 (Research Papers)</div>
+          <div class="nova-chip-grid">
+            <button type="button" class="nova-chip-btn highlight" data-action="open_research_article" data-param='{}' data-label="강화학습 칼럼 아티클 열어줘">📚 AI시티빌더스 칼럼 ↗</button>
+            <button type="button" class="nova-chip-btn" data-action="navigate_section" data-param='{"section":"whitepapers"}' data-label="화이트페이퍼 섹션 보여줘">📑 리서치 페이퍼</button>
+          </div>
+        </div>
+
+        <!-- [대분류 3] 사이트 탐색 & 엔터프라이즈 -->
+        <div class="nova-cat-pane" id="paneNav">
+          <div class="nova-group-title">🚀 주요 섹션 바로가기 (Quick Jump)</div>
+          <div class="nova-chip-grid">
+            <button type="button" class="nova-chip-btn" data-action="navigate_section" data-param='{"section":"hero"}' data-label="홈 맨 위로 이동">🏠 홈 (맨 위로)</button>
+            <button type="button" class="nova-chip-btn" data-action="navigate_section" data-param='{"section":"spatialLab"}' data-label="3D 스마트 창고 섹션으로 가줘">🏭 3D 스마트 창고</button>
+            <button type="button" class="nova-chip-btn" data-action="navigate_section" data-param='{"section":"works"}' data-label="포트폴리오 쇼케이스 보여줘">💼 작품 쇼케이스</button>
+            <button type="button" class="nova-chip-btn" data-action="navigate_section" data-param='{"section":"services"}' data-label="서비스 안내로 가줘">🛠️ 기술 솔루션</button>
+            <button type="button" class="nova-chip-btn" data-action="navigate_section" data-param='{"section":"about"}' data-label="회사 소개 보여줘">🏢 회사 소개</button>
+            <button type="button" class="nova-chip-btn" data-action="navigate_section" data-param='{"section":"awards"}' data-label="표준 인증 내역 보여줘">🏆 표준 인증 6종</button>
+            <button type="button" class="nova-chip-btn" data-action="navigate_section" data-param='{"section":"contact"}' data-label="문의하기 섹션으로 가줘">✉️ 프로젝트 문의</button>
+            <button type="button" class="nova-chip-btn" data-action="navigate_section" data-param='{"section":"footer"}' data-label="푸터 사이트맵으로 이동">🗺️ 푸터 사이트맵</button>
+          </div>
+        </div>
+
+        <!-- [대분류 4] FAQ & 보이스 제어 -->
+        <div class="nova-cat-pane" id="paneFaq">
+          <div class="nova-group-title">❓ 자주 묻는 질문 즉시 펼치기 (FAQ Accordions)</div>
+          <div class="nova-chip-grid">
+            <button type="button" class="nova-chip-btn" data-action="control_faq" data-param='{"item":1}' data-label="3DGS 가우시안 스플래팅 질문 펼쳐줘">💡 01. 3DGS vs 메시</button>
+            <button type="button" class="nova-chip-btn" data-action="control_faq" data-param='{"item":2}' data-label="100Hz Wasm 물리 엔진 질문 펼쳐줘">⚙️ 02. 100Hz 물리</button>
+            <button type="button" class="nova-chip-btn" data-action="control_faq" data-param='{"item":3}' data-label="ROS2 로봇 연동 질문 펼쳐줘">🤖 03. ROS2 로봇 연동</button>
+            <button type="button" class="nova-chip-btn" data-action="control_faq" data-param='{"item":4}' data-label="공간 센서 포맷 지원 질문 펼쳐줘">📡 04. 3D 센서 정합</button>
+            <button type="button" class="nova-chip-btn" data-action="control_faq" data-param='{"item":5}' data-label="60점 피킹 정확도 질문 펼쳐줘">🎯 05. 레이캐스팅 피킹</button>
+            <button type="button" class="nova-chip-btn" data-action="control_faq" data-param='{"item":6}' data-label="물리 AI 강화학습 질문 펼쳐줘">🧠 06. 물리 AI 강화학습</button>
+          </div>
+
+          <div class="nova-group-title">🔊 음성 & 화면 컨트롤 (Voice & Controls)</div>
+          <div class="nova-chip-grid">
+            <button type="button" class="nova-chip-btn highlight" id="novaBtnVoiceTest">🔊 여성 목소리 테스트</button>
+            <button type="button" class="nova-chip-btn" id="novaBtnToggleGuide">🔒 마이크 권한 안내</button>
+            <button type="button" class="nova-chip-btn" data-action="scroll_page" data-param='{"direction":"up"}' data-label="화면 위로 스크롤">⬆️ 화면 위로</button>
+            <button type="button" class="nova-chip-btn" data-action="scroll_page" data-param='{"direction":"down"}' data-label="화면 아래로 스크롤">⬇️ 화면 아래로</button>
+            <button type="button" class="nova-chip-btn" data-action="close_assistant" data-param='{}' data-label="어시스턴트 창 닫아줘">✕ 창 닫기</button>
+          </div>
         </div>
       </div>
     `;
@@ -1555,38 +1738,51 @@
       }
     });
 
-    // Quick Chips click
-    document.querySelectorAll(".nova-chip").forEach((chip) => {
-      if (chip.id === "novaChipVoiceTest") return;
-      chip.addEventListener("click", async () => {
-        const cmd = chip.dataset.cmd;
-        if (!cmd) return;
-        updateTranscript(cmd);
-        updateStatus("processing", "명령 분석 및 화면 제어 중...");
-
-        if (state.apiKey) {
-          try {
-            const reply = await callGPT4oMini(cmd);
-            updateResponse(reply);
-            await speakResponse(reply);
-          } catch (e) {
-            console.warn("[Nova] GPT call failed on chip, fallback to local:", e);
-            const fallbackReply = parseLocalIntent(cmd);
-            updateResponse(fallbackReply);
-            await speakResponse(fallbackReply);
-          }
-        } else {
-          const reply = parseLocalIntent(cmd);
-          updateResponse(reply);
-          await speakResponse(reply);
-        }
+    // Category Tabs Switching (대분류 탭 전환)
+    document.querySelectorAll(".nova-cat-tab").forEach((tab) => {
+      tab.addEventListener("click", () => {
+        document.querySelectorAll(".nova-cat-tab").forEach((t) => t.classList.remove("active"));
+        document.querySelectorAll(".nova-cat-pane").forEach((p) => p.classList.remove("active"));
+        tab.classList.add("active");
+        const targetId = tab.dataset.target;
+        const targetPane = document.getElementById(targetId);
+        if (targetPane) targetPane.classList.add("active");
       });
     });
 
-    document.getElementById("novaChipVoiceTest")?.addEventListener("click", async () => {
-      const greeting = "안녕하세요! World Labs Nova 음성 어시스턴트입니다. 부드러운 여성 목소리로 웹사이트의 모든 기능을 음성으로 안내하고 제어해 드릴게요.";
+    // Chip Button Actions (소분류 버튼 클릭 -> 즉시 화면 이동 & 기능 실행 & Nova 음성 안내)
+    document.querySelectorAll(".nova-chip-btn[data-action]").forEach((btn) => {
+      btn.addEventListener("click", async () => {
+        const action = btn.dataset.action;
+        let param = {};
+        try {
+          param = JSON.parse(btn.dataset.param || "{}");
+        } catch (e) {}
+        const label = btn.dataset.label || btn.textContent.trim();
+
+        updateTranscript(label);
+        updateStatus("processing", "명령 실행 및 화면 이동 중...");
+
+        const desc = executeAction(action, param);
+        const reply = `네! ${desc}를 완료하고 화면을 이동해 드렸어요.`;
+        updateResponse(reply);
+        await speakResponse(reply);
+      });
+    });
+
+    // Voice Test Button
+    document.getElementById("novaBtnVoiceTest")?.addEventListener("click", async () => {
+      const greeting = "안녕하세요! World Labs Nova 음성 어시스턴트입니다. 카테고리별 버튼을 누르시면 해당 웹사이트 화면으로 즉시 이동하며 모든 기능이 실행됩니다.";
       updateResponse(greeting);
       await speakResponse(greeting);
+    });
+
+    // Toggle Guide Button
+    document.getElementById("novaBtnToggleGuide")?.addEventListener("click", () => {
+      const guide = document.getElementById("novaPermGuide");
+      if (guide) {
+        guide.style.display = guide.style.display === "none" || guide.style.display === "" ? "block" : "none";
+      }
     });
 
     // Direct Text Command Form Submit
